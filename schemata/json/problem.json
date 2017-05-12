@@ -1,0 +1,138 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "problem": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Problem",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of problem",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "comment": {
+          "description": "comment",
+          "example": "SOX is difficult",
+          "type": [
+            "string"
+          ]
+        },
+        "image": {
+          "description": "image",
+          "example": "image.jpg",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/problem/definitions/id"
+            }
+          ]
+        },
+        "created_at": {
+          "description": "when problem was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when problem was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new problem.",
+          "href": "/problems",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing problem.",
+          "href": "/problems/{(%23%2Fdefinitions%2Fproblem%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing problem.",
+          "href": "/problems/{(%23%2Fdefinitions%2Fproblem%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info",
+          "properties": {
+          }
+        },
+        {
+          "description": "List existing problems.",
+          "href": "/problems",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        },
+        {
+          "description": "Update an existing problem.",
+          "href": "/problems/{(%23%2Fdefinitions%2Fproblem%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/problem/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/problem/definitions/id"
+        },
+        "comment": {
+          "$ref": "#/definitions/problem/definitions/comment"
+        },
+        "image": {
+          "$ref": "#/definitions/problem/definitions/image"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/problem/definitions/updated_at"
+        }
+      }
+    }
+  },
+  "properties": {
+    "problem": {
+      "$ref": "#/definitions/problem"
+    }
+  }
+}
