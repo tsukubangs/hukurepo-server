@@ -4,14 +4,12 @@ class ProblemsController < ApplicationController
   # GET /problems
   def index
     @problems = Problem.all
-    responce = {"problems" => @problems}
-    render json: responce
+    render json: @problems.wrap_json("problems")
   end
 
   # GET /problems/1
   def show
-    responce = {"problem" => @problem}
-    render json: responce
+    render json: @problem.wrap_json("problem")
   end
 
   # POST /problems
