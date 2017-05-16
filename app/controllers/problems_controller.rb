@@ -4,12 +4,12 @@ class ProblemsController < ApplicationController
   # GET /problems
   def index
     @problems = Problem.all
-    render json: @problems.wrap_json("problems")
+    render json: {"problems" => @problems}
   end
 
   # GET /problems/1
   def show
-    render json: @problem.wrap_json("problem")
+    render json: {"problem" => @problem}
   end
 
   # POST /problems
@@ -17,7 +17,7 @@ class ProblemsController < ApplicationController
     @problem = Problem.new(problem_params)
 
     if @problem.save
-      render json: @problem, status: :created, location: @problem
+      render json: {"problem" => @problem}, status: :created, location: @problem
     else
       render json: @problem.errors, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class ProblemsController < ApplicationController
   # PATCH/PUT /problems/1
   def update
     if @problem.update(problem_params)
-      render json: @problem
+      render json: {"problem" => @problem}
     else
       render json: @problem.errors, status: :unprocessable_entity
     end
