@@ -4,12 +4,12 @@ class ProblemsController < ApplicationController
   # GET /problems
   def index
     @problems = Problem.all
-    render json: @problems.problems
+    render json: @problems
   end
 
   # GET /problems/1
   def show
-    render json: @problem.problem
+    render json: @problem
   end
 
   # POST /problems
