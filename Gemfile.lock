@@ -84,6 +84,7 @@ GEM
       json_schema (~> 0.3, >= 0.3.1)
     puma (3.8.2)
     rack (2.0.1)
+    rack-cors (0.4.1)
     rack-json_schema (1.5.2)
       erubis
       jdoc (>= 0.1.4)
@@ -150,6 +151,7 @@ DEPENDENCIES
   pg
   prmd
   puma (~> 3.0)
+  rack-cors
   rack-json_schema
   rails (~> 5.0.2)
   spring
