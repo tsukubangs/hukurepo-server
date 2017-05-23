@@ -21,6 +21,13 @@ class ProblemsController < ApplicationController
     else
       render json: @problem.errors, status: :unprocessable_entity
     end
+
+    begin
+      exec("java -jar ./lib/jars/Pub.jar ./public/test.jpg \"shuta is doing test\" 36.1100265 140.09961 Shuta 53 female Japan")
+    rescue
+      puts #error"
+    end
+    
   end
 
   # PATCH/PUT /problems/1
