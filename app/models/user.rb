@@ -5,7 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   after_create :update_access_token!
 
-  validates :email, presence: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+
+  # use on create
+  # 二回パスワードを打つ必要あり
+  # validates :password, presence: true, confirmation: true, length: {within: 5..30 }
+
+  validates :password, presence: true, length: {within: 5..30 }
 
   def update_access_token!
    self.access_token = "#{self.id}:#{Devise.friendly_token}"
