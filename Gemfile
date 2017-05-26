@@ -31,6 +31,9 @@ gem 'prmd'
 gem 'active_model_serializers'
 gem 'rack-json_schema'
 
+# use for user devise
+gem 'devise'
+
 # use for photo uploader
 gem 'carrierwave'
 
