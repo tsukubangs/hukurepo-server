@@ -19,12 +19,12 @@ module V1
 
     def invalid_email
       warden.custom_failure!
-      render json: { error: t('invalid_email') }
+      render json: { error: t('invalid_email') }, status: 401
     end
 
     def invalid_password
       warden.custom_failure!
-      render json: { error: t('invalid_password') }
+      render json: { error: t('invalid_password') }, status: 401
     end
   end
 end
