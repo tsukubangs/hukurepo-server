@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: {within: 5..30 }
 
+
+  has_many :problem
+  # has_many :problem, foreign_key: "id"
+
   def update_access_token!
    self.access_token = "#{self.id}:#{Devise.friendly_token}"
    save

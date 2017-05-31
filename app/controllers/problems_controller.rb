@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :update, :destroy]
-
+  
   # GET /problems
   def index
     @problems = Problem.all
@@ -47,4 +47,6 @@ class ProblemsController < ApplicationController
     def problem_params
       params.require(:problem).permit(:comment, :image, :latitude, :longitude, :user_id)
     end
+
+
 end
