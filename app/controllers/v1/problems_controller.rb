@@ -5,7 +5,7 @@ module V1
     # GET /problems
     def index
       @problems = Problem.all
-      render json: {"problems" => @problems}
+      render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
     # GET /problems/1
@@ -28,7 +28,7 @@ module V1
     # PATCH/PUT /problems/1
     def update
       if @problem.update(problem_params)
-        render json: {"problem" => @problem}
+        render json:@problem, serializer: V1::ProblemSerializer, root: nil,
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
