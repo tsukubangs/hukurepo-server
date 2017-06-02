@@ -10,7 +10,7 @@ module V1
 
     # GET /problems/1
     def show
-      render json: {"problem" => @problem}
+      render json: @problem, serializer: V1::ProblemSerializer, root: nil
     end
 
     # POST /problems
@@ -18,7 +18,8 @@ module V1
       @problem = Problem.new(problem_params)
 
       if @problem.save
-        render json: {"problem" => @problem}, status: :created, location: @problem
+        render json: @problem, serializer: V1::ProblemSerializer, root: nil,
+        status: :created, location: v1_problem_url(@problem)
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
