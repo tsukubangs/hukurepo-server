@@ -3,9 +3,15 @@ module V1
     # ここに何も追加しないことで、indexメソッドが認証を必要とするメソッドとなります。
     # 逆に認証を必要としないメソッドを作成したい場合は追加するようにしましょう。
     skip_before_action :authenticate_user_from_token!, only: [:create]
+    before_action :set_user, only: [:show]
 
     def index
       render json: User.all, each_serializer: V1::UserSerializer
+    end
+
+    # GET /v1/users/1
+    def show
+      render json: @user
     end
 
     # POST
@@ -20,7 +26,14 @@ module V1
       end
     end
 
+
+
     private
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     def user_params
       params.require(:user).permit(:email, :password, :name, :gender, :nationality, :image)
