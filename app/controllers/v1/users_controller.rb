@@ -11,7 +11,7 @@ module V1
 
     # GET /v1/users/1
     def show
-      render json: @user
+      render json: @user, serializer: V1::UserSerializer, root: nil
     end
 
     # POST
