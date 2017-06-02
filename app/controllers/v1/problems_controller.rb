@@ -16,7 +16,7 @@ module V1
     # POST /problems
     def create
       @problem = Problem.new(problem_params)
-
+      @problem.user = current_user
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
         status: :created, location: v1_problem_url(@problem)
@@ -28,7 +28,7 @@ module V1
     # PATCH/PUT /problems/1
     def update
       if @problem.update(problem_params)
-        render json:@problem, serializer: V1::ProblemSerializer, root: nil,
+        render json: @problem, serializer: V1::ProblemSerializer, root: nil
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
@@ -47,7 +47,7 @@ module V1
 
       # Only allow a trusted parameter "white list" through.
       def problem_params
-        params.require(:problem).permit(:comment, :image, :latitude, :longitude, :user_id)
+        params.require(:problem).permit(:comment, :image, :latitude, :longitude)
       end
   end
 end
