@@ -14,7 +14,6 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: {within: 5..30 }
 
-
   has_many :problems
 
   def update_access_token!
