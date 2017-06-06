@@ -26,8 +26,6 @@ module V1
       end
     end
 
-
-
     private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -36,7 +34,8 @@ module V1
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :name, :gender, :nationality, :image)
+      # TODO: requireを入れる手段をあとで追加
+      params.permit(:email, :password, :name, :gender, :nationality, :image)
     end
   end
 end
