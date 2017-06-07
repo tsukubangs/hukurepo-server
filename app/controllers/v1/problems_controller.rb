@@ -53,15 +53,15 @@ module V1
 
       def publish_sox
         # TODO: add validation to model
-        @problem.comment ||= ''
+        @problem.comment ||= 'No comment'
         @problem.image ||= ''
         @problem.latitude ||= 0
         @problem.longitude ||= 0
         @problem.longitude ||= 0
-        @problem.user.name ||= ''
+        @problem.user.name ||= 'No name'
         @problem.user.age ||= 0
-        @problem.user.gender ||= ''
-        @problem.user.nationality ||= ''
+        @problem.user.gender ||= 'No gender'
+        @problem.user.nationality ||= 'No nationality'
 
         if @problem.image.blank?
           image_path = "./public/noimage.jpg"
