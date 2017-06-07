@@ -23,7 +23,6 @@ module V1
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
-
       publish_sox
     end
 
