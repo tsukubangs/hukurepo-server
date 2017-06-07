@@ -24,30 +24,7 @@ module V1
         render json: @problem.errors, status: :unprocessable_entity
       end
 
-      # TODO: add validation to model
-      @problem.comment ||= ''
-      @problem.image ||= ''
-      @problem.latitude ||= 0
-      @problem.longitude ||= 0
-      @problem.longitude ||= 0
-      @problem.user.name ||= ''
-      @problem.user.age ||= 0
-      @problem.user.gender ||= ''
-      @problem.user.nationality ||= ''
-
-      if @problem.image.blank?
-        image_path = "./public/noimage.jpg"
-      else
-        image_path = "./public#{@problem.image.url}"
-      end
-
-
-      # imageはサーバでrenameしているためエスケープの必要がない
-      command = "java -jar ./lib/jars/Pub.jar "
-      command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} #{@problem.user.name} #{@problem.user.age} #{@problem.user.gender} #{@problem.user.nationality}"
-      logger.debug ("#{command} #{command_params}")
-      system("#{command} #{command_params}")
-
+      publish_sox
     end
 
     # PATCH/PUT /problems/1
@@ -73,6 +50,31 @@ module V1
       # Only allow a trusted parameter "white list" through.
       def problem_params
         params.require(:problem).permit(:comment, :image, :latitude, :longitude)
+      end
+
+      def publish_sox
+        # TODO: add validation to model
+        @problem.comment ||= ''
+        @problem.image ||= ''
+        @problem.latitude ||= 0
+        @problem.longitude ||= 0
+        @problem.longitude ||= 0
+        @problem.user.name ||= ''
+        @problem.user.age ||= 0
+        @problem.user.gender ||= ''
+        @problem.user.nationality ||= ''
+
+        if @problem.image.blank?
+          image_path = "./public/noimage.jpg"
+        else
+          image_path = "./public#{@problem.image.url}"
+        end
+
+        # imageはserverでrenameしているためエスケープの必要がない
+        command = "java -jar ./lib/jars/Pub.jar "
+        command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} #{@problem.user.name} #{@problem.user.age} #{@problem.user.gender} #{@problem.user.nationality}"
+        logger.debug ("#{command} #{command_params}")
+        system("#{command} #{command_params}")
       end
   end
 end
