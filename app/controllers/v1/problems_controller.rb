@@ -71,7 +71,7 @@ module V1
 
         # imageはserverでrenameしているためエスケープの必要がない
         command = "java -jar ./lib/jars/Pub.jar "
-        command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} #{@problem.user.name} #{@problem.user.age} #{@problem.user.gender} #{@problem.user.nationality}"
+        command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} \"#{@problem.user.name}\" #{@problem.user.age} \"#{@problem.user.gender}\" \"#{@problem.user.nationality}\""
         logger.debug ("#{command} #{command_params}")
         system("#{command} #{command_params}")
       end
