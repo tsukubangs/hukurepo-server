@@ -5,7 +5,7 @@ module V1
     skip_before_action :authenticate_user_from_token!, only: [:create]
     before_action :set_user, only: [:show]
 
-    wrap_parameters :user, include: [:email, :password, :name, :gender, :nationality, :image]
+    wrap_parameters :user, include: [:email, :password, :name, :gender, :age, :nationality, :image]
 
     def index
       render json: User.all, each_serializer: V1::UserSerializer
@@ -37,7 +37,7 @@ module V1
 
     def user_params
       # TODO: requireを入れる手段をあとで追加
-      params.require(:user).permit(:email, :password, :name, :gender, :nationality, :image)
+      params.require(:user).permit(:email, :password, :name, :gender, :age, :nationality, :image)
     end
   end
 end
