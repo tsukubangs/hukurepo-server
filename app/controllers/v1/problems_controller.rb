@@ -63,14 +63,15 @@ module V1
         @problem.user.gender ||= 'No gender'
         @problem.user.nationality ||= 'No nationality'
 
+	rails_path = "/home/ngs/ngs-api-test/"
         if @problem.image.blank?
-          image_path = "./public/noimage.jpg"
+          image_path = rails_path +  "public/noimage.jpg"
         else
-          image_path = "./public#{@problem.image.url}"
+          image_path = rails_path + "public#{@problem.image.url}"
         end
 
         # imageはserverでrenameしているためエスケープの必要がない
-        command = "java -jar ./lib/jars/Pub.jar "
+        command = "java -jar "+  rails_path + "lib/jars/Pub.jar "
         command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} \"#{@problem.user.name}\" #{@problem.user.age} \"#{@problem.user.gender}\" \"#{@problem.user.nationality}\""
         logger.debug ("#{command} #{command_params}")
         system("#{command} #{command_params}")
