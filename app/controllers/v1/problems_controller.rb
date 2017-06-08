@@ -63,7 +63,7 @@ module V1
         @problem.user.gender ||= 'No gender'
         @problem.user.nationality ||= 'No nationality'
 
-	rails_path = "/home/ngs/ngs-api-test/"
+	rails_path = File::expand_path(File.expand_path('../../../../', __FILE__)) + '/'  
         if @problem.image.blank?
           image_path = rails_path +  "public/noimage.jpg"
         else
