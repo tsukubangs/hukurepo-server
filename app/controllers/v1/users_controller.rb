@@ -16,6 +16,11 @@ module V1
       render json: @user, serializer: V1::UserSerializer, root: nil
     end
 
+    # GET /v1/users/me
+    def me
+      render json: current_user, serializer: V1::UserSerializer, root: nil
+    end
+
     # POST
     # Create an user
     def create

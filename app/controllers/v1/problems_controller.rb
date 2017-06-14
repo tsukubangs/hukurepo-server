@@ -2,18 +2,31 @@ module V1
   class ProblemsController < ApplicationController
     before_action :set_problem, only: [:show, :update, :destroy]
 
-    # GET /problems
+    # GET /v1/problems
     def index
       @problems = Problem.all
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
-    # GET /problems/1
+    # GET /v1/users/1/problems
+    def users
+      @problems = Problem.where(user_id: params[:user_id])
+      render json: @problems, each_serializer: V1::ProblemSerializer
+    end
+
+    # GET /v1/problems/me
+    # GET /v1/users/me/problems
+    def me
+      @problems = Problem.where(user_id: current_user.id)
+      render json: @problems, each_serializer: V1::ProblemSerializer
+    end
+
+    # GET /v1/problems/1
     def show
       render json: @problem, serializer: V1::ProblemSerializer, root: nil
     end
 
-    # POST /problems
+    # POST /v1/problems
     def create
       @problem = Problem.new(problem_params)
       @problem.user = current_user
@@ -26,7 +39,7 @@ module V1
       publish_sox
     end
 
-    # PATCH/PUT /problems/1
+    # PATCH/PUT /v1/problems/1
     def update
       if @problem.update(problem_params)
         render json: @problem, serializer: V1::ProblemSerializer, root: nil
@@ -35,7 +48,7 @@ module V1
       end
     end
 
-    # DELETE /problems/1
+    # DELETE /v1/problems/1
     def destroy
       @problem.destroy
     end
@@ -63,14 +76,9 @@ module V1
         @problem.user.gender ||= 'No gender'
         @problem.user.nationality ||= 'No nationality'
 
-	rails_path = File::expand_path(File.expand_path('../../../../', __FILE__)) + '/'  
-        if @problem.image.blank?
-          image_path = rails_path +  "public/noimage.jpg"
-        else
-          image_path = rails_path + "public#{@problem.image.url}"
-        end
+	      rails_path = File::expand_path(File.expand_path('../../../../', __FILE__)) + '/'
+        image_path =  rails_path + ( @problem.image.blank? ? "public/noimage.jpg" : "public#{@problem.image.url}" )
 
-        # imageはserverでrenameしているためエスケープの必要がない
         command = "java -jar "+  rails_path + "lib/jars/Pub.jar "
         command_params = "#{image_path} \"#{@problem.comment}\" #{@problem.latitude} #{@problem.longitude} \"#{@problem.user.name}\" #{@problem.user.age} \"#{@problem.user.gender}\" \"#{@problem.user.nationality}\""
         logger.debug ("#{command} #{command_params}")
