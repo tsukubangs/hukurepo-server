@@ -1,0 +1,106 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: FIXME - Session
+description: FIXME
+stability: prototype
+strictProperties: true
+type:
+- object
+definitions:
+  user_id:
+    description: unique identifier of user
+    example: '18'
+    readOnly: true
+    type:
+    - string
+  email:
+    description: unique email of user
+    example: 'test@example.com'
+    readOnly: true
+    type:
+    - string
+  password:
+    description: passwordof user
+    example: 'example'
+    readOnly: true
+    type:
+    - string
+  name:
+    description: unique name of user
+    example: 'Wataru Sakamoto'
+    readOnly: true
+    type:
+    - string
+  gender:
+    description: gender of user
+    example: 'male'
+    readOnly: true
+    type:
+    - string
+  age:
+    description: age range of user
+    example: '20'
+    readOnly: true
+    type:
+    - integer
+  nationality:
+    description: nationality of user
+    example: 'Japan'
+    readOnly: true
+    type:
+    - string
+  image:
+    description: image of the user
+    example: 'image.jp'
+    readOnly: true
+    type:
+    - string
+  token_type:
+    description: token type for user
+    example: "Bearer"
+    readOnly: true
+    type:
+      -string
+  access_token:
+    description: unique token for user
+    example: "ABCDEFCA030"
+    readOnly: true
+    type:
+      -string
+  identity:
+    anyOf:
+    - "$ref": "/schemata/user#/definitions/id"
+    - "$ref": "/schemata/user#/definitions/name"
+  created_at:
+    description: when user was created
+    format: date-time
+    type:
+    - string
+  updated_at:
+    description: when user was updated
+    format: date-time
+    type:
+    - string
+  access_token:
+    description: Authozation Key
+    Example: '10:e_sq2en-VGzaixCQ-_Fk'
+    type:
+    - string
+links:
+- description: Login to a specific user.
+  href: "/login"
+  method: POST
+  authorization: "EXAMPLE-HEADER"
+  # rel: instances
+  targetSchema:
+    properties:
+      email:
+        "$ref": "/schemata/session#/definitions/email"
+      token_type:
+        "$ref": "/schemata/session#/definitions/token_type"
+      user_id:
+        "$ref": "/schemata/session#/definitions/user_id"
+      access_token:
+        "$ref": "/schemata/session#/definitions/access_token"
+  title: Login
+id: schemata/session
