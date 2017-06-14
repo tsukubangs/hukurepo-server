@@ -27,7 +27,7 @@ module V1
       @user = User.new user_params
 
       if @user.save!
-        render json: @user, serializer: V1::SessionSerializer, root: nil
+        render json: @user, status: :created, serializer: V1::SessionSerializer, root: nil
       else
         render json: { error: t('user_create_error') }, status: :unprocessable_entity
       end
