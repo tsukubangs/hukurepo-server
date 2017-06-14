@@ -1,0 +1,244 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "problem": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Problem",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of problem",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "comment": {
+          "description": "problem's comment",
+          "example": "SOX is difficult",
+          "type": [
+            "string"
+          ]
+        },
+        "image_url": {
+          "description": "stored image url",
+          "example": "/uploads/problem/image/:id/image-name.jpg",
+          "type": [
+            "string"
+          ]
+        },
+        "latitude": {
+          "description": "latitude",
+          "example": 12.345,
+          "type": [
+            "number"
+          ]
+        },
+        "longitude": {
+          "description": "longitude",
+          "example": 67.89,
+          "type": [
+            "number"
+          ]
+        },
+        "user_id": {
+          "description": "user's id",
+          "example": 1,
+          "type": [
+            "integer"
+          ]
+        },
+        "access_token": {
+          "description": "access token",
+          "example": "1:ABCDabcd",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/problem/definitions/id"
+            }
+          ]
+        },
+        "created_at": {
+          "description": "when problem was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when problem was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new problem.",
+          "href": "/problems",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "comment": {
+                "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "image_url": {
+                "$ref": "#/definitions/problem/definitions/image_url"
+              },
+              "latitude": {
+                "$ref": "#/definitions/problem/definitions/latitude"
+              },
+              "longitude": {
+                "$ref": "#/definitions/problem/definitions/longitude"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          },
+          "targetSchema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/problem/definitions/id"
+              },
+              "comment": {
+                "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "image_url": {
+                "$ref": "#/definitions/problem/definitions/image_url"
+              },
+              "latitude": {
+                "$ref": "#/definitions/problem/definitions/latitude"
+              },
+              "longitude": {
+                "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "use_id": {
+                "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "created_at": {
+                "$ref": "#/definitions/problem/definitions/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/definitions/problem/definitions/updated_at"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Get for existing user's problem.",
+          "href": "/problems/me",
+          "method": "GET",
+          "rel": "self",
+          "title": "Me",
+          "targetSchema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/problem/definitions/id"
+              },
+              "comment": {
+                "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "image_url": {
+                "$ref": "#/definitions/problem/definitions/image_url"
+              },
+              "latitude": {
+                "$ref": "#/definitions/problem/definitions/latitude"
+              },
+              "longitude": {
+                "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "use_id": {
+                "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "created_at": {
+                "$ref": "#/definitions/problem/definitions/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/definitions/problem/definitions/updated_at"
+              }
+            },
+            "type": [
+              "Object"
+            ]
+          },
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "Get list existing problems.",
+          "href": "/problems",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "targetSchema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/problem/definitions/id"
+              },
+              "comment": {
+                "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "image_url": {
+                "$ref": "#/definitions/problem/definitions/image_url"
+              },
+              "latitude": {
+                "$ref": "#/definitions/problem/definitions/latitude"
+              },
+              "longitude": {
+                "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "use_id": {
+                "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "created_at": {
+                "$ref": "#/definitions/problem/definitions/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/definitions/problem/definitions/updated_at"
+              }
+            },
+            "type": [
+              "array"
+            ]
+          },
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        }
+      ],
+      "properties": {
+        "access_token": {
+          "$ref": "#/definitions/problem/definitions/access_token"
+        }
+      }
+    }
+  },
+  "properties": {
+    "problem": {
+      "$ref": "#/definitions/problem"
+    }
+  }
+}
