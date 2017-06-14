@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resource :login, only: [:create], controller: :sessions
     resource :users, only: [:create]
     resources :users, only: [:index, :show]
-    resources :problems
+    resources :problems do
+      collection do
+        get 'me'
+      end
+    end
   end
 end
