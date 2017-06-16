@@ -90,7 +90,8 @@ links:
 - description: Login to a specific user.
   href: "/login"
   method: POST
-  authorization: "EXAMPLE-HEADER"
+  http_header:
+    authorization: "EXAMPLE-HEADER"
   # rel: instances
   targetSchema:
     properties:

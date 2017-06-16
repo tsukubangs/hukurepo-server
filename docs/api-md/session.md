@@ -18,7 +18,8 @@ POST /login
 
 ```bash
 $ curl -n -X POST /login \
-  -H "Content-Type: application/json"
+  -H "Content-Type: application/json" \
+  -H "authorization: EXAMPLE-HEADER"
 ```
 
 
