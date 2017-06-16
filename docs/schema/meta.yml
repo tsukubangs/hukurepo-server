@@ -1,1 +1,9 @@
 # overall API metadata
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: API JSON Schema
+description: In this schema file, we represents the public interface of Sample API in JSON Hyper Schema draft v4.
+id: bigclout
+links:
+- href: http://api.acroquest.work/v1
+  rel: self

@@ -190,4 +190,4 @@ properties:
     access_token:
       "$ref": "/schemata/problem#/definitions/access_token"
 
-id: schemata/problem
+id: schemata/yml/problem

@@ -32,7 +32,7 @@ POST /problems
 #### Curl Example
 
 ```bash
-$ curl -n -X POST /problems \
+$ curl -n -X POST http://api.acroquest.work/v1/problems \
   -d '{
   "comment": "SOX is difficult",
   "image_url": "/uploads/problem/image/:id/image-name.jpg",
@@ -75,7 +75,7 @@ GET /problems/me
 #### Curl Example
 
 ```bash
-$ curl -n /problems/me \
+$ curl -n http://api.acroquest.work/v1/problems/me \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -111,7 +111,7 @@ GET /problems
 #### Curl Example
 
 ```bash
-$ curl -n /problems \
+$ curl -n http://api.acroquest.work/v1/problems \
   -H "Authorization: 1:ABCDabcd"
 ```
 
