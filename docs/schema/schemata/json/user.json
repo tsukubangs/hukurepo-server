@@ -1,13 +1,13 @@
 {
-  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
   "type": [
     "object"
   ],
   "definitions": {
     "user": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "FIXME - User",
-      "description": "FIXME",
+      "title": "User",
+      "description": "Userの情報，投稿などを管理するAPI",
       "stability": "prototype",
       "strictProperties": true,
       "type": [
@@ -87,10 +87,11 @@
           ]
         },
         "access_token": {
-          "description": "Authozation Key",
-          "Example": "10:e_sq2en-VGzaixCQ-_Fk",
+          "description": "unique token for user",
+          "example": "1:ABCDabcd",
+          "readOnly": true,
           "type": [
-            "string"
+            "-string"
           ]
         },
         "identity": {
@@ -121,7 +122,7 @@
       "links": [
         {
           "description": "Create a new user.",
-          "href": "/v1/users",
+          "href": "/users",
           "method": "POST",
           "rel": "create",
           "targetSchema": {
@@ -176,11 +177,11 @@
         },
         {
           "description": "Get information of login user.",
-          "href": "/v1/users/me",
+          "href": "/users/me",
           "method": "GET",
           "rel": "self",
           "http_header": {
-            "authorization": "EXAMPLE-HEADER"
+            "authorization": "1:ABCDabcd"
           },
           "targetSchema": {
             "properties": {
@@ -224,5 +225,14 @@
     "user": {
       "$ref": "#/definitions/user"
     }
-  }
+  },
+  "title": "API JSON Schema",
+  "description": "In this schema file, we represents the public interface of Sample API in JSON Hyper Schema draft v4.",
+  "id": "bigclout",
+  "links": [
+    {
+      "href": "http://api.acroquest.work/v1",
+      "rel": "self"
+    }
+  ]
 }

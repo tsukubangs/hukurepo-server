@@ -1,7 +1,7 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-title: FIXME - Session
-description: FIXME
+title: Session
+description: ユーザのセッションを管理するAPI
 stability: prototype
 strictProperties: true
 type:
@@ -83,7 +83,7 @@ definitions:
     - string
   access_token:
     description: Authozation Key
-    Example: '10:e_sq2en-VGzaixCQ-_Fk'
+    Example: '1:ABCDabcd'
     type:
     - string
 links:
@@ -91,7 +91,7 @@ links:
   href: "/login"
   method: POST
   http_header:
-    authorization: "EXAMPLE-HEADER"
+    authorization: "1:ABCDabcd"
   # rel: instances
   targetSchema:
     properties:

@@ -3,20 +3,20 @@
 
 Stability: `prototype`
 
-FIXME
+Userの情報，投稿などを管理するAPI
 
 ### Attributes
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **Authorization Key** | *string* | Authozation Key | `"example"` |
+| **Authorization Key** | *-string* | unique token for user | `"1:ABCDabcd"` |
 
-### <a name="link-POST-user-/v1/users">User </a>
+### <a name="link-POST-user-/users">User </a>
 
 Create a new user.
 
 ```
-POST /v1/users
+POST /users
 ```
 
 #### Required Parameters
@@ -41,7 +41,7 @@ POST /v1/users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST /v1/users \
+$ curl -n -X POST http://api.acroquest.work/v1/users \
   -d '{
   "email": "test@example.com",
   "password": "example",
@@ -66,24 +66,24 @@ HTTP/1.1 201 Created
   "email": "test@example.com",
   "token_type": "Bearer",
   "user_id": "18",
-  "access_token": "example"
+  "access_token": "1:ABCDabcd"
 }
 ```
 
-### <a name="link-GET-user-/v1/users/me">User </a>
+### <a name="link-GET-user-/users/me">User </a>
 
 Get information of login user.
 
 ```
-GET /v1/users/me
+GET /users/me
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n /v1/users/me \
-  -H "authorization: EXAMPLE-HEADER"
+$ curl -n http://api.acroquest.work/v1/users/me \
+  -H "authorization: 1:ABCDabcd"
 ```
 
 

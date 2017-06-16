@@ -1,7 +1,7 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-title: FIXME - User
-description: FIXME
+title: User
+description: Userの情報，投稿などを管理するAPI
 stability: prototype
 strictProperties: true
 type:
@@ -63,7 +63,7 @@ definitions:
       -string
   access_token:
     description: unique token for user
-    example: "ABCDEFCA030"
+    example: "1:ABCDabcd"
     readOnly: true
     type:
       -string
@@ -81,14 +81,9 @@ definitions:
     format: date-time
     type:
     - string
-  access_token:
-    description: Authozation Key
-    Example: '10:e_sq2en-VGzaixCQ-_Fk'
-    type:
-    - string
 links:
 - description: Create a new user.
-  href: "/v1/users"
+  href: "/users"
   method: POST
   rel: create
   targetSchema:
@@ -123,11 +118,11 @@ links:
     title: Create
 
 - description: Get information of login user.
-  href: "/v1/users/me"
+  href: "/users/me"
   method: GET
   rel: self
   http_header:
-    authorization: "EXAMPLE-HEADER"
+    authorization: "1:ABCDabcd"
   targetSchema:
     properties:
       email:

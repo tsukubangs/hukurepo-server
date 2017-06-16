@@ -3,7 +3,7 @@
 
 Stability: `prototype`
 
-FIXME
+ユーザのセッションを管理するAPI
 
 ### <a name="link-POST-session-/login">Session Login</a>
 
@@ -17,9 +17,9 @@ POST /login
 #### Curl Example
 
 ```bash
-$ curl -n -X POST /login \
+$ curl -n -X POST http://api.acroquest.work/v1/login \
   -H "Content-Type: application/json" \
-  -H "authorization: EXAMPLE-HEADER"
+  -H "authorization: 1:ABCDabcd"
 ```
 
 

@@ -1,13 +1,13 @@
 {
-  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
   "type": [
     "object"
   ],
   "definitions": {
     "session": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "FIXME - Session",
-      "description": "FIXME",
+      "title": "Session",
+      "description": "ユーザのセッションを管理するAPI",
       "stability": "prototype",
       "strictProperties": true,
       "type": [
@@ -88,7 +88,7 @@
         },
         "access_token": {
           "description": "Authozation Key",
-          "Example": "10:e_sq2en-VGzaixCQ-_Fk",
+          "Example": "1:ABCDabcd",
           "type": [
             "string"
           ]
@@ -124,7 +124,7 @@
           "href": "/login",
           "method": "POST",
           "http_header": {
-            "authorization": "EXAMPLE-HEADER"
+            "authorization": "1:ABCDabcd"
           },
           "targetSchema": {
             "properties": {
@@ -151,5 +151,14 @@
     "session": {
       "$ref": "#/definitions/session"
     }
-  }
+  },
+  "title": "API JSON Schema",
+  "description": "In this schema file, we represents the public interface of Sample API in JSON Hyper Schema draft v4.",
+  "id": "bigclout",
+  "links": [
+    {
+      "href": "http://api.acroquest.work/v1",
+      "rel": "self"
+    }
+  ]
 }
