@@ -3,17 +3,24 @@
 
 Stability: `prototype`
 
-FIXME
+外国人訪問者の困りごとを投稿，閲覧するAPI
 
 ### Attributes
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **access_token** | *string* | access token | `"1:ABCDabcd"` |
+| **comment** | *string* | problem's comment | `"SOX is difficult"` |
+| **created_at** | *date-time* | when problem was created | `"2015-01-01T12:00:00Z"` |
+| **id** | *integer* | unique identifier of problem | `42` |
+| **image_url** | *string* | stored image url | `"/uploads/problem/image/:id/image-name.jpg"` |
+| **latitude** | *number* | latitude | `12.345` |
+| **longitude** | *number* | longitude | `67.89` |
+| **updated_at** | *date-time* | when problem was updated | `"2015-01-01T12:00:00Z"` |
+| **use_id** | *integer* | user's id | `1` |
 
 ### <a name="link-POST-problem-/problems">Problem Create</a>
 
-Create a new problem.
+困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
 
 ```
 POST /problems
@@ -65,7 +72,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/problems/me">Problem Me</a>
 
-Get for existing user's problem.
+ログインしているユーザの投稿した困りごと一覧を取得する
 
 ```
 GET /problems/me
@@ -123,16 +130,18 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-{
-  "id": 42,
-  "comment": "SOX is difficult",
-  "image_url": "/uploads/problem/image/:id/image-name.jpg",
-  "latitude": 12.345,
-  "longitude": 67.89,
-  "use_id": 1,
-  "created_at": "2015-01-01T12:00:00Z",
-  "updated_at": "2015-01-01T12:00:00Z"
-}
+[
+  {
+    "id": 42,
+    "comment": "SOX is difficult",
+    "image_url": "/uploads/problem/image/:id/image-name.jpg",
+    "latitude": 12.345,
+    "longitude": 67.89,
+    "use_id": 1,
+    "created_at": "2015-01-01T12:00:00Z",
+    "updated_at": "2015-01-01T12:00:00Z"
+  }
+]
 ```
 
 

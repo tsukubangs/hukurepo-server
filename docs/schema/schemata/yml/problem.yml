@@ -1,7 +1,7 @@
 ---
 "$schema": http://json-schema.org/draft-04/hyper-schema
-title: FIXME - Problem
-description: FIXME
+title: Problem
+description: 外国人訪問者の困りごとを投稿，閲覧するAPI
 stability: prototype
 strictProperties: true
 type:
@@ -43,7 +43,6 @@ definitions:
     example: "1:ABCDabcd"
     type:
     - string
-
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -59,7 +58,7 @@ definitions:
     - string
 
 links:
-- description: Create a new problem.
+- description: 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
   href: "/problems"
   method: POST
   rel: create
@@ -78,26 +77,26 @@ links:
   http_header:
     Authorization : "1:ABCDabcd"
 
-  targetSchema:
-    properties:
-      id:
-        "$ref": "/schemata/problem#/definitions/id"
-      comment:
-        "$ref": "/schemata/problem#/definitions/comment"
-      image_url:
-        "$ref": "/schemata/problem#/definitions/image_url"
-      latitude:
-        "$ref": "/schemata/problem#/definitions/latitude"
-      longitude:
-        "$ref": "/schemata/problem#/definitions/longitude"
-      use_id:
-        "$ref": "/schemata/problem#/definitions/user_id"
-      created_at:
-        "$ref": "/schemata/problem#/definitions/created_at"
-      updated_at:
-        "$ref": "/schemata/problem#/definitions/updated_at"
-    type:
-    - object
+  # targetSchema:
+  #   properties:
+  #     id:
+  #       "$ref": "/schemata/problem#/definitions/id"
+  #     comment:
+  #       "$ref": "/schemata/problem#/definitions/comment"
+  #     image_url:
+  #       "$ref": "/schemata/problem#/definitions/image_url"
+  #     latitude:
+  #       "$ref": "/schemata/problem#/definitions/latitude"
+  #     longitude:
+  #       "$ref": "/schemata/problem#/definitions/longitude"
+  #     use_id:
+  #       "$ref": "/schemata/problem#/definitions/user_id"
+  #     created_at:
+  #       "$ref": "/schemata/problem#/definitions/created_at"
+  #     updated_at:
+  #       "$ref": "/schemata/problem#/definitions/updated_at"
+  #   type:
+  #   - object
 
   title: Create
 # - description: Delete an existing problem.
@@ -105,60 +104,60 @@ links:
 #   method: DELETE
 #   rel: destroy
 #   title: Delete
-- description:  Get for existing user's problem.
-  #href: "/problems/{(%2Fschemata%2Fproblem%23%2Fdefinitions%2Fidentity)}"
+- description: ログインしているユーザの投稿した困りごと一覧を取得する
   href: "/problems/me"
   method: GET
   rel: self
   title: Me
-  targetSchema:
-    properties:
-      id:
-        "$ref": "/schemata/problem#/definitions/id"
-      comment:
-        "$ref": "/schemata/problem#/definitions/comment"
-      image_url:
-        "$ref": "/schemata/problem#/definitions/image_url"
-      latitude:
-        "$ref": "/schemata/problem#/definitions/latitude"
-      longitude:
-        "$ref": "/schemata/problem#/definitions/longitude"
-      use_id:
-        "$ref": "/schemata/problem#/definitions/user_id"
-      created_at:
-        "$ref": "/schemata/problem#/definitions/created_at"
-      updated_at:
-        "$ref": "/schemata/problem#/definitions/updated_at"
-    type:
-    - Object
+  # targetSchema:
+  #   properties:
+  #     id:
+  #       "$ref": "/schemata/problem#/definitions/id"
+  #     comment:
+  #       "$ref": "/schemata/problem#/definitions/comment"
+  #     image_url:
+  #       "$ref": "/schemata/problem#/definitions/image_url"
+  #     latitude:
+  #       "$ref": "/schemata/problem#/definitions/latitude"
+  #     longitude:
+  #       "$ref": "/schemata/problem#/definitions/longitude"
+  #     use_id:
+  #       "$ref": "/schemata/problem#/definitions/user_id"
+  #     created_at:
+  #       "$ref": "/schemata/problem#/definitions/created_at"
+  #     updated_at:
+  #       "$ref": "/schemata/problem#/definitions/updated_at"
+  #   type:
+  #   - Object
   http_header:
     Authorization : "1:ABCDabcd"
 
-- description: Get list existing problems.
+- description: 困りごとの一覧を取得する（全ユーザが対象）
   href: "/problems"
   method: GET
   rel: instances
   title: List
-  targetSchema:
-    properties:
-      id:
-        "$ref": "/schemata/problem#/definitions/id"
-      comment:
-        "$ref": "/schemata/problem#/definitions/comment"
-      image_url:
-        "$ref": "/schemata/problem#/definitions/image_url"
-      latitude:
-        "$ref": "/schemata/problem#/definitions/latitude"
-      longitude:
-        "$ref": "/schemata/problem#/definitions/longitude"
-      use_id:
-        "$ref": "/schemata/problem#/definitions/user_id"
-      created_at:
-        "$ref": "/schemata/problem#/definitions/created_at"
-      updated_at:
-        "$ref": "/schemata/problem#/definitions/updated_at"
-    type:
-    - array
+  # targetSchema:
+  #   items:
+  #     id:
+  #       "$ref": "/schemata/problem#/definitions/id"
+  #     comment:
+  #       "$ref": "/schemata/problem#/definitions/comment"
+  #     image_url:
+  #       "$ref": "/schemata/problem#/definitions/image_url"
+  #     latitude:
+  #       "$ref": "/schemata/problem#/definitions/latitude"
+  #     longitude:
+  #       "$ref": "/schemata/problem#/definitions/longitude"
+  #     use_id:
+  #       "$ref": "/schemata/problem#/definitions/user_id"
+  #     created_at:
+  #       "$ref": "/schemata/problem#/definitions/created_at"
+  #     updated_at:
+  #       "$ref": "/schemata/problem#/definitions/updated_at"
+
+    # type:
+    # - array
   http_header:
     Authorization : "1:ABCDabcd"
 # - description: Update an existing problem.
@@ -171,23 +170,24 @@ links:
 #     - object
 #   title: Update
 properties:
-    # id:
-    #   "$ref": "/schemata/problem#/definitions/id"
-    # comment:
-    #   "$ref": "/schemata/problem#/definitions/comment"
-    # image_url:
-    #   "$ref": "/schemata/problem#/definitions/image_url"
-    # latitude:
-    #   "$ref": "/schemata/problem#/definitions/latitude"
-    # longitude:
-    #   "$ref": "/schemata/problem#/definitions/longitude"
-    # use_id:
-    #   "$ref": "/schemata/problem#/definitions/user_id"
-    # created_at:
-    #   "$ref": "/schemata/problem#/definitions/created_at"
-    # updated_at:
-    #   "$ref": "/schemata/problem#/definitions/updated_at"
-    access_token:
-      "$ref": "/schemata/problem#/definitions/access_token"
+    id:
+      "$ref": "/schemata/problem#/definitions/id"
+    comment:
+      "$ref": "/schemata/problem#/definitions/comment"
+    image_url:
+      "$ref": "/schemata/problem#/definitions/image_url"
+    latitude:
+      "$ref": "/schemata/problem#/definitions/latitude"
+    longitude:
+      "$ref": "/schemata/problem#/definitions/longitude"
+    use_id:
+      "$ref": "/schemata/problem#/definitions/user_id"
+    created_at:
+      "$ref": "/schemata/problem#/definitions/created_at"
+    updated_at:
+      "$ref": "/schemata/problem#/definitions/updated_at"
+    # access_token:
+    #   "$ref": "/schemata/problem#/definitions/access_token"
+
 
 id: schemata/yml/problem
