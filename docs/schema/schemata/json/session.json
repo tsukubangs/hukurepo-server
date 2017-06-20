@@ -120,11 +120,20 @@
       },
       "links": [
         {
-          "description": "あるユーザにログインするときのAPI　アクセストークンが必要",
+          "description": "あるユーザにログインするときのAPI",
           "href": "/login",
           "method": "POST",
-          "http_header": {
-            "authorization": "1:ABCDabcd"
+          "schema": {
+            "properties": {
+              "email": {
+                "$ref": "#/definitions/session/definitions/email",
+                "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
+              },
+              "password": {
+                "$ref": "#/definitions/session/definitions/email",
+                "pattern": "within: 5..30"
+              }
+            }
           },
           "targetSchema": {
             "properties": {

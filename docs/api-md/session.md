@@ -7,19 +7,29 @@ Stability: `prototype`
 
 ### <a name="link-POST-session-/login">Session Login</a>
 
-あるユーザにログインするときのAPI　アクセストークンが必要
+あるユーザにログインするときのAPI
 
 ```
 POST /login
 ```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **email** | *string* | unique email of user<br/> **pattern:** ` /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i` | `"test@example.com"` |
+| **password** | *string* | unique email of user<br/> **pattern:** `within: 5..30` | `"test@example.com"` |
 
 
 #### Curl Example
 
 ```bash
 $ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
-  -H "Content-Type: application/json" \
-  -H "authorization: 1:ABCDabcd"
+  -d '{
+  "email": "test@example.com",
+  "password": "test@example.com"
+}' \
+  -H "Content-Type: application/json"
 ```
 
 
