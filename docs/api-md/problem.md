@@ -12,9 +12,9 @@ Stability: `prototype`
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
 | **created_at** | *date-time* | when problem was created | `"2015-01-01T12:00:00Z"` |
 | **id** | *integer* | unique identifier of problem | `1` |
-| **image_url** | *string* | stored image url | `"/uploads/problem/image/:id/image-name.jpg"` |
-| **latitude** | *number* | latitude | `12.345` |
-| **longitude** | *number* | longitude | `67.89` |
+| **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
+| **latitude** | *number* | latitude | `36.10830528664971` |
+| **longitude** | *number* | longitude | `140.10114337330694` |
 | **updated_at** | *date-time* | when problem was updated | `"2015-01-01T12:00:00Z"` |
 | **user_id** | *integer* | user's id | `1` |
 
@@ -31,9 +31,8 @@ POST /problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
-| **image_url** | *string* | stored image url | `"/uploads/problem/image/:id/image-name.jpg"` |
-| **latitude** | *number* | latitude | `12.345` |
-| **longitude** | *number* | longitude | `67.89` |
+| **latitude** | *number* | latitude | `36.10830528664971` |
+| **longitude** | *number* | longitude | `140.10114337330694` |
 
 
 #### Curl Example
@@ -42,9 +41,8 @@ POST /problems
 $ curl -n -X POST http://api.acroquest.work/v1/problems \
   -d '{
   "comment": "SOX is difficult",
-  "image_url": "/uploads/problem/image/:id/image-name.jpg",
-  "latitude": 12.345,
-  "longitude": 67.89
+  "latitude": 36.10830528664971,
+  "longitude": 140.10114337330694
 }' \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
@@ -61,9 +59,9 @@ HTTP/1.1 201 Created
 {
   "id": 1,
   "comment": "SOX is difficult",
-  "image_url": "/uploads/problem/image/:id/image-name.jpg",
-  "latitude": 12.345,
-  "longitude": 67.89,
+  "image_url": null,
+  "latitude": 36.10830528664971,
+  "longitude": 140.10114337330694,
   "user_id": 1,
   "created_at": "2015-01-01T12:00:00Z",
   "updated_at": "2015-01-01T12:00:00Z"
@@ -94,16 +92,18 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-{
-  "id": 1,
-  "comment": "SOX is difficult",
-  "image_url": "/uploads/problem/image/:id/image-name.jpg",
-  "latitude": 12.345,
-  "longitude": 67.89,
-  "user_id": 1,
-  "created_at": "2015-01-01T12:00:00Z",
-  "updated_at": "2015-01-01T12:00:00Z"
-}
+[
+  {
+    "id": 1,
+    "comment": "SOX is difficult",
+    "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+    "latitude": 36.10830528664971,
+    "longitude": 140.10114337330694,
+    "user_id": 1,
+    "created_at": "2015-01-01T12:00:00Z",
+    "updated_at": "2015-01-01T12:00:00Z"
+  }
+]
 ```
 
 ### <a name="link-GET-problem-/problems">Problem List</a>
@@ -134,9 +134,9 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "SOX is difficult",
-    "image_url": "/uploads/problem/image/:id/image-name.jpg",
-    "latitude": 12.345,
-    "longitude": 67.89,
+    "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+    "latitude": 36.10830528664971,
+    "longitude": 140.10114337330694,
     "user_id": 1,
     "created_at": "2015-01-01T12:00:00Z",
     "updated_at": "2015-01-01T12:00:00Z"

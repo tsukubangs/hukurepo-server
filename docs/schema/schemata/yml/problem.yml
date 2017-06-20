@@ -20,17 +20,22 @@ definitions:
     - string
   image_url:
     description: stored image url
-    example: '/uploads/problem/image/:id/image-name.jpg'
+    example: '/uploads/problem/image/1/20170609002537.jpg'
+    type:
+    - string
+  image_url_null:
+    description: stored image url
+    example: null
     type:
     - string
   latitude:
     description: latitude
-    example: 12.345
+    example: 36.10830528664971
     type:
     - number
   longitude:
     description: longitude
-    example: 67.890
+    example: 140.10114337330694
     type:
     - number
   user_id:
@@ -61,14 +66,30 @@ links:
     properties:
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
-      image_url:
-        "$ref": "/schemata/problem#/definitions/image_url"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
         "$ref": "/schemata/problem#/definitions/longitude"
     type:
     - object
+  targetSchema:
+    properties:
+      id:
+        "$ref": "/schemata/problem#/definitions/id"
+      comment:
+        "$ref": "/schemata/problem#/definitions/comment"
+      image_url:
+        "$ref": "/schemata/problem#/definitions/image_url_null"
+      latitude:
+        "$ref": "/schemata/problem#/definitions/latitude"
+      longitude:
+        "$ref": "/schemata/problem#/definitions/longitude"
+      user_id:
+        "$ref": "/schemata/problem#/definitions/user_id"
+      created_at:
+        "$ref": "/schemata/problem#/definitions/created_at"
+      updated_at:
+        "$ref": "/schemata/problem#/definitions/updated_at"
   http_header:
     Authorization : "1:ABCDabcd"
 
@@ -82,7 +103,7 @@ links:
 - description: ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり
   href: "/problems/me"
   method: GET
-  rel: self
+  rel: instances
   title: Me
   http_header:
     Authorization : "1:ABCDabcd"
