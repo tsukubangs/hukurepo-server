@@ -200,7 +200,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://api.acroquest.work/v1",
+      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp/v1",
       "rel": "self"
     }
   ]

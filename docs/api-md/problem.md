@@ -20,7 +20,7 @@ Stability: `prototype`
 
 ### <a name="link-POST-problem-/problems">Problem Create</a>
 
-困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
+困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。 (画像を付属した投稿をする場合は [こちら](/problem-post-form-data.md)を参照してください)
 
 ```
 POST /problems
@@ -38,7 +38,7 @@ POST /problems
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://api.acroquest.work/v1/problems \
+$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
   "comment": "SOX is difficult",
   "latitude": 36.10830528664971,
@@ -80,7 +80,7 @@ GET /problems/me
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/problems/me \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -118,7 +118,7 @@ GET /problems
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/problems \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -143,5 +143,3 @@ HTTP/1.1 200 OK
   }
 ]
 ```
-
-
