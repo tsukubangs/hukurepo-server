@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "session": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Session",
+      "description": "ユーザのセッションを管理するAPI",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "user_id": {
+          "description": "unique identifier of user",
+          "example": 1,
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "email": {
+          "description": "unique email of user",
+          "example": "test@example.com",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "password": {
+          "description": "password of user",
+          "example": "example",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "name": {
+          "description": "unique name of user",
+          "example": "Wataru Sakamoto",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "gender": {
+          "description": "gender of user",
+          "example": "male",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "age": {
+          "description": "age range of user",
+          "example": 20,
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "nationality": {
+          "description": "nationality of user",
+          "example": "Japan",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "image": {
+          "description": "image of the user",
+          "example": "image.jp",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "token_type": {
+          "description": "token type for user",
+          "example": "Bearer",
+          "readOnly": true,
+          "type": [
+            "-string"
+          ]
+        },
+        "access_token": {
+          "description": "unique token for user",
+          "example": "1:ABCDabcd",
+          "readOnly": true,
+          "type": [
+            "-string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/user/definitions/id"
+            },
+            {
+              "$ref": "#/definitions/user/definitions/name"
+            }
+          ]
+        },
+        "created_at": {
+          "description": "when user was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when user was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "あるユーザにログインするときのAPI",
+          "href": "/login",
+          "method": "POST",
+          "schema": {
+            "properties": {
+              "email": {
+                "$ref": "#/definitions/session/definitions/email",
+                "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
+              },
+              "password": {
+                "$ref": "#/definitions/session/definitions/password",
+                "pattern": "within: 5..30"
+              }
+            }
+          },
+          "targetSchema": {
+            "properties": {
+              "email": {
+                "$ref": "#/definitions/session/definitions/email"
+              },
+              "token_type": {
+                "$ref": "#/definitions/session/definitions/token_type"
+              },
+              "user_id": {
+                "$ref": "#/definitions/session/definitions/user_id"
+              },
+              "access_token": {
+                "$ref": "#/definitions/session/definitions/access_token"
+              }
+            }
+          },
+          "title": "Login"
+        }
+      ]
+    }
+  },
+  "properties": {
+    "session": {
+      "$ref": "#/definitions/session"
+    }
+  },
+  "title": "API JSON Schema",
+  "description": "In this schema file, we represents the public interface of Sample API in JSON Hyper Schema draft v4.",
+  "id": "bigclout",
+  "links": [
+    {
+      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp/v1",
+      "rel": "self"
+    }
+  ]
+}

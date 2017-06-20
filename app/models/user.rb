@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # 二回パスワードを打つ必要あり
   # validates :password, presence: true, confirmation: true, length: {within: 5..30 }
 
-  validates :password, presence: true, length: {within: 5..30 }
+  validates :password, presence: true, length: {within: 5..30}
 
   has_many :problems
 
