@@ -18,7 +18,7 @@ POST /login
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **email** | *string* | unique email of user<br/> **pattern:** ` /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i` | `"test@example.com"` |
-| **password** | *string* | unique email of user<br/> **pattern:** `within: 5..30` | `"test@example.com"` |
+| **password** | *string* | password of user<br/> **pattern:** `within: 5..30` | `"example"` |
 
 
 #### Curl Example
@@ -27,7 +27,7 @@ POST /login
 $ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
   -d '{
   "email": "test@example.com",
-  "password": "test@example.com"
+  "password": "example"
 }' \
   -H "Content-Type: application/json"
 ```

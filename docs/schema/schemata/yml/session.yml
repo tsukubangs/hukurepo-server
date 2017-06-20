@@ -97,7 +97,7 @@ links:
         "$ref": "/schemata/session#/definitions/email"
         pattern: " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
       password:
-        "$ref": "/schemata/session#/definitions/email"
+        "$ref": "/schemata/session#/definitions/password"
         pattern: "within: 5..30"
   targetSchema:
     properties:

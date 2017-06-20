@@ -130,7 +130,7 @@
                 "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
               },
               "password": {
-                "$ref": "#/definitions/session/definitions/email",
+                "$ref": "#/definitions/session/definitions/password",
                 "pattern": "within: 5..30"
               }
             }
