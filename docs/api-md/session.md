@@ -7,7 +7,7 @@ Stability: `prototype`
 
 ### <a name="link-POST-session-/login">Session Login</a>
 
-Login to a specific user.
+あるユーザにログインするときのAPI　アクセストークンが必要
 
 ```
 POST /login
@@ -17,7 +17,7 @@ POST /login
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://api.acroquest.work/v1/login \
+$ curl -n -X POST /login \
   -H "Content-Type: application/json" \
   -H "authorization: 1:ABCDabcd"
 ```
@@ -33,7 +33,7 @@ HTTP/1.1 200 OK
 {
   "email": "test@example.com",
   "token_type": "Bearer",
-  "user_id": "18",
+  "user_id": 1,
   "access_token": "example"
 }
 ```

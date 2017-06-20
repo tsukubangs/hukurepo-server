@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
   "type": [
     "object"
   ],
@@ -16,10 +16,10 @@
       "definitions": {
         "user_id": {
           "description": "unique identifier of user",
-          "example": "18",
+          "example": 1,
           "readOnly": true,
           "type": [
-            "string"
+            "integer"
           ]
         },
         "email": {
@@ -31,7 +31,7 @@
           ]
         },
         "password": {
-          "description": "passwordof user",
+          "description": "password of user",
           "example": "example",
           "readOnly": true,
           "type": [
@@ -56,7 +56,7 @@
         },
         "age": {
           "description": "age range of user",
-          "example": "20",
+          "example": 20,
           "readOnly": true,
           "type": [
             "integer"
@@ -120,7 +120,7 @@
       },
       "links": [
         {
-          "description": "Login to a specific user.",
+          "description": "あるユーザにログインするときのAPI　アクセストークンが必要",
           "href": "/login",
           "method": "POST",
           "http_header": {
@@ -151,14 +151,5 @@
     "session": {
       "$ref": "#/definitions/session"
     }
-  },
-  "title": "API JSON Schema",
-  "description": "In this schema file, we represents the public interface of Sample API in JSON Hyper Schema draft v4.",
-  "id": "bigclout",
-  "links": [
-    {
-      "href": "http://api.acroquest.work/v1",
-      "rel": "self"
-    }
-  ]
+  }
 }

@@ -9,10 +9,10 @@ type:
 definitions:
   user_id:
     description: unique identifier of user
-    example: '18'
+    example: 1
     readOnly: true
     type:
-    - string
+    - integer
   email:
     description: unique email of user
     example: 'test@example.com'
@@ -20,7 +20,7 @@ definitions:
     type:
     - string
   password:
-    description: passwordof user
+    description: password of user
     example: 'example'
     readOnly: true
     type:
@@ -39,7 +39,7 @@ definitions:
     - string
   age:
     description: age range of user
-    example: '20'
+    example: 20
     readOnly: true
     type:
     - integer
@@ -87,7 +87,7 @@ definitions:
     type:
     - string
 links:
-- description: Login to a specific user.
+- description: あるユーザにログインするときのAPI　アクセストークンが必要
   href: "/login"
   method: POST
   http_header:

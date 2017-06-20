@@ -5,15 +5,9 @@ Stability: `prototype`
 
 Userの情報，投稿などを管理するAPI
 
-### Attributes
-
-| Name | Type | Description | Example |
-| ------- | ------- | ------- | ------- |
-| **Authorization Key** | *-string* | unique token for user | `"1:ABCDabcd"` |
-
 ### <a name="link-POST-user-/users">User </a>
 
-Create a new user.
+新たなユーザを作成するAPI
 
 ```
 POST /users
@@ -24,14 +18,14 @@ POST /users
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **email** | *string* | unique email of user | `"test@example.com"` |
-| **password** | *string* | passwordof user | `"example"` |
+| **password** | *string* | password of user | `"example"` |
 
 
 #### Optional Parameters
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **age** | *integer* | age range of user | `"20"` |
+| **age** | *integer* | age range of user | `20` |
 | **gender** | *string* | gender of user | `"male"` |
 | **image** | *string* | image of the user | `"image.jp"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
@@ -41,13 +35,13 @@ POST /users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://api.acroquest.work/v1/users \
+$ curl -n -X POST /users \
   -d '{
   "email": "test@example.com",
   "password": "example",
   "name": "Wataru Sakamoto",
   "gender": "male",
-  "age": "20",
+  "age": 20,
   "nationality": "Japan",
   "image": "image.jp"
 }' \
@@ -65,14 +59,14 @@ HTTP/1.1 201 Created
 {
   "email": "test@example.com",
   "token_type": "Bearer",
-  "user_id": "18",
+  "user_id": 1,
   "access_token": "1:ABCDabcd"
 }
 ```
 
 ### <a name="link-GET-user-/users/me">User </a>
 
-Get information of login user.
+ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 GET /users/me
@@ -82,7 +76,7 @@ GET /users/me
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/users/me \
+$ curl -n /users/me \
   -H "authorization: 1:ABCDabcd"
 ```
 
@@ -99,7 +93,7 @@ HTTP/1.1 200 OK
   "password": "example",
   "name": "Wataru Sakamoto",
   "gender": "male",
-  "age": "20",
+  "age": 20,
   "nationality": "Japan",
   "image": "image.jp"
 }
