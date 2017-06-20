@@ -17,6 +17,7 @@
         "id": {
           "description": "unique identifier of problem",
           "readOnly": true,
+          "example": 1,
           "type": [
             "integer"
           ]
@@ -54,13 +55,6 @@
           "example": 1,
           "type": [
             "integer"
-          ]
-        },
-        "access_token": {
-          "description": "access token",
-          "example": "1:ABCDabcd",
-          "type": [
-            "string"
           ]
         },
         "identity": {
@@ -116,7 +110,7 @@
           "title": "Create"
         },
         {
-          "description": "ログインしているユーザの投稿した困りごと一覧を取得する",
+          "description": "ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/problems/me",
           "method": "GET",
           "rel": "self",
@@ -126,7 +120,7 @@
           }
         },
         {
-          "description": "Get list existing problems.",
+          "description": "困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/problems",
           "method": "GET",
           "rel": "instances",
@@ -152,7 +146,7 @@
         "longitude": {
           "$ref": "#/definitions/problem/definitions/longitude"
         },
-        "use_id": {
+        "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
         },
         "created_at": {

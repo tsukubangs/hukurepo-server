@@ -11,12 +11,12 @@ Stability: `prototype`
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
 | **created_at** | *date-time* | when problem was created | `"2015-01-01T12:00:00Z"` |
-| **id** | *integer* | unique identifier of problem | `42` |
+| **id** | *integer* | unique identifier of problem | `1` |
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/:id/image-name.jpg"` |
 | **latitude** | *number* | latitude | `12.345` |
 | **longitude** | *number* | longitude | `67.89` |
 | **updated_at** | *date-time* | when problem was updated | `"2015-01-01T12:00:00Z"` |
-| **use_id** | *integer* | user's id | `1` |
+| **user_id** | *integer* | user's id | `1` |
 
 ### <a name="link-POST-problem-/problems">Problem Create</a>
 
@@ -59,12 +59,12 @@ HTTP/1.1 201 Created
 
 ```json
 {
-  "id": 42,
+  "id": 1,
   "comment": "SOX is difficult",
   "image_url": "/uploads/problem/image/:id/image-name.jpg",
   "latitude": 12.345,
   "longitude": 67.89,
-  "use_id": 1,
+  "user_id": 1,
   "created_at": "2015-01-01T12:00:00Z",
   "updated_at": "2015-01-01T12:00:00Z"
 }
@@ -72,7 +72,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごと一覧を取得する
+ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 GET /problems/me
@@ -95,12 +95,12 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "id": 42,
+  "id": 1,
   "comment": "SOX is difficult",
   "image_url": "/uploads/problem/image/:id/image-name.jpg",
   "latitude": 12.345,
   "longitude": 67.89,
-  "use_id": 1,
+  "user_id": 1,
   "created_at": "2015-01-01T12:00:00Z",
   "updated_at": "2015-01-01T12:00:00Z"
 }
@@ -108,7 +108,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-GET-problem-/problems">Problem List</a>
 
-Get list existing problems.
+困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 GET /problems
@@ -132,12 +132,12 @@ HTTP/1.1 200 OK
 ```json
 [
   {
-    "id": 42,
+    "id": 1,
     "comment": "SOX is difficult",
     "image_url": "/uploads/problem/image/:id/image-name.jpg",
     "latitude": 12.345,
     "longitude": 67.89,
-    "use_id": 1,
+    "user_id": 1,
     "created_at": "2015-01-01T12:00:00Z",
     "updated_at": "2015-01-01T12:00:00Z"
   }
