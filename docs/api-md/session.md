@@ -44,7 +44,7 @@ HTTP/1.1 200 OK
   "email": "test@example.com",
   "token_type": "Bearer",
   "user_id": 1,
-  "access_token": "example"
+  "access_token": "1:ABCDabcd"
 }
 ```
 

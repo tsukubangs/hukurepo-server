@@ -87,10 +87,11 @@
           ]
         },
         "access_token": {
-          "description": "Authozation Key",
-          "Example": "1:ABCDabcd",
+          "description": "unique token for user",
+          "example": "1:ABCDabcd",
+          "readOnly": true,
           "type": [
-            "string"
+            "-string"
           ]
         },
         "identity": {
