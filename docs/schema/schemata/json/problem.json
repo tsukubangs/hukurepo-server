@@ -17,6 +17,7 @@
         "id": {
           "description": "unique identifier of problem",
           "readOnly": true,
+          "example": 1,
           "type": [
             "integer"
           ]
@@ -30,21 +31,28 @@
         },
         "image_url": {
           "description": "stored image url",
-          "example": "/uploads/problem/image/:id/image-name.jpg",
+          "example": "/uploads/problem/image/1/20170609002537.jpg",
+          "type": [
+            "string"
+          ]
+        },
+        "image_url_null": {
+          "description": "stored image url",
+          "example": null,
           "type": [
             "string"
           ]
         },
         "latitude": {
           "description": "latitude",
-          "example": 12.345,
+          "example": 36.10830528664971,
           "type": [
             "number"
           ]
         },
         "longitude": {
           "description": "longitude",
-          "example": 67.89,
+          "example": 140.10114337330694,
           "type": [
             "number"
           ]
@@ -54,13 +62,6 @@
           "example": 1,
           "type": [
             "integer"
-          ]
-        },
-        "access_token": {
-          "description": "access token",
-          "example": "1:ABCDabcd",
-          "type": [
-            "string"
           ]
         },
         "identity": {
@@ -96,9 +97,6 @@
               "comment": {
                 "$ref": "#/definitions/problem/definitions/comment"
               },
-              "image_url": {
-                "$ref": "#/definitions/problem/definitions/image_url"
-              },
               "latitude": {
                 "$ref": "#/definitions/problem/definitions/latitude"
               },
@@ -110,23 +108,51 @@
               "object"
             ]
           },
+          "targetSchema": {
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/problem/definitions/id"
+              },
+              "comment": {
+                "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "image_url": {
+                "$ref": "#/definitions/problem/definitions/image_url_null"
+              },
+              "latitude": {
+                "$ref": "#/definitions/problem/definitions/latitude"
+              },
+              "longitude": {
+                "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "user_id": {
+                "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "created_at": {
+                "$ref": "#/definitions/problem/definitions/created_at"
+              },
+              "updated_at": {
+                "$ref": "#/definitions/problem/definitions/updated_at"
+              }
+            }
+          },
           "http_header": {
             "Authorization": "1:ABCDabcd"
           },
           "title": "Create"
         },
         {
-          "description": "ログインしているユーザの投稿した困りごと一覧を取得する",
+          "description": "ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/problems/me",
           "method": "GET",
-          "rel": "self",
+          "rel": "instances",
           "title": "Me",
           "http_header": {
             "Authorization": "1:ABCDabcd"
           }
         },
         {
-          "description": "Get list existing problems.",
+          "description": "困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/problems",
           "method": "GET",
           "rel": "instances",
@@ -152,7 +178,7 @@
         "longitude": {
           "$ref": "#/definitions/problem/definitions/longitude"
         },
-        "use_id": {
+        "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
         },
         "created_at": {
@@ -174,7 +200,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://api.acroquest.work/v1",
+      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp/v1",
       "rel": "self"
     }
   ]
