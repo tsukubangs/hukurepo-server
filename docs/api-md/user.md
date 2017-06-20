@@ -35,7 +35,7 @@ POST /users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST /users \
+$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
   -d '{
   "email": "test@example.com",
   "password": "example",
@@ -76,7 +76,7 @@ GET /users/me
 #### Curl Example
 
 ```bash
-$ curl -n /users/me \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
   -H "authorization: 1:ABCDabcd"
 ```
 

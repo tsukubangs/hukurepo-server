@@ -17,7 +17,7 @@ POST /login
 #### Curl Example
 
 ```bash
-$ curl -n -X POST /login \
+$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
   -H "Content-Type: application/json" \
   -H "authorization: 1:ABCDabcd"
 ```
