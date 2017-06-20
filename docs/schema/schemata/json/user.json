@@ -26,6 +26,7 @@
           "description": "unique email of user",
           "example": "test@example.com",
           "readOnly": true,
+          "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i",
           "type": [
             "string"
           ]
@@ -34,6 +35,7 @@
           "description": "password of user",
           "example": "example",
           "readOnly": true,
+          "pattern": "within: 5..30",
           "type": [
             "string"
           ]
@@ -160,9 +162,6 @@
               },
               "nationality": {
                 "$ref": "#/definitions/user/definitions/nationality"
-              },
-              "image": {
-                "$ref": "#/definitions/user/definitions/image"
               }
             },
             "required": [
@@ -171,9 +170,9 @@
             ],
             "type": [
               "object"
-            ],
-            "title": "Create"
-          }
+            ]
+          },
+          "title": "Create"
         },
         {
           "description": "ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり",
@@ -202,16 +201,13 @@
               },
               "nationality": {
                 "$ref": "#/definitions/user/definitions/nationality"
-              },
-              "image": {
-                "$ref": "#/definitions/user/definitions/image"
               }
             },
             "type": [
               "object"
-            ],
-            "title": "Me"
-          }
+            ]
+          },
+          "title": "Me"
         }
       ]
     }

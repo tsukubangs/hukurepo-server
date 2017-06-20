@@ -17,12 +17,14 @@ definitions:
     description: unique email of user
     example: 'test@example.com'
     readOnly: true
+    pattern: " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
     type:
     - string
   password:
     description: password of user
     example: 'example'
     readOnly: true
+    pattern: "within: 5..30"
     type:
     - string
   name:
@@ -110,12 +112,12 @@ links:
         "$ref": "/schemata/user#/definitions/age"
       nationality:
         "$ref": "/schemata/user#/definitions/nationality"
-      image:
-        "$ref": "/schemata/user#/definitions/image"
+      #image:
+        #"$ref": "/schemata/user#/definitions/image"
     required: ["email","password"]
     type:
     - object
-    title: Create
+  title: Create
 
 - description: ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり
   href: "/users/me"
@@ -137,11 +139,11 @@ links:
         "$ref": "/schemata/user#/definitions/age"
       nationality:
         "$ref": "/schemata/user#/definitions/nationality"
-      image:
-        "$ref": "/schemata/user#/definitions/image"
+      #image:
+        #"$ref": "/schemata/user#/definitions/image"
     type:
     - object
-    title: Me
+  title: Me
 # #################################
 # ATTRIBUTESを使うときはここに記述
 # #################################
