@@ -16,15 +16,33 @@
 
 require 'rails_helper'
 require 'rspec-rails'
-DatabaseCleaner.strategy = :truncation
+require 'database_cleaner'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
-  config.include ApiHelper, type: :api
-  config.include Requests::JsonHelpers, type: :api
+  config.include ApiHelper, type: :request
+  config.include Requests::JsonHelpers, type: :request
 
+  config.before :all do
+    FactoryGirl.reload
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after :each do
+    DatabaseCleaner.clean
+  end
+
+  Autodoc.configuration.toc = true
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
