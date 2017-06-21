@@ -18,6 +18,7 @@ module V1
     def create
       @response = Response.new(response_params)
       @response.user = current_user
+      @response.problem_id = params[:problem_id]
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
@@ -48,7 +49,7 @@ module V1
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def response_params
-        params.fetch(:response, {}).permit(:response, :problem_id)
+        params.require(:response).permit(:comment)
       end
   end
 end
