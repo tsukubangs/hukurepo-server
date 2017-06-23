@@ -17,6 +17,7 @@
 require 'rails_helper'
 require 'rspec-rails'
 require 'database_cleaner'
+require 'devise'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -24,6 +25,8 @@ RSpec.configure do |config|
   # assertions if you prefer.
   config.include ApiHelper, type: :request
   config.include Requests::JsonHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.extend AuthenticationHelper
 
   config.before :all do
     FactoryGirl.reload

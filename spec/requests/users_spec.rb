@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'uri'
+require 'net/http'
 
 describe 'Users', type: :request do
   describe 'POST v1/users' do
@@ -37,11 +39,19 @@ describe 'Users', type: :request do
 
   end
 
-  describe 'GET /users/:id' do
-    let(:user)  { FactoryGirl.create(:user) }
-
-    context 'with valid id' do
-
+  describe 'GET /users' do
+    context 'with authorization' do
+      login
+      subject do
+        get v1_users_path(format: :json), {}, {Authorization: token}
+      end
+      context 'OK' do
+        it 'respond 200(OK)' do
+          subject
+          p last_request.env
+          # expect(last_response).to be_ok
+        end
+      end
     end
   end
 
