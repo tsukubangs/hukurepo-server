@@ -53,10 +53,10 @@ links:
     properties:
       comment:
         "$ref": "/schemata/response#/definitions/comment"
-      problem_id:
-        "$ref": "/schemata/response#/definitions/problem_id"
-      user_id:
-        "$ref":  "/schemata/response#/definitions/user_id"
+      #   problem_id:
+      #   "$ref": "/schemata/response#/definitions/problem_id"
+      # user_id:
+      #   "$ref":  "/schemata/response#/definitions/user_id"
     type:
     - object
   targetSchema:
@@ -78,11 +78,14 @@ links:
 #   method: DELETE
 #   rel: destroy
 #   title: Delete
-# - description: 困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり
-#   href: "problems/USER_ID/responses/"
-#   method: GET
-#   rel: self
-#   title: Info
+- description: 困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "problems/USER_ID/responses/"
+  method: GET
+  rel: instances
+  title: List
+  http_header:
+      Authorization : "1:ABCDabcd"
+
 # - description: List existing responses.
 #   href: "/responses"
 #   method: GET
@@ -97,13 +100,14 @@ links:
 #     type:
 #     - object
 #   title: Update
-# properties:
-#   created_at:
-#     "$ref": "/schemata/response#/definitions/created_at"
-#   id:
-#     "$ref": "/schemata/response#/definitions/id"
-#   name:
-#     "$ref": "/schemata/response#/definitions/name"
-#   updated_at:
-#     "$ref": "/schemata/response#/definitions/updated_at"
+properties:
+  id:
+    "$ref":  "/schemata/response#/definitions/id"
+  comment:
+    "$ref": "/schemata/response#/definitions/comment"
+  problem_id:
+    "$ref": "/schemata/response#/definitions/problem_id"
+  user_id:
+    "$ref":  "/schemata/response#/definitions/user_id"
+
 id: schemata/response

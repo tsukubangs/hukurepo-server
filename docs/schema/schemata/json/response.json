@@ -78,12 +78,6 @@
             "properties": {
               "comment": {
                 "$ref": "#/definitions/response/definitions/comment"
-              },
-              "problem_id": {
-                "$ref": "#/definitions/response/definitions/problem_id"
-              },
-              "user_id": {
-                "$ref": "#/definitions/response/definitions/user_id"
               }
             },
             "type": [
@@ -110,8 +104,32 @@
             "Authorization": "1:ABCDabcd"
           },
           "title": "Create"
+        },
+        {
+          "description": "困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "problems/USER_ID/responses/",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
         }
-      ]
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/response/definitions/id"
+        },
+        "comment": {
+          "$ref": "#/definitions/response/definitions/comment"
+        },
+        "problem_id": {
+          "$ref": "#/definitions/response/definitions/problem_id"
+        },
+        "user_id": {
+          "$ref": "#/definitions/response/definitions/user_id"
+        }
+      }
     }
   },
   "properties": {
