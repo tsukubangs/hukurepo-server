@@ -1,0 +1,109 @@
+---
+"$schema": http://json-schema.org/draft-04/hyper-schema
+title: Response
+description: 困りごとに対してコメントをする，コメントを閲覧するAPI
+stability: prototype
+strictProperties: true
+type:
+- object
+definitions:
+  id:
+    description: unique identifier of response
+    readOnly: true
+    example: 1
+    type:
+    - integer
+  comment:
+    description: comment to the problem
+    example: 'We are in test'
+    readOnly: true
+    type:
+    - string
+  problem_id:
+    description: id of the problem
+    example: 1
+    readOnly: true
+    type:
+    - integer
+  user_id:
+    description: id of the user who poseted the problem
+    readOnly: true
+    example: 1
+    type:
+    - integer
+  identity:
+    anyOf:
+    - "$ref": "/schemata/response#/definitions/id"
+  created_at:
+    description: when response was created
+    format: date-time
+    type:
+    - string
+  updated_at:
+    description: when response was updated
+    format: date-time
+    type:
+    - string
+links:
+- description: 困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
+  href: "problems/PROBLEM_ID/responses"
+  method: POST
+  rel: create
+  schema:
+    properties:
+      comment:
+        "$ref": "/schemata/response#/definitions/comment"
+      problem_id:
+        "$ref": "/schemata/response#/definitions/problem_id"
+      user_id:
+        "$ref":  "/schemata/response#/definitions/user_id"
+    type:
+    - object
+  targetSchema:
+    properties:
+      id:
+        "$ref":  "/schemata/response#/definitions/id"
+      comment:
+        "$ref": "/schemata/response#/definitions/comment"
+      problem_id:
+        "$ref": "/schemata/response#/definitions/problem_id"
+      user_id:
+        "$ref":  "/schemata/response#/definitions/user_id"
+  http_header:
+    Authorization : "1:ABCDabcd"
+  title: Create
+
+# - description: Delete an existing response.
+#   href: "/responses/{(%2Fschemata%2Fresponse%23%2Fdefinitions%2Fidentity)}"
+#   method: DELETE
+#   rel: destroy
+#   title: Delete
+# - description: 困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり
+#   href: "problems/USER_ID/responses/"
+#   method: GET
+#   rel: self
+#   title: Info
+# - description: List existing responses.
+#   href: "/responses"
+#   method: GET
+#   rel: instances
+#   title: List
+# - description: Update an existing response.
+#   href: "/responses/{(%2Fschemata%2Fresponse%23%2Fdefinitions%2Fidentity)}"
+#   method: PATCH
+#   rel: update
+#   schema:
+#     properties: {}
+#     type:
+#     - object
+#   title: Update
+# properties:
+#   created_at:
+#     "$ref": "/schemata/response#/definitions/created_at"
+#   id:
+#     "$ref": "/schemata/response#/definitions/id"
+#   name:
+#     "$ref": "/schemata/response#/definitions/name"
+#   updated_at:
+#     "$ref": "/schemata/response#/definitions/updated_at"
+id: schemata/response
