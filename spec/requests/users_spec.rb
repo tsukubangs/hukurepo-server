@@ -43,13 +43,13 @@ describe 'Users', type: :request do
     context 'with authorization' do
       login
       subject do
-        get v1_users_path(format: :json), {}, {Authorization: token}
+        get v1_users_path(format: :json), {}, {'HTTP_AUTHORIZATION' => token}
       end
       context 'OK' do
         it 'respond 200(OK)' do
           subject
           p last_request.env
-          # expect(last_response).to be_ok
+          expect(last_response).to be_ok
         end
       end
     end
