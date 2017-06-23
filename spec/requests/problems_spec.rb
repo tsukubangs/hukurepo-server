@@ -60,6 +60,7 @@ describe 'Problems', type: :request do
           expect(json['image_url']).to match(/.+jpg/)
           expect(json['latitude']).to eq(36.10830528664971)
           expect(json['longitude']).to eq(140.10114337330694)
+          expect(json['user_id']).to eq(1)
         end
       end
     end
