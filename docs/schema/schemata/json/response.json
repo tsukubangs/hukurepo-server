@@ -106,8 +106,8 @@
           "title": "Create"
         },
         {
-          "description": "困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "problems/USER_ID/responses/",
+          "description": "困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "problems/PROBLEM_ID/responses/",
           "method": "GET",
           "rel": "instances",
           "title": "List",

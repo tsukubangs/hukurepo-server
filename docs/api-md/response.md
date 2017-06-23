@@ -56,19 +56,19 @@ HTTP/1.1 201 Created
 }
 ```
 
-### <a name="link-GET-response-problems/USER_ID/responses/">Response List</a>
+### <a name="link-GET-response-problems/PROBLEM_ID/responses/">Response List</a>
 
-困りごとに対応するコメントを取得するAPI 利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET problems/USER_ID/responses/
+GET problems/PROBLEM_ID/responses/
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1problems/USER_ID/responses/ \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1problems/PROBLEM_ID/responses/ \
   -H "Authorization: 1:ABCDabcd"
 ```
 
