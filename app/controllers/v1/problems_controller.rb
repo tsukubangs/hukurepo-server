@@ -23,7 +23,7 @@ module V1
 
     # GET /v1/problems/1
     def show
-      render json: @problem, serializer: V1::ProblemSerializer, root: nil
+      render json: @problem, serializer: V1::ProblemSerializer
     end
 
     # POST /v1/problems
