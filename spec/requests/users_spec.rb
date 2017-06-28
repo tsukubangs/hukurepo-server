@@ -24,6 +24,7 @@ describe 'Users', type: :request do
         expect(json['user_id']).to eq(1)
         expect(json['email']).to eq('kaname@kaname.co.jp')
         expect(json['token_type']).to eq('Bearer')
+        # トークンの最初に
       end
 
       it 'respond accesstoken of can sign_in' do
@@ -32,24 +33,21 @@ describe 'Users', type: :request do
     end
 
     context 'NG' do
-      it 'invalid id' do
 
-      end
     end
-
   end
 
   describe 'GET /users' do
     context 'with authorization' do
       login
       subject do
-        get v1_users_path(format: :json), {}, {'HTTP_AUTHORIZATION' => token}
+        get v1_users_path(format: :json), no_params, authorization_header
       end
       context 'OK' do
         it 'respond 200(OK)' do
           subject
-          p last_request.env
           expect(last_response).to be_ok
+          expect(last_response.status).to eq(200)
         end
       end
     end

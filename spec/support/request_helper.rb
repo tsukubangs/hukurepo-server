@@ -4,10 +4,8 @@ module Requests
       JSON.parse(last_response.body)
     end
 
-    def header_application_json
-      let(:header) do
-          { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-      end
+    def no_params
+      {}
     end
   end
 end
