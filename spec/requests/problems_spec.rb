@@ -3,40 +3,41 @@ require 'uri'
 require 'net/http'
 
 describe 'Problems', type: :request do
-#   describe 'POST v1/problems' do
-#     let(:params){ {problem: FactoryGirl.attributes_for(:problem)} }
-#     subject do
-#         post v1_problems_path(format: :json), params
-#     end
-#
-#     context 'OK' do
-#       it 'increased problems' do
-#         expect { subject }.to change(Problem, :count).by(1)
-#       end
-#
-#       it 'respond 201(created)' do
-#         subject
-#         expect(last_response.status).to eq(201)
-#       end
-#
-#       it 'respond created problem' do
-#         subject
-#         expect(json['problem_id']).to eq(1)
-#       end
-#
-#       it 'respond accesstoken of can sign_in' do
-#         # TODO implments
-#       end
-#     end
-#
-#     context 'NG' do
-#       it 'invalid id' do
-#
-#       end
-#     end
-#
-#   end
+  # describe 'POST v1/problems' do
+  #   let(:params){ {problem: FactoryGirl.attributes_for(:problem)} }
+  #   subject do
+  #       post v1_problems_path(format: :json), params
+  #   end
+  #
+  #   context 'OK' do
+  #     it 'increased problems' do
+  #       expect { subject }.to change(Problem, :count).by(1)
+  #     end
+  #
+  #     it 'respond 201(created)' do
+  #       subject
+  #       expect(last_response.status).to eq(201)
+  #     end
+  #
+  #     it 'respond created problem' do
+  #       subject
+  #       expect(json['problem_id']).to eq(1)
+  #     end
+  #
+  #     it 'respond accesstoken of can sign_in' do
+  #       # TODO implments
+  #     end
+  #   end
+  #
+  #   context 'NG' do
+  #     it 'invalid id' do
+  #
+  #     end
+  #   end
+  #
+  # end
 
+  # users#show
   describe 'GET /problems/:id' do
     let(:problem) { FactoryGirl.create(:problem) }
 
