@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Problems', type: :request do
   let(:user) { first_user }
   before do
-    user
+    first_user
   end
 
   describe 'POST v1/problems' do

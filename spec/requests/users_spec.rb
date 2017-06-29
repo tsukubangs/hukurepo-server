@@ -68,18 +68,52 @@ describe 'Users', type: :request do
 
   # users#index
   describe 'GET /users' do
+    let(:user) { first_user }
+    before do
+      user
+      create(:user_tama)
+    end
+
+    context 'without authorization' do
+      subject do
+        get v1_users_path(format: :json), no_params
+      end
+
+      it 'returns authorization error(401)' do
+        subject
+        expect(last_response.status).to eq(401)
+        expect(json['error']).to eq(authenticate_error_message)
+      end
+    end
+
     context 'with authorization' do
       login
       subject do
         get v1_users_path(format: :json), no_params, authorization_header
       end
 
-      it 'respond 200(OK)' do
+      it 'returns existing users' do
         subject
+
         expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
+
+        expect(json).to be_an Array
+         
+        expect(json[0]['id']).to eq(1)
+        expect(json[0]['email']).to eq('kaname@kaname.co.jp')
+        expect(json[0]['gender']).to eq('male')
+        expect(json[0]['age']).to eq(20)
+        expect(json[0]['nationality']).to eq('Japan')
+
+        expect(json[1]['id']).to eq(2)
+        expect(json[1]['email']).to eq('tama@tama.co.jp')
+        expect(json[1]['gender']).to eq('female')
+        expect(json[1]['age']).to eq(50)
+        expect(json[1]['nationality']).to eq('Japan')
       end
     end
+
   end
 
   # users#show
