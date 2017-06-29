@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'uri'
-require 'net/http'
 
 describe 'Users', type: :request do
   describe 'POST v1/users' do
