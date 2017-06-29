@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe 'Problems', type: :request do
+  let(:user) { first_user }
+  before do
+    user
+  end
+
   describe 'POST v1/problems' do
     let(:params){ { problem: attributes_for(:problem) } }
 
@@ -26,9 +31,8 @@ describe 'Problems', type: :request do
 
         expect(last_response.status).to eq(201)
 
-        expect(json['id']).to eq(1)
         expect(json['comment']).to eq('SOX is difficult')
-        expath = 'uploads/problem/image/'+'1'
+        expath = 'uploads/problem/image/' + json['id'].to_s
         expect(json['image_url']).to match(expath)
         expect(json['image_url']).to match(/.+jpg/)
         expect(json['latitude']).to eq(36.10830528664971)
@@ -40,8 +44,17 @@ describe 'Problems', type: :request do
 
   # problems#show
   describe 'GET /problems/:id' do
-    before { create(:user) }
     let(:problem){ create(:problem) }
+
+    context 'without authorization' do
+      subject do
+        get v1_problems_path(problem.id, format: :json)
+      end
+      it 'returns authorization error(401)' do
+        subject
+        expect(last_response.status).to eq(401)
+      end
+    end
 
     context 'with authorization' do
       login
@@ -51,7 +64,7 @@ describe 'Problems', type: :request do
 
       it 'returns exisiting problem' do
         subject
-        
+
         expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
 
@@ -64,20 +77,9 @@ describe 'Problems', type: :request do
         expect(json['user_id']).to eq(1)
       end
 
-    it 'returns 404 if user not found' do
-      get v1_problem_path(-1, format: :json), no_params, authorization_header
-      expect(last_response.status).to eq(404)
-    end
-
-    end
-
-    context 'without authorization' do
-      subject do
-        get v1_problems_path(problem.id, format: :json)
-      end
-      it 'returns 401' do
-        subject
-        expect(last_response.status).to eq(401)
+      it 'returns 404 if user not found' do
+        get v1_problem_path(-1, format: :json), no_params, authorization_header
+        expect(last_response.status).to eq(404)
       end
     end
   end
