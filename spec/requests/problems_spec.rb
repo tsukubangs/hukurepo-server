@@ -146,7 +146,7 @@ describe 'Problems', type: :request do
     end
   end
 
-  # problems#me
+  # problems#me and problems$users
   describe 'GET /problems/me' do
     before do
       create(:problem1) # posted by user1
@@ -186,7 +186,7 @@ describe 'Problems', type: :request do
         expect(json[0]['image_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.10830528664971)
         expect(json[0]['longitude']).to eq(140.10114337330694)
-        expect(json[0]['user_id']).to eq(1)
+        expect(json[0]['user_id']).to eq(1) # imortant!
 
         expect(json[1]['id']).to eq(3)
         expect(json[1]['comment']).to eq('Bicycle is too many!!!')
@@ -195,9 +195,8 @@ describe 'Problems', type: :request do
         expect(json[1]['image_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.1181461)
         expect(json[1]['longitude']).to eq(140.0903428)
-        expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['user_id']).to eq(1) # imortant!
       end
-
     end
   end
 end

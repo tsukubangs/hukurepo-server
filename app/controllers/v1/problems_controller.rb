@@ -17,8 +17,8 @@ module V1
     # GET /v1/problems/me
     # GET /v1/users/me/problems
     def me
-      @problems = Problem.where(user_id: current_user.id)
-      render json: @problems, each_serializer: V1::ProblemSerializer
+      params[:user_id] = current_user.id
+      users
     end
 
     # GET /v1/problems/1
