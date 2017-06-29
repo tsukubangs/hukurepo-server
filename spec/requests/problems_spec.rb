@@ -17,6 +17,7 @@ describe 'Problems', type: :request do
       it 'returns authorization error(401)' do
         subject
         expect(last_response.status).to eq(401)
+        expect(json['error']).to eq(authenticate_error_message)
       end
     end
 
@@ -48,11 +49,12 @@ describe 'Problems', type: :request do
 
     context 'without authorization' do
       subject do
-        get v1_problems_path(problem.id, format: :json)
+        get v1_problem_path(problem.id, format: :json)
       end
       it 'returns authorization error(401)' do
         subject
         expect(last_response.status).to eq(401)
+        expect(json['error']).to eq(authenticate_error_message)
       end
     end
 
@@ -68,18 +70,22 @@ describe 'Problems', type: :request do
         expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
 
+        expect(json['id']).to eq(problem.id)
         expect(json['comment']).to eq('SOX is difficult')
         expath = 'uploads/problem/image/'+problem.id.to_s
         expect(json['image_url']).to match(expath)
         expect(json['image_url']).to match(/.+jpg/)
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
-        expect(json['user_id']).to eq(1)
+        expect(json['user_id']).to eq(problem.user.id)
       end
 
-      it 'returns 404 if user not found' do
-        get v1_problem_path(-1, format: :json), no_params, authorization_header
+      it 'returns 404 if user is not exist' do
+        not_exist_problem_id = -1
+        get v1_problem_path(not_exist_problem_id, format: :json), no_params, authorization_header
+
         expect(last_response.status).to eq(404)
+        expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
       end
     end
   end

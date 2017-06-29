@@ -6,8 +6,14 @@ class ApplicationController < ActionController::API
   respond_to :json
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActiveRecord::RecordInvalid, with: :invalid
+
   def not_found(exception)
     render json: { error: exception.message }, status: :not_found
+  end
+
+  def invalid(exception)
+    render json: { error: exception.message }, status: :unprocessable_entity
   end
 
   ##
