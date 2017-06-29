@@ -12,15 +12,8 @@ describe 'Problems', type: :request do
     let(:params){ { problem: attributes_for(:problem) } }
 
     context 'without authorization' do
-      subject do
-          post v1_problems_path(format: :json), params, {'Content-Type' => 'multipart/form-data'}
-      end
-
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { post v1_problems_path(format: :json), params, {'Content-Type' => 'multipart/form-data'} }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
@@ -53,15 +46,8 @@ describe 'Problems', type: :request do
     end
 
     context 'without authorization' do
-      subject do
-        get v1_problems_path(format: :json), no_params
-      end
-
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { get v1_problems_path(format: :json), no_params }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
@@ -104,14 +90,8 @@ describe 'Problems', type: :request do
     let(:problem){ create(:problem) }
 
     context 'without authorization' do
-      subject do
-        get v1_problem_path(problem.id, format: :json)
-      end
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { get v1_problem_path(problem.id, format: :json) }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
@@ -155,14 +135,8 @@ describe 'Problems', type: :request do
     end
 
     context 'without authorization' do
-      subject do
-        get me_v1_problems_path(format: :json)
-      end
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { get me_v1_problems_path(format: :json) }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do

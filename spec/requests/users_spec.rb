@@ -75,15 +75,8 @@ describe 'Users', type: :request do
     end
 
     context 'without authorization' do
-      subject do
-        get v1_users_path(format: :json), no_params
-      end
-
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { get v1_users_path(format: :json), no_params }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
@@ -120,15 +113,8 @@ describe 'Users', type: :request do
     let(:user) { first_user }
 
     context 'without authorization' do
-      subject do
-        get v1_user_path(user.id, format: :json), no_params
-      end
-
-      it 'returns authorization error(401)' do
-        subject
-        expect(last_response.status).to eq(401)
-        expect(json['error']).to eq(authenticate_error_message)
-      end
+      subject  { get v1_user_path(user.id, format: :json), no_params }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
