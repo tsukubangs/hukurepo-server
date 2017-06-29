@@ -4,6 +4,7 @@ describe 'Problems', type: :request do
   let(:user) { first_user }
   before do
     first_user
+    second_user
   end
 
   # problems#create
@@ -142,6 +143,61 @@ describe 'Problems', type: :request do
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
       end
+    end
+  end
+
+  # problems#me
+  describe 'GET /problems/me' do
+    before do
+      create(:problem1) # posted by user1
+      create(:problem2) # posted by user2
+      create(:problem3) # posted by user1
+    end
+
+    context 'without authorization' do
+      subject do
+        get me_v1_problems_path(format: :json)
+      end
+      it 'returns authorization error(401)' do
+        subject
+        expect(last_response.status).to eq(401)
+        expect(json['error']).to eq(authenticate_error_message)
+      end
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        get me_v1_problems_path(format: :json), no_params, authorization_header
+      end
+
+      it 'returns first_users problem' do
+        subject
+
+        expect(last_response).to be_ok
+        expect(last_response.status).to eq(200)
+
+        expect(json).to be_an Array
+
+        expect(json[0]['id']).to eq(1)
+        expect(json[0]['comment']).to eq('SOX is difficult')
+        expath = 'uploads/problem/image/'
+        expect(json[0]['image_url']).to match(expath)
+        expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['latitude']).to eq(36.10830528664971)
+        expect(json[0]['longitude']).to eq(140.10114337330694)
+        expect(json[0]['user_id']).to eq(1)
+
+        expect(json[1]['id']).to eq(3)
+        expect(json[1]['comment']).to eq('Bicycle is too many!!!')
+        expath = 'uploads/problem/image/'
+        expect(json[1]['image_url']).to match(expath)
+        expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['latitude']).to eq(36.1181461)
+        expect(json[1]['longitude']).to eq(140.0903428)
+        expect(json[1]['user_id']).to eq(1)
+      end
+
     end
   end
 end
