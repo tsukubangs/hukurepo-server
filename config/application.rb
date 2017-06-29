@@ -27,5 +27,16 @@ module ApiTest
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.autoload_paths << Rails.root.join('app', 'uploaders')
+
+    config.autoload_paths += %W(#{config.root}/lib)
+    if ENV['RAILS_ENV'] == 'test'
+      system('prmd combine --meta docs/schema/meta.yml docs/schema/schemata/ > docs/schema/schema.json')
+      str = File.read("#{Rails.root}/docs/schema/schema.json")
+      schema = JSON.parse(str)
+
+      config.middleware.use Rack::JsonSchema::ErrorHandler
+      config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
+    end
+
   end
 end

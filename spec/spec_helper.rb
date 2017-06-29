@@ -19,6 +19,10 @@ require 'rspec-rails'
 require 'database_cleaner'
 require 'devise'
 require Rails.root.join('spec', 'requests', 'shared_examples', 'returns_to_missing.rb')
+require 'simplecov'
+SimpleCov.start 'rails'
+
+
 
 
 RSpec.configure do |config|
