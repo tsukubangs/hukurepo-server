@@ -36,7 +36,7 @@ module V1
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
-      publish_sox
+      # publish_sox
     end
 
     # PATCH/PUT /v1/problems/1

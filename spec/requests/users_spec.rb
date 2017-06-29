@@ -99,7 +99,7 @@ describe 'Users', type: :request do
         expect(last_response.status).to eq(200)
 
         expect(json).to be_an Array
-         
+
         expect(json[0]['id']).to eq(1)
         expect(json[0]['email']).to eq('kaname@kaname.co.jp')
         expect(json[0]['gender']).to eq('male')
@@ -113,7 +113,6 @@ describe 'Users', type: :request do
         expect(json[1]['nationality']).to eq('Japan')
       end
     end
-
   end
 
   # users#show
@@ -160,7 +159,4 @@ describe 'Users', type: :request do
       end
     end
   end
-
-
-
 end
