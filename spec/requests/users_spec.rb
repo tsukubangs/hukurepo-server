@@ -18,13 +18,13 @@ describe 'Users', type: :request do
       expect(json['token_type']).to eq('Bearer')
     end
 
-    it 'returns accesstoken when it can sign_in' do
+    it 'returns valid accesstoken' do
       subject
       header = {
         'HTTP_AUTHORIZATION' => json['access_token']
       }
-      get v1_users_path, no_params, header
-      expect(last_response).to be_ok
+      get me_v1_users_path, no_params, header
+      expect(last_response.status).not_to eq(401)
     end
 
     context 'when it has validation error' do
@@ -68,10 +68,10 @@ describe 'Users', type: :request do
 
   # users#index
   describe 'GET /users' do
-    let(:user) { first_user }
     before do
-      user
-      create(:user_tama)
+      # 二人のユーザが作られることを保証
+      first_user
+      second_user
     end
 
     context 'without authorization' do

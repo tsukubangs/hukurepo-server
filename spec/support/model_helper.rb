@@ -4,6 +4,7 @@ module ModelHelper
   end
 
   def second_user
+    create(:user) unless User.exists?
     User.second ? User.second : create(:user2)
   end
 end

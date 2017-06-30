@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Problems', type: :request do
   let(:user) { first_user }
   before do
+    # 二人のユーザが作られることを保証
     first_user
     second_user
   end
@@ -41,7 +42,7 @@ describe 'Problems', type: :request do
   # problems#index
   describe 'GET /problems' do
     before do
-      create(:problem)
+      create(:problem1)
       create(:problem2)
     end
 
