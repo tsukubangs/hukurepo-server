@@ -39,7 +39,7 @@ module ApiTest
        config.middleware.use Rack::JsonSchema::Docs, schema: schema
        config.middleware.use Rack::JsonSchema::SchemaProvider, schema: schema
        config.middleware.use Rack::JsonSchema::ErrorHandler
-      #  config.middleware.use Rack::JsonSchema::RequestValidation, schema: schema
+       config.middleware.use Rack::JsonSchema::RequestValidation, schema: schema
        config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
       #  config.middleware.use Rack::JsonSchema::Mock, schema: schema if ENV["RACK_ENV"] == "mock"
     end
