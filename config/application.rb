@@ -35,7 +35,7 @@ module ApiTest
        schema = JSON.parse(str)
 
        config.middleware.use Rack::JsonSchema::ErrorHandler
-      #  config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
+       config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
     end
 
   end

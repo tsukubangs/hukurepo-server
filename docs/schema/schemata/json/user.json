@@ -85,7 +85,7 @@
           "example": "Bearer",
           "readOnly": true,
           "type": [
-            "-string"
+            "string"
           ]
         },
         "access_token": {
@@ -93,13 +93,13 @@
           "example": "1:ABCDabcd",
           "readOnly": true,
           "type": [
-            "-string"
+            "string"
           ]
         },
         "identity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/user/definitions/id"
+              "$ref": "#/definitions/user/definitions/user_id"
             },
             {
               "$ref": "#/definitions/user/definitions/name"
