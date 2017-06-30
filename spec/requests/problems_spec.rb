@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Problems', type: :request do
-  let(:user) { first_user }
+  let!(:user) { first_user }
   before do
     # 二人のユーザが作られることを保証
     first_user
