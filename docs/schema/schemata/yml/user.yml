@@ -85,7 +85,7 @@ definitions:
     - string
 links:
 - description: 新たなユーザを作成するAPI
-  href: "/users"
+  href: "/v1/users"
   method: POST
   rel: create
   targetSchema:
@@ -120,7 +120,7 @@ links:
   title: Create
 
 - description: ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/users/me"
+  href: "/v1/users/me"
   method: GET
   rel: self
   http_header:
