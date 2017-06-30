@@ -15,16 +15,16 @@ definitions:
     - integer
   email:
     description: unique email of user
-    example: 'test@example.com'
+    example: 'test.example@example.co.jp'
     readOnly: true
-    pattern: " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i"
+    pattern: "([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+"
     type:
     - string
   password:
     description: password of user
     example: 'example'
     readOnly: true
-    pattern: "within: 5..30"
+    pattern: ".{6,29}"
     type:
     - string
   name:
@@ -85,7 +85,7 @@ definitions:
     - string
 links:
 - description: 新たなユーザを作成するAPI
-  href: "/users"
+  href: "/v1/users"
   method: POST
   rel: create
   targetSchema:
@@ -120,7 +120,7 @@ links:
   title: Create
 
 - description: ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/users/me"
+  href: "/v1/users/me"
   method: GET
   rel: self
   http_header:
@@ -139,8 +139,6 @@ links:
         "$ref": "/schemata/user#/definitions/age"
       nationality:
         "$ref": "/schemata/user#/definitions/nationality"
-      #image:
-        #"$ref": "/schemata/user#/definitions/image"
     type:
     - object
   title: Me
