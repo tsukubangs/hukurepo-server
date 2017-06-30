@@ -5,12 +5,12 @@ Stability: `prototype`
 
 ユーザのセッションを管理するAPI
 
-### <a name="link-POST-session-/login">Session Login</a>
+### <a name="link-POST-session-/v1/login">Session Login</a>
 
 あるユーザにログインするときのAPI
 
 ```
-POST /login
+POST /v1/login
 ```
 
 #### Optional Parameters
