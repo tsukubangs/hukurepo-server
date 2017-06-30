@@ -60,16 +60,16 @@ definitions:
     example: "Bearer"
     readOnly: true
     type:
-      -string
+    - string
   access_token:
     description: unique token for user
     example: "1:ABCDabcd"
     readOnly: true
     type:
-      -string
+    - string
   identity:
     anyOf:
-    - "$ref": "/schemata/user#/definitions/id"
+    - "$ref": "/schemata/user#/definitions/user_id"
     - "$ref": "/schemata/user#/definitions/name"
   created_at:
     description: when user was created
@@ -85,7 +85,7 @@ links:
 - description: あるユーザにログインするときのAPI
   href: "/login"
   method: POST
-  # rel: instances
+  rel: self
   schema:
     properties:
       email:
