@@ -18,11 +18,18 @@ require 'rails_helper'
 require 'rspec-rails'
 require 'database_cleaner'
 require 'devise'
+require Rails.root.join('spec', 'requests', 'shared_examples', 'returns_to_missing.rb')
+require 'simplecov'
+SimpleCov.start 'rails'
+
+
+
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  config.include ModelHelper, type: :request
   config.include ApiHelper, type: :request
   config.include Requests::JsonHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :request
