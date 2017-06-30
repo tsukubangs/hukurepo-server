@@ -91,7 +91,7 @@
       "links": [
         {
           "description": "困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。",
-          "href": "/problems",
+          "href": "/v1/problems",
           "method": "POST",
           "rel": "create",
           "schema": {
@@ -145,7 +145,7 @@
         },
         {
           "description": "ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/problems/me",
+          "href": "/v1/problems/me",
           "method": "GET",
           "rel": "instances",
           "title": "Me",
@@ -155,7 +155,7 @@
         },
         {
           "description": "困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/problems",
+          "href": "/v1/problems",
           "method": "GET",
           "rel": "instances",
           "title": "List",
@@ -258,7 +258,7 @@
       "links": [
         {
           "description": "困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．",
-          "href": "problems/PROBLEM_ID/responses",
+          "href": "/v1/problems/PROBLEM_ID/responses",
           "method": "POST",
           "rel": "create",
           "schema": {
@@ -294,7 +294,7 @@
         },
         {
           "description": "困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "problems/PROBLEM_ID/responses/",
+          "href": "/v1/problems/PROBLEM_ID/responses/",
           "method": "GET",
           "rel": "instances",
           "title": "List",
@@ -436,7 +436,7 @@
       "links": [
         {
           "description": "あるユーザにログインするときのAPI",
-          "href": "/login",
+          "href": "/v1/login",
           "method": "POST",
           "rel": "self",
           "schema": {
@@ -591,7 +591,7 @@
       "links": [
         {
           "description": "新たなユーザを作成するAPI",
-          "href": "/users",
+          "href": "/v1/users",
           "method": "POST",
           "rel": "create",
           "targetSchema": {
@@ -643,7 +643,7 @@
         },
         {
           "description": "ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/users/me",
+          "href": "/v1/users/me",
           "method": "GET",
           "rel": "self",
           "http_header": {
@@ -698,7 +698,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp/v1",
+      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp",
       "rel": "self"
     }
   ]
