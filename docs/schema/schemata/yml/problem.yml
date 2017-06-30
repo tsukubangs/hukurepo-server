@@ -61,7 +61,7 @@ definitions:
 
 links:
 - description: 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
-  href: "/problems"
+  href: "/v1/problems"
   method: POST
   rel: create
   schema:
@@ -103,7 +103,7 @@ links:
 #   rel: destroy
 #   title: Delete
 - description: ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/problems/me"
+  href: "/v1/problems/me"
   method: GET
   rel: instances
   title: Me
@@ -111,7 +111,7 @@ links:
     Authorization : "1:ABCDabcd"
 
 - description: 困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/problems"
+  href: "/v1/problems"
   method: GET
   rel: instances
   title: List
@@ -147,4 +147,4 @@ properties:
   updated_at:
     "$ref": "/schemata/problem#/definitions/updated_at"
 
-id: schemata/yml/problem
+id: schemata/problem
