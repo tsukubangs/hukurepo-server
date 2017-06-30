@@ -34,8 +34,12 @@ module ApiTest
        str = File.read("#{Rails.root}/docs/schema/schema.json")
        schema = JSON.parse(str)
 
+      #  config.middleware.use Rack::JsonSchema::Docs, schema: schema
+       config.middleware.use Rack::JsonSchema::SchemaProvider, schema: schema
        config.middleware.use Rack::JsonSchema::ErrorHandler
-       config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
+       config.middleware.use Rack::JsonSchema::RequestValidation, schema: schema
+       config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema if ENV["RACK_ENV"] == "test"
+      #  config.middleware.use Rack::JsonSchema::Mock, schema: schema if ENV["RACK_ENV"] == "mock"
     end
 
   end
