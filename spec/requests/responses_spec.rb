@@ -8,15 +8,18 @@ describe 'Responses', type: :request do
 
   # responses#index
   describe 'GET /v1/problems/:problem_id/responses' do
-    before do
-    create(:response)
-    create(:response2)
+    let!(:response){ create(:response)}
+    let!(:response2){ create(:response2)}
+
+    context 'without authorization' do
+      subject  { get v1_problem_responses_path(problem_id: response.problem.id, format: :json), no_params }
+      it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
       login
       subject do
-        get v1_problem_response_path(problem_id: format: :json), no_params, authorization_header
+        get v1_problem_responses_path(problem_id: response.problem.id, format: :json), no_params, authorization_header
       end
 
       it 'returns existing response' do
@@ -24,7 +27,18 @@ describe 'Responses', type: :request do
         expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
 
-        expect
+        expect(json).to be_an Array
+
+
+        expect(json[0]['id']).to eq(response.id)
+        expect(json[0]['comment']).to eq('Please go to the Tsukuba Center')
+        expect(json[0]['problem_id']).to eq(response.problem.id)
+        expect(json[0]['user_id']).to eq(first_user.id)
+
+        expect(json[1]['id']).to eq(response2.id)
+        expect(json[1]['comment']).to eq('Please go to Daigaku Kaikan Mae')
+        expect(json[1]['problem_id']).to eq(response2.problem.id)
+        expect(json[1]['user_id']).to eq(first_user.id)
       end
     end
 
