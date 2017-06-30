@@ -491,9 +491,9 @@
         },
         "email": {
           "description": "unique email of user",
-          "example": "test@example.com",
+          "example": "test.test_test@example323.co.jp",
           "readOnly": true,
-          "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i",
+          "pattern": "([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+",
           "type": [
             "string"
           ]
@@ -502,7 +502,7 @@
           "description": "password of user",
           "example": "example",
           "readOnly": true,
-          "pattern": "within: 5..30",
+          "pattern": ".{6,29}",
           "type": [
             "string"
           ]
