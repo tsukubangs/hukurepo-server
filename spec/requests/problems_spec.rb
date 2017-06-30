@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Problems', type: :request do
   let(:user) { first_user }
   before do
+    # 二人のユーザが作られることを保証
     first_user
     second_user
   end
@@ -41,7 +42,7 @@ describe 'Problems', type: :request do
   # problems#index
   describe 'GET /problems' do
     before do
-      create(:problem)
+      create(:problem1)
       create(:problem2)
     end
 
@@ -116,7 +117,7 @@ describe 'Problems', type: :request do
         expect(json['user_id']).to eq(problem.user.id)
       end
 
-      it 'returns 404 if user is not exist' do
+      it 'returns 404 if user does not exist' do
         not_exist_problem_id = -1
         get v1_problem_path(not_exist_problem_id, format: :json), no_params, authorization_header
 
@@ -160,7 +161,7 @@ describe 'Problems', type: :request do
         expect(json[0]['image_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.10830528664971)
         expect(json[0]['longitude']).to eq(140.10114337330694)
-        expect(json[0]['user_id']).to eq(1) # imortant!
+        expect(json[0]['user_id']).to eq(1) # important!
 
         expect(json[1]['id']).to eq(3)
         expect(json[1]['comment']).to eq('Bicycle is too many!!!')
@@ -169,7 +170,7 @@ describe 'Problems', type: :request do
         expect(json[1]['image_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.1181461)
         expect(json[1]['longitude']).to eq(140.0903428)
-        expect(json[1]['user_id']).to eq(1) # imortant!
+        expect(json[1]['user_id']).to eq(1) # important!
       end
     end
   end

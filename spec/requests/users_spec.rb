@@ -18,21 +18,21 @@ describe 'Users', type: :request do
       expect(json['token_type']).to eq('Bearer')
     end
 
-    it 'respond accesstoken of can sign_in' do
+    it 'returns valid accesstoken' do
       subject
       header = {
         'HTTP_AUTHORIZATION' => json['access_token']
       }
-      get v1_users_path, no_params, header
-      expect(last_response).to be_ok
+      get me_v1_users_path, no_params, header
+      expect(last_response.status).not_to eq(401)
     end
 
-    context 'when have validation error' do
+    context 'when it has validation error' do
       def user_attributes_for params
         { user: attributes_for(:user ,params) }
       end
 
-      it 'returns 422(unprocessable entity) if params have already registered email' do
+      it 'returns 422(unprocessable entity) if email has been already registered' do
         subject
         # 既に登録されているユーザと同じ内容でpost
         post v1_users_path(format: :json), params
@@ -40,7 +40,7 @@ describe 'Users', type: :request do
         expect(json['error']).to eq('Validation failed: Email has already been taken')
       end
 
-      it 'returns 422(unprocessable entity) if params have invalid email' do
+      it 'returns 422(unprocessable entity) if email as invalid' do
         invalid_email = 'email@email'
         post v1_users_path(format: :json), user_attributes_for({ email: invalid_email})
 
@@ -48,7 +48,7 @@ describe 'Users', type: :request do
         expect(json['error']).to eq('Validation failed: Email is invalid')
       end
 
-      it 'returns 422(unprocessable entity) if params have too short password(under 6)' do
+      it 'returns 422(unprocessable entity) if the password is too short (under 6)' do
         invalid_password = 'kanam' # 5length
         post v1_users_path(format: :json), user_attributes_for({ password: invalid_password })
 
@@ -56,7 +56,7 @@ describe 'Users', type: :request do
         expect(json['error']).to eq('Validation failed: Password is too short (minimum is 6 characters)')
       end
 
-      it 'returns 422(unprocessable entity) if params have too long password(above 29)' do
+      it 'returns 422(unprocessable entity) if password is too long(above 29)' do
         invalid_password = 'kanamekanamekanamekanamekanamekanamekanamekanamekanamekaname' # 30length
         post v1_users_path(format: :json), user_attributes_for({ password: invalid_password })
 
@@ -68,10 +68,10 @@ describe 'Users', type: :request do
 
   # users#index
   describe 'GET /users' do
-    let(:user) { first_user }
     before do
-      user
-      create(:user_tama)
+      # 二人のユーザが作られることを保証
+      first_user
+      second_user
     end
 
     context 'without authorization' do
@@ -136,7 +136,7 @@ describe 'Users', type: :request do
         expect(json['nationality']).to eq('Japan')
       end
 
-      it 'returns 404 if problem is not exist' do
+      it 'returns 404 if problem does not exist' do
         not_exist_user_id = -1
         get v1_user_path(not_exist_user_id, format: :json), no_params, authorization_header
 

@@ -14,7 +14,10 @@ FactoryGirl.define do
     image { fixture_file_upload Rails.root.join('spec', 'file', 'noimage.jpg'), 'image/jpg' }
     latitude 36.10830528664373
 	  longitude 140.10114337330311
-    user { User.second ? User.second : create(:user_tama) }
+    user do
+       create(:user) unless User.exists?
+       User.second ? User.second : create(:user_tama)
+    end
   end
 
   factory :problem3, class: Problem do
