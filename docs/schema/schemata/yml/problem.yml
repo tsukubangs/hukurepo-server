@@ -49,11 +49,13 @@ definitions:
   created_at:
     description: when problem was created
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
   updated_at:
     description: when problem was updated
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
 
@@ -79,7 +81,7 @@ links:
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
       image_url:
-        "$ref": "/schemata/problem#/definitions/image_url_null"
+        "$ref": "/schemata/problem#/definitions/image_url"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
