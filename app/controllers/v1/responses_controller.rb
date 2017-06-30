@@ -2,9 +2,9 @@ module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
 
-    # GET /responses
+    # GET problems/:problem_id/responses
     def index
-      @responses = Response.all
+      @responses = Response.where(problem_id: params[:problem_id])
       render json: @responses, each_serializer:
       V1::ResponseSerializer
     end
