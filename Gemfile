@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'simplecov'
   gem 'autodoc'
   gem 'json_spec'
 end
