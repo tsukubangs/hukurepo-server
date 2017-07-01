@@ -46,6 +46,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'autodoc'
   gem 'json_spec'
+  gem 'rails-erd'
 end
 
 group :development do
