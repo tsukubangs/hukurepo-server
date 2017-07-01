@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Problems', type: :request do
+describe 'Problems', type: :request, autodoc: true do
   let(:user) { first_user }
   before do
     # 二人のユーザが作られることを保証
@@ -13,14 +13,14 @@ describe 'Problems', type: :request do
     let(:params){ { problem: attributes_for(:problem) } }
 
     context 'without authorization' do
-      subject  { post v1_problems_path(format: :json), params, {'Content-Type' => 'multipart/form-data'} }
+      subject  { post v1_problems_path, params, {'Content-Type' => 'multipart/form-data'} }
       it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
       login
       subject do
-          post v1_problems_path(format: :json), params, formdata_headers
+          post v1_problems_path(format: :json), params, formdata_header
       end
 
       it 'creates problem' do

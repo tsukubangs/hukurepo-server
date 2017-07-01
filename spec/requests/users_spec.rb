@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Users', type: :request do
+describe 'Users', type: :request, autodoc: true do
   # users#create
   describe 'POST v1/users' do
     let(:params){ { user: attributes_for(:user) } }
     subject do
-        post v1_users_path(format: :json), params
+        post v1_users_path(format: :json), params, json_header
     end
 
     it 'creates user' do
