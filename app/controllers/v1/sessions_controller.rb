@@ -4,10 +4,10 @@ module V1
 
     # POST /v1/login
     def create
-      @user = User.find_for_database_authentication(email: params[:email])
+      @user = User.find_for_database_authentication(email: login_params[:email])
       return invalid_email unless @user
 
-      if @user.valid_password?(params[:password])
+      if @user.valid_password?(login_params[:password])
         sign_in :user, @user
         render json: @user, serializer: SessionSerializer, root: nil
       else
@@ -16,6 +16,11 @@ module V1
     end
 
     private
+
+    def login_params
+      # TODO: requireを入れる手段をあとで追加
+      params.permit(:email, :password)
+    end
 
     def invalid_email
       warden.custom_failure!
