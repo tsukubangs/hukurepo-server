@@ -1,6 +1,6 @@
 module V1
   class SessionsController < ApplicationController
-    skip_before_action :authenticate_user_from_token!
+    skip_before_action :authenticate_user_from_token!, only: [:create]
 
     # POST /v1/login
     def create
@@ -15,6 +15,11 @@ module V1
       end
     end
 
+    # POST /v1/check_access_token
+    def check_access_token
+      render json: { message: 'This access token is valid' }
+    end
+
     private
 
     def login_params
@@ -22,14 +27,17 @@ module V1
       params.permit(:email, :password)
     end
 
-    def invalid_email
+    def invalid_email_or_password
       warden.custom_failure!
-      render json: { error: t('invalid_email') }, status: 401
+      render json: { error: 'Login failed: Email or Password is wrong' }, status: 401
+    end
+
+    def invalid_email
+      invalid_email_or_password
     end
 
     def invalid_password
-      warden.custom_failure!
-      render json: { error: t('invalid_password') }, status: 401
+      invalid_email_or_password
     end
   end
 end
