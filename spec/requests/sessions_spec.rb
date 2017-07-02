@@ -28,6 +28,7 @@ describe 'Sessions', type: :request, autodoc: true do
       }
       post v1_check_access_token_path, no_params, header
       expect(last_response.status).not_to eq(401)
+      expect(json['message']).to eq('This access token is valid')
     end
 
     it 'returns authorization error(401) if access_token is invalid' do
