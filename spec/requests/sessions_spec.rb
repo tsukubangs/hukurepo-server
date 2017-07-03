@@ -36,6 +36,11 @@ describe 'Sessions', type: :request, autodoc: true do
       expect(last_response.status).to eq(401)
     end
 
+    it 'returns authorization error(401) if access_token is invalid(contains id)' do
+      post v1_check_access_token_path, no_params, { 'HTTP_AUTHORIZATION' => '1:Access_Token'}
+      expect(last_response.status).to eq(401)
+    end
+
     it 'returns authorization error(401) if email is not match' do
       params['email'] = 'notkaname@kaname.co.jp'
       post v1_login_path(format: :json), params, json_header
