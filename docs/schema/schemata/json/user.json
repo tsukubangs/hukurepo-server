@@ -85,7 +85,7 @@
           "example": "Bearer",
           "readOnly": true,
           "type": [
-            "-string"
+            "string"
           ]
         },
         "access_token": {
@@ -93,13 +93,13 @@
           "example": "1:ABCDabcd",
           "readOnly": true,
           "type": [
-            "-string"
+            "string"
           ]
         },
         "identity": {
           "anyOf": [
             {
-              "$ref": "#/definitions/user/definitions/id"
+              "$ref": "#/definitions/user/definitions/user_id"
             },
             {
               "$ref": "#/definitions/user/definitions/name"
@@ -124,7 +124,7 @@
       "links": [
         {
           "description": "新たなユーザを作成するAPI",
-          "href": "/users",
+          "href": "/v1/users",
           "method": "POST",
           "rel": "create",
           "targetSchema": {
@@ -176,7 +176,7 @@
         },
         {
           "description": "ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/users/me",
+          "href": "/v1/users/me",
           "method": "GET",
           "rel": "self",
           "http_header": {
@@ -222,7 +222,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp/v1",
+      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp",
       "rel": "self"
     }
   ]

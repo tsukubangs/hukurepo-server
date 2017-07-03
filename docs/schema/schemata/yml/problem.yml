@@ -49,17 +49,19 @@ definitions:
   created_at:
     description: when problem was created
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
   updated_at:
     description: when problem was updated
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
 
 links:
 - description: 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
-  href: "/problems"
+  href: "/v1/problems"
   method: POST
   rel: create
   schema:
@@ -79,7 +81,7 @@ links:
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
       image_url:
-        "$ref": "/schemata/problem#/definitions/image_url_null"
+        "$ref": "/schemata/problem#/definitions/image_url"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
@@ -101,7 +103,7 @@ links:
 #   rel: destroy
 #   title: Delete
 - description: ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/problems/me"
+  href: "/v1/problems/me"
   method: GET
   rel: instances
   title: Me
@@ -109,7 +111,7 @@ links:
     Authorization : "1:ABCDabcd"
 
 - description: 困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/problems"
+  href: "/v1/problems"
   method: GET
   rel: instances
   title: List
@@ -145,4 +147,4 @@ properties:
   updated_at:
     "$ref": "/schemata/problem#/definitions/updated_at"
 
-id: schemata/yml/problem
+id: schemata/problem
