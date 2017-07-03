@@ -16,7 +16,7 @@ module V1
       render json: @response, serializer: V1::ResponseSerializer, root: nil
     end
 
-    # POST /v1/responses
+    # POST /v1/problems/:problem_id/responses
     def create
       @response = Response.new(response_params)
       @response.user = current_user

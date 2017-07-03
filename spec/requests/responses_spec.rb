@@ -34,12 +34,12 @@ describe 'Responses', type: :request do
         expect(json['user_id']).to eq(1)
       end
 
-      # it 'returns 404 if problem does not exist' do
-      #   not_exist_problem_id = -1
-      #   post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
-      #   expect(last_response.status).to eq(404)
-      #   expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
-      # end
+      it 'returns 422 if problem does not exist' do
+        not_exist_problem_id = -1
+        post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
+        expect(last_response.status).to eq(422)
+        expect(json['problem'][0]).to eq("must exist")
+      end
 
     end
   end
