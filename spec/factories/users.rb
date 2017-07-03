@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:user1, :user_kaname, :first_user] do
+  factory :user, class:User, aliases: [:user1, :user_kaname, :first_user] do
     email "kaname@kaname.co.jp"
     password "kaname"
     nationality "Japan"
