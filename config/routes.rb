@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     end
     resources :problems do
       get 'me', on: :collection
-      resources :responses
+      resources :responses, only: [:index, :create]
     end
+    resources :responses, only: [:show]
   end
 end

@@ -2,7 +2,7 @@ include ActionDispatch::TestProcess
 
 FactoryGirl.define do
 # first_userからsecond_userが作成したproblem2への返答1
-  factory :response, aliases: [:response1] do
+  factory :response1_to_problem2, class: Response do
     comment "Please go to the Tsukuba Center"
     user { User.exists? ? User.first : create(:user) }
     problem do
@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
   end
   # second_userからfirst_userが作成したproblem1への返答1
-  factory :response2, class: Response do
+  factory :response1_to_problem1, class: Response do
     comment "Go to Keio Univesity"
     user do
       create(:user) unless User.exists?
@@ -20,7 +20,7 @@ FactoryGirl.define do
     problem { Problem.exists? ? Problem.first : create(:problem1) }
   end
 # first_userからsecond_userが作成したproblem2への返答2
-  factory :response3, class: Response do
+  factory :response2_to_problem2, class: Response do
     comment "Please go to Daigaku Kaikan Mae"
     user {User.exists? ? User.first : create(:user) }
     problem do
