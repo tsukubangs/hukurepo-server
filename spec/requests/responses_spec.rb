@@ -33,14 +33,25 @@ describe 'Responses', type: :request do
         expect(json['problem_id']).to eq(2)
         expect(json['user_id']).to eq(1)
       end
+
+      # it 'returns 404 if problem does not exist' do
+      #   not_exist_problem_id = -1
+      #   post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
+      #   expect(last_response.status).to eq(404)
+      #   expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
+      # end
+
     end
   end
 
   # responses#index
   describe 'GET /v1/problems/:problem_id/responses' do
-    let!(:response1_to_problem2){ create(:response1_to_problem2)}
-    let!(:response1_to_problem1){ create(:response1_to_problem1)}
-    let!(:response2_to_problem2){ create(:response2_to_problem2)}
+
+    before do
+      create(:response1_to_problem2)
+      create(:response1_to_problem1)
+      create(:response2_to_problem2)
+    end
 
     context 'without authorization' do
       subject  { get v1_problem_responses_path(problem_id: 2, format: :json), no_params }
@@ -72,6 +83,14 @@ describe 'Responses', type: :request do
         expect(json[1]['problem_id']).to eq(2)
         expect(json[1]['user_id']).to eq(1)
       end
+
+      it 'returns 404 if problem does not exist' do
+        not_exist_problem_id = -1
+        get v1_problem_responses_path(not_exist_problem_id, format: :json), no_params, authorization_header
+        expect(last_response.status).to eq(404)
+        expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
+      end
+
     end
   end
 
@@ -104,7 +123,7 @@ describe 'Responses', type: :request do
 
       it 'returns 404 if response does not exist' do
         not_exist_response_id = -1
-        get v1_response_path(id: not_exist_response_id, format: :json), no_params, authorization_header
+        get v1_response_path(not_exist_response_id, format: :json), no_params, authorization_header
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Response with 'id'=" + not_exist_response_id.to_s)
       end
