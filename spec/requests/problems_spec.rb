@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Problems', type: :request, autodoc: true do
   let(:user) { first_user }
-
+  before do
     # 二人のユーザが作られることを保証
     first_user
     second_user
