@@ -3,14 +3,14 @@ require 'rails_helper'
 # Response:2番目のユーザが投稿した２番目のproblemに対して，1番目のuserがコメント（返答）をする
 
 describe 'Responses', type: :request do
-  let!(:user1) { first_user }
-  let!(:user2) { second_user }
-  let!(:problem1) { create(:problem1) }
-  let!(:problem2) { create(:problem2) }
+  let!(:user1) { create(:user1) }
+  let!(:user2) { create(:user2) }
+  let!(:problem1) { create(:problem1, {user: user1}) }
+  let!(:problem2) { create(:problem2, {user: user2}) }
 
   # responses#create
   describe 'POST v1/problems/:problem_id/responses' do
-    let(:params){ { response: attributes_for(:response1_to_problem2) } }
+    let(:params){ { response: attributes_for(:response, {user: user1, problem: problem2}) } }
 
     context 'without authorization' do
       subject {post v1_problem_responses_path(problem2.id, format: :json), params}
@@ -48,9 +48,9 @@ describe 'Responses', type: :request do
   describe 'GET /v1/problems/:problem_id/responses' do
 
     before do
-      create(:response1_to_problem2)
-      create(:response1_to_problem1)
-      create(:response2_to_problem2)
+      create(:response1, {user: user1, problem: problem2})
+      create(:response2, {user: user2, problem: problem1})
+      create(:response3, {user: user1, problem: problem2})
     end
 
     context 'without authorization' do
@@ -96,7 +96,7 @@ describe 'Responses', type: :request do
 
   # problems#show
   describe 'GET /responses/:id' do
-    let(:response){ create(:response1_to_problem2) }
+    let!(:response){ create(:response1, {user: user1, problem: problem2}) }
 
     context 'without authorization' do
       subject  { get v1_response_path(problem_id: response.problem.id, id: response.id, format: :json) }

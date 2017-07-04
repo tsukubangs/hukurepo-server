@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 describe 'Problems', type: :request, autodoc: true do
-  let(:user) { first_user }
-  before do
-    # 二人のユーザが作られることを保証
-    first_user
-    second_user
-  end
+  let!(:user1) { create(:user1) }
+  let!(:user2) { create(:user2) }
 
   # problems#create
   describe 'POST v1/problems' do
@@ -41,9 +37,10 @@ describe 'Problems', type: :request, autodoc: true do
 
   # problems#index
   describe 'GET /problems' do
+
     before do
-      create(:problem1)
-      create(:problem2)
+      create(:problem1, {user: user1})
+      create(:problem2, {user: user2})
     end
 
     context 'without authorization' do
@@ -88,7 +85,7 @@ describe 'Problems', type: :request, autodoc: true do
 
   # problems#show
   describe 'GET /problems/:id' do
-    let(:problem){ create(:problem) }
+    let!(:problem){ create(:problem, {user: user1}) }
 
     context 'without authorization' do
       subject  { get v1_problem_path(problem.id, format: :json) }
@@ -130,9 +127,9 @@ describe 'Problems', type: :request, autodoc: true do
   # problems#me and problems$users
   describe 'GET /problems/me' do
     before do
-      create(:problem1) # posted by user1
-      create(:problem2) # posted by user2
-      create(:problem3) # posted by user1
+      create(:problem1, {user: user1})
+      create(:problem2, {user: user2})
+      create(:problem3, {user: user1})
     end
 
     context 'without authorization' do
