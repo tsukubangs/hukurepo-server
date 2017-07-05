@@ -33,6 +33,8 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json['user_id']).to eq(1)
       end
 
+      it_behaves_like 'returns datetime'
+
       it 'can access uploaded image' do
         subject
         get json['image_url'], no_params, authorization_header
@@ -119,6 +121,8 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
       end
+
+      it_behaves_like 'returns datetime'
 
       it 'returns 404 if user does not exist' do
         not_exist_problem_id = -1

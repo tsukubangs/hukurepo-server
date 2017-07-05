@@ -34,6 +34,8 @@ describe 'Responses', type: :request do
         expect(json['user_id']).to eq(1)
       end
 
+      it_behaves_like 'returns datetime'
+
       it 'returns 422 if problem does not exist' do
         not_exist_problem_id = -1
         post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
@@ -120,6 +122,8 @@ describe 'Responses', type: :request do
         expect(json['problem_id']).to eq(response.problem.id)
         expect(json['user_id']).to eq(user1.id)
       end
+
+      it_behaves_like 'returns datetime'
 
       it 'returns 404 if response does not exist' do
         not_exist_response_id = -1

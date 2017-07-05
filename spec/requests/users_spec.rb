@@ -136,6 +136,8 @@ describe 'Users', type: :request, autodoc: true do
         expect(json['nationality']).to eq('Japan')
       end
 
+      it_behaves_like 'returns datetime'
+
       it 'returns 404 if problem does not exist' do
         not_exist_user_id = -1
         get v1_user_path(not_exist_user_id, format: :json), no_params, authorization_header
