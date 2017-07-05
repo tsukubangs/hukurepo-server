@@ -2,11 +2,13 @@ module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
 
-    # GET /responses
+    # GET problems/:problem_id/responses
     def index
-      @responses = Response.all
-      render json: @responses, each_serializer:
-      V1::ResponseSerializer
+      @responses = Response.where(problem_id: params[:problem_id])
+      if Problem.find(params[:problem_id])
+        render json: @responses, each_serializer:
+        V1::ResponseSerializer
+      end
     end
 
     # GET /v1/responses/1
@@ -14,7 +16,7 @@ module V1
       render json: @response, serializer: V1::ResponseSerializer, root: nil
     end
 
-    # POST /v1/responses
+    # POST /v1/problems/:problem_id/responses
     def create
       @response = Response.new(response_params)
       @response.user = current_user
