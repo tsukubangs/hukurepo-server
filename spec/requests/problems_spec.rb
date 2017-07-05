@@ -32,6 +32,12 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
       end
+
+      it 'can access uploaded image' do
+        subject
+        get json['image_url'], no_params, authorization_header
+        expect(last_response.status).to eq(200)
+      end
     end
   end
 
