@@ -1,4 +1,10 @@
 RSpec.shared_examples 'returns datetime' do
+  it 'returns created_at and updated_at' do
+    subject
+    expect(json['created_at']).not_to be nil
+    expect(json['updated_at']).not_to be nil
+  end
+
   it 'returns correct format datetime' do
     subject
     error_message = ""
@@ -8,6 +14,6 @@ RSpec.shared_examples 'returns datetime' do
     rescue ArgumentError => e
       error_message = e
     end
-    expect(error_message).to be_empty
+    expect(error_message).to eq("")
   end
 end
