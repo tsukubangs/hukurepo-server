@@ -25,3 +25,6 @@
 
 # Ignore Coverage result file.
 /coverage/*
+
+# Ignore environment file.
+.env
