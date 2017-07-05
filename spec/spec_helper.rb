@@ -18,7 +18,9 @@ require 'rails_helper'
 require 'rspec-rails'
 require 'database_cleaner'
 require 'devise'
-require Rails.root.join('spec', 'requests', 'shared_examples', 'returns_to_missing.rb')
+
+Dir["./spec/requests/shared_examples/*.rb"].sort.each { |f| require f }
+
 require 'simplecov'
 SimpleCov.start 'rails'
 
