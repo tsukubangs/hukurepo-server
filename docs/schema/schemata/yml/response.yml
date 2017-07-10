@@ -31,6 +31,10 @@ definitions:
     example: 1
     type:
     - integer
+  seen:
+    description: This indicates that it is a already read response
+    type:
+    - boolean
   identity:
     anyOf:
     - "$ref": "/schemata/response#/definitions/id"
@@ -46,7 +50,7 @@ definitions:
     - string
 links:
 - description: 困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
-  href: "problems/PROBLEM_ID/responses"
+  href: "/v1/problems/PROBLEM_ID/responses"
   method: POST
   rel: create
   schema:
@@ -79,13 +83,24 @@ links:
 #   rel: destroy
 #   title: Delete
 - description: 困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "problems/PROBLEM_ID/responses/"
+  href: "/v1/problems/PROBLEM_ID/responses/"
   method: GET
   rel: instances
   title: List
   http_header:
       Authorization : "1:ABCDabcd"
 
+- description: 困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/problems/PROBLEM_ID/responses/seen"
+  method: PUT
+  rel: self
+  title: Seen
+  http_header:
+      Authorization : "1:ABCDabcd"
+  targetSchema:
+    properties:
+      seen:
+        "$ref": "/schemata/response#/definitions/seen"
 # - description: List existing responses.
 #   href: "/responses"
 #   method: GET
@@ -109,5 +124,7 @@ properties:
     "$ref": "/schemata/response#/definitions/problem_id"
   user_id:
     "$ref":  "/schemata/response#/definitions/user_id"
+  seen:
+    "$ref": "/schemata/response#/definitions/seen"
 
 id: schemata/response
