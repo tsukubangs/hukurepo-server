@@ -28,3 +28,4 @@
 
 # Ignore environment file.
 .env
+sendgrid.env

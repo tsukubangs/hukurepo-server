@@ -40,15 +40,7 @@ module V1
 
       # TODO
       # ここに詳細をかけるようにする
-      text = <<-EOC
--------------------
-新しい困りごとが投稿されました
-
-#{@problem.comment}
--------------------
-
-      EOC
-      post_slack(text)
+      post_slack(slack_message)
     end
 
     # PATCH/PUT /v1/problems/1
@@ -75,6 +67,14 @@ module V1
       def problem_params
         params.require(:problem).permit(:comment, :image, :latitude, :longitude)
       end
+
+      def slack_message
+        <<-EOC
+`新しい困りごとが投稿されました`
+*#{@problem.comment}*
+
+EOC
+
 
       def publish_sox
         # TODO: add validation to model

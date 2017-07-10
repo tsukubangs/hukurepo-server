@@ -1,6 +1,7 @@
 module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
+    after_action :send_notification , only: [:create]
 
     # GET problems/:problem_id/responses
     def index
@@ -27,16 +28,6 @@ module V1
       else
         render json: @response.errors, status: :unprocessable_entity
       end
-      # TODO
-      # ここに詳細をかけるようにする
-      text = <<-EOC
--------------------
-新しい返信が投稿されました
-#{@response.comment}
->>>
-#{@response.problem.comment}
-      EOC
-      post_slack(text)
     end
 
     # PATCH/PUT v1/responses/1
@@ -63,5 +54,28 @@ module V1
       def response_params
         params.require(:response).permit(:comment)
       end
+
+      def send_notification
+        Thread.new do
+          # メールを送る
+          # MessageMailer.hello.deliver
+          MessageMailer.new_response(@response.problem.user).deliver
+
+          # TODO
+          # ここに詳細をかけるようにする
+          post_slack(slack_message)
+        end
+      end
+
+      def slack_message
+        <<-EOC
+`新しい返信が投稿されました`
+*#{@response.comment}*
+>>>
+#{@response.problem.comment}
+
+EOC
+      end
+
   end
 end
