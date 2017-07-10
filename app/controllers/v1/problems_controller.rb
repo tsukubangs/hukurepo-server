@@ -37,6 +37,19 @@ module V1
         render json: @problem.errors, status: :unprocessable_entity
       end
       # publish_sox
+
+      # TODO
+      # ここに詳細をかけるようにする
+      text = <<-EOC
+新しい困りごとが投稿されました
+
+#{@problem.comment}
+http://api.acroquest.work#{v1_problem_path(@problem.id)}
+-------------------
+
+      EOC
+      bot_name = "Problem"
+      post_slack(text, bot_name)
     end
 
     # PATCH/PUT /v1/problems/1

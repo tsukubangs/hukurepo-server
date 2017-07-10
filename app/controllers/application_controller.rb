@@ -54,4 +54,10 @@ class ApplicationController < ActionController::API
   def authenticate_error
     render json: { error: t('devise.failure.unauthenticated') }, status: 401
   end
+
+  protected
+  # for sending slack notification
+  def post_slack(text, bot_name)
+      Slack.chat_postMessage(text: text, username: bot_name, channel:"#new_problem")
+  end
 end
