@@ -57,7 +57,7 @@ class ApplicationController < ActionController::API
 
   protected
   # for sending slack notification
-  def post_slack(text)
+  def slack_notify(text)
       Slack.chat_postMessage(text: text, username: 'TsukuRepo', channel:"#notification")
   end
 end

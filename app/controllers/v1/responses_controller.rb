@@ -63,7 +63,7 @@ module V1
 
           # TODO
           # ここに詳細をかけるようにする
-          post_slack(slack_message)
+          slack_notify(slack_message)
         end
       end
 
