@@ -97,7 +97,22 @@ links:
   href: "/v1/problems/PROBLEM_ID/responses/seen"
   method: PUT
   rel: self
-  title: Seen
+  title: Seen Update
+  http_header:
+      Authorization : "1:ABCDabcd"
+  targetSchema:
+    properties:
+      seen:
+        "$ref": "/schemata/response#/definitions/seen"
+
+- description:
+    困りごとに対応するコメントを読んだことを示すAPI.
+    エンドポイントにアクセスすると既読フラグが取得できる．
+    アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/problems/PROBLEM_ID/responses/seen"
+  method: GET
+  rel: self
+  title: Seen Get
   http_header:
       Authorization : "1:ABCDabcd"
   targetSchema:

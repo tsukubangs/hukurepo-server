@@ -90,7 +90,7 @@ HTTP/1.1 200 OK
 ]
 ```
 
-### <a name="link-PUT-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen</a>
+### <a name="link-PUT-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen Update</a>
 
 困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
 
@@ -104,6 +104,35 @@ PUT /v1/problems/PROBLEM_ID/responses/seen
 ```bash
 $ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses/seen \
   -H "Content-Type: application/json" \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "seen": true
+}
+```
+
+### <a name="link-GET-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen Get</a>
+
+困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読フラグが取得できる． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+
+```
+GET /v1/problems/PROBLEM_ID/responses/seen
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses/seen \
   -H "Authorization: 1:ABCDabcd"
 ```
 
