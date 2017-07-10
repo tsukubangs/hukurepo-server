@@ -27,6 +27,16 @@ module V1
       else
         render json: @response.errors, status: :unprocessable_entity
       end
+      # TODO
+      # ここに詳細をかけるようにする
+      text = <<-EOC
+-------------------
+新しい返信が投稿されました
+#{@response.comment}
+>>>
+#{@response.problem.comment}
+      EOC
+      post_slack(text)
     end
 
     # PATCH/PUT v1/responses/1

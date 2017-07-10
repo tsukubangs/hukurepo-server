@@ -41,15 +41,14 @@ module V1
       # TODO
       # ここに詳細をかけるようにする
       text = <<-EOC
+-------------------
 新しい困りごとが投稿されました
 
 #{@problem.comment}
-http://api.acroquest.work#{v1_problem_path(@problem.id)}
 -------------------
 
       EOC
-      bot_name = "Problem"
-      post_slack(text, bot_name)
+      post_slack(text)
     end
 
     # PATCH/PUT /v1/problems/1
