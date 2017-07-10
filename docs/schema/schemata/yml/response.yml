@@ -127,7 +127,5 @@ properties:
     "$ref": "/schemata/response#/definitions/problem_id"
   user_id:
     "$ref":  "/schemata/response#/definitions/user_id"
-  seen:
-    "$ref": "/schemata/response#/definitions/seen"
 
 id: schemata/response

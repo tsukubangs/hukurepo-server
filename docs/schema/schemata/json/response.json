@@ -151,9 +151,6 @@
         },
         "user_id": {
           "$ref": "#/definitions/response/definitions/user_id"
-        },
-        "seen": {
-          "$ref": "#/definitions/response/definitions/seen"
         }
       }
     }

@@ -12,7 +12,6 @@ Stability: `prototype`
 | **comment** | *string* | comment to the problem | `"We are in test"` |
 | **id** | *integer* | unique identifier of response | `1` |
 | **problem_id** | *integer* | id of the problem | `1` |
-| **seen** | *boolean* | This indicates that it is a already read response | `true` |
 | **user_id** | *integer* | id of the user who poseted the problem | `1` |
 
 ### <a name="link-POST-response-/v1/problems/PROBLEM_ID/responses">Response Create</a>
@@ -86,8 +85,7 @@ HTTP/1.1 200 OK
     "id": 1,
     "comment": "We are in test",
     "problem_id": 1,
-    "user_id": 1,
-    "seen": true
+    "user_id": 1
   }
 ]
 ```
