@@ -94,7 +94,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-PUT-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen</a>
 
-困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 PUT /v1/problems/PROBLEM_ID/responses/seen
