@@ -5,12 +5,12 @@ Stability: `prototype`
 
 Userの情報，投稿などを管理するAPI
 
-### <a name="link-POST-user-/users">User Create</a>
+### <a name="link-POST-user-/v1/users">User Create</a>
 
 新たなユーザを作成するAPI
 
 ```
-POST /users
+POST /v1/users
 ```
 
 #### Required Parameters
@@ -62,12 +62,12 @@ HTTP/1.1 201 Created
 }
 ```
 
-### <a name="link-GET-user-/users/me">User Me</a>
+### <a name="link-GET-user-/v1/users/me">User Me</a>
 
 ログインした状態の自分の情報の一覧を取得する　利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET /users/me
+GET /v1/users/me
 ```
 
 

@@ -25,6 +25,8 @@ module ApiTest
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
     config.api_only = true
     config.autoload_paths << Rails.root.join('app', 'uploaders')
 
@@ -34,8 +36,12 @@ module ApiTest
        str = File.read("#{Rails.root}/docs/schema/schema.json")
        schema = JSON.parse(str)
 
+       config.middleware.use Rack::JsonSchema::Docs, schema: schema
+       config.middleware.use Rack::JsonSchema::SchemaProvider, schema: schema
        config.middleware.use Rack::JsonSchema::ErrorHandler
+      # config.middleware.use Rack::JsonSchema::RequestValidation, schema: schema
        config.middleware.use Rack::JsonSchema::ResponseValidation, schema: schema
+      #  config.middleware.use Rack::JsonSchema::Mock, schema: schema
     end
 
   end

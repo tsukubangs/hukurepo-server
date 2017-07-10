@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'Users', type: :request do
+describe 'Users', type: :request, autodoc: true do
   # users#create
   describe 'POST v1/users' do
     let(:params){ { user: attributes_for(:user) } }
     subject do
-        post v1_users_path(format: :json), params
+        post v1_users_path(format: :json), params, json_header
     end
 
     it 'creates user' do
@@ -18,12 +18,12 @@ describe 'Users', type: :request do
       expect(json['token_type']).to eq('Bearer')
     end
 
-    it 'returns valid accesstoken' do
+    it 'returns valid access_token' do
       subject
       header = {
         'HTTP_AUTHORIZATION' => json['access_token']
       }
-      get me_v1_users_path, no_params, header
+      post v1_check_access_token_path, no_params, header
       expect(last_response.status).not_to eq(401)
     end
 
@@ -50,7 +50,7 @@ describe 'Users', type: :request do
 
       it 'returns 422(unprocessable entity) if the password is too short (under 6)' do
         invalid_password = 'kanam' # 5length
-        post v1_users_path(format: :json), user_attributes_for({ password: invalid_password })
+        post v1_users_path(format: :json), user_attributes_for({ password: invalid_password }), json_header
 
         expect(last_response.status).to eq(422)
         expect(json['error']).to eq('Validation failed: Password is too short (minimum is 6 characters)')
@@ -58,7 +58,7 @@ describe 'Users', type: :request do
 
       it 'returns 422(unprocessable entity) if password is too long(above 29)' do
         invalid_password = 'kanamekanamekanamekanamekanamekanamekanamekanamekanamekaname' # 30length
-        post v1_users_path(format: :json), user_attributes_for({ password: invalid_password })
+        post v1_users_path(format: :json), user_attributes_for({ password: invalid_password }), json_header
 
         expect(last_response.status).to eq(422)
         expect(json['error']).to eq('Validation failed: Password is too long (maximum is 30 characters)')
@@ -135,6 +135,8 @@ describe 'Users', type: :request do
         expect(json['age']).to eq(20)
         expect(json['nationality']).to eq('Japan')
       end
+
+      it_behaves_like 'returns datetime'
 
       it 'returns 404 if problem does not exist' do
         not_exist_user_id = -1

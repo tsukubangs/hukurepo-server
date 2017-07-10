@@ -83,7 +83,7 @@ definitions:
     - string
 links:
 - description: あるユーザにログインするときのAPI
-  href: "/login"
+  href: "/v1/login"
   method: POST
   rel: self
   schema:

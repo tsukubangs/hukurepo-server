@@ -1,26 +1,22 @@
 require 'rails_helper'
 
-describe 'Problems', type: :request do
-  let(:user) { first_user }
-  before do
-    # 二人のユーザが作られることを保証
-    first_user
-    second_user
-  end
+describe 'Problems', type: :request, autodoc: true do
+  let!(:user1) { create(:user1) }
+  let!(:user2) { create(:user2) }
 
   # problems#create
   describe 'POST v1/problems' do
     let(:params){ { problem: attributes_for(:problem) } }
 
     context 'without authorization' do
-      subject  { post v1_problems_path(format: :json), params, {'Content-Type' => 'multipart/form-data'} }
+      subject  { post v1_problems_path, params, {'Content-Type' => 'multipart/form-data'} }
       it_behaves_like 'returns 401'
     end
 
     context 'with authorization' do
       login
       subject do
-          post v1_problems_path(format: :json), params, formdata_headers
+          post v1_problems_path(format: :json), params, formdata_header
       end
 
       it 'creates problem' do
@@ -36,14 +32,23 @@ describe 'Problems', type: :request do
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
       end
+
+      it_behaves_like 'returns datetime'
+
+      it 'can access uploaded image' do
+        subject
+        get json['image_url'], no_params, authorization_header
+        expect(last_response.status).to eq(200)
+      end
     end
   end
 
   # problems#index
   describe 'GET /problems' do
+
     before do
-      create(:problem1)
-      create(:problem2)
+      create(:problem1, {user: user1})
+      create(:problem2, {user: user2})
     end
 
     context 'without authorization' do
@@ -88,7 +93,7 @@ describe 'Problems', type: :request do
 
   # problems#show
   describe 'GET /problems/:id' do
-    let(:problem){ create(:problem) }
+    let!(:problem){ create(:problem, {user: user1}) }
 
     context 'without authorization' do
       subject  { get v1_problem_path(problem.id, format: :json) }
@@ -117,6 +122,8 @@ describe 'Problems', type: :request do
         expect(json['user_id']).to eq(problem.user.id)
       end
 
+      it_behaves_like 'returns datetime'
+
       it 'returns 404 if user does not exist' do
         not_exist_problem_id = -1
         get v1_problem_path(not_exist_problem_id, format: :json), no_params, authorization_header
@@ -130,9 +137,9 @@ describe 'Problems', type: :request do
   # problems#me and problems$users
   describe 'GET /problems/me' do
     before do
-      create(:problem1) # posted by user1
-      create(:problem2) # posted by user2
-      create(:problem3) # posted by user1
+      create(:problem1, {user: user1})
+      create(:problem2, {user: user2})
+      create(:problem3, {user: user1})
     end
 
     context 'without authorization' do
