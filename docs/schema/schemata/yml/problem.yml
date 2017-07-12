@@ -43,6 +43,15 @@ definitions:
     example: 1
     type:
     - integer
+  responses_seen:
+    description: This indicates that it is a already read response
+    type:
+    - boolean
+  responses_seen_false:
+    description: This indicates that it is a already read response
+    example: false
+    type:
+    - boolean
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -72,6 +81,8 @@ links:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
         "$ref": "/schemata/problem#/definitions/longitude"
+      responses_seen:
+        "$ref": "/schemata/problem#/definitions/responses_seen_false"
     type:
     - object
   targetSchema:
@@ -88,6 +99,8 @@ links:
         "$ref": "/schemata/problem#/definitions/longitude"
       user_id:
         "$ref": "/schemata/problem#/definitions/user_id"
+      responses_seen:
+        "$ref": "/schemata/problem#/definitions/responses_seen_false"
       created_at:
         "$ref": "/schemata/problem#/definitions/created_at"
       updated_at:
@@ -142,6 +155,8 @@ properties:
     "$ref": "/schemata/problem#/definitions/longitude"
   user_id:
     "$ref": "/schemata/problem#/definitions/user_id"
+  responses_seen:
+    "$ref": "/schemata/problem#/definitions/responses_seen"
   created_at:
     "$ref": "/schemata/problem#/definitions/created_at"
   updated_at:

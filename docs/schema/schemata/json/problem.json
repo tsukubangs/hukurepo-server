@@ -64,6 +64,19 @@
             "integer"
           ]
         },
+        "responses_seen": {
+          "description": "This indicates that it is a already read response",
+          "type": [
+            "boolean"
+          ]
+        },
+        "responses_seen_false": {
+          "description": "This indicates that it is a already read response",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -104,6 +117,9 @@
               },
               "longitude": {
                 "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "responses_seen": {
+                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               }
             },
             "type": [
@@ -129,6 +145,9 @@
               },
               "user_id": {
                 "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "responses_seen": {
+                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
@@ -182,6 +201,9 @@
         },
         "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
+        },
+        "responses_seen": {
+          "$ref": "#/definitions/problem/definitions/responses_seen"
         },
         "created_at": {
           "$ref": "#/definitions/problem/definitions/created_at"
