@@ -31,6 +31,10 @@ definitions:
     example: 1
     type:
     - integer
+  seen:
+    description: This indicates that it is a already read response
+    type:
+    - boolean
   identity:
     anyOf:
     - "$ref": "/schemata/response#/definitions/id"
@@ -86,6 +90,35 @@ links:
   http_header:
       Authorization : "1:ABCDabcd"
 
+- description:
+    困りごとに対応するコメントを読んだことを示すAPI.
+    エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない．
+    アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/problems/PROBLEM_ID/responses/seen"
+  method: PUT
+  rel: self
+  title: Seen Update
+  http_header:
+      Authorization : "1:ABCDabcd"
+  targetSchema:
+    properties:
+      seen:
+        "$ref": "/schemata/response#/definitions/seen"
+
+- description:
+    困りごとに対応するコメントを読んだことを示すAPI.
+    エンドポイントにアクセスすると既読フラグが取得できる．
+    アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/problems/PROBLEM_ID/responses/seen"
+  method: GET
+  rel: self
+  title: Seen Get
+  http_header:
+      Authorization : "1:ABCDabcd"
+  targetSchema:
+    properties:
+      seen:
+        "$ref": "/schemata/response#/definitions/seen"
 # - description: List existing responses.
 #   href: "/responses"
 #   method: GET
