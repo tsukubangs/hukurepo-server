@@ -21,7 +21,7 @@ Stability: `prototype`
 
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
-困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。  
+困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
 (画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```

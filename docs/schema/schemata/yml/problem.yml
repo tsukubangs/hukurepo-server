@@ -45,6 +45,7 @@ definitions:
     - integer
   responses_seen:
     description: This indicates that it is a already read response
+    example: true
     type:
     - boolean
   responses_seen_false:
