@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     end
     resources :problems do
       get 'me', on: :collection
-      resources :responses, only: [:index, :create]
+      resources :responses, only: [:index, :create] do
+        get 'seen', to: :get_seen, on: :collection
+        put 'seen', to: :put_seen, on: :collection
+      end
     end
     resources :responses, only: [:show]
   end
