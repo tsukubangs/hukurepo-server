@@ -48,6 +48,7 @@
         },
         "seen": {
           "description": "This indicates that it is a already read response",
+          "example": true,
           "type": [
             "boolean"
           ]

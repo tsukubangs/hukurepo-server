@@ -31,6 +31,7 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
+        expect(json['responses_seen']).to be_falsey
       end
 
       it_behaves_like 'returns datetime'
@@ -78,6 +79,7 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json[0]['latitude']).to eq(36.10830528664971)
         expect(json[0]['longitude']).to eq(140.10114337330694)
         expect(json[0]['user_id']).to eq(1)
+        expect(json[0]['responses_seen']).to be_falsey
 
         expect(json[1]['id']).to eq(2)
         expect(json[1]['comment']).to eq('Where is Bus stop?')
@@ -87,6 +89,7 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json[1]['latitude']).to eq(36.10830528664373)
         expect(json[1]['longitude']).to eq(140.10114337330311)
         expect(json[1]['user_id']).to eq(2)
+        expect(json[1]['responses_seen']).to be_falsey
       end
     end
   end

@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170706024622) do
+ActiveRecord::Schema.define(version: 20170712054353) do
 
   create_table "problems", force: :cascade do |t|
-    t.text     "comment"
+    t.text     "comment",        default: "",    null: false
     t.string   "image"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",                        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "responses_seen", default: false, null: false
   end
 
   create_table "responses", force: :cascade do |t|
