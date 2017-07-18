@@ -133,4 +133,33 @@ describe 'Responses', type: :request do
       end
     end
   end
+
+  # responses#put_seen
+  describe 'POST v1/problems/:problem_id/responses/seen' do
+    before do
+      # user1が投稿したproblem1に対してuser2が回答
+      create(:response2, {user: user2, problem: problem1})
+    end
+
+    context 'without authorization' do
+      subject  { get seen_v1_problem_responses_path(problem_id: 1, format: :json), no_params }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        get seen_v1_problem_responses_path(problem_id: 2, format: :json),
+            no_params, authorization_header
+      end
+
+
+    end
+  end
+
+  # responses#get_seen
+  describe 'GET v1/problems/:problem_id/responses/seen' do
+
+  end
+
 end

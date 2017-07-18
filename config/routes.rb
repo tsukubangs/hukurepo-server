@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     resources :problems do
       get 'me', on: :collection
       resources :responses, only: [:index, :create] do
-        get 'seen', to: :get_seen, on: :collection
-        put 'seen', to: :put_seen, on: :collection
+        get 'seen', to: 'responses#get_seen', on: :collection
+        put 'seen', to: 'responses#put_seen', on: :collection
       end
     end
     resources :responses, only: [:show]
