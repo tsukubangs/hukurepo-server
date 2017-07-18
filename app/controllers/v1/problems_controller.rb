@@ -30,7 +30,7 @@ module V1
     def create
       @problem = Problem.new(problem_params)
       @problem.user = current_user
-      @problem.responses_seen = false
+      @problem.responses_seen = true # 返信がないときには既読フラグはtrue
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
         status: :created, location: v1_problem_url(@problem)

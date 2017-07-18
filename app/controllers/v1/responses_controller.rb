@@ -1,7 +1,7 @@
 module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
-    before_action :set_problem, only:[:index, :get_seen, :put_seen]
+    before_action :set_problem, only:[:index, :create, :get_seen, :put_seen]
 
     # GET problems/:problem_id/responses
     def index
@@ -13,9 +13,8 @@ module V1
 
     # POST /v1/problems/:problem_id/responses
     def create
-      @response = Response.new(response_params)
-      @response.user = current_user
-      @response.problem_id = params[:problem_id]
+      @response = Response.new_response(response_params, current_user, @problem)
+
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
