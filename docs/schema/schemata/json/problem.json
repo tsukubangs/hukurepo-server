@@ -78,6 +78,13 @@
             "boolean"
           ]
         },
+        "responded": {
+          "description": "Indicate whether a reply is necessary",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -150,6 +157,9 @@
               "responses_seen": {
                 "$ref": "#/definitions/problem/definitions/responses_seen_false"
               },
+              "responded": {
+                "$ref": "#/definitions/problem/definitions/responded"
+              },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
               },
@@ -205,6 +215,9 @@
         },
         "responses_seen": {
           "$ref": "#/definitions/problem/definitions/responses_seen"
+        },
+        "responded": {
+          "$ref": "#/definitions/problem/definitions/responded"
         },
         "created_at": {
           "$ref": "#/definitions/problem/definitions/created_at"

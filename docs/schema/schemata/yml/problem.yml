@@ -53,6 +53,11 @@ definitions:
     example: false
     type:
     - boolean
+  responded:
+    description: Indicate whether a reply is necessary 
+    example: true
+    type:
+    - boolean
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -102,6 +107,8 @@ links:
         "$ref": "/schemata/problem#/definitions/user_id"
       responses_seen:
         "$ref": "/schemata/problem#/definitions/responses_seen_false"
+      responded:
+        "$ref": "/schemata/problem#/definitions/responded"
       created_at:
         "$ref": "/schemata/problem#/definitions/created_at"
       updated_at:
@@ -158,6 +165,8 @@ properties:
     "$ref": "/schemata/problem#/definitions/user_id"
   responses_seen:
     "$ref": "/schemata/problem#/definitions/responses_seen"
+  responded:
+    "$ref": "/schemata/problem#/definitions/responded"
   created_at:
     "$ref": "/schemata/problem#/definitions/created_at"
   updated_at:
