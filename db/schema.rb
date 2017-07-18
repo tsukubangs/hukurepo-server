@@ -13,14 +13,14 @@
 ActiveRecord::Schema.define(version: 20170712054353) do
 
   create_table "problems", force: :cascade do |t|
-    t.text     "comment",        default: "",    null: false
+    t.text     "comment"
     t.string   "image"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "user_id",                        null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "responses_seen", default: false, null: false
+    t.integer  "user_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "responses_seen"
   end
 
   create_table "responses", force: :cascade do |t|
