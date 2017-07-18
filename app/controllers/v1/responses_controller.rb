@@ -34,7 +34,7 @@ module V1
 
     # GET /v1/problems/1/responses/seen
     def get_seen
-      render json: { seen: problem.responses_seen }
+      render json: { seen: @problem.responses_seen }
     end
 
     # PUT /v1/problems/1/responses/seen
@@ -42,6 +42,7 @@ module V1
       # 困りごとのオーナーが読んだときのみ、既読とする
       if current_user == @problem.user
         @problem.responses_seen = true
+        @problem.save!
         get_seen
       else
         render json: { error: "Only owner of problem can change seen status."}, status: :forbidden

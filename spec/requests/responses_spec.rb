@@ -135,10 +135,12 @@ describe 'Responses', type: :request do
   end
 
   # responses#put_seen
-  describe 'POST v1/problems/:problem_id/responses/seen' do
+  describe 'PUT v1/problems/:problem_id/responses/seen' do
     before do
       # user1が投稿したproblem1に対してuser2が回答
-      create(:response2, {user: user2, problem: problem1})
+      create(:response1, {user: user2, problem: problem1})
+      # user2が投稿したproblem2に対してuser1が回答
+      create(:response2, {user: user1, problem: problem2})
     end
 
     context 'without authorization' do
@@ -149,17 +151,52 @@ describe 'Responses', type: :request do
     context 'with authorization' do
       login
       subject do
-        get seen_v1_problem_responses_path(problem_id: 2, format: :json),
+        put seen_v1_problem_responses_path(problem_id: 1, format: :json),
             no_params, authorization_header
       end
 
+      it 'change seen status to true by owner of the problem' do
+        subject
+
+        expect(last_response.status).to eq(200)
+        expect(json['seen']).to be_truthy
+      end
+
+      it 'reject changing seen status by who are not owner of the problem' do
+        put seen_v1_problem_responses_path(problem_id: 2, format: :json),
+            no_params, authorization_header
+
+        expect(last_response.status).to eq(403)
+        expect(json['error']).to eq("Only owner of problem can change seen status.")
+      end
 
     end
   end
 
   # responses#get_seen
   describe 'GET v1/problems/:problem_id/responses/seen' do
+    login
+    subject do
+      get seen_v1_problem_responses_path(problem_id: 1, format: :json),
+          no_params, authorization_header
+    end
 
+    it 'returns seen status' do
+      subject
+
+      expect(last_response.status).to eq(200)
+      expect(json['seen']).to be_falsey
+    end
+
+    it 'returns changed seen status' do
+      # 一度putした後getして変わったことを確かめる
+      put seen_v1_problem_responses_path(problem_id: 1, format: :json),
+          no_params, authorization_header
+
+      subject
+
+      expect(last_response.status).to eq(200)
+      expect(json['seen']).to be_truthy
+    end
   end
-
 end
