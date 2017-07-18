@@ -64,6 +64,20 @@
             "integer"
           ]
         },
+        "responded": {
+          "description": "Indicate whether a reply is necessary",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responded_false": {
+          "description": "Indicate whether a reply is necessary",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
         "responses_seen": {
           "description": "This indicates that it is a already read response",
           "example": true,
@@ -74,13 +88,6 @@
         "responses_seen_false": {
           "description": "This indicates that it is a already read response",
           "example": false,
-          "type": [
-            "boolean"
-          ]
-        },
-        "responded": {
-          "description": "Indicate whether a reply is necessary",
-          "example": true,
           "type": [
             "boolean"
           ]
@@ -125,9 +132,6 @@
               },
               "longitude": {
                 "$ref": "#/definitions/problem/definitions/longitude"
-              },
-              "responses_seen": {
-                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               }
             },
             "type": [
@@ -155,10 +159,10 @@
                 "$ref": "#/definitions/problem/definitions/user_id"
               },
               "responded": {
-                "$ref": "#/definitions/problem/definitions/responded"
+                "$ref": "#/definitions/problem/definitions/responded_false"
               },
               "responses_seen": {
-                "$ref": "#/definitions/problem/definitions/responses_seen_false"
+                "$ref": "#/definitions/problem/definitions/responses_seen"
               },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
