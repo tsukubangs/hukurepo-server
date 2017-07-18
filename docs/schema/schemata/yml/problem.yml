@@ -105,10 +105,10 @@ links:
         "$ref": "/schemata/problem#/definitions/longitude"
       user_id:
         "$ref": "/schemata/problem#/definitions/user_id"
-      responses_seen:
-        "$ref": "/schemata/problem#/definitions/responses_seen_false"
       responded:
         "$ref": "/schemata/problem#/definitions/responded"
+      responses_seen:
+        "$ref": "/schemata/problem#/definitions/responses_seen_false"
       created_at:
         "$ref": "/schemata/problem#/definitions/created_at"
       updated_at:
@@ -163,10 +163,10 @@ properties:
     "$ref": "/schemata/problem#/definitions/longitude"
   user_id:
     "$ref": "/schemata/problem#/definitions/user_id"
-  responses_seen:
-    "$ref": "/schemata/problem#/definitions/responses_seen"
   responded:
     "$ref": "/schemata/problem#/definitions/responded"
+  responses_seen:
+    "$ref": "/schemata/problem#/definitions/responses_seen"
   created_at:
     "$ref": "/schemata/problem#/definitions/created_at"
   updated_at:

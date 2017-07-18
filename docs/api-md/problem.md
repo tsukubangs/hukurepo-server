@@ -68,8 +68,8 @@ HTTP/1.1 201 Created
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
-  "responses_seen": false,
   "responded": true,
+  "responses_seen": false,
   "created_at": "2017-06-30T15:41:41.767+09:00",
   "updated_at": "2017-06-30T15:41:41.767+09:00"
 }
@@ -107,8 +107,8 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
-    "responses_seen": true,
     "responded": true,
+    "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
     "updated_at": "2017-06-30T15:41:41.767+09:00"
   }
@@ -147,8 +147,8 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
-    "responses_seen": true,
     "responded": true,
+    "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
     "updated_at": "2017-06-30T15:41:41.767+09:00"
   }
