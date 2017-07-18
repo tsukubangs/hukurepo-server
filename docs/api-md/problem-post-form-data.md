@@ -14,7 +14,6 @@ POST /problems
 | **problem[image]** | *file* | upload image | `@path/image.jpg;type:image/jpg` |
 | **problem[latitude]** | *number* | latitude | `36.10830528664971` |
 | **problem[longitude]** | *number* | longitude | `140.10114337330694` |
-| **problem[responses_seen]** | *boolean* | This indicates that it is a already read response | `true` |
 
 
 #### Curl Example
