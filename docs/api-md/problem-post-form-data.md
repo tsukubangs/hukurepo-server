@@ -42,6 +42,8 @@ HTTP/1.1 201 Created
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
+  "responded": false,
+  "responses_seen": true,
   "created_at": "2015-01-01T12:00:00Z",
   "updated_at": "2015-01-01T12:00:00Z"
 }
