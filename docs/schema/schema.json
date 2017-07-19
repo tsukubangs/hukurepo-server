@@ -64,6 +64,20 @@
             "integer"
           ]
         },
+        "responses_seen": {
+          "description": "This indicates that it is a already read response",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responses_seen_false": {
+          "description": "This indicates that it is a already read response",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -104,6 +118,9 @@
               },
               "longitude": {
                 "$ref": "#/definitions/problem/definitions/longitude"
+              },
+              "responses_seen": {
+                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               }
             },
             "type": [
@@ -129,6 +146,9 @@
               },
               "user_id": {
                 "$ref": "#/definitions/problem/definitions/user_id"
+              },
+              "responses_seen": {
+                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
@@ -183,6 +203,9 @@
         "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
         },
+        "responses_seen": {
+          "$ref": "#/definitions/problem/definitions/responses_seen"
+        },
         "created_at": {
           "$ref": "#/definitions/problem/definitions/created_at"
         },
@@ -231,6 +254,13 @@
           "example": 1,
           "type": [
             "integer"
+          ]
+        },
+        "seen": {
+          "description": "This indicates that it is a already read response",
+          "example": true,
+          "type": [
+            "boolean"
           ]
         },
         "identity": {
@@ -300,6 +330,40 @@
           "title": "List",
           "http_header": {
             "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/problems/PROBLEM_ID/responses/seen",
+          "method": "PUT",
+          "rel": "self",
+          "title": "Seen Update",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          },
+          "targetSchema": {
+            "properties": {
+              "seen": {
+                "$ref": "#/definitions/response/definitions/seen"
+              }
+            }
+          }
+        },
+        {
+          "description": "困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読フラグが取得できる． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/problems/PROBLEM_ID/responses/seen",
+          "method": "GET",
+          "rel": "self",
+          "title": "Seen Get",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          },
+          "targetSchema": {
+            "properties": {
+              "seen": {
+                "$ref": "#/definitions/response/definitions/seen"
+              }
+            }
           }
         }
       ],

@@ -43,6 +43,26 @@ definitions:
     example: 1
     type:
     - integer
+  responded:
+    description: Indicate whether a reply is necessary 
+    example: true
+    type:
+    - boolean
+  responded_false:
+    description: Indicate whether a reply is necessary 
+    example: false
+    type:
+    - boolean
+  responses_seen:
+    description: This indicates that it is a already read response
+    example: true
+    type:
+    - boolean
+  responses_seen_false:
+    description: This indicates that it is a already read response
+    example: false
+    type:
+    - boolean
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -88,6 +108,10 @@ links:
         "$ref": "/schemata/problem#/definitions/longitude"
       user_id:
         "$ref": "/schemata/problem#/definitions/user_id"
+      responded:
+        "$ref": "/schemata/problem#/definitions/responded_false"
+      responses_seen:
+        "$ref": "/schemata/problem#/definitions/responses_seen"
       created_at:
         "$ref": "/schemata/problem#/definitions/created_at"
       updated_at:
@@ -142,6 +166,10 @@ properties:
     "$ref": "/schemata/problem#/definitions/longitude"
   user_id:
     "$ref": "/schemata/problem#/definitions/user_id"
+  responded:
+    "$ref": "/schemata/problem#/definitions/responded"
+  responses_seen:
+    "$ref": "/schemata/problem#/definitions/responses_seen"
   created_at:
     "$ref": "/schemata/problem#/definitions/created_at"
   updated_at:

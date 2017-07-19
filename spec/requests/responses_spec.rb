@@ -36,13 +36,34 @@ describe 'Responses', type: :request do
 
       it_behaves_like 'returns datetime'
 
-      it 'returns 422 if problem does not exist' do
-        not_exist_problem_id = -1
-        post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
-        expect(last_response.status).to eq(422)
-        expect(json['problem'][0]).to eq("must exist")
+      it 'updated problem status' do
+        before_updated_at = problem2.updated_at
+
+        subject
+
+        after_problem2 = Problem.find(problem2.id)
+        expect(after_problem2.updated_at).not_to eq before_updated_at
+        expect(after_problem2.responded).to be_truthy
+        expect(after_problem2.responses_seen).to be_falsey
       end
 
+      it 'updated problem status when responses by problem owner' do
+        before_updated_at = problem1.updated_at
+
+        post v1_problem_responses_path(problem1.id, format: :json), params, authorization_header
+
+        after_problem1 = Problem.find(problem1.id)
+        expect(after_problem1.updated_at).not_to eq before_updated_at
+        expect(after_problem1.responded).to be_falsey
+        expect(after_problem1.responses_seen).to be_truthy
+      end
+
+      it 'returns 404 if problem does not exist' do
+        not_exist_problem_id = -1
+        post v1_problem_responses_path(not_exist_problem_id, format: :json), params, authorization_header
+        expect(last_response.status).to eq(404)
+        expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
+      end
     end
   end
 
@@ -131,6 +152,72 @@ describe 'Responses', type: :request do
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Response with 'id'=" + not_exist_response_id.to_s)
       end
+    end
+  end
+
+  # responses#put_seen
+  describe 'PUT v1/problems/:problem_id/responses/seen' do
+    before do
+      # user1が投稿したproblem1に対してuser2が回答
+      create(:response1, {user: user2, problem: problem1})
+      # user2が投稿したproblem2に対してuser1が回答
+      create(:response2, {user: user1, problem: problem2})
+    end
+
+    context 'without authorization' do
+      subject  { get seen_v1_problem_responses_path(problem_id: 1, format: :json), no_params }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        put seen_v1_problem_responses_path(problem_id: 1, format: :json),
+            no_params, authorization_header
+      end
+
+      it 'change seen status to true by owner of the problem' do
+        subject
+
+        expect(last_response.status).to eq(200)
+        expect(json['seen']).to be_truthy
+      end
+
+      it 'reject changing seen status by who are not owner of the problem' do
+        put seen_v1_problem_responses_path(problem_id: 2, format: :json),
+            no_params, authorization_header
+
+        expect(last_response.status).to eq(403)
+        expect(json['error']).to eq("Only owner of problem can change seen status.")
+      end
+
+    end
+  end
+
+  # responses#get_seen
+  describe 'GET v1/problems/:problem_id/responses/seen' do
+    login
+    subject do
+      get seen_v1_problem_responses_path(problem_id: 1, format: :json),
+          no_params, authorization_header
+    end
+
+    it 'returns seen status' do
+      subject
+
+      expect(last_response.status).to eq(200)
+      expect(json['seen']).to be_truthy
+    end
+
+    it 'returns changed seen status' do
+      # 一度putした後getして変わったことを確かめる
+      put seen_v1_problem_responses_path(problem_id: 1, format: :json),
+          no_params, authorization_header
+
+      subject
+
+      expect(last_response.status).to eq(200)
+      expect(json['seen']).to be_truthy
     end
   end
 end

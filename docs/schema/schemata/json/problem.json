@@ -64,6 +64,34 @@
             "integer"
           ]
         },
+        "responded": {
+          "description": "Indicate whether a reply is necessary",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responded_false": {
+          "description": "Indicate whether a reply is necessary",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responses_seen": {
+          "description": "This indicates that it is a already read response",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responses_seen_false": {
+          "description": "This indicates that it is a already read response",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -130,6 +158,12 @@
               "user_id": {
                 "$ref": "#/definitions/problem/definitions/user_id"
               },
+              "responded": {
+                "$ref": "#/definitions/problem/definitions/responded_false"
+              },
+              "responses_seen": {
+                "$ref": "#/definitions/problem/definitions/responses_seen"
+              },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
               },
@@ -182,6 +216,12 @@
         },
         "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
+        },
+        "responded": {
+          "$ref": "#/definitions/problem/definitions/responded"
+        },
+        "responses_seen": {
+          "$ref": "#/definitions/problem/definitions/responses_seen"
         },
         "created_at": {
           "$ref": "#/definitions/problem/definitions/created_at"

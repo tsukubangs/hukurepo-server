@@ -15,12 +15,15 @@ Stability: `prototype`
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
+| **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
+| **responses_seen** | *boolean* | This indicates that it is a already read response | `true` |
 | **updated_at** | *date-time* | when problem was updated | `"2017-06-30T15:41:41.767+09:00"` |
 | **user_id** | *integer* | user's id | `1` |
 
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
-困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
+困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
+(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -63,6 +66,8 @@ HTTP/1.1 201 Created
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
+  "responded": false,
+  "responses_seen": true,
   "created_at": "2017-06-30T15:41:41.767+09:00",
   "updated_at": "2017-06-30T15:41:41.767+09:00"
 }
@@ -100,6 +105,8 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
+    "responded": true,
+    "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
     "updated_at": "2017-06-30T15:41:41.767+09:00"
   }
@@ -138,8 +145,12 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
+    "responded": true,
+    "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
     "updated_at": "2017-06-30T15:41:41.767+09:00"
   }
 ]
 ```
+
+
