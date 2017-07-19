@@ -2,6 +2,7 @@ module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only:[:index, :create, :get_seen, :put_seen]
+    after_action :send_notification , only: [:create]
 
     # GET problems/:problem_id/responses
     def index
@@ -82,5 +83,28 @@ module V1
       def response_params
         params.require(:response).permit(:comment)
       end
+
+      def send_notification
+        Thread.new do
+          # メールを送る
+          # MessageMailer.hello.deliver
+          MessageMailer.new_response(@response.problem.user).deliver
+
+          # TODO
+          # ここに詳細をかけるようにする
+          slack_notify(slack_message)
+        end
+      end
+
+      def slack_message
+        <<-EOC
+`新しい返信が投稿されました`
+*#{@response.comment}*
+>>>
+#{@response.problem.comment}
+
+EOC
+      end
+
   end
 end

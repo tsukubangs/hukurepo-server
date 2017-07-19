@@ -38,6 +38,10 @@ module V1
         render json: @problem.errors, status: :unprocessable_entity
       end
       # publish_sox
+
+      # TODO
+      # ここに詳細をかけるようにする
+      slack_notify(slack_message)
     end
 
     # PATCH/PUT /v1/problems/1
@@ -64,6 +68,14 @@ module V1
       def problem_params
         params.require(:problem).permit(:comment, :image, :latitude, :longitude)
       end
+
+      def slack_message
+        <<-EOC
+`新しい困りごとが投稿されました`
+*#{@problem.comment}*
+
+EOC
+
 
       def publish_sox
         # TODO: add validation to model
