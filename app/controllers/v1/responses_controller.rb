@@ -2,7 +2,6 @@ module V1
   class ResponsesController < ApplicationController
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only:[:index, :create, :get_seen, :put_seen]
-    after_action :send_notification , only: [:create]
 
     # GET problems/:problem_id/responses
     def index
@@ -19,6 +18,7 @@ module V1
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
+        send_notification
       else
         render json: @response.errors, status: :unprocessable_entity
       end
@@ -85,15 +85,16 @@ module V1
       end
 
       def send_notification
-        Thread.new do
-          # メールを送る
-          # MessageMailer.hello.deliver
-          MessageMailer.new_response(@response.problem.user).deliver
-
-          # TODO
-          # ここに詳細をかけるようにする
-          slack_notify(slack_message)
-        end
+          Thread.new do
+            # メールを送る
+            # MessageMailer.hello.deliver
+            if @problem.user != @response.user
+              MessageMailer.new_response(@response.problem.user).deliver
+            end
+            # TODO
+            # ここに詳細をかけるようにする
+            slack_notify(slack_message)
+          end
       end
 
       def slack_message

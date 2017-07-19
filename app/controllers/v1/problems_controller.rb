@@ -34,14 +34,12 @@ module V1
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
         status: :created, location: v1_problem_url(@problem)
+        slack_notify(slack_message)
+        # publish_sox
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
-      # publish_sox
 
-      # TODO
-      # ここに詳細をかけるようにする
-      slack_notify(slack_message)
     end
 
     # PATCH/PUT /v1/problems/1
@@ -75,7 +73,7 @@ module V1
 *#{@problem.comment}*
 
 EOC
-
+      end
 
       def publish_sox
         # TODO: add validation to model

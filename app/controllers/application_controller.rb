@@ -58,6 +58,8 @@ class ApplicationController < ActionController::API
   protected
   # for sending slack notification
   def slack_notify(text)
+    if Rails.env.production?
       Slack.chat_postMessage(text: text, username: 'TsukuRepo', channel:"#notification")
+    end
   end
 end
