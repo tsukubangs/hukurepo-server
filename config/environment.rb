@@ -4,6 +4,7 @@ require_relative 'application'
 # Initialize the Rails application.
 Rails.application.initialize!
 
+Rails.application.routes.default_url_options = { host: ENV['SERVER_DOMAIN']}
 
 ActionMailer::Base.smtp_settings = {
   :user_name => ENV['SMTP_USERNAME'],
