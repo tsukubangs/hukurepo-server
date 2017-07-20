@@ -23,7 +23,6 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
-(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -75,7 +74,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり
+ログインしているユーザの投稿した困りごと一覧を取得する(降順) 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 GET /v1/problems/me
@@ -115,7 +114,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-GET-problem-/v1/problems">Problem List</a>
 
-困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとの一覧を取得する（全ユーザが対象, 降順）利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 GET /v1/problems

@@ -64,6 +64,20 @@
             "integer"
           ]
         },
+        "responded": {
+          "description": "Indicate whether a reply is necessary",
+          "example": true,
+          "type": [
+            "boolean"
+          ]
+        },
+        "responded_false": {
+          "description": "Indicate whether a reply is necessary",
+          "example": false,
+          "type": [
+            "boolean"
+          ]
+        },
         "responses_seen": {
           "description": "This indicates that it is a already read response",
           "example": true,
@@ -118,9 +132,6 @@
               },
               "longitude": {
                 "$ref": "#/definitions/problem/definitions/longitude"
-              },
-              "responses_seen": {
-                "$ref": "#/definitions/problem/definitions/responses_seen_false"
               }
             },
             "type": [
@@ -147,8 +158,11 @@
               "user_id": {
                 "$ref": "#/definitions/problem/definitions/user_id"
               },
+              "responded": {
+                "$ref": "#/definitions/problem/definitions/responded_false"
+              },
               "responses_seen": {
-                "$ref": "#/definitions/problem/definitions/responses_seen_false"
+                "$ref": "#/definitions/problem/definitions/responses_seen"
               },
               "created_at": {
                 "$ref": "#/definitions/problem/definitions/created_at"
@@ -164,7 +178,7 @@
           "title": "Create"
         },
         {
-          "description": "ログインしているユーザの投稿した困りごと一覧を取得する 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "ログインしているユーザの投稿した困りごと一覧を取得する(降順) 利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/v1/problems/me",
           "method": "GET",
           "rel": "instances",
@@ -174,7 +188,7 @@
           }
         },
         {
-          "description": "困りごとの一覧を取得する（全ユーザが対象）利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "困りごとの一覧を取得する（全ユーザが対象, 降順）利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/v1/problems",
           "method": "GET",
           "rel": "instances",
@@ -202,6 +216,9 @@
         },
         "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
+        },
+        "responded": {
+          "$ref": "#/definitions/problem/definitions/responded"
         },
         "responses_seen": {
           "$ref": "#/definitions/problem/definitions/responses_seen"
