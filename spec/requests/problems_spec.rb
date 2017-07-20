@@ -64,7 +64,7 @@ describe 'Problems', type: :request, autodoc: true do
         get v1_problems_path(format: :json), no_params, authorization_header
       end
 
-      it 'returns existing problems' do
+      it 'returns existing problems(order desc)' do
         subject
 
         expect(last_response).to be_ok
@@ -72,25 +72,25 @@ describe 'Problems', type: :request, autodoc: true do
 
         expect(json).to be_an Array
 
-        expect(json[0]['id']).to eq(1)
-        expect(json[0]['comment']).to eq('SOX is difficult')
+        expect(json[0]['id']).to eq(2)
+        expect(json[0]['comment']).to eq('Where is Bus stop?')
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
-        expect(json[0]['latitude']).to eq(36.10830528664971)
-        expect(json[0]['longitude']).to eq(140.10114337330694)
-        expect(json[0]['user_id']).to eq(1)
+        expect(json[0]['latitude']).to eq(36.10830528664373)
+        expect(json[0]['longitude']).to eq(140.10114337330311)
+        expect(json[0]['user_id']).to eq(2)
         expect(json[0]['responded']).to be_falsey
         expect(json[0]['responses_seen']).to be_truthy
 
-        expect(json[1]['id']).to eq(2)
-        expect(json[1]['comment']).to eq('Where is Bus stop?')
+        expect(json[1]['id']).to eq(1)
+        expect(json[1]['comment']).to eq('SOX is difficult')
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
-        expect(json[1]['latitude']).to eq(36.10830528664373)
-        expect(json[1]['longitude']).to eq(140.10114337330311)
-        expect(json[1]['user_id']).to eq(2)
+        expect(json[1]['latitude']).to eq(36.10830528664971)
+        expect(json[1]['longitude']).to eq(140.10114337330694)
+        expect(json[1]['user_id']).to eq(1)
         expect(json[1]['responded']).to be_falsey
         expect(json[1]['responses_seen']).to be_truthy
       end
@@ -161,7 +161,7 @@ describe 'Problems', type: :request, autodoc: true do
         get me_v1_problems_path(format: :json), no_params, authorization_header
       end
 
-      it 'returns first_users problem' do
+      it 'returns first_users problems(order desc)' do
         subject
 
         expect(last_response).to be_ok
@@ -169,23 +169,23 @@ describe 'Problems', type: :request, autodoc: true do
 
         expect(json).to be_an Array
 
-        expect(json[0]['id']).to eq(1)
-        expect(json[0]['comment']).to eq('SOX is difficult')
+        expect(json[0]['id']).to eq(3)
+        expect(json[0]['comment']).to eq('Bicycle is too many!!!')
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
-        expect(json[0]['latitude']).to eq(36.10830528664971)
-        expect(json[0]['longitude']).to eq(140.10114337330694)
+        expect(json[0]['latitude']).to eq(36.1181461)
+        expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
         expect(json[0]['responded']).to be_falsey
 
-        expect(json[1]['id']).to eq(3)
-        expect(json[1]['comment']).to eq('Bicycle is too many!!!')
+        expect(json[1]['id']).to eq(1)
+        expect(json[1]['comment']).to eq('SOX is difficult')
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
-        expect(json[1]['latitude']).to eq(36.1181461)
-        expect(json[1]['longitude']).to eq(140.0903428)
+        expect(json[1]['latitude']).to eq(36.10830528664971)
+        expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
         expect(json[1]['responded']).to be_falsey
       end
