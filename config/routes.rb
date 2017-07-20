@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, only: []
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :v1, defaults: { format: :json } do
+    get 'run_smartphone_app', to: 'static#run_smartphone_app'
     resource :login, only: [:create], controller: :sessions
     post 'check_access_token', to: 'sessions#check_access_token'
     resource :users, only: [:create]
