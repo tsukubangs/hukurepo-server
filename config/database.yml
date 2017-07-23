@@ -25,8 +25,9 @@ production:
   # database: db/production.sqlite3
   adapter: mysql2
   encoding: utf8
-  database: <%= ENV['DB_NAME'] %>
   pool: 5
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
+  host: db
+  database: <%= ENV['DB_NAME'] %>
+  # socket: /var/lib/mysql/mysql.sock
