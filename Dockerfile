@@ -18,4 +18,4 @@ VOLUME /app/tmp
 
 # Start Server
 # TODO: environment
-CMD bundle exec puma -e production
+CMD bundle exec puma

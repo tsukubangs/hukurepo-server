@@ -6,6 +6,9 @@ services:
       - /app/log # persist logs
     depends_on:
       - db
+    environment:
+      DATABASE_URL: mysql2://root@db:3306
+      RAILS_ENV: production
 
   nginx:
     build: containers/nginx
@@ -18,9 +21,16 @@ services:
 
   db:
     image: mysql:5.7
+    volumes_from:
+      - datastore
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     environment:
       TZ: "Asia/Tokyo"
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - 3306:3306
+
+  datastore:
+    image: busybox
+    volumes:
+      - /opt/datastore:/var/lib/mysql
