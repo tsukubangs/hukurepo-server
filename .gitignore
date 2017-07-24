@@ -29,3 +29,7 @@
 # Ignore environment file.
 .env
 sendgrid.env
+
+# Ignore db datastore
+/containers/db/*
+!/containers/db/Dockerfile
