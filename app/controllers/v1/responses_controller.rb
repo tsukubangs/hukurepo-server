@@ -100,9 +100,16 @@ module V1
       def slack_message
         <<-EOC
 `新しい返信が投稿されました`
-*#{@response.comment}*
+From:
+  User ID:*#{@response.user.id}*
+  Email:*#{@response.user.email}*
+  Response:*#{@response.comment}*
+
 >>>
-#{@response.problem.comment}
+To:
+  User ID:*#{@response.problem.user.id}*
+  Email:*#{@response.problem.user.email}*
+  Problem:*#{@response.problem.comment}*
 
 EOC
       end

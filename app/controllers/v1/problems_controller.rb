@@ -70,7 +70,9 @@ module V1
       def slack_message
         <<-EOC
 `新しい困りごとが投稿されました`
-*#{@problem.comment}*
+User ID:*#{@problem.user.id}*
+Email:*#{@problem.user.email}*
+Problem:*#{@problem.comment}*
 
 EOC
       end
