@@ -5,13 +5,13 @@ class ProblemPhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include Piet::CarrierWaveExtension
 
-  process convert: 'jpg'
-  process optimize: [quality: 30]
-  # process resize_to_fit: [640, 480]
+  process optimize: [quality: 50]
+  process resize_to_fit: [640, 480]
 
-  version :thumb do
-      process resize_to_limit: [180, 180]
-  end
+
+  # version :thumb do
+  #     process resize_to_limit: [50, 50]
+  # end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -36,11 +36,6 @@ class ProblemPhotoUploader < CarrierWave::Uploader::Base
   #
   # def scale(width, height)
   #   # do something
-  # end
-
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.
