@@ -7,6 +7,11 @@ class ProblemPhotoUploader < CarrierWave::Uploader::Base
 
   process convert: 'jpg'
   process optimize: [quality: 30]
+  # process resize_to_fit: [640, 480]
+
+  version :thumb do
+      process resize_to_limit: [180, 180]
+  end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
