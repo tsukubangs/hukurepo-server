@@ -4,13 +4,13 @@ module V1
 
     # GET /v1/problems
     def index
-      @problems = Problem.order("updated_at desc")
+      @problems = Problem.page(params[:page] ||= 1).per(5).order("updated_at desc")
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id]).order("updated_at desc")
+      @problems = Problem.where(user_id: params[:user_id]).page(params[:page] ||= 1).per(5).order("updated_at desc")
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
