@@ -23,7 +23,6 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
-(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -73,19 +72,19 @@ HTTP/1.1 201 Created
 }
 ```
 
-### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
+### <a name="link-GET-problem-/v1/problems/me?page=1">Problem Me</a>
 
-ログインしているユーザの投稿した困りごと一覧を取得する(降順) 利用するにはアクセストークンをヘッダに付ける必要あり
+ログインしているユーザの投稿した困りごとの一覧を取得する(降順) クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる． １ページあたり５件のデータを返す（暫定） 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET /v1/problems/me
+GET /v1/problems/me?page=1
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me?page=1 \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -113,19 +112,19 @@ HTTP/1.1 200 OK
 ]
 ```
 
-### <a name="link-GET-problem-/v1/problems">Problem List</a>
+### <a name="link-GET-problem-/v1/problems?page=1">Problem List</a>
 
-困りごとの一覧を取得する（全ユーザが対象, 降順）利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとの一覧を取得する（全ユーザが対象, 降順） クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる． １ページあたり５件のデータを返す（暫定） 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET /v1/problems
+GET /v1/problems?page=1
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems?page=1 \
   -H "Authorization: 1:ABCDabcd"
 ```
 
