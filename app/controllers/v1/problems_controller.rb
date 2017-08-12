@@ -5,7 +5,7 @@ module V1
     # GET /v1/problems
     def index
       @problems = Problem.all.order(updated_at: :desc)
-      paginate
+      paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
@@ -13,7 +13,7 @@ module V1
     # GET /v1/users/1/problems
     def users
       @problems = Problem.where(user_id: params[:user_id]).order(updated_at: :desc)
-      paginate
+      paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
@@ -71,7 +71,7 @@ module V1
         params.require(:problem).permit(:comment, :image, :latitude, :longitude)
       end
 
-      def paginate
+      def paginate_problems
         @problems = @problems.page(params[:page]).per(params[:per] ||= 5) if params[:page]
       end
 
