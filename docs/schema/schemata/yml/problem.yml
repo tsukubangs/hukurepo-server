@@ -63,6 +63,16 @@ definitions:
     example: false
     type:
     - boolean
+  page:
+    description: Parameter that specifies the page (for pagenation)
+    example: 1
+    type:
+    - integer
+  per:
+    description: Parameter that specifies the number of data per page
+    example: 5
+    type:
+    - integer
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -127,24 +137,40 @@ links:
 #   method: DELETE
 #   rel: destroy
 #   title: Delete
-- description: ログインしているユーザの投稿した困りごとの一覧を取得する(降順)  
-               クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる．  
-               １ページあたり５件のデータを返す（暫定）
+- description: ログインしているユーザの投稿した困りごとを全件取得する(降順)
+               クエリパラメータ(page,per)を指定することで取得する件数を変更できる
+               例：~/v1/problems?page=2&per=3 （１ページあたり３件ずつの２ページ目を取得する）
                利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/v1/problems/me?page=1"
+  href: "/v1/problems/me"
   method: GET
   rel: instances
+  schema:
+    properties:
+      page:
+        "$ref": "/schemata/problem#/definitions/page"
+      per:
+        "$ref": "/schemata/problem#/definitions/per"
+    type:
+    - object
   title: Me
   http_header:
     Authorization : "1:ABCDabcd"
 
-- description: 困りごとの一覧を取得する（全ユーザが対象, 降順）  
-               クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる．  
-               １ページあたり５件のデータを返す（暫定）  
+- description: 投稿されている困りごとを全件取得する（全ユーザが対象, 降順）  
+               クエリパラメータ(page,per)を指定することで取得する件数を変更できる． 
+               例：~/v1/problems?page=2&per=3 （１ページあたり３件ずつの２ページ目を取得する）  
                利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/v1/problems?page=1"
+  href: "/v1/problems"
   method: GET
   rel: instances
+  schema:
+    properties:
+      page:
+        "$ref": "/schemata/problem#/definitions/page"
+      per:
+        "$ref": "/schemata/problem#/definitions/per"
+    type:
+    - object
   title: List
   http_header:
     Authorization : "1:ABCDabcd"

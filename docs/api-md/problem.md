@@ -72,19 +72,29 @@ HTTP/1.1 201 Created
 }
 ```
 
-### <a name="link-GET-problem-/v1/problems/me?page=1">Problem Me</a>
+### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごとの一覧を取得する(降順) クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる． １ページあたり５件のデータを返す（暫定） 利用するにはアクセストークンをヘッダに付ける必要あり
+ログインしているユーザの投稿した困りごとを全件取得する(降順) クエリパラメータ(page,per)を指定することで取得する件数を変更できる 例：~/v1/problems?page=2&per=3 （１ページあたり３件ずつの２ページ目を取得する） 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET /v1/problems/me?page=1
+GET /v1/problems/me
 ```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
+| **per** | *integer* | Parameter that specifies the number of data per page | `5` |
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me?page=1 \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
+ -G \
+  -d page=1 \
+  -d per=5 \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -112,19 +122,29 @@ HTTP/1.1 200 OK
 ]
 ```
 
-### <a name="link-GET-problem-/v1/problems?page=1">Problem List</a>
+### <a name="link-GET-problem-/v1/problems">Problem List</a>
 
-困りごとの一覧を取得する（全ユーザが対象, 降順） クエリパラメータ(?page=数値)を指定することで特定の範囲のデータを取得できる． １ページあたり５件のデータを返す（暫定） 利用するにはアクセストークンをヘッダに付ける必要あり
+投稿されている困りごとを全件取得する（全ユーザが対象, 降順） クエリパラメータ(page,per)を指定することで取得する件数を変更できる． 例：~/v1/problems?page=2&per=3 （１ページあたり３件ずつの２ページ目を取得する） 利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
-GET /v1/problems?page=1
+GET /v1/problems
 ```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
+| **per** | *integer* | Parameter that specifies the number of data per page | `5` |
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems?page=1 \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+ -G \
+  -d page=1 \
+  -d per=5 \
   -H "Authorization: 1:ABCDabcd"
 ```
 
