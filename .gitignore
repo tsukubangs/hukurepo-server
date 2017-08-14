@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore bundler gems
+vendor/bundle
+
 # Ignore public file
 /public/*
 
@@ -33,3 +36,12 @@ sendgrid.env
 # Ignore db datastore
 /containers/db/*
 !/containers/db/Dockerfile
+
+# Ignore other unneeded files
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+.idea/remote-mappings.xml
