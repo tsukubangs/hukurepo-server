@@ -5,13 +5,12 @@ class ProblemPhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include Piet::CarrierWaveExtension
 
-  process optimize: [quality: 50]
-  process resize_to_fit: [640, 480]
+  # process optimize: [quality: 50]
+  # process resize_to_fit: [640, 480]
 
-
-  # version :thumb do
-  #     process resize_to_limit: [50, 50]
-  # end
+  version :thumb do
+       process resize_to_limit: [300, 300]
+  end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
