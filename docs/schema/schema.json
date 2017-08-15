@@ -259,7 +259,7 @@
           "$ref": "#/definitions/problem/definitions/image_url"
         },
         "thumbnail_url": {
-          "$ref": "#/definitions/problem/definitions/image_url"
+          "$ref": "#/definitions/problem/definitions/thumbnail_url"
         },
         "latitude": {
           "$ref": "#/definitions/problem/definitions/latitude"

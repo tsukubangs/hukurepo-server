@@ -203,7 +203,7 @@ properties:
   image_url:
     "$ref": "/schemata/problem#/definitions/image_url"
   thumbnail_url:
-    "$ref": "/schemata/problem#/definitions/image_url"
+    "$ref": "/schemata/problem#/definitions/thumbnail_url"
   latitude:
     "$ref": "/schemata/problem#/definitions/latitude"
   longitude:
