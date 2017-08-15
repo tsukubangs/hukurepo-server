@@ -30,7 +30,7 @@ definitions:
     - string
   thumbnail_url:
     description: stored thumbnail url
-    example: '/uploads/problem/image/1/20170609002537.jpg'
+    example: '/uploads/problem/image/1/thumb_20170609002537.jpg'
     type:
     - string
   latitude:

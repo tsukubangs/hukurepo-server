@@ -63,7 +63,7 @@ HTTP/1.1 201 Created
   "id": 1,
   "comment": "SOX is difficult",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
-  "thumbnail_url": "/uploads/problem/image/1/20170609002537.jpg",
+  "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
