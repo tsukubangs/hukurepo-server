@@ -94,6 +94,31 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json[1]['responded']).to be_falsey
         expect(json[1]['responses_seen']).to be_truthy
       end
+
+      context 'valid pagenation' do
+        before do
+          # 7件困りごと追加（困りごとを9件用意）
+          create_list(:problem1, 7, {user: user1})
+        end
+
+        it 'returns 5 problems on page1' do
+           get v1_problems_path(format: :json), {page: 1}, authorization_header
+
+           expect(last_response.status).to eq(200)
+           expect(json).to be_an Array
+
+           expect(json.size).to eq(5)
+        end
+
+        it 'returns 4 problems on page2' do
+           get v1_problems_path(format: :json), {page: 2}, authorization_header
+
+           expect(last_response.status).to eq(200)
+           expect(json).to be_an Array
+
+           expect(json.size).to eq(4)
+        end
+      end
     end
   end
 
@@ -188,6 +213,31 @@ describe 'Problems', type: :request, autodoc: true do
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
         expect(json[1]['responded']).to be_falsey
+      end
+
+      context 'valid pagenation' do
+        before do
+          # 7件困りごと追加（困りごとを9件用意）
+          create_list(:problem1, 7, {user: user1})
+        end
+
+        it 'returns 5 problems on page1' do
+           get me_v1_problems_path(format: :json), {page: 1}, authorization_header
+
+           expect(last_response.status).to eq(200)
+           expect(json).to be_an Array
+
+           expect(json.size).to eq(5)
+        end
+
+        it 'returns 4 problems on page2' do
+           get me_v1_problems_path(format: :json), {page: 2}, authorization_header
+
+           expect(last_response.status).to eq(200)
+           expect(json).to be_an Array
+
+           expect(json.size).to eq(4)
+        end
       end
     end
   end

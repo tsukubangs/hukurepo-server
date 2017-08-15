@@ -4,13 +4,17 @@ module V1
 
     # GET /v1/problems
     def index
-      @problems = Problem.order("updated_at desc")
+      @problems = Problem.all.order(updated_at: :desc)
+      paginate_problems
+
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id]).order("updated_at desc")
+      @problems = Problem.where(user_id: params[:user_id]).order(updated_at: :desc)
+      paginate_problems
+
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
@@ -65,6 +69,10 @@ module V1
       # Only allow a trusted parameter "white list" through.
       def problem_params
         params.require(:problem).permit(:comment, :image, :latitude, :longitude)
+      end
+
+      def paginate_problems
+        @problems = @problems.page(params[:page]).per(params[:per] ||= 5) if params[:page]
       end
 
       def slack_message
