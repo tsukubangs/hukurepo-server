@@ -28,6 +28,11 @@ definitions:
     example: null
     type:
     - string
+  thumbnail_url:
+    description: stored thumbnail url
+    example: '/uploads/problem/image/1/20170609002537.jpg'
+    type:
+    - string
   latitude:
     description: latitude
     example: 36.10830528664971
@@ -113,6 +118,8 @@ links:
         "$ref": "/schemata/problem#/definitions/comment"
       image_url:
         "$ref": "/schemata/problem#/definitions/image_url"
+      thumbnail_url:
+        "$ref": "/schemata/problem#/definitions/thumbnail_url"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
@@ -194,6 +201,8 @@ properties:
   comment:
     "$ref": "/schemata/problem#/definitions/comment"
   image_url:
+    "$ref": "/schemata/problem#/definitions/image_url"
+  thumbnail_url:
     "$ref": "/schemata/problem#/definitions/image_url"
   latitude:
     "$ref": "/schemata/problem#/definitions/latitude"
