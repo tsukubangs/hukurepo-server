@@ -36,6 +36,9 @@ gem 'devise'
 
 # use for photo uploader
 gem 'carrierwave'
+gem 'piet'
+gem 'piet-binary'
+gem 'mini_magick'
 
 # use for enviroment value
 gem 'dotenv-rails'

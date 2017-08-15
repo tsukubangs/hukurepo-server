@@ -17,6 +17,7 @@ Stability: `prototype`
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
 | **responses_seen** | *boolean* | This indicates that it is a already read response | `true` |
+| **thumbnail_url** | *string* | stored thumbnail url | `"/uploads/problem/image/1/thumb_20170609002537.jpg"` |
 | **updated_at** | *date-time* | when problem was updated | `"2017-06-30T15:41:41.767+09:00"` |
 | **user_id** | *integer* | user's id | `1` |
 
@@ -63,6 +64,7 @@ HTTP/1.1 201 Created
   "id": 1,
   "comment": "SOX is difficult",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+  "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
@@ -112,6 +114,7 @@ HTTP/1.1 200 OK
     "id": 1,
     "comment": "SOX is difficult",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+    "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
@@ -162,6 +165,7 @@ HTTP/1.1 200 OK
     "id": 1,
     "comment": "SOX is difficult",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+    "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,

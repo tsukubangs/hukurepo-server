@@ -43,6 +43,13 @@
             "string"
           ]
         },
+        "thumbnail_url": {
+          "description": "stored thumbnail url",
+          "example": "/uploads/problem/image/1/thumb_20170609002537.jpg",
+          "type": [
+            "string"
+          ]
+        },
         "latitude": {
           "description": "latitude",
           "example": 36.10830528664971,
@@ -163,6 +170,9 @@
               "image_url": {
                 "$ref": "#/definitions/problem/definitions/image_url"
               },
+              "thumbnail_url": {
+                "$ref": "#/definitions/problem/definitions/thumbnail_url"
+              },
               "latitude": {
                 "$ref": "#/definitions/problem/definitions/latitude"
               },
@@ -247,6 +257,9 @@
         },
         "image_url": {
           "$ref": "#/definitions/problem/definitions/image_url"
+        },
+        "thumbnail_url": {
+          "$ref": "#/definitions/problem/definitions/thumbnail_url"
         },
         "latitude": {
           "$ref": "#/definitions/problem/definitions/latitude"
