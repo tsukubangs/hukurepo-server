@@ -59,7 +59,9 @@ class ApplicationController < ActionController::API
   # for sending slack notification
   def slack_notify(text)
     if Rails.env.production?
-      Slack.chat_postMessage(text: text, username: 'TsukuRepo', channel:"#notification")
+      Thread.new do
+        Slack.chat_postMessage(text: text, username: 'TsukuRepo', channel:"#notification")
+      end
     end
   end
 end
