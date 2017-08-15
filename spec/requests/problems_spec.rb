@@ -28,6 +28,8 @@ describe 'Problems', type: :request, autodoc: true do
         expath = 'uploads/problem/image/' + json['id'].to_s
         expect(json['image_url']).to match(expath)
         expect(json['image_url']).to match(/.+jpg/)
+        expect(json['thumbnail_url']).to match(expath + '/thumb')
+        expect(json['thumbnail_url']).to match(/.+jpg/)
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
@@ -40,6 +42,12 @@ describe 'Problems', type: :request, autodoc: true do
       it 'can access uploaded image' do
         subject
         get json['image_url'], no_params, authorization_header
+        expect(last_response.status).to eq(200)
+      end
+
+      it 'can access thumbnail' do
+        subject
+        get json['thumbnail_url'], no_params, authorization_header
         expect(last_response.status).to eq(200)
       end
     end
