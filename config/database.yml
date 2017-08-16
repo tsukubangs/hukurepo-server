@@ -21,12 +21,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  # <<: *default
   adapter: mysql2
   encoding: utf8
   pool: 5
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  # host: db
+  host: db
   database: <%= ENV['DB_NAME'] %>
-  socket: /var/lib/mysql/mysql.sock
+  # socket: /var/lib/mysql/mysql.sock

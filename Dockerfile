@@ -8,7 +8,7 @@ RUN mkdir /app
 WORKDIR /app
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
-RUN bundle install
+RUN bundle install --without development test
 ADD . /app
 RUN mkdir -p tmp/sockets
 
