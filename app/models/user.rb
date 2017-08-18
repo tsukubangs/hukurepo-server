@@ -20,4 +20,13 @@ class User < ApplicationRecord
    self.access_token = "#{self.id}:#{Devise.friendly_token}"
    save
   end
+
+  # 自分以外の同じデバイストークンを持つユーザがいたら nil で上書き
+  # 一つのデバイストークンは複数のユーザで持たないべき
+  def sweep_same_device_tokens(updated_time: Time.zone.now)
+    User.where(device_token: self.device_token)
+        .where.not(id: self.id)
+        .update_all(['device_token = NULL, updated_at = ?', updated_time])
+  end
+
 end
