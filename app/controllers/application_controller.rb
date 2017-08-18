@@ -57,10 +57,44 @@ class ApplicationController < ActionController::API
 
   protected
   # for sending slack notification
+  # TODO 後にpush serviceとして分離する
   def slack_notify(text)
     if Rails.env.production?
       Thread.new do
         Slack.chat_postMessage(text: text, username: 'TsukuRepo', channel:"#notification")
+      end
+    end
+  end
+
+  def push_notification(to, title, body, data_params = {}, priority = "high")
+    Thread.new do
+      client = Andpush.build(ENV['FCM_SERVER_KEY'])
+      notification_params = {
+          title: title,
+          body: body,
+          icon: "icon",
+          color: "#99cc22",
+          click_action: "FCM_PLUGIN_ACTIVITY",
+          sound:"default"
+      }
+      client.push(to: to, notification: notification_params, data: data_params, priority: priority)
+    end
+  end
+
+  # TODO push_notificationとDRYにする
+  def push_notifications(to_list, title, body, data_params = {}, priority = "high")
+    Thread.new do
+      client = Andpush.build(ENV['FCM_SERVER_KEY'])
+      notification_params = {
+          title: title,
+          body: body,
+          icon: "icon",
+          color: "#99cc22",
+          click_action: "FCM_PLUGIN_ACTIVITY",
+          sound:"default"
+      }
+      to_list.each do |to|
+        client.push(to: to, notification: notification_params, data: data_params, priority: priority)
       end
     end
   end
