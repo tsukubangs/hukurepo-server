@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Problems', type: :request, autodoc: true do
+describe 'Problems', type: :request do
   let!(:user1) { create(:user1) }
   let!(:user2) { create(:user2) }
 

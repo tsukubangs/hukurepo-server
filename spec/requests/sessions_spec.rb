@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Sessions', type: :request, autodoc: true do
+describe 'Sessions', type: :request do
   let!(:user) { first_user }
 
   # sessions#create
