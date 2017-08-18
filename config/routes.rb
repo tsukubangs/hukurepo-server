@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'me', on: :collection
       get 'me/problems', to: 'problems#me', on: :collection
       get 'problems', to: 'problems#users'
+      resource :device_token, only: [:update]
     end
     resources :problems do
       get 'me', on: :collection
