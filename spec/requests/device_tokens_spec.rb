@@ -1,59 +1,29 @@
 require 'rails_helper'
 
 describe 'DeviceTokens', type: :request do
-  let!(:user) { first_user }
+  let!(:user) { create(:user) }
 
-  # sessions#create
-  describe 'POST v1/login' do
+  # device_controller#update
+  describe 'put v1/users/me/device_token' do
     let(:params){ { device_token: 'test_device_token' } }
     subject do
-      post me_device_token_v1_users_path(format: :json), params, json_header
+      put me_device_token_v1_users_path(format: :json), params, authorization_header
     end
 
-    it '' do
-      subject
-
-      expect(last_response).to be_ok
-      expect(last_response.status).to eq(200)
-
-      expect(json['user_id']).to eq(1)
-      expect(json['email']).to eq('kaname@kaname.co.jp')
-      expect(json['token_type']).to eq('Bearer')
+    context 'without authorization' do
+      subject  { put me_device_token_v1_users_path(format: :json), params }
+      it_behaves_like 'returns 401'
     end
 
-    it 'returns valid access_token if login params is correct' do
-      subject
-      header = {
-          'HTTP_AUTHORIZATION' => json['access_token']
-      }
-      post v1_check_access_token_path, no_params, header
-      expect(last_response.status).not_to eq(401)
-      expect(json['message']).to eq('This access token is valid')
-    end
+    context 'with authorization' do
+      login
+      it 'update current_users device_token' do
+        subject
 
-    it 'returns authorization error(401) if access_token is invalid' do
-      post v1_check_access_token_path, no_params, { 'HTTP_AUTHORIZATION' => 'invalid_access_token'}
-      expect(last_response.status).to eq(401)
-    end
+        expect(last_response).to be_ok
 
-    it 'returns authorization error(401) if access_token is invalid(contains id)' do
-      post v1_check_access_token_path, no_params, { 'HTTP_AUTHORIZATION' => '1:Access_Token'}
-      expect(last_response.status).to eq(401)
+        expect(json['device_token']).to eq('test_device_token')
+      end
     end
-
-    it 'returns authorization error(401) if email is not match' do
-      params['email'] = 'notkaname@kaname.co.jp'
-      post v1_login_path(format: :json), params, json_header
-      expect(last_response.status).to eq(401)
-      expect(json['error']).to eq('Login failed: Email or Password is wrong')
-    end
-
-    it 'returns authorization error(401) if password is not match' do
-      params['password'] = 'notkaname'
-      post v1_login_path(format: :json), params, json_header
-      expect(last_response.status).to eq(401)
-      expect(json['error']).to eq('Login failed: Email or Password is wrong')
-    end
-
   end
 end
