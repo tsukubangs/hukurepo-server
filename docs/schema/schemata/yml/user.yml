@@ -69,6 +69,11 @@ definitions:
     readOnly: true
     type:
     - string
+  device_token:
+    description: unique token for user's fcm device token
+    example: "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+    type:
+        - string
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/user_id"
@@ -125,39 +130,44 @@ links:
   rel: self
   http_header:
     authorization: "1:ABCDabcd"
+  type:
+  - object
+  title: Me
+
+- description: 自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/users/me/device_token"
+  method: PUT
+  rel: update
+  http_header:
+    authorization: "1:ABCDabcd"
+  schema:
+    properties:
+      device_token:
+        "$ref": "/schemata/user#/definitions/device_token"
   targetSchema:
     properties:
-      email:
-        "$ref": "/schemata/user#/definitions/email"
-      password:
-        "$ref": "/schemata/user#/definitions/password"
-      name:
-        "$ref": "/schemata/user#/definitions/name"
-      gender:
-        "$ref": "/schemata/user#/definitions/gender"
-      age:
-        "$ref": "/schemata/user#/definitions/age"
-      nationality:
-        "$ref": "/schemata/user#/definitions/nationality"
-    type:
-    - object
-  title: Me
-# #################################
-# ATTRIBUTESを使うときはここに記述
-# #################################
-# properties:
-#   Authorization Key:
-#     "$ref": "/schemata/user#/definitions/access_token"
-#   password:
-#     "$ref": "/schemata/user#/definitions/password"
-#   name:
-#     "$ref": "/schemata/user#/definitions/name"
-#   gender:
-#     "$ref": "/schemata/user#/definitions/gender"
-#   age:
-#     "$ref": "/schemata/user#/definitions/age"
-#   nationality:
-#     "$ref": "/schemata/user#/definitions/nationality"
+      device_token:
+        "$ref": "/schemata/user#/definitions/device_token"
+  type:
+  - object
+  title: DeviceToken Update
+
+properties:
+   Authorization Key:
+     "$ref": "/schemata/user#/definitions/access_token"
+   name:
+    "$ref": "/schemata/user#/definitions/name"
+   gender:
+     "$ref": "/schemata/user#/definitions/gender"
+   age:
+     "$ref": "/schemata/user#/definitions/age"
+   nationality:
+     "$ref": "/schemata/user#/definitions/nationality"
+   email:
+     "$ref": "/schemata/user#/definitions/email"
+   device_token:
+        "$ref": "/schemata/user#/definitions/device_token"
+
 #   image:
 #     "$ref": "/schemata/user#/definitions/image"
 id: schemata/user

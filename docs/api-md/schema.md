@@ -384,6 +384,18 @@ Stability: `prototype`
 
 Userの情報，投稿などを管理するAPI
 
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **Authorization Key** | *string* | unique token for user | `"1:ABCDabcd"` |
+| **age** | *integer* | age range of user | `20` |
+| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"` |
+| **email** | *string* | unique email of user<br/> **pattern:** `([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+` | `"test.example@example.co.jp"` |
+| **gender** | *string* | gender of user | `"male"` |
+| **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
+| **nationality** | *string* | nationality of user | `"Japan"` |
+
 ### <a name="link-POST-user-/v1/users">User Create</a>
 
 新たなユーザを作成するAPI
@@ -466,12 +478,52 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "email": "test.example@example.co.jp",
-  "password": "example",
+  "Authorization Key": "1:ABCDabcd",
   "name": "Wataru Sakamoto",
   "gender": "male",
   "age": 20,
-  "nationality": "Japan"
+  "nationality": "Japan",
+  "email": "test.example@example.co.jp",
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+}
+```
+
+### <a name="link-PUT-user-/v1/users/me/device_token">User DeviceToken Update</a>
+
+自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり
+
+```
+PUT /v1/users/me/device_token
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
+  -d '{
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+}' \
+  -H "Content-Type: application/json" \
+  -H "authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }
 ```
 
