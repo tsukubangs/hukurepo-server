@@ -2,11 +2,10 @@ class ProblemPhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
-  include Piet::CarrierWaveExtension
-
+  #include Piet::CarrierWaveExtension
   # process optimize: [quality: 50]
-  # process resize_to_fit: [640, 480]
+
+  include CarrierWave::MiniMagick
 
   version :thumb do
        process resize_to_limit: [300, 300]
