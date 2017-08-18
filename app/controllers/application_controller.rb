@@ -69,7 +69,7 @@ class ApplicationController < ActionController::API
   def push_notification(to, title, body, data_params = {}, priority = "high")
     Thread.new do
       client = Andpush.build(ENV['FCM_SERVER_KEY'])
-      notification_params = {
+      notification_params ||= {
           title: title,
           body: body,
           icon: "icon",
@@ -81,21 +81,4 @@ class ApplicationController < ActionController::API
     end
   end
 
-  # TODO push_notificationとDRYにする
-  def push_notifications(to_list, title, body, data_params = {}, priority = "high")
-    Thread.new do
-      client = Andpush.build(ENV['FCM_SERVER_KEY'])
-      notification_params = {
-          title: title,
-          body: body,
-          icon: "icon",
-          color: "#99cc22",
-          click_action: "FCM_PLUGIN_ACTIVITY",
-          sound:"default"
-      }
-      to_list.each do |to|
-        client.push(to: to, notification: notification_params, data: data_params, priority: priority)
-      end
-    end
-  end
 end
