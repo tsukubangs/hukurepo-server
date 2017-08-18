@@ -1,7 +1,7 @@
 module V1
   class DeviceTokensController < ApplicationController
     def update
-      current_user.device_token = params[:device_token]
+      current_user.device_token = params.permit(:device_token)[:device_token]
 
       ActiveRecord::Base.transaction do
         # TODO パスワード無しでの更新

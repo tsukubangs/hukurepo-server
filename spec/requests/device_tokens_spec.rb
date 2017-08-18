@@ -5,12 +5,12 @@ describe 'DeviceTokens', type: :request do
 
   # sessions#create
   describe 'POST v1/login' do
-    let(:params){ attributes_for(:user_login) }
+    let(:params){ { device_token: 'test_device_token' } }
     subject do
-      post v1_login_path(format: :json), params, json_header
+      post me_device_token_v1_users_path(format: :json), params, json_header
     end
 
-    it 'login succeed if login params is correct' do
+    it '' do
       subject
 
       expect(last_response).to be_ok
