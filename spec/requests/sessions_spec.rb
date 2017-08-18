@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Sessions', type: :request do
-  let!(:user) { first_user }
+  let!(:user) { create(:user) }
 
   # sessions#create
   describe 'POST v1/login' do
