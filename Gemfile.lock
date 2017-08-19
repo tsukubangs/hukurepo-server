@@ -103,6 +103,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -272,6 +276,7 @@ GEM
     tilt (2.0.7)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    unicode-display_width (0.1.1)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -292,6 +297,7 @@ DEPENDENCIES
   factory_girl_rails
   guard
   guard-rspec
+  hirb-unicode
   jbuilder (~> 2.5)
   json_spec
   kaminari
