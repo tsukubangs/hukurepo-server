@@ -16,7 +16,6 @@ definitions:
   comment:
     description: comment to the problem
     example: 'We are in test'
-    readOnly: true
     type:
     - string
   problem_id:

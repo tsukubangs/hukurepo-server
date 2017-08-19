@@ -24,10 +24,6 @@ Dir["./spec/requests/shared_examples/*.rb"].sort.each { |f| require f }
 require 'simplecov'
 SimpleCov.start 'rails'
 
-Autodoc.configuration.path = "docs/autodoc"
-Autodoc.configuration.suppressed_request_header = ['Cache-Control', 'Content-Length', 'X-Request-Id', 'ETag', 'Set-Cookie']
-Autodoc.configuration.suppressed_response_header = ['Cache-Control', 'Content-Length', 'X-Request-Id', 'X-Runtime', 'X-XSS-Protection', 'ETag']
-
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -54,8 +50,6 @@ RSpec.configure do |config|
   config.after :each do
     DatabaseCleaner.clean
   end
-
-  Autodoc.configuration.toc = true
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

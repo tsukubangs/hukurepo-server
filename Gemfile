@@ -24,9 +24,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-# use for api
-gem 'prmd'
-
 # use serializer
 gem 'active_model_serializers'
 gem 'rack-json_schema'
@@ -36,8 +33,6 @@ gem 'devise'
 
 # use for photo uploader
 gem 'carrierwave'
-gem 'piet'
-gem 'piet-binary'
 gem 'mini_magick'
 
 # use for enviroment value
@@ -52,6 +47,9 @@ gem 'sendgrid-ruby'
 # use for pagenation
 gem 'kaminari'
 
+# use for push notification
+gem 'andpush'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -59,9 +57,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'autodoc'
   gem 'json_spec'
-  gem 'rails-erd'
   gem 'guard'
   gem 'guard-rspec'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -71,6 +67,8 @@ group :development, :test do
 end
 
 group :development do
+# use for api document
+  gem 'prmd'
   gem 'listen', '~> 3.0.5'
   gem 'sqlite3'
 end

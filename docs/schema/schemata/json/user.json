@@ -24,9 +24,9 @@
         },
         "email": {
           "description": "unique email of user",
-          "example": "test@example.com",
+          "example": "test.example@example.co.jp",
           "readOnly": true,
-          "pattern": " /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i",
+          "pattern": "([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+",
           "type": [
             "string"
           ]
@@ -35,7 +35,7 @@
           "description": "password of user",
           "example": "example",
           "readOnly": true,
-          "pattern": "within: 5..30",
+          "pattern": ".{6,29}",
           "type": [
             "string"
           ]
@@ -92,6 +92,13 @@
           "description": "unique token for user",
           "example": "1:ABCDabcd",
           "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "device_token": {
+          "description": "unique token for user's fcm device token",
+          "example": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx",
           "type": [
             "string"
           ]
@@ -182,34 +189,62 @@
           "http_header": {
             "authorization": "1:ABCDabcd"
           },
+          "type": [
+            "object"
+          ],
+          "title": "Me"
+        },
+        {
+          "description": "自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/users/me/device_token",
+          "method": "PUT",
+          "rel": "update",
+          "http_header": {
+            "authorization": "1:ABCDabcd"
+          },
+          "schema": {
+            "properties": {
+              "device_token": {
+                "$ref": "#/definitions/user/definitions/device_token"
+              }
+            }
+          },
           "targetSchema": {
             "properties": {
-              "email": {
-                "$ref": "#/definitions/user/definitions/email"
-              },
-              "password": {
-                "$ref": "#/definitions/user/definitions/password"
-              },
-              "name": {
-                "$ref": "#/definitions/user/definitions/name"
-              },
-              "gender": {
-                "$ref": "#/definitions/user/definitions/gender"
-              },
-              "age": {
-                "$ref": "#/definitions/user/definitions/age"
-              },
-              "nationality": {
-                "$ref": "#/definitions/user/definitions/nationality"
+              "device_token": {
+                "$ref": "#/definitions/user/definitions/device_token"
               }
-            },
-            "type": [
-              "object"
-            ]
+            }
           },
-          "title": "Me"
+          "type": [
+            "object"
+          ],
+          "title": "DeviceToken Update"
         }
-      ]
+      ],
+      "properties": {
+        "Authorization Key": {
+          "$ref": "#/definitions/user/definitions/access_token"
+        },
+        "name": {
+          "$ref": "#/definitions/user/definitions/name"
+        },
+        "gender": {
+          "$ref": "#/definitions/user/definitions/gender"
+        },
+        "age": {
+          "$ref": "#/definitions/user/definitions/age"
+        },
+        "nationality": {
+          "$ref": "#/definitions/user/definitions/nationality"
+        },
+        "email": {
+          "$ref": "#/definitions/user/definitions/email"
+        },
+        "device_token": {
+          "$ref": "#/definitions/user/definitions/device_token"
+        }
+      }
     }
   },
   "properties": {

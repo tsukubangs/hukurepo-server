@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show] do
       get 'me', on: :collection
       get 'me/problems', to: 'problems#me', on: :collection
+      put 'me/device_token', to: 'device_tokens#update', on: :collection
       get 'problems', to: 'problems#users'
     end
     resources :problems do

@@ -18,7 +18,7 @@ module V1
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
-        send_notification
+        send_notifications
       else
         render json: @response.errors, status: :unprocessable_entity
       end
@@ -84,17 +84,9 @@ module V1
         params.require(:response).permit(:comment)
       end
 
-      def send_notification
-          Thread.new do
-            # メールを送る
-            # MessageMailer.hello.deliver
-            if @problem.user != @response.user
-              MessageMailer.new_response(@response.problem.user).deliver
-            end
-            # TODO
-            # ここに詳細をかけるようにする
-            slack_notify(slack_message)
-          end
+      def send_notifications
+          push_notification(@problem.user.device_token, 'You gotta response', @response.comment) if @problem.user != @response.user
+          slack_notify(slack_message)
       end
 
       def slack_message

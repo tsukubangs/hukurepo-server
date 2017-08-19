@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Users', type: :request, autodoc: true do
+describe 'Users', type: :request do
   # users#create
   describe 'POST v1/users' do
     let(:params){ { user: attributes_for(:user) } }
