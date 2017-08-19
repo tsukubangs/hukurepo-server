@@ -5,7 +5,7 @@ module V1
 
       ActiveRecord::Base.transaction do
         # TODO パスワード無しでの更新
-        current_user.save(validate: false)
+        current_user.save!(validate: false)
         current_user.sweep_same_device_tokens
       end
 
