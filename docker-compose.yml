@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - ./log:/app/log # persist logs
+      - ./public:/app/public
     depends_on:
       - db
     environment:
