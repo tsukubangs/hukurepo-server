@@ -29,4 +29,8 @@ class User < ApplicationRecord
         .update_all(['device_token = NULL, updated_at = ?', updated_time])
   end
 
+  def delete_device_token
+    self.update_attribute(:device_token, nil)
+  end
+
 end

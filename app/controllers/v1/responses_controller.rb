@@ -85,7 +85,7 @@ module V1
       end
 
       def send_notifications
-          push_notification(@problem.user.device_token, 'You gotta response', @response.comment) if @problem.user != @response.user
+          push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
           slack_notify(slack_message)
       end
 

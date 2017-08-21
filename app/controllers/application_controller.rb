@@ -66,10 +66,12 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def push_notification(to, title, body, data_params = {}, priority = "high")
+  def push_notification(to_user, title, body, data_params = {}, priority = "high")
+    return if to_user.device_token.nil?
+
     Thread.new do
       client = Andpush.build(ENV['FCM_SERVER_KEY'])
-      notification_params ||= {
+      notification_params = {
           title: title,
           body: body,
           icon: "icon",
@@ -77,8 +79,8 @@ class ApplicationController < ActionController::API
           click_action: "FCM_PLUGIN_ACTIVITY",
           sound:"default"
       }
-      client.push(to: to, notification: notification_params, data: data_params, priority: priority)
+      response = client.push(to: to_user.device_token, notification: notification_params, data: data_params, priority: priority)
+      to_user.delete_device_token if response.json[:failure] == 1
     end
   end
-
 end
