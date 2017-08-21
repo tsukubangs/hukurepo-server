@@ -26,7 +26,7 @@ describe 'DeviceTokens', type: :request do
       end
 
       it 'sweep other users same device_token' do
-        # 同じデバイストークンを持つユーザと、違うデバイストークンを持つユーザを容易
+        # 同じデバイストークンを持つユーザと、違うデバイストークンを持つユーザを用意
         create(:user2, { device_token: user.device_token})
         create(:user3, { device_token: 'other_device_token'})
 
