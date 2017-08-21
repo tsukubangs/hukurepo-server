@@ -14,4 +14,12 @@ FactoryGirl.define do
     gender "female"
     age 50
   end
+
+  factory :user_shinjin, class: User, aliases: [:user3, :third_user] do
+    email "shinjin@shinjin.co.jp"
+    password "shinjin"
+    nationality "Japan"
+    gender "male"
+    age 40
+  end
 end
