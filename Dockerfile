@@ -16,6 +16,9 @@ RUN mkdir -p tmp/sockets
 VOLUME /app/public
 VOLUME /app/tmp
 
+# config DB
+RUN rails db:migrate
+
 # Start Server
 # TODO: environment
 CMD bundle exec puma
