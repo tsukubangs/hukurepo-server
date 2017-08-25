@@ -10,8 +10,8 @@
 # Ignore bundler gems
 vendor/bundle
 
-# Ignore public file
-/public/*
+# Ignore uploaded file
+/public/uploads
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
