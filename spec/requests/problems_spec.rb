@@ -259,4 +259,32 @@ describe 'Problems', type: :request do
       end
     end
   end
+
+  # problems#destroy
+  describe 'DELETE /problems/:id' do
+    let!(:problem1){ create(:problem1, {user: user1}) }
+    let!(:problem2){ create(:problem2, {user: user2}) }
+
+    context 'without authorization' do
+      subject  { delete v1_problem_path(problem1.id) }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        delete v1_problem_path(problem1.id), no_params, authorization_header
+      end
+
+      it 'returns 204' do
+        subject
+        expect(last_response.status).to eq(204)
+      end
+
+      it 'return 403 if user is not owner of problem' do
+        delete v1_problem_path(problem2.id), no_params, authorization_header
+        expect(last_response.status).to eq(403)
+      end
+    end
+  end
 end

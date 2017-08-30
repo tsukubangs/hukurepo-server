@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'DeviceTokens', type: :request do
-  let!(:user) { create(:user) }
+  let!(:user1) { create(:user1) }
 
   # device_controller#update
   describe 'put v1/users/me/device_token' do
@@ -9,7 +9,7 @@ describe 'DeviceTokens', type: :request do
     subject do
       put me_device_token_v1_users_path(format: :json), params, authorization_header
     end
-
+    
     context 'without authorization' do
       subject  { put me_device_token_v1_users_path(format: :json), params }
       it_behaves_like 'returns 401'
@@ -27,7 +27,7 @@ describe 'DeviceTokens', type: :request do
 
       it 'sweep other users same device_token' do
         # 同じデバイストークンを持つユーザと、違うデバイストークンを持つユーザを用意
-        create(:user2, { device_token: user.device_token})
+        create(:user2, { device_token: user1.device_token})
         create(:user3, { device_token: 'other_device_token'})
 
         subject
