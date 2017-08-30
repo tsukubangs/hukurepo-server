@@ -201,5 +201,5 @@ $ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 404 No Content
+HTTP/1.1 204 No Content
 ```
