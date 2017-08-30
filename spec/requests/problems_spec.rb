@@ -85,6 +85,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['thumbnail_url']).to match(expath + json[0]['id'].to_s + '/thumb')
+        expect(json[0]['thumbnail_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.10830528664373)
         expect(json[0]['longitude']).to eq(140.10114337330311)
         expect(json[0]['user_id']).to eq(2)
@@ -96,6 +98,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['thumbnail_url']).to match(expath + json[1]['id'].to_s + '/thumb')
+        expect(json[1]['thumbnail_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
@@ -156,6 +160,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'+problem.id.to_s
         expect(json['image_url']).to match(expath)
         expect(json['image_url']).to match(/.+jpg/)
+        expect(json['thumbnail_url']).to match(expath + '/thumb')
+        expect(json['thumbnail_url']).to match(/.+jpg/)
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
@@ -207,6 +213,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['thumbnail_url']).to match(expath + json[0]['id'].to_s + '/thumb')
+        expect(json[0]['thumbnail_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
@@ -217,6 +225,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['thumbnail_url']).to match(expath + json[1]['id'].to_s + '/thumb')
+        expect(json[1]['thumbnail_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
