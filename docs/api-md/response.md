@@ -183,7 +183,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-DELETE-response-/v1/responses/{id}">Response Destory</a>
 
-指定したidの返信コメントを1件削除する.利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
+指定したidの返信コメントを1件削除する.利用するには、困りごとを投稿したユーザ、もしくは困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
 
 ```
 DELETE /v1/responses/{id}
@@ -201,5 +201,5 @@ $ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 204 No Content
+HTTP/1.1 404 No Content
 ```
