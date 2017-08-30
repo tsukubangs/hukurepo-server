@@ -57,7 +57,7 @@ module V1
 
     # DELETE /v1/problems/1
     def destroy
-      @problem.destroy
+      @problem.destroy if current_user == @prblem.user
     end
 
     private
