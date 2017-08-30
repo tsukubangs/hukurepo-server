@@ -277,12 +277,16 @@ describe 'Problems', type: :request do
       end
 
       it 'returns 204' do
-        subject
+        expect { subject }.to change(Problem, :count).by(-1)
         expect(last_response.status).to eq(204)
       end
 
       it 'return 403 if user is not owner of problem' do
+        before_count = Problem.count
         delete v1_problem_path(problem2.id), no_params, authorization_header
+        after_count = Problem.count
+        
+        expect(after_count).to eq(before_count)
         expect(last_response.status).to eq(403)
       end
     end
