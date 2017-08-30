@@ -19,6 +19,6 @@ Rails.application.routes.draw do
         put 'seen', to: 'responses#put_seen', on: :collection
       end
     end
-    resources :responses, only: [:show]
+    resources :responses, only: [:show, :destroy]
   end
 end
