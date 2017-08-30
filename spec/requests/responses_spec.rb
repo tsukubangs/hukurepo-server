@@ -158,9 +158,9 @@ describe 'Responses', type: :request do
 
   # responses#destroy
   describe 'DELETE /responses/:id' do
-    let(:response1) { create(:response1, {user: user1, problem: problem2}) }
-    let(:response2) { create(:response2, {user: user2, problem: problem1}) }
-    let(:response3) { create(:response3, {user: user3, problem: problem2}) }
+    let!(:response1) { create(:response1, {user: user1, problem: problem2}) }
+    let!(:response2) { create(:response2, {user: user2, problem: problem1}) }
+    let!(:response3) { create(:response3, {user: user3, problem: problem2}) }
 
     context 'without authorization' do
       subject  { delete v1_response_path(id: response1.id) }
@@ -176,22 +176,27 @@ describe 'Responses', type: :request do
 
       # responseの投稿者のとき
       it 'returns 204 if response owner' do
-        subject
-
+        expect { subject }.to change(Response, :count).from(3).to(2)
         expect(last_response.status).to eq(204)
       end
 
       # problemの投稿者のとき消える
       it 'returns 204 if problem owner' do
+        before_count = Response.count
         delete v1_response_path(id: response2.id), no_params, authorization_header
+        after_count = Response.count
 
+        expect( (after_count - before_count) ).to eq(-1)
         expect(last_response.status).to eq(204)
       end
 
       # prolem, responseの投稿者じゃないとき
       it 'returns 403 if not problem/response owner' do
+        before_count = Response.count
         delete v1_response_path(id: response3.id), no_params, authorization_header
+        after_count = Response.count
 
+        expect(after_count).to eq(before_count)
         expect(last_response.status).to eq(403)
       end
     end

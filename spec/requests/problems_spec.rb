@@ -277,7 +277,7 @@ describe 'Problems', type: :request do
       end
 
       it 'returns 204' do
-        expect { subject }.to change(Problem, :count).by(-1)
+        expect { subject }.to change(Problem, :count).from(2).to(1)
         expect(last_response.status).to eq(204)
       end
 
@@ -285,7 +285,7 @@ describe 'Problems', type: :request do
         before_count = Problem.count
         delete v1_problem_path(problem2.id), no_params, authorization_header
         after_count = Problem.count
-        
+
         expect(after_count).to eq(before_count)
         expect(last_response.status).to eq(403)
       end
