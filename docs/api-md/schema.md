@@ -176,6 +176,70 @@ HTTP/1.1 200 OK
 ]
 ```
 
+### <a name="link-GET-problem-/v1/problems/{id}">Problem Show</a>
+
+指定したidの困りごとを1件取得する 利用するにはアクセストークンをヘッダに付ける必要あり
+
+```
+GET /v1/problems/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1,
+  "comment": "SOX is difficult",
+  "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+  "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
+  "latitude": 36.10830528664971,
+  "longitude": 140.10114337330694,
+  "user_id": 1,
+  "responded": true,
+  "responses_seen": true,
+  "created_at": "2017-06-30T15:41:41.767+09:00",
+  "updated_at": "2017-06-30T15:41:41.767+09:00"
+}
+```
+
+### <a name="link-DELETE-problem-/v1/problems/{id}">Problem Destory</a>
+
+指定したidの困りごとを1件削除する 利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり
+
+```
+DELETE /v1/problems/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 202 Accepted
+```
+
+
 
 ## <a name="resource-response">Response</a>
 

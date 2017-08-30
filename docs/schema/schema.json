@@ -246,6 +246,36 @@
           "http_header": {
             "Authorization": "1:ABCDabcd"
           }
+        },
+        {
+          "description": "指定したidの困りごとを1件取得する 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/problems/{id}",
+          "method": "GET",
+          "rel": "self",
+          "type": [
+            "object"
+          ],
+          "title": "Show",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "指定したidの困りごとを1件削除する 利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/problems/{id}",
+          "method": "DELETE",
+          "mediaType": "null",
+          "targetSchema": {
+            "additionalProperties": false,
+            "type": [
+              "object"
+            ]
+          },
+          "rel": "empty",
+          "title": "Destory",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
         }
       ],
       "properties": {
