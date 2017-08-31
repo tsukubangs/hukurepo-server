@@ -57,7 +57,7 @@ describe 'Users', type: :request do
       end
 
       it 'returns 422(unprocessable entity) if password is too long(above 29)' do
-        invalid_password = 'kanamekanamekanamekanamekanamekanamekanamekanamekanamekaname' # 30length
+        invalid_password = 'kaname'* 5 + 'k' # 31length
         post v1_users_path(format: :json), user_attributes_for({ password: invalid_password }), json_header
 
         expect(last_response.status).to eq(422)
@@ -69,9 +69,8 @@ describe 'Users', type: :request do
   # users#index
   describe 'GET /users' do
     before do
-      # 二人のユーザが作られることを保証
-      first_user
-      second_user
+      create(:user1)
+      create(:user2)
     end
 
     context 'without authorization' do
@@ -110,7 +109,7 @@ describe 'Users', type: :request do
 
   # users#show
   describe 'GET /users/:id' do
-    let(:user) { first_user }
+    let!(:user) { create(:user) }
 
     context 'without authorization' do
       subject  { get v1_user_path(user.id, format: :json), no_params }

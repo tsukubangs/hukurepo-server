@@ -5,6 +5,7 @@ require 'rails_helper'
 describe 'Responses', type: :request do
   let!(:user1) { create(:user1) }
   let!(:user2) { create(:user2) }
+  let!(:user3) { create(:user3) }
   let!(:problem1) { create(:problem1, {user: user1}) }
   let!(:problem2) { create(:problem2, {user: user2}) }
 
@@ -117,12 +118,12 @@ describe 'Responses', type: :request do
     end
   end
 
-  # problems#show
+  # responses#show
   describe 'GET /responses/:id' do
     let!(:response){ create(:response1, {user: user1, problem: problem2}) }
 
     context 'without authorization' do
-      subject  { get v1_response_path(problem_id: response.problem.id, id: response.id, format: :json) }
+      subject  { get v1_response_path(id: response.id, format: :json) }
       it_behaves_like 'returns 401'
     end
 
@@ -151,6 +152,52 @@ describe 'Responses', type: :request do
         get v1_response_path(not_exist_response_id, format: :json), no_params, authorization_header
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Response with 'id'=" + not_exist_response_id.to_s)
+      end
+    end
+  end
+
+  # responses#destroy
+  describe 'DELETE /responses/:id' do
+    let!(:response1) { create(:response1, {user: user1, problem: problem2}) }
+    let!(:response2) { create(:response2, {user: user2, problem: problem1}) }
+    let!(:response3) { create(:response3, {user: user3, problem: problem2}) }
+
+    context 'without authorization' do
+      subject  { delete v1_response_path(id: response1.id) }
+      it_behaves_like 'returns 401'
+    end
+
+    # 困りごとの投稿者と、返信の投稿者が返信を消すことができる
+    context 'with authorization' do
+      login
+      subject do
+        delete v1_response_path(id: response1.id), no_params, authorization_header
+      end
+
+      # responseの投稿者のとき
+      it 'returns 204 if response owner' do
+        expect { subject }.to change(Response, :count).from(3).to(2)
+        expect(last_response.status).to eq(204)
+      end
+
+      # problemの投稿者のとき消える
+      it 'returns 204 if problem owner' do
+        before_count = Response.count
+        delete v1_response_path(id: response2.id), no_params, authorization_header
+        after_count = Response.count
+
+        expect( (after_count - before_count) ).to eq(-1)
+        expect(last_response.status).to eq(204)
+      end
+
+      # prolem, responseの投稿者じゃないとき
+      it 'returns 403 if not problem/response owner' do
+        before_count = Response.count
+        delete v1_response_path(id: response3.id), no_params, authorization_header
+        after_count = Response.count
+
+        expect(after_count).to eq(before_count)
+        expect(last_response.status).to eq(403)
       end
     end
   end

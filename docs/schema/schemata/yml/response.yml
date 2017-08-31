@@ -49,8 +49,8 @@ definitions:
     type:
     - string
 links:
-- description: 困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
-  href: "/v1/problems/PROBLEM_ID/responses"
+- description: 困りごとに対してコメントを投稿するAPI, problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
+  href: "/v1/problems/{problem_id}/responses"
   method: POST
   rel: create
   schema:
@@ -82,8 +82,8 @@ links:
 #   method: DELETE
 #   rel: destroy
 #   title: Delete
-- description: 困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/v1/problems/PROBLEM_ID/responses/"
+- description: 困りごとに対応するコメントを取得するAPI.problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり.
+  href: "/v1/problems/{problem_id}/responses/"
   method: GET
   rel: instances
   title: List
@@ -92,9 +92,10 @@ links:
 
 - description:
     困りごとに対応するコメントを読んだことを示すAPI.
-    エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない．
-    アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/v1/problems/PROBLEM_ID/responses/seen"
+    problem_idをURLに入れる必要がある.
+    エンドポイントにアクセスすると既読になる.困りごとの投稿者以外のアクセスは受け付けない．
+    利用するにはアクセストークンをヘッダに付ける必要あり.
+  href: "/v1/problems/{problem_id}/responses/seen"
   method: PUT
   rel: self
   title: Seen Update
@@ -106,10 +107,10 @@ links:
         "$ref": "/schemata/response#/definitions/seen"
 
 - description:
-    困りごとに対応するコメントを読んだことを示すAPI.
-    エンドポイントにアクセスすると既読フラグが取得できる．
-    アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
-  href: "/v1/problems/PROBLEM_ID/responses/seen"
+    困りごとに対応するコメントを読んだことを示すAPI.problem_idをURLに入れる必要がある.
+    エンドポイントにアクセスすると既読フラグが取得できる.
+    利用するにはアクセストークンをヘッダに付ける必要あり.
+  href: "/v1/problems/{problem_id}/responses/seen"
   method: GET
   rel: self
   title: Seen Get
@@ -119,6 +120,24 @@ links:
     properties:
       seen:
         "$ref": "/schemata/response#/definitions/seen"
+
+- description: 指定したidの返信コメントを1件取得する.利用するにはアクセストークンをヘッダに付ける必要あり
+  href: "/v1/responses/{id}"
+  method: GET
+  rel: self
+  type:
+  - object
+  title: Show
+  http_header:
+    Authorization : "1:ABCDabcd"
+
+- description: 指定したidの返信コメントを1件削除する.利用するには、返信コメントを投稿したユーザ、もしくは困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
+  href: "/v1/responses/{id}"
+  method: DELETE
+  rel: empty
+  title: Destory
+  http_header:
+    Authorization : "1:ABCDabcd"
 # - description: List existing responses.
 #   href: "/responses"
 #   method: GET

@@ -139,7 +139,7 @@
       },
       "links": [
         {
-          "description": "困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。",
+          "description": "困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems",
           "method": "POST",
           "rel": "create",
@@ -202,7 +202,7 @@
           "title": "Create"
         },
         {
-          "description": "ログインしているユーザの投稿した困りごとを全件取得する(降順) クエリパラメータ(page,per)を指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems/me",
           "method": "GET",
           "rel": "instances",
@@ -225,7 +225,7 @@
           }
         },
         {
-          "description": "投稿されている困りごとを全件取得する（全ユーザが対象, 降順） クエリパラメータ(page,per)を指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems",
           "method": "GET",
           "rel": "instances",
@@ -243,6 +243,29 @@
             ]
           },
           "title": "List",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "指定したidの困りごとを1件取得する.利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/{id}",
+          "method": "GET",
+          "rel": "self",
+          "type": [
+            "object"
+          ],
+          "title": "Show",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "指定したidの困りごとを1件削除する.困りごとに関連した返信も一緒に削除される.利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/{id}",
+          "method": "DELETE",
+          "rel": "empty",
+          "title": "Destroy",
           "http_header": {
             "Authorization": "1:ABCDabcd"
           }
@@ -356,8 +379,8 @@
       },
       "links": [
         {
-          "description": "困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．",
-          "href": "/v1/problems/PROBLEM_ID/responses",
+          "description": "困りごとに対してコメントを投稿するAPI, problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．",
+          "href": "/v1/problems/{problem_id}/responses",
           "method": "POST",
           "rel": "create",
           "schema": {
@@ -392,8 +415,8 @@
           "title": "Create"
         },
         {
-          "description": "困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/v1/problems/PROBLEM_ID/responses/",
+          "description": "困りごとに対応するコメントを取得するAPI.problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/{problem_id}/responses/",
           "method": "GET",
           "rel": "instances",
           "title": "List",
@@ -402,8 +425,8 @@
           }
         },
         {
-          "description": "困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/v1/problems/PROBLEM_ID/responses/seen",
+          "description": "困りごとに対応するコメントを読んだことを示すAPI. problem_idをURLに入れる必要がある. エンドポイントにアクセスすると既読になる.困りごとの投稿者以外のアクセスは受け付けない． 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/{problem_id}/responses/seen",
           "method": "PUT",
           "rel": "self",
           "title": "Seen Update",
@@ -419,8 +442,8 @@
           }
         },
         {
-          "description": "困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読フラグが取得できる． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり",
-          "href": "/v1/problems/PROBLEM_ID/responses/seen",
+          "description": "困りごとに対応するコメントを読んだことを示すAPI.problem_idをURLに入れる必要がある. エンドポイントにアクセスすると既読フラグが取得できる. 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/{problem_id}/responses/seen",
           "method": "GET",
           "rel": "self",
           "title": "Seen Get",
@@ -433,6 +456,29 @@
                 "$ref": "#/definitions/response/definitions/seen"
               }
             }
+          }
+        },
+        {
+          "description": "指定したidの返信コメントを1件取得する.利用するにはアクセストークンをヘッダに付ける必要あり",
+          "href": "/v1/responses/{id}",
+          "method": "GET",
+          "rel": "self",
+          "type": [
+            "object"
+          ],
+          "title": "Show",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
+          "description": "指定したidの返信コメントを1件削除する.利用するには、返信コメントを投稿したユーザ、もしくは困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/responses/{id}",
+          "method": "DELETE",
+          "rel": "empty",
+          "title": "Destory",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
           }
         }
       ],

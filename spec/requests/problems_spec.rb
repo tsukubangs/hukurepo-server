@@ -85,6 +85,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['thumbnail_url']).to match(expath + json[0]['id'].to_s + '/thumb')
+        expect(json[0]['thumbnail_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.10830528664373)
         expect(json[0]['longitude']).to eq(140.10114337330311)
         expect(json[0]['user_id']).to eq(2)
@@ -96,6 +98,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['thumbnail_url']).to match(expath + json[1]['id'].to_s + '/thumb')
+        expect(json[1]['thumbnail_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
@@ -156,6 +160,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'+problem.id.to_s
         expect(json['image_url']).to match(expath)
         expect(json['image_url']).to match(/.+jpg/)
+        expect(json['thumbnail_url']).to match(expath + '/thumb')
+        expect(json['thumbnail_url']).to match(/.+jpg/)
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
@@ -207,6 +213,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[0]['image_url']).to match(expath)
         expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['thumbnail_url']).to match(expath + json[0]['id'].to_s + '/thumb')
+        expect(json[0]['thumbnail_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
@@ -217,6 +225,8 @@ describe 'Problems', type: :request do
         expath = 'uploads/problem/image/'
         expect(json[1]['image_url']).to match(expath)
         expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['thumbnail_url']).to match(expath + json[1]['id'].to_s + '/thumb')
+        expect(json[1]['thumbnail_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
@@ -246,6 +256,38 @@ describe 'Problems', type: :request do
 
            expect(json.size).to eq(4)
         end
+      end
+    end
+  end
+
+  # problems#destroy
+  describe 'DELETE /problems/:id' do
+    let!(:problem1){ create(:problem1, {user: user1}) }
+    let!(:problem2){ create(:problem2, {user: user2}) }
+
+    context 'without authorization' do
+      subject  { delete v1_problem_path(problem1.id) }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        delete v1_problem_path(problem1.id), no_params, authorization_header
+      end
+
+      it 'returns 204' do
+        expect { subject }.to change(Problem, :count).from(2).to(1)
+        expect(last_response.status).to eq(204)
+      end
+
+      it 'return 403 if user is not owner of problem' do
+        before_count = Problem.count
+        delete v1_problem_path(problem2.id), no_params, authorization_header
+        after_count = Problem.count
+
+        expect(after_count).to eq(before_count)
+        expect(last_response.status).to eq(403)
       end
     end
   end

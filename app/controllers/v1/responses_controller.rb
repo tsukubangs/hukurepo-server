@@ -65,7 +65,11 @@ module V1
 
     # DELETE v1/responses/1
     def destroy
-      @response.destroy
+      if current_user == @response.user || current_user == @response.problem.user
+        @response.destroy
+      else
+        render json: nil, status: :forbidden
+      end
     end
 
     private

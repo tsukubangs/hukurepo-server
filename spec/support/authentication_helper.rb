@@ -1,19 +1,19 @@
 module AuthenticationHelper
-  def login
-    let(:user) { first_user }
+  def login user_id = 1
+    let(:login_user) { User.find(user_id) }
     let(:authorization_header) do
-      { 'HTTP_AUTHORIZATION' => user.access_token,
+      { 'HTTP_AUTHORIZATION' => login_user.access_token,
         'Content-Type' => 'application/json'
       }
     end
     let(:formdata_header) do
       {
-        'HTTP_AUTHORIZATION' => user.access_token,
+        'HTTP_AUTHORIZATION' => login_user.access_token,
         'Content-Type' => 'multipart/form-data'
       }
     end
     before do
-      sign_in user
+      sign_in login_user
     end
   end
 end

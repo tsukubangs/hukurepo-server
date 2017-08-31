@@ -23,7 +23,7 @@ Stability: `prototype`
 
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
-困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり。
+困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 POST /v1/problems
@@ -76,7 +76,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごとを全件取得する(降順) クエリパラメータ(page,per)を指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり
+ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems/me
@@ -127,7 +127,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-GET-problem-/v1/problems">Problem List</a>
 
-投稿されている困りごとを全件取得する（全ユーザが対象, 降順） クエリパラメータ(page,per)を指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり
+投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems
@@ -176,6 +176,70 @@ HTTP/1.1 200 OK
 ]
 ```
 
+### <a name="link-GET-problem-/v1/problems/{id}">Problem Show</a>
+
+指定したidの困りごとを1件取得する.利用するにはアクセストークンをヘッダに付ける必要あり.
+
+```
+GET /v1/problems/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1,
+  "comment": "SOX is difficult",
+  "image_url": "/uploads/problem/image/1/20170609002537.jpg",
+  "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
+  "latitude": 36.10830528664971,
+  "longitude": 140.10114337330694,
+  "user_id": 1,
+  "responded": true,
+  "responses_seen": true,
+  "created_at": "2017-06-30T15:41:41.767+09:00",
+  "updated_at": "2017-06-30T15:41:41.767+09:00"
+}
+```
+
+### <a name="link-DELETE-problem-/v1/problems/{id}">Problem Destroy</a>
+
+指定したidの困りごとを1件削除する.困りごとに関連した返信も一緒に削除される.利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
+
+```
+DELETE /v1/problems/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 202 Accepted
+```
+
+
 
 ## <a name="resource-response">Response</a>
 
@@ -192,12 +256,12 @@ Stability: `prototype`
 | **problem_id** | *integer* | id of the problem | `1` |
 | **user_id** | *integer* | id of the user who poseted the problem | `1` |
 
-### <a name="link-POST-response-/v1/problems/PROBLEM_ID/responses">Response Create</a>
+### <a name="link-POST-response-/v1/problems/{problem_id}/responses">Response Create</a>
 
-困りごとに対してコメントを投稿するAPI, PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
+困りごとに対してコメントを投稿するAPI, problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり．
 
 ```
-POST /v1/problems/PROBLEM_ID/responses
+POST /v1/problems/{problem_id}/responses
 ```
 
 #### Optional Parameters
@@ -210,7 +274,7 @@ POST /v1/problems/PROBLEM_ID/responses
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses \
+$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses \
   -d '{
   "comment": "We are in test"
 }' \
@@ -234,19 +298,19 @@ HTTP/1.1 201 Created
 }
 ```
 
-### <a name="link-GET-response-/v1/problems/PROBLEM_ID/responses/">Response List</a>
+### <a name="link-GET-response-/v1/problems/{problem_id}/responses/">Response List</a>
 
-困りごとに対応するコメントを取得するAPI PROBLEM_IDをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとに対応するコメントを取得するAPI.problem_idをURLに入れる必要がある. 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
-GET /v1/problems/PROBLEM_ID/responses/
+GET /v1/problems/{problem_id}/responses/
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses/ \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/ \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -268,19 +332,19 @@ HTTP/1.1 200 OK
 ]
 ```
 
-### <a name="link-PUT-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen Update</a>
+### <a name="link-PUT-response-/v1/problems/{problem_id}/responses/seen">Response Seen Update</a>
 
-困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読になる．困りごとの投稿者以外のアクセスは受け付けない． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとに対応するコメントを読んだことを示すAPI. problem_idをURLに入れる必要がある. エンドポイントにアクセスすると既読になる.困りごとの投稿者以外のアクセスは受け付けない． 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
-PUT /v1/problems/PROBLEM_ID/responses/seen
+PUT /v1/problems/{problem_id}/responses/seen
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses/seen \
+$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
@@ -298,19 +362,19 @@ HTTP/1.1 200 OK
 }
 ```
 
-### <a name="link-GET-response-/v1/problems/PROBLEM_ID/responses/seen">Response Seen Get</a>
+### <a name="link-GET-response-/v1/problems/{problem_id}/responses/seen">Response Seen Get</a>
 
-困りごとに対応するコメントを読んだことを示すAPI. エンドポイントにアクセスすると既読フラグが取得できる． アクセスを利用するにはアクセストークンをヘッダに付ける必要あり
+困りごとに対応するコメントを読んだことを示すAPI.problem_idをURLに入れる必要がある. エンドポイントにアクセスすると既読フラグが取得できる. 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
-GET /v1/problems/PROBLEM_ID/responses/seen
+GET /v1/problems/{problem_id}/responses/seen
 ```
 
 
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/PROBLEM_ID/responses/seen \
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -326,6 +390,63 @@ HTTP/1.1 200 OK
   "seen": true
 }
 ```
+
+### <a name="link-GET-response-/v1/responses/{id}">Response Show</a>
+
+指定したidの返信コメントを1件取得する.利用するにはアクセストークンをヘッダに付ける必要あり
+
+```
+GET /v1/responses/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 1,
+  "comment": "We are in test",
+  "problem_id": 1,
+  "user_id": 1
+}
+```
+
+### <a name="link-DELETE-response-/v1/responses/{id}">Response Destory</a>
+
+指定したidの返信コメントを1件削除する.利用するには、返信コメントを投稿したユーザ、もしくは困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
+
+```
+DELETE /v1/responses/{id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 202 Accepted
+```
+
 
 
 ## <a name="resource-session">Session</a>
