@@ -197,11 +197,6 @@ links:
 - description: 指定したidの困りごとを1件削除する.困りごとに関連した返信も一緒に削除される.利用するには、困りごとを投稿したユーザのアクセストークンをヘッダに付ける必要あり.
   href: "/v1/problems/{id}"
   method: DELETE
-  mediaType: "null"
-  targetSchema:
-    additionalProperties: false
-    type:
-    - object
   rel: empty
   title: Destroy
   http_header:
