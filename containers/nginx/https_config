@@ -29,11 +29,6 @@ server {
     }
 
     location / {
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Real-IP $remote_addr;
-
        # static files
         if (-f $request_filename) {
           break;
@@ -45,16 +40,19 @@ server {
           rewrite (.*) $1.html break;
         }
 
-        if (!-f $request_filename) {
-          proxy_pass http://app;
+        # !if $request_filename { }
+        proxy_pass http://app;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
 
-          break;
-        }
+        break;
+   }
+
+    location /privacy {
+        index index.html index.htm;
     }
-
-     location /privacy {
-       index index.html index.htm;
-     }
 
     location ~* \.(ico|css|gif|jpe?g|png|js)(\?[0-9]+)?$ {
         expires max;
