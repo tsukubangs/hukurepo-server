@@ -21,8 +21,8 @@ services:
     depends_on:
       - web
     volumes:
-        - ./containers/nginx/http_config:/var/lib/nginx-conf/localhost.conf.erb:ro
-        - ./containers/nginx/https_config:/var/lib/nginx-conf/localhost.ssl.conf.erb:ro
+        - ./containers/nginx/http_config:/var/lib/nginx-conf/default.conf.erb:ro
+        - ./containers/nginx/https_config:/var/lib/nginx-conf/default.ssl.conf.erb:ro
     restart: always
     environment:
       DOMAINS: 'bigclout-api.kde.cs.tsukuba.ac.jp'
