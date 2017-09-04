@@ -11,14 +11,23 @@ services:
       RAILS_ENV: production
       MYSQL_ROOT_PASSWORD: $DB_PASSWORD
 
-  nginx:
-    build: containers/nginx
+  https-portal:
+    image: steveltn/https-portal:1
     ports:
       - "80:80"
+      - "443:443"
     volumes_from:
       - web
     depends_on:
       - web
+    volumes:
+        - ./containers/nginx/http_config:/var/lib/nginx-conf/localhost.conf.erb:ro
+        - ./containers/nginx/https_config:/var/lib/nginx-conf/localhost.ssl.conf.erb:ro
+    restart: always
+    environment:
+      DOMAINS: 'localhost'
+      STAGE: 'local'
+      # FORCE_RENEW: true
 
   db:
     image: mysql:5.7
