@@ -25,8 +25,8 @@ services:
         - ./containers/nginx/https_config:/var/lib/nginx-conf/localhost.ssl.conf.erb:ro
     restart: always
     environment:
-      DOMAINS: 'localhost'
-      STAGE: 'local'
+      DOMAINS: 'bigclout-api.kde.cs.tsukuba.ac.jp'
+      STAGE: 'production'
       # FORCE_RENEW: true
 
   db:
