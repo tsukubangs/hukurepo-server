@@ -65,21 +65,21 @@ describe 'Responses', type: :request do
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
       end
-    end
 
-    context 'escape http tags of json response' do
-      let(:params_script){ { response: attributes_for(:response_script, {user: user1, problem: problem2}) } }
-      
-      login
-      subject do
-        post v1_problem_responses_path(problem2.id, format: :json), params_script, authorization_header
-      end
-      it 'creates responses' do
-        expect { subject }.to change(Response, :count).by(1)
+      context 'escape http tags of json response' do
+        let(:params_script){ { response: attributes_for(:response_script, {user: user1, problem: problem2}) } }
 
-        expect(last_response.status).to eq(201)
+        login
+        subject do
+          post v1_problem_responses_path(problem2.id, format: :json), params_script, authorization_header
+        end
+        it 'creates responses' do
+          expect { subject }.to change(Response, :count).by(1)
 
-        expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+          expect(last_response.status).to eq(201)
+
+          expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+        end
       end
     end
   end
