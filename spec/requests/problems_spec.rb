@@ -50,21 +50,21 @@ describe 'Problems', type: :request do
         get json['thumbnail_url'], no_params, authorization_header
         expect(last_response.status).to eq(200)
       end
-    end
 
-    context 'escape http tags of json response' do
-      let(:params_script){ { problem: attributes_for(:problem_script) } }
-      
-      login
-      subject do
-          post v1_problems_path(format: :json), params_script, formdata_header
-      end
-      it 'creates problem' do
-        expect { subject }.to change(Problem, :count).by(1)
+      context 'escape http tags of json response' do
+        let(:params_script){ { problem: attributes_for(:problem_script) } }
 
-        expect(last_response.status).to eq(201)
+        login
+        subject do
+            post v1_problems_path(format: :json), params_script, formdata_header
+        end
+        example 'script tag' do
+          expect { subject }.to change(Problem, :count).by(1)
 
-        expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+          expect(last_response.status).to eq(201)
+
+          expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+        end
       end
     end
   end
