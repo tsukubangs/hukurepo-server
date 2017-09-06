@@ -12,7 +12,6 @@ describe 'Responses', type: :request do
   # responses#create
   describe 'POST v1/problems/:problem_id/responses' do
     let(:params){ { response: attributes_for(:response, {user: user1, problem: problem2}) } }
-    let(:params_script){ { response: attributes_for(:response_script, {user: user1, problem: problem2}) } }
 
     context 'without authorization' do
       subject {post v1_problem_responses_path(problem2.id, format: :json), params}
@@ -68,7 +67,9 @@ describe 'Responses', type: :request do
       end
     end
 
-    context 'with authorization and <script>' do
+    context 'escape http tags of json response' do
+      let(:params_script){ { response: attributes_for(:response_script, {user: user1, problem: problem2}) } }
+      
       login
       subject do
         post v1_problem_responses_path(problem2.id, format: :json), params_script, authorization_header
@@ -78,10 +79,7 @@ describe 'Responses', type: :request do
 
         expect(last_response.status).to eq(201)
 
-        expect(json['id']).to eq(1)
         expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
-        expect(json['problem_id']).to eq(2)
-        expect(json['user_id']).to eq(1)
       end
     end
   end
