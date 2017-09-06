@@ -19,4 +19,11 @@ FactoryGirl.define do
     user { build(:user1) }
     problem { build(:problem2) }
   end
+
+# first_userからsecond_userに対して<script>をcommentに含んだresponse_script
+  factory :response_script, class: Response do
+    comment "<script>alert(1)</script>"
+    user { build(:user1) }
+    problem { build(:problem2) }
+  end
 end

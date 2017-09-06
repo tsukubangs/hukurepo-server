@@ -5,5 +5,8 @@ module V1
     def thumbnail_url
       object.image_url(:thumb)
     end
+    def comment
+      ERB::Util.html_escape(object.comment)
+    end
   end
 end

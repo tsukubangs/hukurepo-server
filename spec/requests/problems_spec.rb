@@ -7,6 +7,7 @@ describe 'Problems', type: :request do
   # problems#create
   describe 'POST v1/problems' do
     let(:params){ { problem: attributes_for(:problem) } }
+    let(:params_script){ { problem: attributes_for(:problem_script) } }
 
     context 'without authorization' do
       subject  { post v1_problems_path, params, {'Content-Type' => 'multipart/form-data'} }
@@ -49,6 +50,30 @@ describe 'Problems', type: :request do
         subject
         get json['thumbnail_url'], no_params, authorization_header
         expect(last_response.status).to eq(200)
+      end
+    end
+
+    context 'with authorization and <script>' do
+      login
+      subject do
+          post v1_problems_path(format: :json), params_script, formdata_header
+      end
+      it 'creates problem' do
+        expect { subject }.to change(Problem, :count).by(1)
+
+        expect(last_response.status).to eq(201)
+
+        expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+        expath = 'uploads/problem/image/' + json['id'].to_s
+        expect(json['image_url']).to match(expath)
+        expect(json['image_url']).to match(/.+jpg/)
+        expect(json['thumbnail_url']).to match(expath + '/thumb')
+        expect(json['thumbnail_url']).to match(/.+jpg/)
+        expect(json['latitude']).to eq(36.10830528664971)
+        expect(json['longitude']).to eq(140.10114337330694)
+        expect(json['user_id']).to eq(1)
+        expect(json['responded']).to be_falsey
+        expect(json['responses_seen']).to be_truthy
       end
     end
   end
