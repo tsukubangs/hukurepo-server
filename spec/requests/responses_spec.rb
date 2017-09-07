@@ -65,6 +65,23 @@ describe 'Responses', type: :request do
         expect(last_response.status).to eq(404)
         expect(json['error']).to eq("Couldn't find Problem with 'id'=" + not_exist_problem_id.to_s)
       end
+
+      context 'escape http tags of json response' do
+        let(:params_script){ { response: attributes_for(:response_script, {user: user1, problem: problem2}) } }
+
+        login
+        subject do
+          post v1_problem_responses_path(problem2.id, format: :json), params_script, authorization_header
+        end
+        
+        example 'script tag' do
+          subject
+
+          expect(last_response.status).to eq(201)
+
+          expect(json['comment']).to eq('&lt;script&gt;alert(1)&lt;/script&gt;')
+        end
+      end
     end
   end
 
@@ -118,43 +135,43 @@ describe 'Responses', type: :request do
     end
   end
 
-  # responses#show
-  describe 'GET /responses/:id' do
-    let!(:response){ create(:response1, {user: user1, problem: problem2}) }
-
-    context 'without authorization' do
-      subject  { get v1_response_path(id: response.id, format: :json) }
-      it_behaves_like 'returns 401'
-    end
-
-    context 'with authorization' do
-      login
-      subject do
-        get v1_response_path(id: response.id, format: :json), no_params, authorization_header
-      end
-
-      it 'returns exisiting response' do
-        subject
-
-        expect(last_response).to be_ok
-        expect(last_response.status).to eq(200)
-
-        expect(json['id']).to eq(response.id)
-        expect(json['comment']).to eq('Please go to the Tsukuba Center')
-        expect(json['problem_id']).to eq(response.problem.id)
-        expect(json['user_id']).to eq(user1.id)
-      end
-
-      it_behaves_like 'returns datetime'
-
-      it 'returns 404 if response does not exist' do
-        not_exist_response_id = -1
-        get v1_response_path(not_exist_response_id, format: :json), no_params, authorization_header
-        expect(last_response.status).to eq(404)
-        expect(json['error']).to eq("Couldn't find Response with 'id'=" + not_exist_response_id.to_s)
-      end
-    end
-  end
+  # # responses#show
+  # describe 'GET /responses/:id' do
+  #   let!(:response){ create(:response1, {user: user1, problem: problem2}) }
+  #
+  #   context 'without authorization' do
+  #     subject  { get v1_response_path(id: response.id, format: :json) }
+  #     it_behaves_like 'returns 401'
+  #   end
+  #
+  #   context 'with authorization' do
+  #     login
+  #     subject do
+  #       get v1_response_path(id: response.id, format: :json), no_params, authorization_header
+  #     end
+  #
+  #     it 'returns exisiting response' do
+  #       subject
+  #
+  #       expect(last_response).to be_ok
+  #       expect(last_response.status).to eq(200)
+  #
+  #       expect(json['id']).to eq(response.id)
+  #       expect(json['comment']).to eq('Please go to the Tsukuba Center')
+  #       expect(json['problem_id']).to eq(response.problem.id)
+  #       expect(json['user_id']).to eq(user1.id)
+  #     end
+  #
+  #     it_behaves_like 'returns datetime'
+  #
+  #     it 'returns 404 if response does not exist' do
+  #       not_exist_response_id = -1
+  #       get v1_response_path(not_exist_response_id, format: :json), no_params, authorization_header
+  #       expect(last_response.status).to eq(404)
+  #       expect(json['error']).to eq("Couldn't find Response with 'id'=" + not_exist_response_id.to_s)
+  #     end
+  #   end
+  # end
 
   # responses#destroy
   describe 'DELETE /responses/:id' do

@@ -24,4 +24,11 @@ FactoryGirl.define do
     longitude 140.0903428
     user { build(:user) }
   end
+
+  factory :problem_script, class: Problem do
+    comment "<script>alert(1)</script>"
+    latitude 36.10830528664971
+    longitude 140.10114337330694
+    user { build(:user) }
+  end
 end
