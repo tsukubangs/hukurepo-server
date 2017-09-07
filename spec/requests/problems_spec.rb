@@ -58,6 +58,7 @@ describe 'Problems', type: :request do
         subject do
             post v1_problems_path(format: :json), params_script, formdata_header
         end
+        
         example 'script tag' do
           expect { subject }.to change(Problem, :count).by(1)
 
