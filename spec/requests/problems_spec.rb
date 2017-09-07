@@ -60,7 +60,7 @@ describe 'Problems', type: :request do
         end
         
         example 'script tag' do
-          expect { subject }.to change(Problem, :count).by(1)
+          subject
 
           expect(last_response.status).to eq(201)
 
