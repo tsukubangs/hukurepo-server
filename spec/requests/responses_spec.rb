@@ -73,8 +73,9 @@ describe 'Responses', type: :request do
         subject do
           post v1_problem_responses_path(problem2.id, format: :json), params_script, authorization_header
         end
+        
         example 'script tag' do
-          expect { subject }.to change(Response, :count).by(1)
+          subject
 
           expect(last_response.status).to eq(201)
 
