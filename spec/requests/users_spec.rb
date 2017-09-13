@@ -93,16 +93,14 @@ describe 'Users', type: :request do
         expect(json).to be_an Array
 
         expect(json[0]['id']).to eq(1)
-        expect(json[0]['email']).to eq('kaname@kaname.co.jp')
         expect(json[0]['gender']).to eq('male')
         expect(json[0]['age']).to eq(20)
-        expect(json[0]['nationality']).to eq('Japan')
+        expect(json[0]['country_of_residence']).to eq('Japan')
 
         expect(json[1]['id']).to eq(2)
-        expect(json[1]['email']).to eq('tama@tama.co.jp')
         expect(json[1]['gender']).to eq('female')
         expect(json[1]['age']).to eq(50)
-        expect(json[1]['nationality']).to eq('Japan')
+        expect(json[1]['country_of_residence']).to eq('Japan')
       end
     end
   end
@@ -129,10 +127,9 @@ describe 'Users', type: :request do
         expect(last_response.status).to eq(200)
 
         expect(json['id']).to eq(user.id)
-        expect(json['email']).to eq('kaname@kaname.co.jp')
         expect(json['gender']).to eq('male')
         expect(json['age']).to eq(20)
-        expect(json['nationality']).to eq('Japan')
+        expect(json['country_of_residence']).to eq('Japan')
       end
 
       it_behaves_like 'returns datetime'

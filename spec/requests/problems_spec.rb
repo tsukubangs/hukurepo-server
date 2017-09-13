@@ -51,14 +51,14 @@ describe 'Problems', type: :request do
         expect(last_response.status).to eq(200)
       end
 
-      context 'escape http tags of json response' do
+      context 'escape html tags of json response' do
         let(:params_script){ { problem: attributes_for(:problem_script) } }
 
         login
         subject do
             post v1_problems_path(format: :json), params_script, formdata_header
         end
-        
+
         example 'script tag' do
           subject
 

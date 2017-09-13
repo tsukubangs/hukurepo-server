@@ -64,8 +64,8 @@
             "integer"
           ]
         },
-        "nationality": {
-          "description": "nationality of user",
+        "country_of_residence": {
+          "description": "country_of_residence of user",
           "example": "Japan",
           "readOnly": true,
           "type": [
@@ -167,8 +167,8 @@
               "age": {
                 "$ref": "#/definitions/user/definitions/age"
               },
-              "nationality": {
-                "$ref": "#/definitions/user/definitions/nationality"
+              "country_of_residence": {
+                "$ref": "#/definitions/user/definitions/country_of_residence"
               }
             },
             "required": [
@@ -235,8 +235,8 @@
         "age": {
           "$ref": "#/definitions/user/definitions/age"
         },
-        "nationality": {
-          "$ref": "#/definitions/user/definitions/nationality"
+        "country_of_residence": {
+          "$ref": "#/definitions/user/definitions/country_of_residence"
         },
         "email": {
           "$ref": "#/definitions/user/definitions/email"

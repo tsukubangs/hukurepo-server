@@ -45,8 +45,8 @@ definitions:
     readOnly: true
     type:
     - integer
-  nationality:
-    description: nationality of user
+  country_of_residence:
+    description: country_of_residence of user
     example: 'Japan'
     readOnly: true
     type:
@@ -115,8 +115,8 @@ links:
         "$ref": "/schemata/user#/definitions/gender"
       age:
         "$ref": "/schemata/user#/definitions/age"
-      nationality:
-        "$ref": "/schemata/user#/definitions/nationality"
+      country_of_residence:
+        "$ref": "/schemata/user#/definitions/country_of_residence"
       #image:
         #"$ref": "/schemata/user#/definitions/image"
     required: ["email","password"]
@@ -161,8 +161,8 @@ properties:
      "$ref": "/schemata/user#/definitions/gender"
    age:
      "$ref": "/schemata/user#/definitions/age"
-   nationality:
-     "$ref": "/schemata/user#/definitions/nationality"
+   country_of_residence:
+     "$ref": "/schemata/user#/definitions/country_of_residence"
    email:
      "$ref": "/schemata/user#/definitions/email"
    device_token:
