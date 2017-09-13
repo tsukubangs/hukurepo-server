@@ -62,8 +62,8 @@
             "integer"
           ]
         },
-        "nationality": {
-          "description": "nationality of user",
+        "country_of_residence": {
+          "description": "country_of_residence of user",
           "example": "Japan",
           "readOnly": true,
           "type": [

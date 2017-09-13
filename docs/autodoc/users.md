@@ -9,7 +9,7 @@ POST /v1/users HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: example.org
 
-user[email]=kaname%40kaname.co.jp&user[password]=kaname&user[nationality]=Japan&user[gender]=male&user[age]=20
+user[email]=kaname%40kaname.co.jp&user[password]=kaname&user[country_of_residence]=Japan&user[gender]=male&user[age]=20
 ```
 
 #### Response
@@ -63,7 +63,7 @@ POST /v1/users HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: example.org
 
-user[email]=kaname%40kaname.co.jp&user[password]=kaname&user[nationality]=Japan&user[gender]=male&user[age]=20
+user[email]=kaname%40kaname.co.jp&user[password]=kaname&user[country_of_residence]=Japan&user[gender]=male&user[age]=20
 ```
 
 #### Response
@@ -90,7 +90,7 @@ POST /v1/users HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: example.org
 
-user[email]=email%40email&user[password]=kaname&user[nationality]=Japan&user[gender]=male&user[age]=20
+user[email]=email%40email&user[password]=kaname&user[country_of_residence]=Japan&user[gender]=male&user[age]=20
 ```
 
 #### Response
@@ -117,7 +117,7 @@ POST /v1/users HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: example.org
 
-user[email]=kaname%40kaname.co.jp&user[password]=kanam&user[nationality]=Japan&user[gender]=male&user[age]=20
+user[email]=kaname%40kaname.co.jp&user[password]=kanam&user[country_of_residence]=Japan&user[gender]=male&user[age]=20
 ```
 
 #### Response
@@ -144,7 +144,7 @@ POST /v1/users HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Host: example.org
 
-user[email]=kaname%40kaname.co.jp&user[password]=kanamekanamekanamekanamekanamekanamekanamekanamekanamekaname&user[nationality]=Japan&user[gender]=male&user[age]=20
+user[email]=kaname%40kaname.co.jp&user[password]=kanamekanamekanamekanamekanamekanamekanamekanamekanamekaname&user[country_of_residence]=Japan&user[gender]=male&user[age]=20
 ```
 
 #### Response
@@ -187,7 +187,7 @@ X-Frame-Options: SAMEORIGIN
     "name": null,
     "gender": "male",
     "age": 20,
-    "nationality": "Japan",
+    "country_of_residence": "Japan",
     "image": null,
     "created_at": "2017-07-01T17:09:06.823+09:00",
     "updated_at": "2017-07-01T17:09:06.851+09:00"
@@ -198,7 +198,7 @@ X-Frame-Options: SAMEORIGIN
     "name": null,
     "gender": "female",
     "age": 50,
-    "nationality": "Japan",
+    "country_of_residence": "Japan",
     "image": null,
     "created_at": "2017-07-01T17:09:06.839+09:00",
     "updated_at": "2017-07-01T17:09:06.839+09:00"
@@ -232,7 +232,7 @@ X-Frame-Options: SAMEORIGIN
   "name": null,
   "gender": "male",
   "age": 20,
-  "nationality": "Japan",
+  "country_of_residence": "Japan",
   "image": null,
   "created_at": "2017-07-01T17:09:06.966+09:00",
   "updated_at": "2017-07-01T17:09:07.021+09:00"

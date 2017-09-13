@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user, class:User, aliases: [:user1, :user_kaname, :first_user] do
     email "kaname@kaname.co.jp"
     password "kaname"
-    nationality "Japan"
+    country_of_residence "Japan"
     gender "male"
     age 20
   end
@@ -10,7 +10,7 @@ FactoryGirl.define do
   factory :user_tama, class: User, aliases: [:user2, :second_user] do
     email "tama@tama.co.jp"
     password "tamatama"
-    nationality "Japan"
+    country_of_residence "Japan"
     gender "female"
     age 50
   end
@@ -18,7 +18,7 @@ FactoryGirl.define do
   factory :user_shinjin, class: User, aliases: [:user3, :third_user] do
     email "shinjin@shinjin.co.jp"
     password "shinjin"
-    nationality "Japan"
+    country_of_residence "Japan"
     gender "male"
     age 40
   end

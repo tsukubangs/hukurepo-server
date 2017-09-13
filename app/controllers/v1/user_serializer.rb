@@ -1,6 +1,6 @@
 module V1
   class UserSerializer < ActiveModel::Serializer
-    attributes :id, :email, :name, :gender, :age, :nationality, :image,
+    attributes :id, :name, :gender, :age, :country_of_residence, :image,
                :created_at, :updated_at
   end
 end

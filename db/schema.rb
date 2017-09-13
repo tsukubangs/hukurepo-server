@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817093526) do
+ActiveRecord::Schema.define(version: 20170913065810) do
 
   create_table "device_tokens", force: :cascade do |t|
     t.string   "token"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170817093526) do
     t.string   "name"
     t.string   "gender"
     t.integer  "age"
-    t.string   "nationality"
+    t.string   "country_of_residence"
     t.string   "image"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
