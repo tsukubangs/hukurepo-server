@@ -33,8 +33,8 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
-        expect(json['responded']).to be_falsey
-        expect(json['responses_seen']).to be_truthy
+        expect(json['responded']).to be false
+        expect(json['responses_seen']).to be true
       end
 
       it_behaves_like 'returns datetime'
@@ -107,8 +107,8 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.10830528664373)
         expect(json[0]['longitude']).to eq(140.10114337330311)
         expect(json[0]['user_id']).to eq(2)
-        expect(json[0]['responded']).to be_falsey
-        expect(json[0]['responses_seen']).to be_truthy
+        expect(json[0]['responded']).to be false
+        expect(json[0]['responses_seen']).to be true
 
         expect(json[1]['id']).to eq(1)
         expect(json[1]['comment']).to eq('SOX is difficult')
@@ -120,8 +120,44 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
-        expect(json[1]['responded']).to be_falsey
-        expect(json[1]['responses_seen']).to be_truthy
+        expect(json[1]['responded']).to be false
+        expect(json[1]['responses_seen']).to be true
+      end
+
+      context 'with sort params' do
+        before do
+          # 3つ目のテストを追加
+          create(:problem3, {user: user1})
+        end
+
+        example 'user_id(desc)' do
+          params = { sort: '-user_id'} # user_idの昇順
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json[0]['user_id']).to eq(2)
+          expect(json[1]['user_id']).to eq(1)
+          expect(json[2]['user_id']).to eq(1)
+        end
+
+        example 'responded(asc)' do
+          params = { sort: 'responded'} # respondedの昇順(falseが先、trueが後)
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json[0]['responded']).to be false
+          expect(json[1]['responded']).to be false
+          expect(json[2]['responded']).to be true
+        end
+
+        example 'responded(desc), user_id(asc)' do
+          params = { sort: 'user_id, -responded'} #  user_idを昇順でソート→repondedの降順（trueが先)でソート
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json[0]['id']).to eq(3)
+          expect(json[1]['id']).to eq(1)
+          expect(json[2]['id']).to eq(2)
+        end
+
+
       end
 
       context 'valid pagenation' do
@@ -182,8 +218,8 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
-        expect(json['responded']).to be_falsey
-        expect(json['responses_seen']).to be_truthy
+        expect(json['responded']).to be false
+        expect(json['responses_seen']).to be true
       end
 
       it_behaves_like 'returns datetime'
@@ -235,7 +271,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
-        expect(json[0]['responded']).to be_falsey
+        expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
         expect(json[1]['comment']).to eq('SOX is difficult')
@@ -247,7 +283,7 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
-        expect(json[1]['responded']).to be_falsey
+        expect(json[1]['responded']).to be false
       end
 
       context 'valid pagenation' do
