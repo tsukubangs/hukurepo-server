@@ -308,7 +308,7 @@
       }
     },
     "response": {
-      "$schema": "https://json-schema.org/draft-04/hyper-schema",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Response",
       "description": "困りごとに対してコメントをする，コメントを閲覧するAPI",
       "stability": "prototype",
@@ -498,7 +498,7 @@
       }
     },
     "session": {
-      "$schema": "https://json-schema.org/draft-04/hyper-schema",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Session",
       "description": "ユーザのセッションを管理するAPI",
       "stability": "prototype",
@@ -651,7 +651,7 @@
       ]
     },
     "user": {
-      "$schema": "https://json-schema.org/draft-04/hyper-schema",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "User",
       "description": "Userの情報，投稿などを管理するAPI",
       "stability": "prototype",
