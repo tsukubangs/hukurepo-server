@@ -1,11 +1,11 @@
 {
-  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "$schema": "https://json-schema.org/draft-04/hyper-schema",
   "type": [
     "object"
   ],
   "definitions": {
     "problem": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "$schema": "https://json-schema.org/draft-04/hyper-schema",
       "title": "Problem",
       "description": "外国人訪問者の困りごとを投稿，閲覧するAPI",
       "stability": "prototype",
@@ -308,7 +308,7 @@
       }
     },
     "response": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "$schema": "https://json-schema.org/draft-04/hyper-schema",
       "title": "Response",
       "description": "困りごとに対してコメントをする，コメントを閲覧するAPI",
       "stability": "prototype",
@@ -498,7 +498,7 @@
       }
     },
     "session": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "$schema": "https://json-schema.org/draft-04/hyper-schema",
       "title": "Session",
       "description": "ユーザのセッションを管理するAPI",
       "stability": "prototype",
@@ -651,7 +651,7 @@
       ]
     },
     "user": {
-      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "$schema": "https://json-schema.org/draft-04/hyper-schema",
       "title": "User",
       "description": "Userの情報，投稿などを管理するAPI",
       "stability": "prototype",
@@ -912,7 +912,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp",
+      "href": "https://bigclout-api.kde.cs.tsukuba.ac.jp",
       "rel": "self"
     }
   ]

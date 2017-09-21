@@ -19,7 +19,7 @@ POST /problems
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -F 'problem[comment]="SOX is difficult"'\
   -F 'problem[image]=@path/image.jpg;type=image/jpg'\
   -F 'problem[latitude]=36.10830528664971'\

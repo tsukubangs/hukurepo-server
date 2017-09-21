@@ -41,7 +41,7 @@ POST /v1/problems
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
   "comment": "SOX is difficult",
   "latitude": 36.10830528664971,
@@ -93,7 +93,7 @@ GET /v1/problems/me
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
  -G \
   -d page=1 \
   -d per=5 \
@@ -144,7 +144,7 @@ GET /v1/problems
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
  -G \
   -d page=1 \
   -d per=5 \
@@ -188,7 +188,7 @@ GET /v1/problems/{id}
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -227,7 +227,7 @@ DELETE /v1/problems/{id}
 #### Curl Example
 
 ```bash
-$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+$ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
@@ -274,7 +274,7 @@ POST /v1/problems/{problem_id}/responses
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses \
   -d '{
   "comment": "We are in test"
 }' \
@@ -310,7 +310,7 @@ GET /v1/problems/{problem_id}/responses/
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/ \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/ \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -344,7 +344,7 @@ PUT /v1/problems/{problem_id}/responses/seen
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
+$ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
@@ -374,7 +374,7 @@ GET /v1/problems/{problem_id}/responses/seen
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses/seen \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -403,7 +403,7 @@ GET /v1/responses/{id}
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -435,7 +435,7 @@ DELETE /v1/responses/{id}
 #### Curl Example
 
 ```bash
-$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
+$ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
@@ -474,7 +474,7 @@ POST /v1/login
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
   -d '{
   "email": "test@example.com",
   "password": "example"
@@ -546,7 +546,7 @@ POST /v1/users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
   -d '{
   "email": "test.example@example.co.jp",
   "password": "example",
@@ -586,7 +586,7 @@ GET /v1/users/me
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
   -H "authorization: 1:ABCDabcd"
 ```
 
@@ -627,7 +627,7 @@ PUT /v1/users/me/device_token
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
+$ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
   -d '{
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }' \

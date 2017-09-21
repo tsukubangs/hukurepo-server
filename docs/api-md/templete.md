@@ -39,7 +39,7 @@ POST /tests
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://api.acroquest.work/v1/tests \
+$ curl -n -X POST https://api.acroquest.work/v1/tests \
   -d '{
   "id": "01234567-89ab-cdef-0123-456789abcdef",
   "name": "kaname takahashi"
@@ -77,7 +77,7 @@ GET /tests/{test_id}
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/tests/$TEST_ID
+$ curl -n https://api.acroquest.work/v1/tests/$TEST_ID
 ```
 
 
@@ -105,7 +105,7 @@ GET /tests
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/tests
+$ curl -n https://api.acroquest.work/v1/tests
 ```
 
 
@@ -136,7 +136,7 @@ DELETE /tests/{test_id}
 #### Curl Example
 
 ```bash
-$ curl -n -X DELETE http://api.acroquest.work/v1/tests/$TEST_ID \
+$ curl -n -X DELETE https://api.acroquest.work/v1/tests/$TEST_ID \
   -H "Content-Type: application/json"
 ```
 
@@ -168,7 +168,7 @@ GET /tests/{test_id}
 #### Curl Example
 
 ```bash
-$ curl -n http://api.acroquest.work/v1/tests/$TEST_ID
+$ curl -n https://api.acroquest.work/v1/tests/$TEST_ID
 ```
 
 
@@ -199,7 +199,7 @@ PATCH /tests/{test_id}
 #### Curl Example
 
 ```bash
-$ curl -n -X PATCH http://api.acroquest.work/v1/tests/$TEST_ID \
+$ curl -n -X PATCH https://api.acroquest.work/v1/tests/$TEST_ID \
   -d '{
 }' \
   -H "Content-Type: application/json"
@@ -220,5 +220,3 @@ HTTP/1.1 200 OK
   "updated_at": "2015-01-01T12:00:00Z"
 }
 ```
-
-

@@ -15,7 +15,7 @@ Userの情報，投稿などを管理するAPI
 | **email** | *string* | unique email of user<br/> **pattern:** `([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+` | `"test.example@example.co.jp"` |
 | **gender** | *string* | gender of user | `"male"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
-| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
+| **nationality** | *string* | nationality of user | `"Japan"` |
 
 ### <a name="link-POST-user-/v1/users">User Create</a>
 
@@ -40,20 +40,20 @@ POST /v1/users
 | **age** | *integer* | age range of user | `20` |
 | **gender** | *string* | gender of user | `"male"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
-| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
+| **nationality** | *string* | nationality of user | `"Japan"` |
 
 
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
   -d '{
   "email": "test.example@example.co.jp",
   "password": "example",
   "name": "Wataru Sakamoto",
   "gender": "male",
   "age": 20,
-  "country_of_residence": "Japan"
+  "nationality": "Japan"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -86,7 +86,7 @@ GET /v1/users/me
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
   -H "authorization: 1:ABCDabcd"
 ```
 
@@ -103,7 +103,7 @@ HTTP/1.1 200 OK
   "name": "Wataru Sakamoto",
   "gender": "male",
   "age": 20,
-  "country_of_residence": "Japan",
+  "nationality": "Japan",
   "email": "test.example@example.co.jp",
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }
@@ -127,7 +127,7 @@ PUT /v1/users/me/device_token
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
+$ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
   -d '{
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }' \
