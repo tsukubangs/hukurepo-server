@@ -24,7 +24,7 @@ POST /v1/login
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/login \
   -d '{
   "email": "test@example.com",
   "password": "example"
@@ -47,5 +47,3 @@ HTTP/1.1 200 OK
   "access_token": "1:ABCDabcd"
 }
 ```
-
-

@@ -42,7 +42,7 @@ POST /v1/problems
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
   "comment": "SOX is difficult",
   "latitude": 36.10830528664971,
@@ -94,7 +94,7 @@ GET /v1/problems/me
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
  -G \
   -d page=1 \
   -d per=5 \
@@ -145,7 +145,7 @@ GET /v1/problems
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
  -G \
   -d page=1 \
   -d per=5 \
@@ -189,7 +189,7 @@ GET /v1/problems/{id}
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -228,7 +228,7 @@ DELETE /v1/problems/{id}
 #### Curl Example
 
 ```bash
-$ curl -n -X DELETE http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+$ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
   -H "Authorization: 1:ABCDabcd"
 ```
 

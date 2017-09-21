@@ -46,7 +46,7 @@ POST /v1/users
 #### Curl Example
 
 ```bash
-$ curl -n -X POST http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
+$ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
   -d '{
   "email": "test.example@example.co.jp",
   "password": "example",
@@ -86,7 +86,7 @@ GET /v1/users/me
 #### Curl Example
 
 ```bash
-$ curl -n http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me \
   -H "authorization: 1:ABCDabcd"
 ```
 
@@ -127,7 +127,7 @@ PUT /v1/users/me/device_token
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT http://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
+$ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
   -d '{
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }' \

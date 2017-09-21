@@ -17,7 +17,7 @@ multipart/form-data
 ```
 HTTP/1.1 201
 Content-Type: application/json; charset=utf-8
-Location: http://example.org/v1/problems/1
+Location: https://example.org/v1/problems/1
 Vary: Origin
 X-Content-Type-Options: nosniff
 X-Frame-Options: SAMEORIGIN

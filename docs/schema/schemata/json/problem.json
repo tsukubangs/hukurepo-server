@@ -325,7 +325,7 @@
   "id": "bigclout",
   "links": [
     {
-      "href": "http://bigclout-api.kde.cs.tsukuba.ac.jp",
+      "href": "https://bigclout-api.kde.cs.tsukuba.ac.jp",
       "rel": "self"
     }
   ]
