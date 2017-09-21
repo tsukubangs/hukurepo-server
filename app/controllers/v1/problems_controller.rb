@@ -6,7 +6,7 @@ module V1
 
     # GET /v1/problems
     def index
-      @problems = apply_scopes(Problem).order(ordering_params(params)).order(updated_at: :desc).all
+      @problems = Problem.order(ordering_params(params)).order(updated_at: :desc).all
 
       paginate_problems
 
@@ -15,7 +15,7 @@ module V1
 
     # GET /v1/users/1/problems
     def users
-      @problems = apply_scopes(Problem).where(user_id: params[:user_id]).order(ordering_params(params)).order(updated_at: :desc).
+      @problems = Problem.where(user_id: params[:user_id]).order(ordering_params(params)).order(updated_at: :desc)
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
