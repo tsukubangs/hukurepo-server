@@ -131,7 +131,7 @@ describe 'Problems', type: :request do
         end
 
         example 'user_id(desc)' do
-          params = { sort: '-user_id'} # user_idの昇順
+          params = { sort: '-user_id'} # user_idの降順
           get v1_problems_path(format: :json), params, authorization_header
 
           expect(json[0]['user_id']).to eq(2)
@@ -156,8 +156,6 @@ describe 'Problems', type: :request do
           expect(json[1]['id']).to eq(1)
           expect(json[2]['id']).to eq(2)
         end
-
-
       end
 
       context 'valid pagenation' do
@@ -285,6 +283,23 @@ describe 'Problems', type: :request do
         expect(json[1]['user_id']).to eq(1) # important!
         expect(json[1]['responded']).to be false
       end
+
+      context 'with sort params' do
+        before do
+          # 4つ目のテストデータを追加
+          create(:problem, {user: user1})
+        end
+
+        example 'id(asc)' do
+          params = { sort: 'id'} # idの昇順
+          get me_v1_problems_path(format: :json), params, authorization_header
+
+          expect(json[0]['id']).to eq(1)
+          expect(json[1]['id']).to eq(3)
+          expect(json[2]['id']).to eq(4)
+        end
+      end
+
 
       context 'valid pagenation' do
         before do
