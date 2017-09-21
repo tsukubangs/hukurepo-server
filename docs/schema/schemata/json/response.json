@@ -1,11 +1,11 @@
 {
-  "$schema": "https://json-schema.org/draft-04/hyper-schema",
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
   "type": [
     "object"
   ],
   "definitions": {
     "response": {
-      "$schema": "https://json-schema.org/draft-04/hyper-schema",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Response",
       "description": "困りごとに対してコメントをする，コメントを閲覧するAPI",
       "stability": "prototype",
