@@ -1,11 +1,11 @@
 {
-  "$schema": "https://json-schema.org/draft-04/hyper-schema",
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
   "type": [
     "object"
   ],
   "definitions": {
     "problem": {
-      "$schema": "https://json-schema.org/draft-04/hyper-schema",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Problem",
       "description": "外国人訪問者の困りごとを投稿，閲覧するAPI",
       "stability": "prototype",
