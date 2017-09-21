@@ -1,10 +1,13 @@
 module V1
   class ProblemsController < ApplicationController
+    include Orderable
+
     before_action :set_problem, only: [:show, :update, :destroy]
 
     # GET /v1/problems
     def index
-      @problems = Problem.all.order(updated_at: :desc)
+      @problems = apply_scopes(Problem).order(ordering_params(params)).order(updated_at: :desc).all
+
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
@@ -12,7 +15,7 @@ module V1
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id]).order(updated_at: :desc)
+      @problems = apply_scopes(Problem).where(user_id: params[:user_id]).order(ordering_params(params)).order(updated_at: :desc).
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
