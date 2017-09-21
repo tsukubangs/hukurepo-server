@@ -4,7 +4,7 @@ module V1
 
     # get v1/run_smartphone_app
     def run_smartphone_app
-      redirect_to "tsukurepo://"
+      redirect_to "hukurepo://"
     end
 
   end
