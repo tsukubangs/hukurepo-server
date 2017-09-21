@@ -23,6 +23,7 @@ FactoryGirl.define do
     latitude 36.1181461
     longitude 140.0903428
     user { build(:user) }
+    responded true
   end
 
   factory :problem_script, class: Problem do

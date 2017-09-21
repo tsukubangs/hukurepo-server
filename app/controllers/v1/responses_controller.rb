@@ -1,12 +1,14 @@
 module V1
   class ResponsesController < ApplicationController
+    include Orderable
+
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only:[:index, :create, :get_seen, :put_seen]
 
     # GET problems/:problem_id/responses
     def index
       if @problem
-        render json: @problem.responses, each_serializer:
+        render json: Response.where(problem_id: @problem.id).order(ordering_params(params)), each_serializer:
         V1::ResponseSerializer
       end
     end

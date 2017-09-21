@@ -1,5 +1,6 @@
 module V1
   class UsersController < ApplicationController
+    include Orderable
     # ここに何も追加しないことで、indexメソッドが認証を必要とするメソッドとなります。
     # 逆に認証を必要としないメソッドを作成したい場合は追加するようにしましょう。
     skip_before_action :authenticate_user_from_token!, only: [:create]
@@ -8,7 +9,7 @@ module V1
     wrap_parameters :user, include: [:email, :password, :name, :gender, :age, :country_of_residence, :image]
 
     def index
-      render json: User.all, each_serializer: V1::UserSerializer
+      render json: User.order(ordering_params(params)).all, each_serializer: V1::UserSerializer
     end
 
     # GET /v1/users/1
