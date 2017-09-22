@@ -75,7 +75,7 @@ module V1
 
       # Only allow a trusted parameter "white list" through.
       def problem_params
-        params.require(:problem).permit(:comment, :image, :latitude, :longitude)
+        params.require(:problem).permit(:comment, :japanese_comment, :image, :latitude, :longitude)
       end
 
       def paginate_problems
