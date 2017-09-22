@@ -13,7 +13,7 @@ Stability: `prototype`
 | **created_at** | *date-time* | when problem was created | `"2017-06-30T15:41:41.767+09:00"` |
 | **id** | *integer* | unique identifier of problem | `1` |
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
-| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
+| **japanese_comment** | *string* | japanese problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
@@ -35,7 +35,7 @@ POST /v1/problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
-| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
+| **japanese_comment** | *string* | japanese problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 

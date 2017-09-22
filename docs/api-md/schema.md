@@ -13,7 +13,7 @@ Stability: `prototype`
 | **created_at** | *date-time* | when problem was created | `"2017-06-30T15:41:41.767+09:00"` |
 | **id** | *integer* | unique identifier of problem | `1` |
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
-| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
+| **japanese_comment** | *string* | japanese problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
@@ -35,7 +35,7 @@ POST /v1/problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
-| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
+| **japanese_comment** | *string* | japanese problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 
@@ -260,6 +260,7 @@ Stability: `prototype`
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | comment to the problem | `"We are in test"` |
 | **id** | *integer* | unique identifier of response | `1` |
+| **japanese_comment** | *string* | japanese reponse comment | `"私たちはテスト中です"` |
 | **problem_id** | *integer* | id of the problem | `1` |
 | **user_id** | *integer* | id of the user who poseted the problem | `1` |
 
@@ -276,6 +277,7 @@ POST /v1/problems/{problem_id}/responses
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | comment to the problem | `"We are in test"` |
+| **japanese_comment** | *string* | japanese reponse comment | `"私たちはテスト中です"` |
 
 
 #### Curl Example
@@ -283,7 +285,8 @@ POST /v1/problems/{problem_id}/responses
 ```bash
 $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$PROBLEM_ID/responses \
   -d '{
-  "comment": "We are in test"
+  "comment": "We are in test",
+  "japanese_comment": "私たちはテスト中です"
 }' \
   -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
@@ -300,6 +303,7 @@ HTTP/1.1 201 Created
 {
   "id": 1,
   "comment": "We are in test",
+  "japanese_comment": "私たちはテスト中です",
   "problem_id": 1,
   "user_id": 1
 }
@@ -333,6 +337,7 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "We are in test",
+    "japanese_comment": "私たちはテスト中です",
     "problem_id": 1,
     "user_id": 1
   }
@@ -425,6 +430,7 @@ HTTP/1.1 200 OK
 {
   "id": 1,
   "comment": "We are in test",
+  "japanese_comment": "私たちはテスト中です",
   "problem_id": 1,
   "user_id": 1
 }

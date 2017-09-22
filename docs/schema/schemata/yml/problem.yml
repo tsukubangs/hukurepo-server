@@ -19,7 +19,7 @@ definitions:
     type:
     - string
   japanese_comment:
-    description: translated problem's comment(japanese)
+    description: japanese problem's comment(japanese)
     example: 'SOXは難しい'
     type:
     - string

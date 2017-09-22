@@ -18,6 +18,11 @@ definitions:
     example: 'We are in test'
     type:
     - string
+  japanese_comment:
+    description: japanese reponse comment
+    example: '私たちはテスト中です'
+    type:
+    - string
   problem_id:
     description: id of the problem
     example: 1
@@ -57,6 +62,8 @@ links:
     properties:
       comment:
         "$ref": "/schemata/response#/definitions/comment"
+      japanese_comment:
+        "$ref": "/schemata/response#/definitions/japanese_comment"
       #   problem_id:
       #   "$ref": "/schemata/response#/definitions/problem_id"
       # user_id:
@@ -69,6 +76,8 @@ links:
         "$ref":  "/schemata/response#/definitions/id"
       comment:
         "$ref": "/schemata/response#/definitions/comment"
+      japanese_comment:
+        "$ref": "/schemata/response#/definitions/japanese_comment"
       problem_id:
         "$ref": "/schemata/response#/definitions/problem_id"
       user_id:
@@ -157,6 +166,8 @@ properties:
     "$ref":  "/schemata/response#/definitions/id"
   comment:
     "$ref": "/schemata/response#/definitions/comment"
+  japanese_comment:
+    "$ref": "/schemata/response#/definitions/japanese_comment"
   problem_id:
     "$ref": "/schemata/response#/definitions/problem_id"
   user_id:

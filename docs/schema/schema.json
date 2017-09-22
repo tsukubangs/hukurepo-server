@@ -30,7 +30,7 @@
           ]
         },
         "japanese_comment": {
-          "description": "translated problem's comment(japanese)",
+          "description": "japanese problem's comment(japanese)",
           "example": "SOXは難しい",
           "type": [
             "string"
@@ -348,6 +348,13 @@
             "string"
           ]
         },
+        "japanese_comment": {
+          "description": "japanese reponse comment",
+          "example": "私たちはテスト中です",
+          "type": [
+            "string"
+          ]
+        },
         "problem_id": {
           "description": "id of the problem",
           "example": 1,
@@ -403,6 +410,9 @@
             "properties": {
               "comment": {
                 "$ref": "#/definitions/response/definitions/comment"
+              },
+              "japanese_comment": {
+                "$ref": "#/definitions/response/definitions/japanese_comment"
               }
             },
             "type": [
@@ -416,6 +426,9 @@
               },
               "comment": {
                 "$ref": "#/definitions/response/definitions/comment"
+              },
+              "japanese_comment": {
+                "$ref": "#/definitions/response/definitions/japanese_comment"
               },
               "problem_id": {
                 "$ref": "#/definitions/response/definitions/problem_id"
@@ -504,6 +517,9 @@
         },
         "comment": {
           "$ref": "#/definitions/response/definitions/comment"
+        },
+        "japanese_comment": {
+          "$ref": "#/definitions/response/definitions/japanese_comment"
         },
         "problem_id": {
           "$ref": "#/definitions/response/definitions/problem_id"
