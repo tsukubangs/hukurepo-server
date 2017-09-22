@@ -10,25 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913065810) do
-
-  create_table "device_tokens", force: :cascade do |t|
-    t.string   "token"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170922025946) do
 
   create_table "problems", force: :cascade do |t|
     t.text     "comment"
     t.string   "image"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "user_id",                        null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "responses_seen", default: true,  null: false
-    t.boolean  "responded",      default: false, null: false
+    t.integer  "user_id",                          null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "responses_seen",   default: true,  null: false
+    t.boolean  "responded",        default: false, null: false
+    t.text     "japanese_comment"
   end
 
   create_table "responses", force: :cascade do |t|
