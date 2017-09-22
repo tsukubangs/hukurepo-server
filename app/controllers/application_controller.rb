@@ -83,4 +83,9 @@ class ApplicationController < ActionController::API
       to_user.delete_device_token if response.json[:failure] == 1
     end
   end
+
+  def translate(comment, from: :english, to: :japanese)
+      EasyTranslate.api_key = ENV['GOOGLE_API_KEY']
+      EasyTranslate.translate(comment, :from => from, :to => to)
+  end
 end

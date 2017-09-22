@@ -42,6 +42,8 @@ module V1
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
         status: :created, location: v1_problem_url(@problem)
         slack_notify(slack_message)
+        @problem.japanese_comment = translate(@problem.comment, :from => :english, :to => :japanese)
+        @problem.save
         # publish_sox
       else
         render json: @problem.errors, status: :unprocessable_entity
