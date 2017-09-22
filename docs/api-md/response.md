@@ -200,7 +200,6 @@ DELETE /v1/responses/{id}
 
 ```bash
 $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
-  -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -208,7 +207,7 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/responses/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 202 Accepted
+HTTP/1.1 204 No Content
 ```
 
 
