@@ -109,8 +109,6 @@ links:
     properties:
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
-      japanese_comment:
-        "$ref": "/schemata/problem#/definitions/japanese_comment"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:

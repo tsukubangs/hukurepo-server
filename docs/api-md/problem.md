@@ -35,7 +35,6 @@ POST /v1/problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
-| **japanese_comment** | *string* | japanese problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 
@@ -45,8 +44,7 @@ POST /v1/problems
 ```bash
 $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
-  "comment": "SOX is difficult",
-  "japanese_comment": "SOXは難しい",
+  "comment": "SOX is difficult"
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694
 }' \
@@ -245,6 +243,3 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 ```
 HTTP/1.1 202 Accepted
 ```
-
-
-
