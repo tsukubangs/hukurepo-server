@@ -13,6 +13,7 @@ Stability: `prototype`
 | **created_at** | *date-time* | when problem was created | `"2017-06-30T15:41:41.767+09:00"` |
 | **id** | *integer* | unique identifier of problem | `1` |
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
+| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
@@ -24,7 +25,6 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.
-(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -35,6 +35,7 @@ POST /v1/problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
+| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 
@@ -45,6 +46,7 @@ POST /v1/problems
 $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694
 }' \
@@ -63,6 +65,7 @@ HTTP/1.1 201 Created
 {
   "id": 1,
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
   "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
@@ -113,6 +116,7 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "SOX is difficult",
+    "japanese_comment": "SOXは難しい",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
     "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
@@ -164,6 +168,7 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "SOX is difficult",
+    "japanese_comment": "SOXは難しい",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
     "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
@@ -204,6 +209,7 @@ HTTP/1.1 200 OK
 {
   "id": 1,
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
   "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
@@ -229,6 +235,7 @@ DELETE /v1/problems/{id}
 
 ```bash
 $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -236,5 +243,8 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 204 No Content
+HTTP/1.1 202 Accepted
 ```
+
+
+

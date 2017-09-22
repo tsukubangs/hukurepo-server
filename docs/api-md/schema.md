@@ -13,6 +13,7 @@ Stability: `prototype`
 | **created_at** | *date-time* | when problem was created | `"2017-06-30T15:41:41.767+09:00"` |
 | **id** | *integer* | unique identifier of problem | `1` |
 | **image_url** | *string* | stored image url | `"/uploads/problem/image/1/20170609002537.jpg"` |
+| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
@@ -34,6 +35,7 @@ POST /v1/problems
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **comment** | *string* | problem's comment | `"SOX is difficult"` |
+| **japanese_comment** | *string* | translated problem's comment(japanese) | `"SOXは難しい"` |
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 
@@ -44,6 +46,7 @@ POST /v1/problems
 $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694
 }' \
@@ -62,6 +65,7 @@ HTTP/1.1 201 Created
 {
   "id": 1,
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
   "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
@@ -112,6 +116,7 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "SOX is difficult",
+    "japanese_comment": "SOXは難しい",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
     "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
@@ -163,6 +168,7 @@ HTTP/1.1 200 OK
   {
     "id": 1,
     "comment": "SOX is difficult",
+    "japanese_comment": "SOXは難しい",
     "image_url": "/uploads/problem/image/1/20170609002537.jpg",
     "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
     "latitude": 36.10830528664971,
@@ -203,6 +209,7 @@ HTTP/1.1 200 OK
 {
   "id": 1,
   "comment": "SOX is difficult",
+  "japanese_comment": "SOXは難しい",
   "image_url": "/uploads/problem/image/1/20170609002537.jpg",
   "thumbnail_url": "/uploads/problem/image/1/thumb_20170609002537.jpg",
   "latitude": 36.10830528664971,
@@ -511,11 +518,11 @@ Userの情報，投稿などを管理するAPI
 | ------- | ------- | ------- | ------- |
 | **Authorization Key** | *string* | unique token for user | `"1:ABCDabcd"` |
 | **age** | *integer* | age range of user | `20` |
+| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 | **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"` |
 | **email** | *string* | unique email of user<br/> **pattern:** `([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+` | `"test.example@example.co.jp"` |
 | **gender** | *string* | gender of user | `"male"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
-| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 
 ### <a name="link-POST-user-/v1/users">User Create</a>
 
@@ -538,9 +545,9 @@ POST /v1/users
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **age** | *integer* | age range of user | `20` |
+| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 | **gender** | *string* | gender of user | `"male"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
-| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 
 
 #### Curl Example
@@ -647,3 +654,5 @@ HTTP/1.1 200 OK
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
 }
 ```
+
+

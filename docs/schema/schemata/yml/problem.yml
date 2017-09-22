@@ -18,6 +18,11 @@ definitions:
     example: 'SOX is difficult'
     type:
     - string
+  japanese_comment:
+    description: translated problem's comment(japanese)
+    example: 'SOXは難しい'
+    type:
+    - string
   image_url:
     description: stored image url
     example: '/uploads/problem/image/1/20170609002537.jpg'
@@ -104,6 +109,8 @@ links:
     properties:
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
+      japanese_comment:
+        "$ref": "/schemata/problem#/definitions/japanese_comment"
       latitude:
         "$ref": "/schemata/problem#/definitions/latitude"
       longitude:
@@ -116,6 +123,8 @@ links:
         "$ref": "/schemata/problem#/definitions/id"
       comment:
         "$ref": "/schemata/problem#/definitions/comment"
+      japanese_comment:
+        "$ref": "/schemata/problem#/definitions/japanese_comment"
       image_url:
         "$ref": "/schemata/problem#/definitions/image_url"
       thumbnail_url:
@@ -219,6 +228,8 @@ properties:
     "$ref": "/schemata/problem#/definitions/id"
   comment:
     "$ref": "/schemata/problem#/definitions/comment"
+  japanese_comment:
+    "$ref": "/schemata/problem#/definitions/japanese_comment"
   image_url:
     "$ref": "/schemata/problem#/definitions/image_url"
   thumbnail_url:

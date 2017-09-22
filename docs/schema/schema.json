@@ -29,6 +29,13 @@
             "string"
           ]
         },
+        "japanese_comment": {
+          "description": "translated problem's comment(japanese)",
+          "example": "SOXは難しい",
+          "type": [
+            "string"
+          ]
+        },
         "image_url": {
           "description": "stored image url",
           "example": "/uploads/problem/image/1/20170609002537.jpg",
@@ -148,6 +155,9 @@
               "comment": {
                 "$ref": "#/definitions/problem/definitions/comment"
               },
+              "japanese_comment": {
+                "$ref": "#/definitions/problem/definitions/japanese_comment"
+              },
               "latitude": {
                 "$ref": "#/definitions/problem/definitions/latitude"
               },
@@ -166,6 +176,9 @@
               },
               "comment": {
                 "$ref": "#/definitions/problem/definitions/comment"
+              },
+              "japanese_comment": {
+                "$ref": "#/definitions/problem/definitions/japanese_comment"
               },
               "image_url": {
                 "$ref": "#/definitions/problem/definitions/image_url"
@@ -277,6 +290,9 @@
         },
         "comment": {
           "$ref": "#/definitions/problem/definitions/comment"
+        },
+        "japanese_comment": {
+          "$ref": "#/definitions/problem/definitions/japanese_comment"
         },
         "image_url": {
           "$ref": "#/definitions/problem/definitions/image_url"
