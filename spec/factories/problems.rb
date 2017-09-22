@@ -11,7 +11,6 @@ FactoryGirl.define do
 
   factory :problem2, class: Problem do
     comment "Where is Bus stop?"
-    japanese_comment ""
     image { fixture_file_upload Rails.root.join('spec', 'file', 'noimage.jpg'), 'image/jpg' }
     latitude 36.10830528664373
 	  longitude 140.10114337330311
@@ -20,7 +19,6 @@ FactoryGirl.define do
 
   factory :problem3, class: Problem do
     comment "Bicycle is too many!!!"
-    japanese_comment ""
     image { fixture_file_upload Rails.root.join('spec', 'file', 'noimage.jpg'), 'image/jpg' }
     latitude 36.1181461
     longitude 140.0903428
@@ -30,7 +28,6 @@ FactoryGirl.define do
 
   factory :problem_script, class: Problem do
     comment "<script>alert(1)</script>"
-    japanese_comment ""
     image { fixture_file_upload Rails.root.join('spec', 'file', 'noimage.jpg'), 'image/jpg' }
     latitude 36.10830528664971
     longitude 140.10114337330694
