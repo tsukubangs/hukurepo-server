@@ -87,7 +87,7 @@ module V1
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def response_params
-        params.require(:response).permit(:comment)
+        params.require(:response).permit(:comment, :japanese_comment)
       end
 
       def send_notifications
