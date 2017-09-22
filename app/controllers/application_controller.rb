@@ -84,7 +84,7 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def translate(comment, from: :en, to: :japanese)
+  def translate(comment, from: :english, to: :japanese)
       EasyTranslate.api_key = ENV['GOOGLE_API_KEY']
       EasyTranslate.translate(comment, :from => from, :to => to)
   end
