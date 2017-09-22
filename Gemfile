@@ -53,6 +53,9 @@ gem 'andpush'
 # use for rails console
 gem 'hirb-unicode'
 
+# use fore translate
+gem 'easy_translate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
