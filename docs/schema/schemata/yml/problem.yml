@@ -73,6 +73,11 @@ definitions:
     example: false
     type:
     - boolean
+  count:
+    description: count of problems
+    example: 3
+    type:
+    - number
   page:
     description: Parameter that specifies the page (for pagenation)
     example: 1

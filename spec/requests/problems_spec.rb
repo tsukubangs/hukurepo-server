@@ -328,6 +328,36 @@ describe 'Problems', type: :request do
     end
   end
 
+  # problems#me and problems$users
+  describe 'GET /problems/me/count' do
+    before do
+      create(:problem1, {user: user1})
+      create(:problem2, {user: user2})
+      create(:problem3, {user: user1})
+    end
+
+    context 'without authorization' do
+      subject  { get me_count_v1_problems_path(format: :json) }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        get me_count_v1_problems_path(format: :json), no_params, authorization_header
+      end
+
+      it 'returns count of first_users problems' do
+        subject
+
+        expect(last_response).to be_ok
+        expect(last_response.status).to eq(200)
+
+        expect(json['count']).to eq(2)
+      end
+    end
+  end
+
   # problems#destroy
   describe 'DELETE /problems/:id' do
     let!(:problem1){ create(:problem1, {user: user1}) }
