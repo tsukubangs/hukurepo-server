@@ -78,7 +78,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
+ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems/me
@@ -90,6 +90,7 @@ GET /v1/problems/me
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
+| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -99,6 +100,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
  -G \
   -d page=1 \
   -d per=5 \
+  -d sort=responded%2C+-user_id \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -130,7 +132,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-GET-problem-/v1/problems">Problem List</a>
 
-投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
+投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems
@@ -142,6 +144,7 @@ GET /v1/problems
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
+| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -151,6 +154,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
  -G \
   -d page=1 \
   -d per=5 \
+  -d sort=responded%2C+-user_id \
   -H "Authorization: 1:ABCDabcd"
 ```
 

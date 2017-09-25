@@ -88,6 +88,11 @@ definitions:
     example: 5
     type:
     - integer
+  sort:
+    description: Parameter taht specifies sort order
+    example: 'responded, -user_id'
+    type:
+    - string
   identity:
     anyOf:
     - "$ref": "/schemata/problem#/definitions/id"
@@ -170,6 +175,8 @@ links:
         "$ref": "/schemata/problem#/definitions/page"
       per:
         "$ref": "/schemata/problem#/definitions/per"
+      sort:
+        "$ref": "/schemata/problem#/definitions/sort"
     type:
     - object
   title: Me
@@ -190,6 +197,8 @@ links:
         "$ref": "/schemata/problem#/definitions/page"
       per:
         "$ref": "/schemata/problem#/definitions/per"
+      sort:
+        "$ref": "/schemata/problem#/definitions/sort"
     type:
     - object
   title: List

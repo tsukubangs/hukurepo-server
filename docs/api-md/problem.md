@@ -90,6 +90,7 @@ GET /v1/problems/me
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
+| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -99,6 +100,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me \
  -G \
   -d page=1 \
   -d per=5 \
+  -d sort=responded%2C+-user_id \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -142,6 +144,7 @@ GET /v1/problems
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
+| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -151,6 +154,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
  -G \
   -d page=1 \
   -d per=5 \
+  -d sort=responded%2C+-user_id \
   -H "Authorization: 1:ABCDabcd"
 ```
 

@@ -127,6 +127,13 @@
             "integer"
           ]
         },
+        "sort": {
+          "description": "Parameter taht specifies sort order",
+          "example": "responded, -user_id",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -230,6 +237,9 @@
               },
               "per": {
                 "$ref": "#/definitions/problem/definitions/per"
+              },
+              "sort": {
+                "$ref": "#/definitions/problem/definitions/sort"
               }
             },
             "type": [
@@ -253,6 +263,9 @@
               },
               "per": {
                 "$ref": "#/definitions/problem/definitions/per"
+              },
+              "sort": {
+                "$ref": "#/definitions/problem/definitions/sort"
               }
             },
             "type": [
