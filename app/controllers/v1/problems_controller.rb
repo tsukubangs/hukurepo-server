@@ -28,6 +28,13 @@ module V1
       users
     end
 
+    # GET /v1/problems/me/count
+    # GET /v1/users/me/problems/count
+    def me_count
+      count = Problem.where(user_id: current_user.id).count
+      render json: { count: count }
+    end
+
     # GET /v1/problems/1
     def show
       render json: @problem, serializer: V1::ProblemSerializer

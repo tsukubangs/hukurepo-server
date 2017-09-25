@@ -7,13 +7,20 @@ Rails.application.routes.draw do
     post 'check_access_token', to: 'sessions#check_access_token'
     resource :users, only: [:create]
     resources :users, only: [:index, :show] do
-      get 'me', on: :collection
-      get 'me/problems', to: 'problems#me', on: :collection
-      put 'me/device_token', to: 'device_tokens#update', on: :collection
+      collection do
+        get 'me'
+        get 'me/problems', to: 'problems#me'
+        get 'me/problems/count', to: 'problems#me_count'
+        put 'me/device_token', to: 'device_tokens#update'
+      end
       get 'problems', to: 'problems#users'
     end
     resources :problems do
-      get 'me', on: :collection
+      collection do
+        get 'me'
+        get 'me/count', to: 'problems#me_count'
+      end
+
       resources :responses, only: [:index, :create] do
         get 'seen', to: 'responses#get_seen', on: :collection
         put 'seen', to: 'responses#put_seen', on: :collection

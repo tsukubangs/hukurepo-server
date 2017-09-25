@@ -45,7 +45,7 @@ POST /v1/problems
 ```bash
 $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d '{
-  "comment": "SOX is difficult"
+  "comment": "SOX is difficult",
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694
 }' \
@@ -243,3 +243,35 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 ```
 HTTP/1.1 204 No Content
 ```
+
+
+### <a name="link-GET-problem-/v1/problems/me/count">Problem Me Count</a>
+
+ログインしているユーザが投稿した困りごと件数を取得する.利用するにはアクセストークンをヘッダに付ける必要あり.
+
+```
+GET /v1/problems/me/count
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/me/count \
+  -H "Authorization: 1:ABCDabcd"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "count": 3
+}
+```
+
+

@@ -73,6 +73,11 @@ definitions:
     example: false
     type:
     - boolean
+  count:
+    description: count of problems
+    example: 3
+    type:
+    - number
   page:
     description: Parameter that specifies the page (for pagenation)
     example: 1
@@ -209,6 +214,19 @@ links:
   http_header:
     Authorization : "1:ABCDabcd"
 
+- description: ログインしているユーザが投稿した困りごと件数を取得する.利用するにはアクセストークンをヘッダに付ける必要あり.
+  href: "/v1/problems/me/count"
+  method: GET
+  rel: self
+  type:
+  - object
+  title: Me Count
+  targetSchema:
+    properties:
+      count:
+        "$ref": "/schemata/problem#/definitions/count"
+  http_header:
+    Authorization : "1:ABCDabcd"
 
 # 後でつかうためコメントアウトで残す
 # - description: Update an existing problem.
