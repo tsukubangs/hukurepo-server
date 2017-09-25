@@ -328,6 +328,83 @@ describe 'Problems', type: :request do
     end
   end
 
+  # problems#resonded
+  describe 'GET /problems/responded' do
+    before do
+      problem1 = create(:problem1, {user: user1})
+      problem2 = create(:problem2, {user: user2})
+      problem3 = create(:problem3, {user: user2})
+
+      # problem1,3にuser1が返答
+      create(:response1, {user: user1, problem: problem1})
+      create(:response2, {user: user2, problem: problem2})
+      create(:response3, {user: user1, problem: problem3})
+    end
+
+    context 'without authorization' do
+      subject  { get responded_v1_problems_path(format: :json) }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        get responded_v1_problems_path(format: :json), no_params, authorization_header
+      end
+
+      it 'returns problems that first_users responded' do
+        subject
+
+        expect(last_response).to be_ok
+        expect(last_response.status).to eq(200)
+
+        expect(json).to be_an Array
+
+        expect(json[0]['id']).to eq(3)
+        expect(json[0]['comment']).to eq('Bicycle is too many!!!')
+        expath = 'uploads/problem/image/'
+        expect(json[0]['image_url']).to match(expath)
+        expect(json[0]['image_url']).to match(/.+jpg/)
+        expect(json[0]['thumbnail_url']).to match(expath + json[0]['id'].to_s + '/thumb')
+        expect(json[0]['thumbnail_url']).to match(/.+jpg/)
+        expect(json[0]['latitude']).to eq(36.1181461)
+        expect(json[0]['longitude']).to eq(140.0903428)
+        expect(json[0]['user_id']).to eq(2)
+        expect(json[0]['responded']).to be true
+
+        expect(json[1]['id']).to eq(1)
+        expect(json[1]['comment']).to eq('SOX is difficult')
+        expath = 'uploads/problem/image/'
+        expect(json[1]['image_url']).to match(expath)
+        expect(json[1]['image_url']).to match(/.+jpg/)
+        expect(json[1]['thumbnail_url']).to match(expath + json[1]['id'].to_s + '/thumb')
+        expect(json[1]['thumbnail_url']).to match(/.+jpg/)
+        expect(json[1]['latitude']).to eq(36.10830528664971)
+        expect(json[1]['longitude']).to eq(140.10114337330694)
+        expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['responded']).to be false
+      end
+
+      context 'with sort params' do
+        before do
+          # 4つ目のテストデータを追加
+          problem4 = create(:problem, {user: user1})
+
+          create(:response, {user: user1, problem: problem4})
+        end
+
+        example 'id(asc)' do
+          params = { sort: 'id'} # idの昇順
+          get responded_v1_problems_path(format: :json), params, authorization_header
+
+          expect(json[0]['id']).to eq(1)
+          expect(json[1]['id']).to eq(3)
+          expect(json[2]['id']).to eq(4)
+        end
+      end
+    end
+  end
+
   # problems#me and problems$users
   describe 'GET /problems/me/count' do
     before do

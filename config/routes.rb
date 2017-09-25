@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     get 'run_smartphone_app', to: 'static#run_smartphone_app'
     resource :login, only: [:create], controller: :sessions
     post 'check_access_token', to: 'sessions#check_access_token'
-    resource :users, only: [:create]
-    resources :users, only: [:index, :show] do
+
+    resources :users, only: [:create, :index, :show] do
       collection do
         get 'me'
         get 'me/problems', to: 'problems#me'
@@ -15,10 +15,12 @@ Rails.application.routes.draw do
       end
       get 'problems', to: 'problems#users'
     end
+
     resources :problems do
       collection do
         get 'me'
         get 'me/count', to: 'problems#me_count'
+        get 'responded'
       end
 
       resources :responses, only: [:index, :create] do
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
         put 'seen', to: 'responses#put_seen', on: :collection
       end
     end
+
     resources :responses, only: [:show, :destroy]
   end
 end

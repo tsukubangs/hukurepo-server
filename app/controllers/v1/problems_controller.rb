@@ -6,8 +6,8 @@ module V1
 
     # GET /v1/problems
     def index
-      @problems = Problem.order(ordering_params(params)).order(updated_at: :desc).all
-
+      @problems = Problem.all
+      order_problems
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
@@ -15,7 +15,8 @@ module V1
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id]).order(ordering_params(params)).order(updated_at: :desc)
+      @problems = Problem.where(user_id: params[:user_id])
+      order_problems
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
@@ -33,6 +34,15 @@ module V1
     def me_count
       count = Problem.where(user_id: current_user.id).count
       render json: { count: count }
+    end
+
+    # GET /v1/problems/responded
+    def responded
+      problem_ids = Response.where(user_id: current_user.id).select(:problem_id)
+      @problems = Problem.where(id: problem_ids)
+      order_problems
+      paginate_problems
+      render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
     # GET /v1/problems/1
@@ -88,6 +98,10 @@ module V1
 
       def paginate_problems
         @problems = @problems.page(params[:page]).per(params[:per] ||= 5) if params[:page]
+      end
+
+      def order_problems
+        @problems = @problems.order(ordering_params(params)).order(updated_at: :desc)
       end
 
       def slack_message
