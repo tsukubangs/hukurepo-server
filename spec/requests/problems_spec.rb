@@ -333,8 +333,9 @@ describe 'Problems', type: :request do
     before do
       problem1 = create(:problem1, {user: user1})
       problem2 = create(:problem2, {user: user2})
-      problem3 = create(:problem3, {user: user1})
+      problem3 = create(:problem3, {user: user2})
 
+      # problem1,3にuser1が返答
       create(:response1, {user: user1, problem: problem1})
       create(:response2, {user: user2, problem: problem2})
       create(:response3, {user: user1, problem: problem3})
@@ -368,7 +369,7 @@ describe 'Problems', type: :request do
         expect(json[0]['thumbnail_url']).to match(/.+jpg/)
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
-        expect(json[0]['user_id']).to eq(1) # important!
+        expect(json[0]['user_id']).to eq(2)
         expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
@@ -380,7 +381,7 @@ describe 'Problems', type: :request do
         expect(json[1]['thumbnail_url']).to match(/.+jpg/)
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
-        expect(json[1]['user_id']).to eq(1) # important!
+        expect(json[1]['user_id']).to eq(1)
         expect(json[1]['responded']).to be false
       end
 
