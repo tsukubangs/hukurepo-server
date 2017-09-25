@@ -252,6 +252,32 @@
           }
         },
         {
+          "description": "ログインしているユーザが返信した困りごとを全件取得する(降順). クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "href": "/v1/problems/responded",
+          "method": "GET",
+          "rel": "instances",
+          "schema": {
+            "properties": {
+              "page": {
+                "$ref": "#/definitions/problem/definitions/page"
+              },
+              "per": {
+                "$ref": "#/definitions/problem/definitions/per"
+              },
+              "sort": {
+                "$ref": "#/definitions/problem/definitions/sort"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Responded",
+          "http_header": {
+            "Authorization": "1:ABCDabcd"
+          }
+        },
+        {
           "description": "投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems",
           "method": "GET",
