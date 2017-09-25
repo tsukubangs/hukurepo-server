@@ -25,7 +25,6 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.
-(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -79,7 +78,7 @@ HTTP/1.1 201 Created
 
 ### <a name="link-GET-problem-/v1/problems/me">Problem Me</a>
 
-ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
+ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems/me
@@ -131,7 +130,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-GET-problem-/v1/problems">Problem List</a>
 
-投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.
+投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.
 
 ```
 GET /v1/problems
@@ -234,6 +233,7 @@ DELETE /v1/problems/{id}
 
 ```bash
 $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -241,7 +241,7 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 204 No Content
+HTTP/1.1 202 Accepted
 ```
 
 
