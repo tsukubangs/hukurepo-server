@@ -35,6 +35,12 @@ module V1
       render json: { count: count }
     end
 
+    # GET /v1/problems/responded
+    def responded
+      problem_ids = Responses.where(user_id: current_user.id).select(:problem_id)
+      @problems = Problem.where(id: problem_ids)
+    end
+
     # GET /v1/problems/1
     def show
       render json: @problem, serializer: V1::ProblemSerializer
