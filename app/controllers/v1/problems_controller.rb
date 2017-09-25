@@ -51,7 +51,6 @@ module V1
         slack_notify(slack_message)
         @problem.japanese_comment = translate(@problem.comment, :from => :english, :to => :japanese)
         @problem.save
-        # publish_sox
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
