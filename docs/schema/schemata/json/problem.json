@@ -127,6 +127,13 @@
             "integer"
           ]
         },
+        "sort": {
+          "description": "Parameter taht specifies sort order",
+          "example": "responded, -user_id",
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "anyOf": [
             {
@@ -219,7 +226,7 @@
           "title": "Create"
         },
         {
-          "description": "ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "description": "ログインしているユーザの投稿した困りごとを全件取得する(降順). クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems/me",
           "method": "GET",
           "rel": "instances",
@@ -230,6 +237,9 @@
               },
               "per": {
                 "$ref": "#/definitions/problem/definitions/per"
+              },
+              "sort": {
+                "$ref": "#/definitions/problem/definitions/sort"
               }
             },
             "type": [
@@ -242,7 +252,7 @@
           }
         },
         {
-          "description": "投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータ(page,per)を指定することで取得する件数を変更できる. (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する) (例：/v1/problems?page=1 このように、ページのみ指定した場合は1ページあたり5件取得） 利用するにはアクセストークンをヘッダに付ける必要あり.",
+          "description": "投稿されている困りごとを全件取得する（全ユーザが対象, 降順）. クエリパラメータpage,perを指定することで取得する件数を変更できる (例：/v1/problems?page=2&per=3 １ページあたり３件ずつの２ページ目を取得する.ページのみ指定した場合は1ページあたり5件取得). クエリパラメータsortを指定することで、困りごとの並び順を変更できる(例 /v1/problems?sort=responded, -user_id  user_idの降順→respondedの昇順で取得) 利用するにはアクセストークンをヘッダに付ける必要あり.",
           "href": "/v1/problems",
           "method": "GET",
           "rel": "instances",
@@ -253,6 +263,9 @@
               },
               "per": {
                 "$ref": "#/definitions/problem/definitions/per"
+              },
+              "sort": {
+                "$ref": "#/definitions/problem/definitions/sort"
               }
             },
             "type": [
