@@ -35,11 +35,6 @@ module V1
       render json: { count: count }
     end
 
-    # GET /v1/problems/count
-    def count
-      render json: { count: Problem.count }
-    end
-
     # GET /v1/problems/1
     def show
       render json: @problem, serializer: V1::ProblemSerializer
