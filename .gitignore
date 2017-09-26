@@ -37,6 +37,9 @@ sendgrid.env
 /containers/db/*
 !/containers/db/Dockerfile
 
+# Ignore cert files
+/containers/nginx/certs/*
+
 # Ignore other unneeded files
 *.swp
 *~
