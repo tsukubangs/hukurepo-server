@@ -4,7 +4,7 @@ module V1
 
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only: [:index, :create, :get_seen, :put_seen]
-    after_action :translate_japaneses_comment, only: [:create]
+    after_action :translate_japanese_comment, only: [:create]
 
     # GET problems/:problem_id/responses
     def index
