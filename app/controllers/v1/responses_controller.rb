@@ -99,7 +99,7 @@ module V1
       def translate_japanese_comment
         # japanese_commentが空のとき、commentから日本語に翻訳する
         # (commentは英語が入っていることを想定)
-        return if response.japanese_comment.present?
+        return if @response.japanese_comment.present?
         begin
           @response.japanese_comment = translate(@response.comment, :to => :japanese)
           @response.save
