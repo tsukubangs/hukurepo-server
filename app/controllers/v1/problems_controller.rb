@@ -104,7 +104,7 @@ module V1
 
       def translate_japanese_comment
         begin
-          @problem.japanese_comment = translate(@problem.comment, :from => :english, :to => :japanese)
+          @problem.japanese_comment = translate(@problem.comment, :to => :japanese)
           @problem.save
         rescue
           # 例外のときは何もしない
