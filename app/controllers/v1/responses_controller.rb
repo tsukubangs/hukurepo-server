@@ -3,7 +3,8 @@ module V1
     include Orderable
 
     before_action :set_response, only: [:show, :update, :destroy]
-    before_action :set_problem, only:[:index, :create, :get_seen, :put_seen]
+    before_action :set_problem, only: [:index, :create, :get_seen, :put_seen]
+    after_action :translate_japaneses_comment, only: [:create]
 
     # GET problems/:problem_id/responses
     def index
@@ -93,6 +94,18 @@ module V1
       def send_notifications
           push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
           slack_notify(slack_message)
+      end
+
+      def translate_japanese_comment
+        # japanese_commentが空のとき、commentから日本語に翻訳する
+        # (commentは英語が入っていることを想定)
+        return if response.japanese_comment.present?
+        begin
+          @response.japanese_comment = translate(@response.comment, :to => :japanese)
+          @response.save
+        rescue
+          # 例外のときは何もしない
+        end
       end
 
       def slack_message
