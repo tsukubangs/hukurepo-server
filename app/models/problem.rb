@@ -15,6 +15,5 @@ class Problem < ApplicationRecord
       self.responses_seen = true # 自分自身で回答したときは、返信を読んだこととする
     end
     self.save
-    self.touch
   end
 end
