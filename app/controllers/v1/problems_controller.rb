@@ -3,6 +3,7 @@ module V1
     include Orderable
 
     before_action :set_problem, only: [:show, :update, :destroy]
+    after_action :translate_japanese_comment, only: [:create]
 
     # GET /v1/problems
     def index
@@ -11,6 +12,25 @@ module V1
       paginate_problems
 
       render json: @problems, each_serializer: V1::ProblemSerializer
+    end
+
+    # POST /v1/problems
+    def create
+      @problem = Problem.new(problem_params)
+      @problem.user = current_user
+      @problem.responses_seen = true # 返信がないときには既読フラグはtrue
+      if @problem.save
+        render json: @problem, serializer: V1::ProblemSerializer, root: nil,
+               status: :created, location: v1_problem_url(@problem)
+        slack_notify(slack_message)
+      else
+        render json: @problem.errors, status: :unprocessable_entity
+      end
+    end
+
+    # GET /v1/problems/1
+    def show
+      render json: @problem, serializer: V1::ProblemSerializer
     end
 
     # GET /v1/users/1/problems
@@ -43,28 +63,6 @@ module V1
       order_problems
       paginate_problems
       render json: @problems, each_serializer: V1::ProblemSerializer
-    end
-
-    # GET /v1/problems/1
-    def show
-      render json: @problem, serializer: V1::ProblemSerializer
-    end
-
-    # POST /v1/problems
-    def create
-      @problem = Problem.new(problem_params)
-      @problem.user = current_user
-      @problem.responses_seen = true # 返信がないときには既読フラグはtrue
-      if @problem.save
-        render json: @problem, serializer: V1::ProblemSerializer, root: nil,
-        status: :created, location: v1_problem_url(@problem)
-        slack_notify(slack_message)
-        @problem.japanese_comment = translate(@problem.comment, :from => :english, :to => :japanese)
-        @problem.save
-      else
-        render json: @problem.errors, status: :unprocessable_entity
-      end
-
     end
 
     # PATCH/PUT /v1/problems/1
@@ -102,6 +100,15 @@ module V1
 
       def order_problems
         @problems = @problems.order(ordering_params(params)).order(updated_at: :desc)
+      end
+
+      def translate_japanese_comment
+        begin
+          @problem.japanese_comment = translate(@problem.comment, :to => :japanese)
+          @problem.save
+        rescue
+          # 例外のときは何もしない
+        end
       end
 
       def slack_message
