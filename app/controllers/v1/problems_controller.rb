@@ -6,6 +6,7 @@ module V1
     after_action :translate_japanese_comment, only: [:create]
 
     has_scope :responded, :type => :boolean, allow_blank: true
+    has_scope :seen, :type => :boolean, allow_blank: true
 
     # GET /v1/problems
     def index
