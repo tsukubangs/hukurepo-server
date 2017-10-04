@@ -5,11 +5,14 @@ module V1
     before_action :set_problem, only: [:show, :update, :destroy]
     after_action :translate_japanese_comment, only: [:create]
 
+    has_scope :responded, :type => :boolean, allow_blank: true
+
     # GET /v1/problems
     def index
-      @problems = Problem.all
+      @problems = apply_scopes(Problem).all
       order_problems
       paginate_problems
+
 
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
