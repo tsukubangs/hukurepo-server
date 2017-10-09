@@ -3,6 +3,9 @@ class Problem < ApplicationRecord
   belongs_to :user, foreign_key: "user_id"
   has_many :responses, dependent: :destroy
 
+  scope :responded, -> (value = true) { where(:responded => value) }
+  scope :seen, -> (value = true) { where(:seen => value) }
+
   # 回答がきたときにproblemの状態（返信済み、回答既読）を更新する
   # 困りごと投稿ユーザと別人が投稿したときに回答済みフラグrespondedをtrueにする
   # 困りごとユーザが返信したら再度回答する必要があるため、respondedをfalseにする
