@@ -19,4 +19,8 @@ class Problem < ApplicationRecord
     end
     self.save
   end
+
+  def response_users
+
+  end
 end

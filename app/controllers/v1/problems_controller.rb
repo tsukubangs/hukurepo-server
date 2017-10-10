@@ -62,8 +62,7 @@ module V1
 
     # GET /v1/problems/responded
     def responded
-      problem_ids = Response.where(user_id: current_user.id).select(:problem_id)
-      @problems = Problem.where(id: problem_ids)
+      @problems = current_user.responded_problems
       order_problems
       paginate_problems
       render json: @problems, each_serializer: V1::ProblemSerializer

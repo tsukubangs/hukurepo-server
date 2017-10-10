@@ -43,6 +43,7 @@ class ApplicationController < ActionController::API
   def push_notification(to_user, title, body, data_params = {}, priority = "high")
     return if to_user.device_token.blank?
 
+    # TODO 分離する
     fcm_key = ""
     if to_user.is_poster?
       fcm_key = ENV['FCM_HUKUREPO_KEY']

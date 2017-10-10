@@ -21,6 +21,13 @@ class User < ApplicationRecord
    save
   end
 
+  def responded_problems
+    ActiveRecord::Base.transaction do
+      problem_ids = Response.where(user_id: self.id).select(:problem_id)
+      Problem.where(id: problem_ids)
+    end
+  end
+
   def self.is_allow_role?(role)
     allow_roles = ['poster', 'respondent', 'other']
     return allow_roles.include?(role)
