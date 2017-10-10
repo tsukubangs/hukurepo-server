@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         get 'me/problems', to: 'problems#me'
         get 'me/problems/count', to: 'problems#me_count'
         put 'me/device_token', to: 'device_tokens#update'
+        patch 'me/device_token', to: 'device_tokens#update'
       end
       get 'problems', to: 'problems#users'
     end
