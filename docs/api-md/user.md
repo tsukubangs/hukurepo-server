@@ -152,7 +152,8 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx",
+  "role": "poster"
 }
 ```
 

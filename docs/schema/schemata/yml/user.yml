@@ -143,11 +143,11 @@ links:
         "$ref": "/schemata/user#/definitions/device_token"
     required: ["device_token"]
   targetSchema:
-    role:
-      "$ref": "/schemata/user#/definitions/role"
     properties:
       device_token:
         "$ref": "/schemata/user#/definitions/device_token"
+      role:
+        "$ref": "/schemata/user#/definitions/role"
   type:
   - object
   title: DeviceToken Update

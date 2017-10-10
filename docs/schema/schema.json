@@ -937,12 +937,12 @@
             ]
           },
           "targetSchema": {
-            "role": {
-              "$ref": "#/definitions/user/definitions/role"
-            },
             "properties": {
               "device_token": {
                 "$ref": "#/definitions/user/definitions/device_token"
+              },
+              "role": {
+                "$ref": "#/definitions/user/definitions/role"
               }
             }
           },
