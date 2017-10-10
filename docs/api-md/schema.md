@@ -610,11 +610,11 @@ Userの情報，投稿などを管理するAPI
 | **Authorization Key** | *string* | unique token for user | `"1:ABCDabcd"` |
 | **age** | *integer* | age range of user | `20` |
 | **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
-| **created_at** | *date-time* | when user was created | `"2015-01-01T12:00:00Z"` |
+| **created_at** | *date-time* | when user was created | `"2017-06-30T15:41:41.767+09:00"` |
 | **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"` |
 | **gender** | *string* | gender of user | `"male"` |
 | **role** | *string* | role of user | `"poster"` |
-| **updated_at** | *date-time* | when user was updated | `"2015-01-01T12:00:00Z"` |
+| **updated_at** | *date-time* | when user was updated | `"2017-06-30T15:41:41.767+09:00"` |
 
 ### <a name="link-POST-user-/v1/users">User Create</a>
 
@@ -704,8 +704,8 @@ HTTP/1.1 200 OK
   "country_of_residence": "Japan",
   "role": "poster",
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx",
-  "created_at": "2015-01-01T12:00:00Z",
-  "updated_at": "2015-01-01T12:00:00Z"
+  "created_at": "2017-06-30T15:41:41.767+09:00",
+  "updated_at": "2017-06-30T15:41:41.767+09:00"
 }
 ```
 
