@@ -27,7 +27,7 @@ class Problem < ApplicationRecord
     end
   end
 
-  def concerned users
+  def concerned_users
     ActiveRecord::Base.transaction do
       user_ids = Response.where(problem_id: self.id).select(:user_id)
       User.where(id: user_ids)

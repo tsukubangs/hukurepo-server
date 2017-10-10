@@ -92,6 +92,7 @@ module V1
       end
 
       def send_notifications
+        # TODO push通知をまとめる
         @problem.responded_users.each do |to_user|
           push_notification(to_user, 'You gotta more response', @response.comment) if to_user != @response.user
         end
