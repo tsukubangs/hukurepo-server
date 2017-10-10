@@ -938,11 +938,11 @@
           },
           "targetSchema": {
             "properties": {
-              "device_token": {
-                "$ref": "#/definitions/user/definitions/device_token"
-              },
               "role": {
                 "$ref": "#/definitions/user/definitions/role"
+              },
+              "device_token": {
+                "$ref": "#/definitions/user/definitions/device_token"
               }
             }
           },
