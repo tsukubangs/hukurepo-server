@@ -26,6 +26,14 @@ class User < ApplicationRecord
     return allow_roles.include?(role)
   end
 
+  def is_poster?
+    return self.respondent == 'poster'
+  end
+
+  def is_respondent?
+    return self.respondent == 'respondent'
+  end
+
   # 自分以外の同じデバイストークンを持つユーザがいたら nil で上書き
   # 一つのデバイストークンは複数のユーザで持たないべき
   def sweep_same_device_tokens(updated_time: Time.zone.now)

@@ -29,32 +29,6 @@ class ApplicationController < ActionController::API
     end
   end
 
-  private
-
-  def authenticate_with_auth_token auth_token
-    unless auth_token.include?(':')
-      authenticate_error
-      return
-    end
-
-    user_id = auth_token.split(':').first
-    user = User.where(id: user_id).first
-
-    if user && Devise.secure_compare(user.access_token, auth_token)
-      # User can access
-      sign_in user, store: false
-    else
-      authenticate_error
-    end
-  end
-
-  ##
-  # Authentication Failure
-  # Renders a 401 error
-  def authenticate_error
-    render json: { error: t('devise.failure.unauthenticated') }, status: 401
-  end
-
   protected
   # for sending slack notification
   # TODO 後にpush serviceとして分離する
@@ -67,10 +41,11 @@ class ApplicationController < ActionController::API
   end
 
   def push_notification(to_user, title, body, data_params = {}, priority = "high")
-    return if to_user.device_token.nil?
+    return if to_user.device_token.blank?
+    return if fcm_key.blank?
 
     Thread.new do
-      client = Andpush.build(ENV['FCM_SERVER_KEY'])
+      client = Andpush.build(fcm_key)
       notification_params = {
           title: title,
           body: body,
@@ -91,4 +66,42 @@ class ApplicationController < ActionController::API
     EasyTranslate.api_key = ENV['GOOGLE_API_KEY']
     EasyTranslate.translate(comment, :from => from, :to => to)
   end
+
+  private
+
+  def authenticate_with_auth_token auth_token
+    unless auth_token.include?(':')
+      authenticate_error
+      return
+    end
+
+    user_id = auth_token.split(':').first
+    user = User.where(id: user_id).first
+
+    if user && Devise.secure_compare(user.access_token, auth_token)
+      # User can access
+      sign_in user, store: false
+    else
+      authenticate_error
+    end
+  end
+
+  # Authentication Failure
+  # Renders a 401 error
+  def authenticate_error
+    render json: { error: t('devise.failure.unauthenticated') }, status: 401
+  end
+
+  def fcm_key
+    return @fcm_key if @fcm_key.present?
+
+    if to_user.is_poster?
+      @fcm_key = ENV['FCM_HUKUREPO_KEY']
+    elsif to_user.is_respondent?
+      @fcm_key = ENV['FCM_REPLY_KEY']
+    else
+      @fcm_key = ""
+    end
+  end
+
 end

@@ -26,7 +26,7 @@ module V1
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
                status: :created, location: v1_problem_url(@problem)
-        slack_notify(slack_message)
+        send_notifications
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
@@ -113,6 +113,16 @@ module V1
         rescue
           # 例外のときは何もしない
         end
+      end
+
+      def send_notifications
+        # 回答者にpush通知を送る
+        # TODO eachでまわして送るのは効率が悪いため、まとめてpush刷るように変更する
+          users = User.where(role: 'respondent')
+          users.each do |user|
+            push_notification(user, 'Posted new problem', @problem.comment)
+          end
+          slack_notify(slack_message)
       end
 
       def slack_message
