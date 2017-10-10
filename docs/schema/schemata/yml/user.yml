@@ -27,12 +27,6 @@ definitions:
     pattern: ".{6,29}"
     type:
     - string
-  name:
-    description: unique name of user
-    example: 'Wataru Sakamoto'
-    readOnly: true
-    type:
-    - string
   gender:
     description: gender of user
     example: 'male'
@@ -51,12 +45,6 @@ definitions:
     readOnly: true
     type:
     - string
-  image:
-    description: image of the user
-    example: 'image.jp'
-    readOnly: true
-    type:
-    - string
   token_type:
     description: token type for user
     example: "Bearer"
@@ -71,7 +59,7 @@ definitions:
     - string
   role:
     description: role of user
-    example: 'poster'
+    example: "poster"
     readOnly: true
     type:
     - string
@@ -83,15 +71,16 @@ definitions:
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/user_id"
-    - "$ref": "/schemata/user#/definitions/name"
   created_at:
     description: when user was created
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
   updated_at:
     description: when user was updated
     format: date-time
+    example: "2017-06-30T15:41:41.767+09:00"
     type:
     - string
 links:
@@ -115,14 +104,14 @@ links:
         "$ref": "/schemata/user#/definitions/email"
       password:
         "$ref": "/schemata/user#/definitions/password"
-      name:
-        "$ref": "/schemata/user#/definitions/name"
       gender:
         "$ref": "/schemata/user#/definitions/gender"
       age:
         "$ref": "/schemata/user#/definitions/age"
       country_of_residence:
         "$ref": "/schemata/user#/definitions/country_of_residence"
+      role:
+        "$ref": "/schemata/user#/definitions/role"
       #image:
         #"$ref": "/schemata/user#/definitions/image"
     required: ["email","password"]
@@ -175,8 +164,6 @@ properties:
      "$ref": "/schemata/user#/definitions/created_at"
    updated_at:
      "$ref": "/schemata/user#/definitions/updated_at"
-#   name:
-#      "$ref": "/schemata/user#/definitions/name"
 #   image:
 #     "$ref": "/schemata/user#/definitions/image"
 

@@ -40,14 +40,6 @@
             "string"
           ]
         },
-        "name": {
-          "description": "unique name of user",
-          "example": "Wataru Sakamoto",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        },
         "gender": {
           "description": "gender of user",
           "example": "male",
@@ -67,14 +59,6 @@
         "country_of_residence": {
           "description": "country_of_residence of user",
           "example": "Japan",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        },
-        "image": {
-          "description": "image of the user",
-          "example": "image.jp",
           "readOnly": true,
           "type": [
             "string"
@@ -115,9 +99,6 @@
           "anyOf": [
             {
               "$ref": "#/definitions/user/definitions/user_id"
-            },
-            {
-              "$ref": "#/definitions/user/definitions/name"
             }
           ]
         },
@@ -166,9 +147,6 @@
               "password": {
                 "$ref": "#/definitions/user/definitions/password"
               },
-              "name": {
-                "$ref": "#/definitions/user/definitions/name"
-              },
               "gender": {
                 "$ref": "#/definitions/user/definitions/gender"
               },
@@ -177,6 +155,9 @@
               },
               "country_of_residence": {
                 "$ref": "#/definitions/user/definitions/country_of_residence"
+              },
+              "role": {
+                "$ref": "#/definitions/user/definitions/role"
               }
             },
             "required": [

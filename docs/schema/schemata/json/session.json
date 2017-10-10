@@ -38,14 +38,6 @@
             "string"
           ]
         },
-        "name": {
-          "description": "unique name of user",
-          "example": "Wataru Sakamoto",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        },
         "gender": {
           "description": "gender of user",
           "example": "male",
@@ -98,9 +90,6 @@
           "anyOf": [
             {
               "$ref": "#/definitions/user/definitions/user_id"
-            },
-            {
-              "$ref": "#/definitions/user/definitions/name"
             }
           ]
         },

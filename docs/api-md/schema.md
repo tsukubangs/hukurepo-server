@@ -639,7 +639,7 @@ POST /v1/users
 | **age** | *integer* | age range of user | `20` |
 | **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 | **gender** | *string* | gender of user | `"male"` |
-| **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
+| **role** | *string* | role of user | `"poster"` |
 
 
 #### Curl Example
@@ -649,10 +649,10 @@ $ curl -n -X POST https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users \
   -d '{
   "email": "test.example@example.co.jp",
   "password": "example",
-  "name": "Wataru Sakamoto",
   "gender": "male",
   "age": 20,
-  "country_of_residence": "Japan"
+  "country_of_residence": "Japan",
+  "role": "poster"
 }' \
   -H "Content-Type: application/json"
 ```
