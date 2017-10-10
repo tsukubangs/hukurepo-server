@@ -5,11 +5,11 @@ describe 'DeviceTokens', type: :request do
 
   # device_controller#update
   describe 'put v1/users/me/device_token' do
-    let(:params){ { device_token: 'test_device_token' } }
+    let(:params){ { role: 'respondent', device_token: 'test_device_token' } }
     subject do
       put me_device_token_v1_users_path(format: :json), params, authorization_header
     end
-    
+
     context 'without authorization' do
       subject  { put me_device_token_v1_users_path(format: :json), params }
       it_behaves_like 'returns 401'
@@ -17,11 +17,30 @@ describe 'DeviceTokens', type: :request do
 
     context 'with authorization' do
       login
-      it 'update current_users device_token' do
+      it 'update current_users role and device_token' do
         subject
 
         expect(last_response).to be_ok
 
+        expect(json['role']).to eq('respondent')
+        expect(json['device_token']).to eq('test_device_token')
+      end
+
+      it 'update current_users device_token only' do
+        put me_device_token_v1_users_path(format: :json), { device_token: 'test_device_token' },  authorization_header
+
+        expect(last_response).to be_ok
+
+        expect(json['role']).to eq('poster') # roleはposterから変わらない
+        expect(json['device_token']).to eq('test_device_token')
+      end
+
+      it "update current_users role to 'other' when don't allow role" do
+        put me_device_token_v1_users_path(format: :json), { device_token: 'test_device_token', role: 'kaname'},  authorization_header
+
+        expect(last_response).to be_ok
+
+        expect(json['role']).to eq('other') # roleがotherになる
         expect(json['device_token']).to eq('test_device_token')
       end
 

@@ -129,7 +129,7 @@ links:
   - object
   title: Me
 
-- description: 自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり
+- description: 自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleは"poster", "respondent"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる、それらはroleのみの更新はこのエンドポイントではできない．利用するにはアクセストークンをヘッダに付ける必要あり
   href: "/v1/users/me/device_token"
   method: PUT
   rel: update
@@ -137,9 +137,13 @@ links:
     authorization: "1:ABCDabcd"
   schema:
     properties:
+      role:
+        "$ref": "/schemata/user#/definitions/role"
       device_token:
         "$ref": "/schemata/user#/definitions/device_token"
   targetSchema:
+    role:
+      "$ref": "/schemata/user#/definitions/role"
     properties:
       device_token:
         "$ref": "/schemata/user#/definitions/device_token"

@@ -102,7 +102,7 @@ describe 'Users', type: :request do
         expect(json[1]['gender']).to eq('female')
         expect(json[1]['age']).to eq(50)
         expect(json[1]['country_of_residence']).to eq('Japan')
-        expect(json[1]['role']).to eq('poster')
+        expect(json[1]['role']).to eq('respondent')
       end
     end
   end

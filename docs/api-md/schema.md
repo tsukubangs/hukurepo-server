@@ -709,7 +709,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-PUT-user-/v1/users/me/device_token">User DeviceToken Update</a>
 
-自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり
+自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleは"poster", "respondent"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる、それらはroleのみの更新はこのエンドポイントではできない．利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 PUT /v1/users/me/device_token
@@ -720,6 +720,7 @@ PUT /v1/users/me/device_token
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"` |
+| **role** | *string* | role of user | `"poster"` |
 
 
 #### Curl Example
@@ -727,6 +728,7 @@ PUT /v1/users/me/device_token
 ```bash
 $ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
   -d '{
+  "role": "poster",
   "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"
 }' \
   -H "Content-Type: application/json" \

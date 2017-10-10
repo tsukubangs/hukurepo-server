@@ -3,7 +3,7 @@ module V1
     # PUT v1/users/me/device_token
     # PATCH  v1/users/me/device_token
     def update
-      current_user.role = device_token_params[:role] if device_token_params[:role]
+      current_user.role = device_token_params[:role] if device_token_params[:role].present?
       current_user.device_token = device_token_params[:device_token]
 
       ActiveRecord::Base.transaction do
@@ -21,7 +21,7 @@ module V1
 
     private
       def device_token_params
-        # TODO: requireを入れる手段をあとで追加
+        params[:role] = 'other' unless User.is_allow_role?(params[:role]) || params[:role].blank?
         params.permit(:role, :device_token)
       end
   end
