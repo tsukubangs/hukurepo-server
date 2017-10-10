@@ -3,6 +3,9 @@ module V1
     # PUT v1/users/me/device_token
     # PATCH  v1/users/me/device_token
     def update
+      if device_token_params[:role] == 'other'
+        render json: { error: "role params allow only 'poster' or 'respondent'" }, status: :unprocessable_entity and return
+      end
       current_user.role = device_token_params[:role] if device_token_params[:role].present?
       current_user.device_token = device_token_params[:device_token]
 

@@ -35,13 +35,11 @@ describe 'DeviceTokens', type: :request do
         expect(json['device_token']).to eq('test_device_token')
       end
 
-      it "update current_users role to 'other' when don't allow role" do
+      it "don't update device_token when params include don't allow role" do
         put me_device_token_v1_users_path(format: :json), { device_token: 'test_device_token', role: 'kaname'},  authorization_header
 
-        expect(last_response).to be_ok
-
-        expect(json['role']).to eq('other') # roleがotherになる
-        expect(json['device_token']).to eq('test_device_token')
+        expect(last_response.status).to eq(422)
+        expect(json['error']).to eq("role params allow only 'poster' or 'respondent'")
       end
 
       it 'sweep other users same device_token' do
