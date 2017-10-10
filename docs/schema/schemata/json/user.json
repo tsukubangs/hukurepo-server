@@ -186,7 +186,7 @@
           "title": "Me"
         },
         {
-          "description": "自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleは\"poster\", \"respondent\"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる、それらはroleのみの更新はこのエンドポイントではできない．利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleのみの更新はこのエンドポイントではできない．roleは\"poster\", \"respondent\"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる．利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/v1/users/me/device_token",
           "method": "PUT",
           "rel": "update",

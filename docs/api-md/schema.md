@@ -709,7 +709,7 @@ HTTP/1.1 200 OK
 
 ### <a name="link-PUT-user-/v1/users/me/device_token">User DeviceToken Update</a>
 
-自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleは"poster", "respondent"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる、それらはroleのみの更新はこのエンドポイントではできない．利用するにはアクセストークンをヘッダに付ける必要あり
+自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleのみの更新はこのエンドポイントではできない．roleは"poster", "respondent"のみ受け付ける. それ以外の値をroleに格納すると、ユーザのroleはotherになる．利用するにはアクセストークンをヘッダに付ける必要あり
 
 ```
 PUT /v1/users/me/device_token
