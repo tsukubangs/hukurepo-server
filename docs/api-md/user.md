@@ -117,11 +117,17 @@ HTTP/1.1 200 OK
 PUT /v1/users/me/device_token
 ```
 
-#### Optional Parameters
+#### Required Parameters
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
 | **role** | *string* | role of user | `"poster"` |
 
 

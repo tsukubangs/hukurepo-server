@@ -931,7 +931,10 @@
               "device_token": {
                 "$ref": "#/definitions/user/definitions/device_token"
               }
-            }
+            },
+            "required": [
+              "device_token"
+            ]
           },
           "targetSchema": {
             "role": {
