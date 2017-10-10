@@ -158,8 +158,6 @@ properties:
      "$ref": "/schemata/user#/definitions/country_of_residence"
    role:
      "$ref": "/schemata/user#/definitions/role"
-   device_token:
-     "$ref": "/schemata/user#/definitions/device_token"
    created_at:
      "$ref": "/schemata/user#/definitions/created_at"
    updated_at:
