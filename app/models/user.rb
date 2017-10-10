@@ -27,11 +27,11 @@ class User < ApplicationRecord
   end
 
   def is_poster?
-    return self.respondent == 'poster'
+    return self.role == 'poster'
   end
 
   def is_respondent?
-    return self.respondent == 'respondent'
+    return self.role == 'respondent'
   end
 
   # 自分以外の同じデバイストークンを持つユーザがいたら nil で上書き
