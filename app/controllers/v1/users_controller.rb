@@ -6,7 +6,7 @@ module V1
     skip_before_action :authenticate_user_from_token!, only: [:create]
     before_action :set_user, only: [:show]
 
-    wrap_parameters :user, include: [:email, :password, :gender, :age, :country_of_residence, :image]
+    wrap_parameters :user, include: [:email, :password, :gender, :age, :country_of_residence, :role]
 
     def index
       render json: User.order(ordering_params(params)).all, each_serializer: V1::UserSerializer
