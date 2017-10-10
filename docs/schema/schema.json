@@ -837,9 +837,17 @@
             "string"
           ]
         },
+        "role": {
+          "description": "role of user",
+          "example": "poster",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
         "device_token": {
           "description": "unique token for user's fcm device token",
-          "example": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx",
+          "example": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx",
           "type": [
             "string"
           ]
@@ -967,9 +975,6 @@
         "Authorization Key": {
           "$ref": "#/definitions/user/definitions/access_token"
         },
-        "name": {
-          "$ref": "#/definitions/user/definitions/name"
-        },
         "gender": {
           "$ref": "#/definitions/user/definitions/gender"
         },
@@ -979,11 +984,17 @@
         "country_of_residence": {
           "$ref": "#/definitions/user/definitions/country_of_residence"
         },
-        "email": {
-          "$ref": "#/definitions/user/definitions/email"
+        "role": {
+          "$ref": "#/definitions/user/definitions/role"
         },
         "device_token": {
           "$ref": "#/definitions/user/definitions/device_token"
+        },
+        "created_at": {
+          "$ref": "#/definitions/user/definitions/created_at"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/user/definitions/updated_at"
         }
       }
     }

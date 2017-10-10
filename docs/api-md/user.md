@@ -11,11 +11,12 @@ Userの情報，投稿などを管理するAPI
 | ------- | ------- | ------- | ------- |
 | **Authorization Key** | *string* | unique token for user | `"1:ABCDabcd"` |
 | **age** | *integer* | age range of user | `20` |
-| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"` |
-| **email** | *string* | unique email of user<br/> **pattern:** `([a-zA-Z0-9_]+[-.]*)+@[a-z0-9]+(.[a-z]+)+` | `"test.example@example.co.jp"` |
-| **gender** | *string* | gender of user | `"male"` |
-| **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
 | **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
+| **created_at** | *date-time* | when user was created | `"2015-01-01T12:00:00Z"` |
+| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"` |
+| **gender** | *string* | gender of user | `"male"` |
+| **role** | *string* | role of user | `"poster"` |
+| **updated_at** | *date-time* | when user was updated | `"2015-01-01T12:00:00Z"` |
 
 ### <a name="link-POST-user-/v1/users">User Create</a>
 
@@ -38,9 +39,9 @@ POST /v1/users
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **age** | *integer* | age range of user | `20` |
+| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 | **gender** | *string* | gender of user | `"male"` |
 | **name** | *string* | unique name of user | `"Wataru Sakamoto"` |
-| **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 
 
 #### Curl Example
@@ -100,12 +101,13 @@ HTTP/1.1 200 OK
 ```json
 {
   "Authorization Key": "1:ABCDabcd",
-  "name": "Wataru Sakamoto",
   "gender": "male",
   "age": 20,
   "country_of_residence": "Japan",
-  "email": "test.example@example.co.jp",
-  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+  "role": "poster",
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx",
+  "created_at": "2015-01-01T12:00:00Z",
+  "updated_at": "2015-01-01T12:00:00Z"
 }
 ```
 
@@ -121,7 +123,7 @@ PUT /v1/users/me/device_token
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"` |
+| **device_token** | *string* | unique token for user's fcm device token | `"cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"` |
 
 
 #### Curl Example
@@ -129,7 +131,7 @@ PUT /v1/users/me/device_token
 ```bash
 $ curl -n -X PUT https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/users/me/device_token \
   -d '{
-  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"
 }' \
   -H "Content-Type: application/json" \
   -H "authorization: 1:ABCDabcd"
@@ -144,6 +146,8 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx"
+  "device_token": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx"
 }
 ```
+
+
