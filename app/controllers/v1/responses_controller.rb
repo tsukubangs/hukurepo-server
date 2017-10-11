@@ -99,7 +99,7 @@ module V1
           end
         end
         push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
-        slack_notify(slack_message)
+        # slack_notify(slack_message)
       end
 
       def translate_japanese_comment

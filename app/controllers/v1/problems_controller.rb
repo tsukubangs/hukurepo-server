@@ -121,7 +121,7 @@ module V1
           users.each do |user|
             push_notification(user, 'Posted new problem', @problem.comment)
           end
-          slack_notify(slack_message)
+          # slack_notify(slack_message)
       end
 
       def slack_message
