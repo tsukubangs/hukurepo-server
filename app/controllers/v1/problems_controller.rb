@@ -7,6 +7,8 @@ module V1
 
     has_scope :responded, :type => :boolean, allow_blank: true
     has_scope :seen, :type => :boolean, allow_blank: true
+    has_scope :by_response_priority
+
 
     # GET /v1/problems
     def index
@@ -94,7 +96,7 @@ module V1
 
       # Only allow a trusted parameter "white list" through.
       def problem_params
-        params.require(:problem).permit(:comment, :image, :latitude, :longitude)
+        params.require(:problem).permit(:comment, :image, :latitude, :longitude, :response_priority)
       end
 
       def paginate_problems

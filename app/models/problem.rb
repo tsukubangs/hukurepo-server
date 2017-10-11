@@ -5,6 +5,7 @@ class Problem < ApplicationRecord
 
   scope :responded, -> (value = true) { where(:responded => value) }
   scope :seen, -> (value = true) { where(:seen => value) }
+  scope :by_response_priority, -> priority { where(:response_priority => priority) }
 
   # 回答がきたときにproblemの状態（返信済み、回答既読）を更新する
   # 困りごと投稿ユーザと別人が投稿したときに回答済みフラグrespondedをtrueにする
