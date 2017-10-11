@@ -7,6 +7,9 @@ class Problem < ApplicationRecord
   scope :seen, -> (value = true) { where(:seen => value) }
   scope :by_response_priority, -> priority { where(:response_priority => priority) }
 
+  validates :response_priority, inclusion: { in: %w(high default low),
+message: "allow only 'high' or 'default' or 'low'" }
+
   # 回答がきたときにproblemの状態（返信済み、回答既読）を更新する
   # 困りごと投稿ユーザと別人が投稿したときに回答済みフラグrespondedをtrueにする
   # 困りごとユーザが返信したら再度回答する必要があるため、respondedをfalseにする
