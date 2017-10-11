@@ -17,6 +17,7 @@ Stability: `prototype`
 | **latitude** | *number* | latitude | `36.10830528664971` |
 | **longitude** | *number* | longitude | `140.10114337330694` |
 | **responded** | *boolean* | Indicate whether a reply is necessary | `true` |
+| **response_priority** | *string* | priority (high/default/low) of the response of the problem | `"default"` |
 | **responses_seen** | *boolean* | This indicates that it is a already read response | `true` |
 | **thumbnail_url** | *string* | stored thumbnail url | `"/uploads/problem/image/1/thumb_20170609002537.jpg"` |
 | **updated_at** | *date-time* | when problem was updated | `"2017-06-30T15:41:41.767+09:00"` |
@@ -25,7 +26,6 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.
-(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
 
 ```
 POST /v1/problems
@@ -70,6 +70,7 @@ HTTP/1.1 201 Created
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
+  "response_priority": "default",
   "responded": false,
   "responses_seen": true,
   "created_at": "2017-06-30T15:41:41.767+09:00",
@@ -123,6 +124,7 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
+    "response_priority": "default",
     "responded": true,
     "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
@@ -177,6 +179,7 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
+    "response_priority": "default",
     "responded": true,
     "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
@@ -197,6 +200,7 @@ GET /v1/problems
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
+| **by_response_priority** | *string* | priority (high/default/low) of the response of the problem | `"default"` |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
 | **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
@@ -210,6 +214,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d page=1 \
   -d per=5 \
   -d sort=responded%2C+-user_id \
+  -d by_response_priority=default \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -231,6 +236,7 @@ HTTP/1.1 200 OK
     "latitude": 36.10830528664971,
     "longitude": 140.10114337330694,
     "user_id": 1,
+    "response_priority": "default",
     "responded": true,
     "responses_seen": true,
     "created_at": "2017-06-30T15:41:41.767+09:00",
@@ -272,6 +278,7 @@ HTTP/1.1 200 OK
   "latitude": 36.10830528664971,
   "longitude": 140.10114337330694,
   "user_id": 1,
+  "response_priority": "default",
   "responded": true,
   "responses_seen": true,
   "created_at": "2017-06-30T15:41:41.767+09:00",
@@ -292,6 +299,7 @@ DELETE /v1/problems/{id}
 
 ```bash
 $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
+  -H "Content-Type: application/json" \
   -H "Authorization: 1:ABCDabcd"
 ```
 
@@ -299,7 +307,7 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 204 No Content
+HTTP/1.1 202 Accepted
 ```
 
 

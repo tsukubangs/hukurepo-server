@@ -53,6 +53,11 @@ definitions:
     example: 1
     type:
     - integer
+  response_priority:
+    description: priority (high/default/low) of the response of the problem
+    example: 'default'
+    type:
+    - string
   responded:
     description: Indicate whether a reply is necessary
     example: true
@@ -143,6 +148,8 @@ links:
         "$ref": "/schemata/problem#/definitions/longitude"
       user_id:
         "$ref": "/schemata/problem#/definitions/user_id"
+      response_priority:
+        "$ref": "/schemata/problem#/definitions/response_priority"
       responded:
         "$ref": "/schemata/problem#/definitions/responded_false"
       responses_seen:
@@ -221,6 +228,8 @@ links:
         "$ref": "/schemata/problem#/definitions/per"
       sort:
         "$ref": "/schemata/problem#/definitions/sort"
+      by_response_priority:
+        "$ref": "/schemata/problem#/definitions/response_priority"
     type:
     - object
   title: List
@@ -287,6 +296,8 @@ properties:
     "$ref": "/schemata/problem#/definitions/longitude"
   user_id:
     "$ref": "/schemata/problem#/definitions/user_id"
+  response_priority:
+    "$ref": "/schemata/problem#/definitions/response_priority"
   responded:
     "$ref": "/schemata/problem#/definitions/responded"
   responses_seen:

@@ -78,6 +78,13 @@
             "integer"
           ]
         },
+        "response_priority": {
+          "description": "priority (high/default/low) of the response of the problem",
+          "example": "default",
+          "type": [
+            "string"
+          ]
+        },
         "responded": {
           "description": "Indicate whether a reply is necessary",
           "example": true,
@@ -206,6 +213,9 @@
               "user_id": {
                 "$ref": "#/definitions/problem/definitions/user_id"
               },
+              "response_priority": {
+                "$ref": "#/definitions/problem/definitions/response_priority"
+              },
               "responded": {
                 "$ref": "#/definitions/problem/definitions/responded_false"
               },
@@ -292,6 +302,9 @@
               },
               "sort": {
                 "$ref": "#/definitions/problem/definitions/sort"
+              },
+              "by_response_priority": {
+                "$ref": "#/definitions/problem/definitions/response_priority"
               }
             },
             "type": [
@@ -371,6 +384,9 @@
         },
         "user_id": {
           "$ref": "#/definitions/problem/definitions/user_id"
+        },
+        "response_priority": {
+          "$ref": "#/definitions/problem/definitions/response_priority"
         },
         "responded": {
           "$ref": "#/definitions/problem/definitions/responded"
