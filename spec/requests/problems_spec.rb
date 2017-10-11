@@ -33,6 +33,7 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
+        expect(json['response_priority']).to eq("default")
         expect(json['responded']).to be false
         expect(json['responses_seen']).to be true
       end
@@ -107,6 +108,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.10830528664373)
         expect(json[0]['longitude']).to eq(140.10114337330311)
         expect(json[0]['user_id']).to eq(2)
+        expect(json[0]['response_priority']).to eq("high")
         expect(json[0]['responded']).to be false
         expect(json[0]['responses_seen']).to be true
 
@@ -120,6 +122,7 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['response_priority']).to eq("default")
         expect(json[1]['responded']).to be false
         expect(json[1]['responses_seen']).to be true
       end
@@ -216,6 +219,7 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
+        expect(json['response_priority']).to eq("default")
         expect(json['responded']).to be false
         expect(json['responses_seen']).to be true
       end
@@ -269,6 +273,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
+        expect(json[0]['response_priority']).to eq("low")
         expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
@@ -281,6 +286,7 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
+        expect(json[1]['response_priority']).to eq("default")
         expect(json[1]['responded']).to be false
       end
 
@@ -370,6 +376,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(2)
+        expect(json[0]['response_priority']).to eq("low")
         expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
@@ -382,6 +389,8 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['response_priority']).to eq("default")
+
         expect(json[1]['responded']).to be false
       end
 
