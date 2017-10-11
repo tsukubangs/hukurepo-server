@@ -63,6 +63,14 @@ describe 'Users', type: :request do
         expect(last_response.status).to eq(422)
         expect(json['error']).to eq('Validation failed: Password is too long (maximum is 30 characters)')
       end
+
+      it 'returns 422(unprocessable entity) if role is not allowed' do
+        invalid_role = "manager"
+        post v1_users_path(format: :json), user_attributes_for({ role: invalid_role }), json_header
+
+        expect(last_response.status).to eq(422)
+        expect(json['error']).to eq("Validation failed: Role allow only 'poster' or 'respondent' or 'other'")
+      end
     end
   end
 
