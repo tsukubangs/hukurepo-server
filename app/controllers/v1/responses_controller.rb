@@ -92,8 +92,12 @@ module V1
       end
 
       def send_notifications
-          push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
-          slack_notify(slack_message)
+        # TODO push通知をまとめる
+        @problem.responded_users.each do |to_user|
+          push_notification(to_user, 'You gotta more response', @response.comment) if to_user != @response.user
+        end
+        push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
+        slack_notify(slack_message)
       end
 
       def translate_japanese_comment

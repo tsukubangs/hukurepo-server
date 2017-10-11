@@ -29,6 +29,52 @@ class ApplicationController < ActionController::API
     end
   end
 
+  protected
+  # for sending slack notification
+  # TODO 後にpush serviceとして分離する
+  def slack_notify(text)
+    if Rails.env.production?
+      Thread.new do
+        Slack.chat_postMessage(text: text, username: 'HukuRepo', channel:"#notification")
+      end
+    end
+  end
+
+  def push_notification(to_user, title, body, data_params = {}, priority = "high")
+    return if to_user.device_token.blank?
+
+    # TODO 分離する
+    fcm_key = ""
+    if to_user.is_poster?
+      fcm_key = ENV['FCM_HUKUREPO_KEY']
+    elsif to_user.is_respondent?
+      fcm_key = ENV['FCM_REPLY_KEY']
+    end
+    return if fcm_key.blank?
+
+    Thread.new do
+      client = Andpush.build(fcm_key)
+      notification_params = {
+          title: title,
+          body: body,
+          icon: "icon",
+          color: "#99cc22",
+          click_action: "FCM_PLUGIN_ACTIVITY",
+          sound:"default"
+      }
+      response = client.push(to: to_user.device_token, notification: notification_params, data: data_params, priority: priority)
+      to_user.delete_device_token if response.json[:failure] == 1
+    end
+  end
+
+  def translate(comment, from: :english, to: :japanese)
+    return unless Rails.env.production?
+    return if ENV['GOOGLE_API_KEY'].blank?
+
+    EasyTranslate.api_key = ENV['GOOGLE_API_KEY']
+    EasyTranslate.translate(comment, :from => from, :to => to)
+  end
+
   private
 
   def authenticate_with_auth_token auth_token
@@ -48,46 +94,10 @@ class ApplicationController < ActionController::API
     end
   end
 
-  ##
   # Authentication Failure
   # Renders a 401 error
   def authenticate_error
     render json: { error: t('devise.failure.unauthenticated') }, status: 401
   end
 
-  protected
-  # for sending slack notification
-  # TODO 後にpush serviceとして分離する
-  def slack_notify(text)
-    if Rails.env.production?
-      Thread.new do
-        Slack.chat_postMessage(text: text, username: 'HukuRepo', channel:"#notification")
-      end
-    end
-  end
-
-  def push_notification(to_user, title, body, data_params = {}, priority = "high")
-    return if to_user.device_token.nil?
-
-    Thread.new do
-      client = Andpush.build(ENV['FCM_SERVER_KEY'])
-      notification_params = {
-          title: title,
-          body: body,
-          icon: "icon",
-          color: "#99cc22",
-          click_action: "FCM_PLUGIN_ACTIVITY",
-          sound:"default"
-      }
-      response = client.push(to: to_user.device_token, notification: notification_params, data: data_params, priority: priority)
-      to_user.delete_device_token if response.json[:failure] == 1
-    end
-  end
-
-  def translate(comment, from: :english, to: :japanese)
-    if Rails.env.production?
-      EasyTranslate.api_key = ENV['GOOGLE_API_KEY']
-      EasyTranslate.translate(comment, :from => from, :to => to)
-    end
-  end
 end

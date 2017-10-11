@@ -19,4 +19,18 @@ class Problem < ApplicationRecord
     end
     self.save
   end
+
+  def responded_users
+    ActiveRecord::Base.transaction do
+      user_ids = Response.where(problem_id: self.id).select(:user_id)
+      User.where(id: user_ids)
+    end
+  end
+
+  def concerned_users
+    ActiveRecord::Base.transaction do
+      user_ids = Response.where(problem_id: self.id).select(:user_id)
+      User.where(id: user_ids)
+    end
+  end
 end

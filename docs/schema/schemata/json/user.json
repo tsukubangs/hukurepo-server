@@ -40,14 +40,6 @@
             "string"
           ]
         },
-        "name": {
-          "description": "unique name of user",
-          "example": "Wataru Sakamoto",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        },
         "gender": {
           "description": "gender of user",
           "example": "male",
@@ -72,14 +64,6 @@
             "string"
           ]
         },
-        "image": {
-          "description": "image of the user",
-          "example": "image.jp",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        },
         "token_type": {
           "description": "token type for user",
           "example": "Bearer",
@@ -96,9 +80,17 @@
             "string"
           ]
         },
+        "role": {
+          "description": "role of user",
+          "example": "poster",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
         "device_token": {
           "description": "unique token for user's fcm device token",
-          "example": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuBoQBOstB9stqo6I-z0Iv5M9fcbz3Zifib4ewcdznSRf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLTmTHCwMKVtGXx",
+          "example": "cHCy7-HAA:APA91bHtkXlUuCwEWJFREIOxTSEgoO41GwNZn0GuqoGBOssBastqo6I-z0Iv7M9fczz3Zifib43dcezaSqf6CqiCGI7wEmaOjmBIsZQaO5hY12LLz-A74FjaZtfVRyLSdTHCwMKVtGXx",
           "type": [
             "string"
           ]
@@ -107,15 +99,13 @@
           "anyOf": [
             {
               "$ref": "#/definitions/user/definitions/user_id"
-            },
-            {
-              "$ref": "#/definitions/user/definitions/name"
             }
           ]
         },
         "created_at": {
           "description": "when user was created",
           "format": "date-time",
+          "example": "2017-06-30T15:41:41.767+09:00",
           "type": [
             "string"
           ]
@@ -123,6 +113,7 @@
         "updated_at": {
           "description": "when user was updated",
           "format": "date-time",
+          "example": "2017-06-30T15:41:41.767+09:00",
           "type": [
             "string"
           ]
@@ -158,9 +149,6 @@
               "password": {
                 "$ref": "#/definitions/user/definitions/password"
               },
-              "name": {
-                "$ref": "#/definitions/user/definitions/name"
-              },
               "gender": {
                 "$ref": "#/definitions/user/definitions/gender"
               },
@@ -169,6 +157,9 @@
               },
               "country_of_residence": {
                 "$ref": "#/definitions/user/definitions/country_of_residence"
+              },
+              "role": {
+                "$ref": "#/definitions/user/definitions/role"
               }
             },
             "required": [
@@ -195,7 +186,7 @@
           "title": "Me"
         },
         {
-          "description": "自分のデバイストークンの情報を更新する　利用するにはアクセストークンをヘッダに付ける必要あり",
+          "description": "自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleのみの更新はこのエンドポイントではできない．roleは\"poster\", \"respondent\"のみ受け付ける. それ以外の値をroleに格納すると、HTTPステータス422を返す．利用するにはアクセストークンをヘッダに付ける必要あり",
           "href": "/v1/users/me/device_token",
           "method": "PUT",
           "rel": "update",
@@ -204,13 +195,22 @@
           },
           "schema": {
             "properties": {
+              "role": {
+                "$ref": "#/definitions/user/definitions/role"
+              },
               "device_token": {
                 "$ref": "#/definitions/user/definitions/device_token"
               }
-            }
+            },
+            "required": [
+              "device_token"
+            ]
           },
           "targetSchema": {
             "properties": {
+              "role": {
+                "$ref": "#/definitions/user/definitions/role"
+              },
               "device_token": {
                 "$ref": "#/definitions/user/definitions/device_token"
               }
@@ -226,9 +226,6 @@
         "Authorization Key": {
           "$ref": "#/definitions/user/definitions/access_token"
         },
-        "name": {
-          "$ref": "#/definitions/user/definitions/name"
-        },
         "gender": {
           "$ref": "#/definitions/user/definitions/gender"
         },
@@ -238,11 +235,14 @@
         "country_of_residence": {
           "$ref": "#/definitions/user/definitions/country_of_residence"
         },
-        "email": {
-          "$ref": "#/definitions/user/definitions/email"
+        "role": {
+          "$ref": "#/definitions/user/definitions/role"
         },
-        "device_token": {
-          "$ref": "#/definitions/user/definitions/device_token"
+        "created_at": {
+          "$ref": "#/definitions/user/definitions/created_at"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/user/definitions/updated_at"
         }
       }
     }

@@ -25,12 +25,6 @@ definitions:
     readOnly: true
     type:
     - string
-  name:
-    description: unique name of user
-    example: 'Wataru Sakamoto'
-    readOnly: true
-    type:
-    - string
   gender:
     description: gender of user
     example: 'male'
@@ -70,7 +64,6 @@ definitions:
   identity:
     anyOf:
     - "$ref": "/schemata/user#/definitions/user_id"
-    - "$ref": "/schemata/user#/definitions/name"
   created_at:
     description: when user was created
     format: date-time
