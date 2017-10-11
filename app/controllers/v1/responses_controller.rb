@@ -94,7 +94,9 @@ module V1
       def send_notifications
         # TODO push通知をまとめる
         @problem.responded_users.each do |to_user|
-          push_notification(to_user, 'You gotta more response', @response.comment) if to_user != @response.user
+          if to_user != @response.user && to_user != @problem.user
+            push_notification(to_user, 'You gotta more response', @response.comment)
+          end
         end
         push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
         slack_notify(slack_message)
