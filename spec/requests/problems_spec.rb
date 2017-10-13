@@ -161,6 +161,23 @@ describe 'Problems', type: :request do
         end
       end
 
+      context 'with scope params' do
+        before do
+          # 3つ目のテストを追加
+          create(:problem3, {user: user1})
+        end
+
+        example 'by_response_priority' do
+          params = { by_response_priority: "low" }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(1)
+
+          expect(json[0]['response_priority']).to eq("low")
+        end
+      end
+
       context 'valid pagenation' do
         before do
           # 7件困りごと追加（困りごとを9件用意）
@@ -300,12 +317,13 @@ describe 'Problems', type: :request do
           params = { sort: 'id'} # idの昇順
           get me_v1_problems_path(format: :json), params, authorization_header
 
+          expect(json).to be_an Array
+
           expect(json[0]['id']).to eq(1)
           expect(json[1]['id']).to eq(3)
           expect(json[2]['id']).to eq(4)
         end
       end
-
 
       context 'valid pagenation' do
         before do

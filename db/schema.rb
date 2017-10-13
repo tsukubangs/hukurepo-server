@@ -12,6 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20171011073115) do
 
+  create_table "device_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "problems", force: :cascade do |t|
     t.text     "comment"
     t.string   "image"

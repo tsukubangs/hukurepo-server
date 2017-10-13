@@ -41,7 +41,7 @@ module V1
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id])
+      @problems = apply_scopes(Problem).where(user_id: params[:user_id])
       order_problems
       paginate_problems
 
