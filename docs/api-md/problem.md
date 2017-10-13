@@ -92,7 +92,7 @@ GET /v1/problems/me
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
-| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
+| **sort** | *string* | Parameter that specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -147,7 +147,7 @@ GET /v1/problems/responded
 | ------- | ------- | ------- | ------- |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
-| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
+| **sort** | *string* | Parameter that specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -200,10 +200,10 @@ GET /v1/problems
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **by_response_priority** | *string* | priority (high/default/low) of the response of the problem | `"default"` |
+| **by_response_priority** | *string* | Parameter that scope response_priority('high' or 'default' or 'low') | `"high"` |
 | **page** | *integer* | Parameter that specifies the page (for pagenation) | `1` |
 | **per** | *integer* | Parameter that specifies the number of data per page | `5` |
-| **sort** | *string* | Parameter taht specifies sort order | `"responded, -user_id"` |
+| **sort** | *string* | Parameter that specifies sort order | `"responded, -user_id"` |
 
 
 #### Curl Example
@@ -214,7 +214,7 @@ $ curl -n https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems \
   -d page=1 \
   -d per=5 \
   -d sort=responded%2C+-user_id \
-  -d by_response_priority=default \
+  -d by_response_priority=high \
   -H "Authorization: 1:ABCDabcd"
 ```
 

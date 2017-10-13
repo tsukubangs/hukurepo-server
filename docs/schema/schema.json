@@ -135,8 +135,15 @@
           ]
         },
         "sort": {
-          "description": "Parameter taht specifies sort order",
+          "description": "Parameter that specifies sort order",
           "example": "responded, -user_id",
+          "type": [
+            "string"
+          ]
+        },
+        "by_response_priority": {
+          "description": "Parameter that scope response_priority('high' or 'default' or 'low')",
+          "example": "high",
           "type": [
             "string"
           ]
@@ -304,7 +311,7 @@
                 "$ref": "#/definitions/problem/definitions/sort"
               },
               "by_response_priority": {
-                "$ref": "#/definitions/problem/definitions/response_priority"
+                "$ref": "#/definitions/problem/definitions/by_response_priority"
               }
             },
             "type": [

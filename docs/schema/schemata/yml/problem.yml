@@ -94,8 +94,13 @@ definitions:
     type:
     - integer
   sort:
-    description: Parameter taht specifies sort order
+    description: Parameter that specifies sort order
     example: 'responded, -user_id'
+    type:
+    - string
+  by_response_priority:
+    description: Parameter that scope response_priority('high' or 'default' or 'low')
+    example: 'high'
     type:
     - string
   identity:
@@ -229,7 +234,7 @@ links:
       sort:
         "$ref": "/schemata/problem#/definitions/sort"
       by_response_priority:
-        "$ref": "/schemata/problem#/definitions/response_priority"
+        "$ref": "/schemata/problem#/definitions/by_response_priority"
     type:
     - object
   title: List
