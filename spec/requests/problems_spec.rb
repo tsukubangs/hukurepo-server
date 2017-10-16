@@ -33,6 +33,7 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(1)
+        expect(json['response_priority']).to eq("default")
         expect(json['responded']).to be false
         expect(json['responses_seen']).to be true
       end
@@ -107,6 +108,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.10830528664373)
         expect(json[0]['longitude']).to eq(140.10114337330311)
         expect(json[0]['user_id']).to eq(2)
+        expect(json[0]['response_priority']).to eq("high")
         expect(json[0]['responded']).to be false
         expect(json[0]['responses_seen']).to be true
 
@@ -120,6 +122,7 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['response_priority']).to eq("default")
         expect(json[1]['responded']).to be false
         expect(json[1]['responses_seen']).to be true
       end
@@ -155,6 +158,45 @@ describe 'Problems', type: :request do
           expect(json[0]['id']).to eq(3)
           expect(json[1]['id']).to eq(1)
           expect(json[2]['id']).to eq(2)
+        end
+      end
+
+      context 'with scope params' do
+        before do
+          # 3つ目のテストを追加
+          create(:problem3, {user: user1})
+        end
+
+        example 'by_response_priority(low)' do
+          params = { by_response_priority: "low" }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(1)
+
+          expect(json[0]['response_priority']).to eq("low")
+        end
+
+        example 'by_response_priority(high or default)' do
+          params = { by_response_priority: "high,default" }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(2)
+
+          expect(json[0]['response_priority']).to eq("high")
+          expect(json[1]['response_priority']).to eq("default")
+        end
+
+        example 'by_response_priority(high,low) and responded(false)' do
+          params = { by_response_priority: "low,high", responded: false }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(1)
+
+          expect(json[0]['response_priority']).to eq("high")
+          expect(json[0]['responded']).to be false
         end
       end
 
@@ -216,6 +258,7 @@ describe 'Problems', type: :request do
         expect(json['latitude']).to eq(36.10830528664971)
         expect(json['longitude']).to eq(140.10114337330694)
         expect(json['user_id']).to eq(problem.user.id)
+        expect(json['response_priority']).to eq("default")
         expect(json['responded']).to be false
         expect(json['responses_seen']).to be true
       end
@@ -269,6 +312,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(1) # important!
+        expect(json[0]['response_priority']).to eq("low")
         expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
@@ -281,6 +325,7 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1) # important!
+        expect(json[1]['response_priority']).to eq("default")
         expect(json[1]['responded']).to be false
       end
 
@@ -294,12 +339,13 @@ describe 'Problems', type: :request do
           params = { sort: 'id'} # idの昇順
           get me_v1_problems_path(format: :json), params, authorization_header
 
+          expect(json).to be_an Array
+
           expect(json[0]['id']).to eq(1)
           expect(json[1]['id']).to eq(3)
           expect(json[2]['id']).to eq(4)
         end
       end
-
 
       context 'valid pagenation' do
         before do
@@ -370,6 +416,7 @@ describe 'Problems', type: :request do
         expect(json[0]['latitude']).to eq(36.1181461)
         expect(json[0]['longitude']).to eq(140.0903428)
         expect(json[0]['user_id']).to eq(2)
+        expect(json[0]['response_priority']).to eq("low")
         expect(json[0]['responded']).to be true
 
         expect(json[1]['id']).to eq(1)
@@ -382,6 +429,8 @@ describe 'Problems', type: :request do
         expect(json[1]['latitude']).to eq(36.10830528664971)
         expect(json[1]['longitude']).to eq(140.10114337330694)
         expect(json[1]['user_id']).to eq(1)
+        expect(json[1]['response_priority']).to eq("default")
+
         expect(json[1]['responded']).to be false
       end
 

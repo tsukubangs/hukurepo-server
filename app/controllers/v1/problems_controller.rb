@@ -3,17 +3,20 @@ module V1
     include Orderable
 
     before_action :set_problem, only: [:show, :update, :destroy]
+
+    # afterの順番大事 translate -> push_notificationsの順番
+    after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
 
     has_scope :responded, :type => :boolean, allow_blank: true
     has_scope :seen, :type => :boolean, allow_blank: true
+    has_scope :by_response_priority
 
     # GET /v1/problems
     def index
       @problems = apply_scopes(Problem).all
       order_problems
       paginate_problems
-
 
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
@@ -23,10 +26,10 @@ module V1
       @problem = Problem.new(problem_params)
       @problem.user = current_user
       @problem.responses_seen = true # 返信がないときには既読フラグはtrue
+
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
                status: :created, location: v1_problem_url(@problem)
-        send_notifications
       else
         render json: @problem.errors, status: :unprocessable_entity
       end
@@ -39,7 +42,7 @@ module V1
 
     # GET /v1/users/1/problems
     def users
-      @problems = Problem.where(user_id: params[:user_id])
+      @problems = apply_scopes(Problem).where(user_id: params[:user_id])
       order_problems
       paginate_problems
 
@@ -94,7 +97,7 @@ module V1
 
       # Only allow a trusted parameter "white list" through.
       def problem_params
-        params.require(:problem).permit(:comment, :image, :latitude, :longitude)
+        params.require(:problem).permit(:comment, :image, :latitude, :longitude, :response_priority)
       end
 
       def paginate_problems
@@ -106,22 +109,23 @@ module V1
       end
 
       def translate_japanese_comment
+        return if @problem.japanese_comment.present?
         begin
           @problem.japanese_comment = translate(@problem.comment, :to => :japanese)
           @problem.save
         rescue
-          # 例外のときは何もしない
+          # 処理を中断しないため、例外をキャッチ
         end
       end
 
-      def send_notifications
-        # 回答者にpush通知を送る
-        # TODO eachでまわして送るのは効率が悪いため、まとめてpush刷るように変更する
-          users = User.where(role: 'respondent')
-          users.each do |user|
-            push_notification(user, 'Posted new problem', @problem.comment)
-          end
-          # slack_notify(slack_message)
+      def push_notifications
+        return unless @problem.is_response_necessary?
+
+        to_users = User.where(role: 'respondent')
+        to_users.each do |to_user|
+          push_notification(to_user, '新しい困りごとが投稿されました', @problem.japanese_comment)
+        end
+        # slack_notify(slack_message)
       end
 
       def slack_message

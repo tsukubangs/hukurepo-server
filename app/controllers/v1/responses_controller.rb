@@ -4,6 +4,9 @@ module V1
 
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only: [:index, :create, :get_seen, :put_seen]
+
+    # afterの順番大事 translate -> push_notificationsの順番
+    after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
 
     # GET problems/:problem_id/responses
@@ -21,7 +24,6 @@ module V1
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
-        send_notifications
       else
         render json: @response.errors, status: :unprocessable_entity
       end
@@ -91,17 +93,6 @@ module V1
         params.require(:response).permit(:comment, :japanese_comment)
       end
 
-      def send_notifications
-        # TODO push通知をまとめる
-        @problem.responded_users.each do |to_user|
-          if to_user != @response.user && to_user != @problem.user
-            push_notification(to_user, 'You gotta more response', @response.comment)
-          end
-        end
-        push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
-        # slack_notify(slack_message)
-      end
-
       def translate_japanese_comment
         # japanese_commentが空のとき、commentから日本語に翻訳する
         # (commentは英語が入っていることを想定)
@@ -110,8 +101,28 @@ module V1
           @response.japanese_comment = translate(@response.comment, :to => :japanese)
           @response.save
         rescue
-          # 例外のときは何もしない
+          # 処理を中断しないため、例外をキャッチ
         end
+      end
+
+      def push_notifications
+        # 投稿者が返信したときには、困りごとに返信したことがある回答者にプッシュ通知が送られる
+        # 回答者が返信したときには、困りごとの投稿者にプッシュ通知が送られる
+        if @problem.user == @response.user
+          response_users.each do |to_user|
+            push_notification(to_user, "困りごと投稿者からコメントがきました", @response.japanese_comment)
+          end
+        else
+          # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
+          push_notification(@problem.user, "You've got a response", @response.comment)
+        end
+        # slack_notify(slack_message)
+      end
+
+      def response_users
+        # 返信したことがある者にプッシュ通知(回答者自身にはプッシュ通知を送らない 投稿者は回答者として扱わない）
+        not_ids =  [@response.user.id, @problem.user.id]
+        return @problem.responded_users.where.not(id: not_ids).to_a
       end
 
       def slack_message
