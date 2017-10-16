@@ -119,7 +119,7 @@ module V1
       end
 
       def push_notifications
-        return if @problem.errors.present? || @problem.japanese_comment.blank?
+        return if @problem.errors.present?
         return unless @problem.is_response_necessary?
 
         to_users = User.where(role: 'respondent')
