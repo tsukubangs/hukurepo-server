@@ -24,6 +24,7 @@ message: "allow only 'high' or 'default' or 'low'" }
     self.save
   end
 
+  # 配列ではなくActiveRecordを返す
   def responded_users
     ActiveRecord::Base.transaction do
       user_ids = Response.where(problem_id: self.id).select(:user_id)
@@ -31,10 +32,15 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
+  # 配列ではなくActiveRecordを返す
   def concerned_users
     ActiveRecord::Base.transaction do
       user_ids = Response.where(problem_id: self.id).select(:user_id)
       User.where(id: user_ids)
     end
+  end
+
+  def is_response_necessary?
+    return self.response_priority != 'low'
   end
 end
