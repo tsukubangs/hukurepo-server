@@ -5,6 +5,7 @@ module V1
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only: [:index, :create, :get_seen, :put_seen]
     after_action :translate_japanese_comment, only: [:create]
+    after_action :push_notifications, only: [:translate_japanese_comment]
 
     # GET problems/:problem_id/responses
     def index
@@ -21,7 +22,7 @@ module V1
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
-        send_notifications
+        push_notifications
       else
         render json: @response.errors, status: :unprocessable_entity
       end
@@ -91,7 +92,20 @@ module V1
         params.require(:response).permit(:comment, :japanese_comment)
       end
 
-      def send_notifications
+      def translate_japanese_comment
+        # japanese_commentが空のとき、commentから日本語に翻訳する
+        # (commentは英語が入っていることを想定)
+        return if @response.errors.present? || @response.japanese_comment.present?
+        begin
+          @response.japanese_comment = translate(@response.comment, :to => :japanese)
+          @response.save
+        rescue
+          # 処理を中断しないため、例外をキャッチ
+        end
+      end
+
+      def push_notifications
+        return if @response.errors.present?
         # 投稿者が返信したときには、困りごとに返信したことがある回答者にプッシュ通知が送られる
         # 回答者が返信したときには、困りごとの投稿者にプッシュ通知が送られる
         if @problem.user == @response.user
@@ -109,18 +123,6 @@ module V1
         # 返信したことがある者にプッシュ通知(回答者自身にはプッシュ通知を送らない 投稿者は回答者として扱わない）
         not_ids =  [@response.user.id, @problem.user.id]
         return @problem.responded_users.where.not(id: not_ids).to_a
-      end
-
-      def translate_japanese_comment
-        # japanese_commentが空のとき、commentから日本語に翻訳する
-        # (commentは英語が入っていることを想定)
-        return if @response.japanese_comment.present?
-        begin
-          @response.japanese_comment = translate(@response.comment, :to => :japanese)
-          @response.save
-        rescue
-          # 処理を中断しないため、例外をキャッチ
-        end
       end
 
       def slack_message
