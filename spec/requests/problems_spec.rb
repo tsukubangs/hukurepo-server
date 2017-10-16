@@ -167,7 +167,7 @@ describe 'Problems', type: :request do
           create(:problem3, {user: user1})
         end
 
-        example 'by_response_priority' do
+        example 'by_response_priority(low)' do
           params = { by_response_priority: "low" }
           get v1_problems_path(format: :json), params, authorization_header
 
@@ -175,6 +175,28 @@ describe 'Problems', type: :request do
           expect(json.size).to eq(1)
 
           expect(json[0]['response_priority']).to eq("low")
+        end
+
+        example 'by_response_priority(high or default)' do
+          params = { by_response_priority: "high,default" }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(2)
+
+          expect(json[0]['response_priority']).to eq("high")
+          expect(json[1]['response_priority']).to eq("default")
+        end
+
+        example 'by_response_priority(high,low) and responded(false)' do
+          params = { by_response_priority: "low,high", responded: false }
+          get v1_problems_path(format: :json), params, authorization_header
+
+          expect(json).to be_an Array
+          expect(json.size).to eq(1)
+
+          expect(json[0]['response_priority']).to eq("high")
+          expect(json[0]['responded']).to be false
         end
       end
 
