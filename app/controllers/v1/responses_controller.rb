@@ -4,8 +4,10 @@ module V1
 
     before_action :set_response, only: [:show, :update, :destroy]
     before_action :set_problem, only: [:index, :create, :get_seen, :put_seen]
+
+    # afterの順番大事 translate -> push_notificationsの順番
+    after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
-    after_action :push_notifications, only: [:translate_japanese_comment]
 
     # GET problems/:problem_id/responses
     def index
@@ -22,7 +24,6 @@ module V1
       if @response.save
         render json: @response, serializer: V1::ResponseSerializer, root: nil,
         status: :created
-        push_notifications
       else
         render json: @response.errors, status: :unprocessable_entity
       end
@@ -95,7 +96,7 @@ module V1
       def translate_japanese_comment
         # japanese_commentが空のとき、commentから日本語に翻訳する
         # (commentは英語が入っていることを想定)
-        return if @response.errors.present? || @response.japanese_comment.present?
+        return if @response.japanese_comment.present?
         begin
           @response.japanese_comment = translate(@response.comment, :to => :japanese)
           @response.save
@@ -105,7 +106,6 @@ module V1
       end
 
       def push_notifications
-        return if @response.errors.present?
         # 投稿者が返信したときには、困りごとに返信したことがある回答者にプッシュ通知が送られる
         # 回答者が返信したときには、困りごとの投稿者にプッシュ通知が送られる
         if @problem.user == @response.user

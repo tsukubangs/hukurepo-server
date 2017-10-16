@@ -3,8 +3,10 @@ module V1
     include Orderable
 
     before_action :set_problem, only: [:show, :update, :destroy]
+
+    # afterの順番大事 translate -> push_notificationsの順番
+    after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
-    after_action :push_notifications, only: [:translate_japanese_comment]
 
     has_scope :responded, :type => :boolean, allow_blank: true
     has_scope :seen, :type => :boolean, allow_blank: true
@@ -108,8 +110,7 @@ module V1
       end
 
       def translate_japanese_comment
-        return if @problem.errors.present? || @problem.japanese_comment.present?
-
+        return if @problem.japanese_comment.present?
         begin
           @problem.japanese_comment = translate(@problem.comment, :to => :japanese)
           @problem.save
@@ -119,7 +120,6 @@ module V1
       end
 
       def push_notifications
-        return if @problem.errors.present?
         return unless @problem.is_response_necessary?
 
         to_users = User.where(role: 'respondent')
