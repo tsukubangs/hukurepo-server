@@ -114,7 +114,7 @@ module V1
           end
         else
           # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
-          push_notification(@problem.user, "You've got response", @response.comment)
+          push_notification(@problem.user, "You've got a response", @response.comment)
         end
         # slack_notify(slack_message)
       end

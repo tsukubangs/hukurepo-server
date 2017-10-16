@@ -12,7 +12,6 @@ module V1
     has_scope :seen, :type => :boolean, allow_blank: true
     has_scope :by_response_priority
 
-
     # GET /v1/problems
     def index
       @problems = apply_scopes(Problem).all
