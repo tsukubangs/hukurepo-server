@@ -92,7 +92,7 @@ module V1
       end
 
       def send_notifications
-        push_users do |to_user|
+        push_users.each do |to_user|
           push_notification(to_user, "You've got response", @response.comment)
         end
         # slack_notify(slack_message)
