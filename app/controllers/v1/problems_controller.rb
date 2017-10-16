@@ -17,7 +17,6 @@ module V1
       order_problems
       paginate_problems
 
-
       render json: @problems, each_serializer: V1::ProblemSerializer
     end
 
@@ -26,6 +25,7 @@ module V1
       @problem = Problem.new(problem_params)
       @problem.user = current_user
       @problem.responses_seen = true # 返信がないときには既読フラグはtrue
+
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
                status: :created, location: v1_problem_url(@problem)
@@ -120,6 +120,7 @@ module V1
 
       def push_notifications
         return if @problem.errors.present? || @problem.japanese_comment.blank?
+        return unless @problem.is_response_necessary?
 
         to_users = User.where(role: 'respondent')
         to_users.each do |to_user|
