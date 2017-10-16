@@ -92,8 +92,6 @@ module V1
       end
 
       def send_notifications
-        return unless @problem.is_response_necessary?
-
         push_users do |to_user|
           push_notification(to_user, "You've got response", @response.comment)
         end
@@ -101,8 +99,11 @@ module V1
       end
 
       def push_users
-        # 返信したことがある者にプッシュ通知(返信者にはプッシュ通知を送らない）
-        @push_users = @problem.responded_users.where.not("(id = ?) OR (id = ?)", @response.user.id, @problem.user.id).to_a
+        @push_users = Array.new
+        if @problem.is_response_necessary?
+          # 返信したことがある者にプッシュ通知(返信者にはプッシュ通知を送らない）
+          @push_users.concat @problem.responded_users.where.not("(id = ?) OR (id = ?)", @response.user.id, @problem.user.id).to_a
+        end
         # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
         @push_users << @problem.user if @problem.user != @response.user
         return @push_users
