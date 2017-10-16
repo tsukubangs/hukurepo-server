@@ -43,13 +43,7 @@ class ApplicationController < ActionController::API
   def push_notification(to_user, title, body, data_params = {}, priority = "high")
     return if to_user.device_token.blank?
 
-    # TODO 分離する
-    fcm_key = ""
-    if to_user.is_poster?
-      fcm_key = ENV['FCM_HUKUREPO_KEY']
-    elsif to_user.is_respondent?
-      fcm_key = ENV['FCM_REPLY_KEY']
-    end
+    fcm_key = get_fcm_key(to_user)
     return if fcm_key.blank?
 
     Thread.new do
@@ -98,6 +92,16 @@ class ApplicationController < ActionController::API
   # Renders a 401 error
   def authenticate_error
     render json: { error: t('devise.failure.unauthenticated') }, status: 401
+  end
+
+  def get_fcm_key(user)
+    if user.is_poster?
+      return ENV['FCM_HUKUREPO_KEY']
+    elsif user.is_respondent?
+      return ENV['FCM_REPLY_KEY']
+    else
+      return ""
+    end
   end
 
 end
