@@ -5,7 +5,7 @@ class Problem < ApplicationRecord
 
   scope :responded, -> (value = true) { where(:responded => value) }
   scope :seen, -> (value = true) { where(:seen => value) }
-  scope :by_response_priority, -> priority { where(:response_priority => priority) }
+  scope :by_response_priority, -> priority { where(:response_priority => priority.split(",")) }
 
   validates :response_priority, inclusion: { in: %w(high default low),
 message: "allow only 'high' or 'default' or 'low'" }
