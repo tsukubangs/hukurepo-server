@@ -26,6 +26,8 @@ Stability: `prototype`
 ### <a name="link-POST-problem-/v1/problems">Problem Create</a>
 
 困りごとを投稿するAPI　利用するにはアクセストークンをヘッダに付ける必要あり.
+(画像を付属した投稿をする場合は [こちら](./problem-post-form-data.md)を参照してください)
+
 
 ```
 POST /v1/problems
@@ -317,8 +319,7 @@ $ curl -n -X DELETE https://bigclout-api.kde.cs.tsukuba.ac.jp/v1/problems/$ID \
 #### Response Example
 
 ```
-HTTP/1.1 202 Accepted
-```
+HTTP/1.1 204 No Content```
 
 
 ### <a name="link-GET-problem-/v1/problems/me/count">Problem Me Count</a>
