@@ -92,21 +92,23 @@ module V1
       end
 
       def send_notifications
-        push_users.each do |to_user|
-          push_notification(to_user, "You've got response", @response.comment)
+        # 投稿者が返信したときには、困りごとに返信したことがある回答者にプッシュ通知が送られる
+        # 回答者が返信したときには、困りごとの投稿者にプッシュ通知が送られる
+        if @problem.user == @response.user
+          response_users.each do |to_user|
+            push_notification(to_user, "困りごと投稿者からコメントがきました", @response.japanese_comment)
+          end
+        else
+          # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
+          push_notification(@problem.user, "You've got response", @response.comment)
         end
         # slack_notify(slack_message)
       end
 
-      def push_users
-        @push_users = Array.new
-        if @problem.is_response_necessary?
-          # 返信したことがある者にプッシュ通知(返信者にはプッシュ通知を送らない）
-          @push_users.concat @problem.responded_users.where.not("(id = ?) OR (id = ?)", @response.user.id, @problem.user.id).to_a
-        end
-        # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
-        @push_users << @problem.user if @problem.user != @response.user
-        return @push_users
+      def response_users
+        # 返信したことがある者にプッシュ通知(回答者自身にはプッシュ通知を送らない 投稿者は回答者として扱わない）
+        not_ids =  [@response.user.id, @problem.user.id]
+        return @problem.responded_users.where.not(id: not_ids).to_a
       end
 
       def translate_japanese_comment
