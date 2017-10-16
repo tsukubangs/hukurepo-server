@@ -92,14 +92,20 @@ module V1
       end
 
       def send_notifications
-        # TODO push通知をまとめる
-        @problem.responded_users.each do |to_user|
-          if to_user != @response.user && to_user != @problem.user && @problem.is_response_necessary?
-            push_notification(to_user, 'You gotta more response', @response.comment)
-          end
+        return unless @problem.is_response_necessary?
+
+        push_users do |to_user|
+          push_notification(to_user, "You've got response", @response.comment)
         end
-        push_notification(@problem.user, 'You gotta response', @response.comment) if @problem.user != @response.user
         # slack_notify(slack_message)
+      end
+
+      def push_users
+        # 返信したことがある者にプッシュ通知(返信者にはプッシュ通知を送らない）
+        @push_users = @problem.responded_users.where.not("(id = ?) OR (id = ?)", @response.user.id, @problem.user.id).to_a
+        # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
+        @push_users << @problem.user if @problem.user != @response.user
+        return @push_users
       end
 
       def translate_japanese_comment
@@ -110,7 +116,7 @@ module V1
           @response.japanese_comment = translate(@response.comment, :to => :japanese)
           @response.save
         rescue
-          # 例外のときは何もしない
+          # 処理を中断しないため、例外をキャッチ
         end
       end
 
