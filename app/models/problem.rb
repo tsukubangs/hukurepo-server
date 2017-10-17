@@ -10,6 +10,16 @@ class Problem < ApplicationRecord
   validates :response_priority, inclusion: { in: %w(high default low),
 message: "allow only 'high' or 'default' or 'low'" }
 
+### PROBLEM MODEL ###
+  def self.new_problem(problem_params, user)
+    problem = Problem.new(problem_params)
+    problem.user = user
+    problem.responses_seen = true # 返信がないときには既読フラグはtrue
+    problem
+  end
+
+### ATTRIBUTES ###
+
   # 回答がきたときにproblemの状態（返信済み、回答既読）を更新する
   # 困りごと投稿ユーザと別人が投稿したときに回答済みフラグrespondedをtrueにする
   # 困りごとユーザが返信したら再度回答する必要があるため、respondedをfalseにする
@@ -32,6 +42,12 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
+  def is_response_necessary?
+    return self.response_priority != 'low'
+  end
+
+### OTHER MODEL ###
+
   # 配列ではなくActiveRecordを返す
   def concerned_users
     ActiveRecord::Base.transaction do
@@ -40,7 +56,13 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
-  def is_response_necessary?
-    return self.response_priority != 'low'
+  def create_auto_response
+    response_params = {
+        comment: "Thank you for your contribution. The problem posted will be a reference for city improvement.",
+        japanese_comment: "ご協力ありがとうございました。投稿された困りごとは都市改善の参考に致します。"
+    }
+    respondent = User.manager
+    response = Response.new_response(response_params, respondent, self)
+    response.save
   end
 end

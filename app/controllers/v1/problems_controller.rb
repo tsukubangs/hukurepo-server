@@ -5,8 +5,10 @@ module V1
     before_action :set_problem, only: [:show, :update, :destroy]
 
     # afterの順番大事 translate -> push_notificationsの順番
+    after_action :auto_response, only: [:create]
     after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
+
 
     has_scope :responded, :type => :boolean, allow_blank: true
     has_scope :seen, :type => :boolean, allow_blank: true
@@ -23,9 +25,7 @@ module V1
 
     # POST /v1/problems
     def create
-      @problem = Problem.new(problem_params)
-      @problem.user = current_user
-      @problem.responses_seen = true # 返信がないときには既読フラグはtrue
+      @problem = Problem.new_problem(problem_params, current_user)
 
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,
@@ -126,6 +126,11 @@ module V1
           push_notification(to_user, '新しい困りごとが投稿されました', @problem.japanese_comment)
         end
         # slack_notify(slack_message)
+      end
+
+      def auto_response
+        return if @problem.is_response_necessary?
+        @problem.create_auto_response
       end
 
       def slack_message
