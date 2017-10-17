@@ -130,18 +130,7 @@ module V1
 
       def auto_response
         return if @problem.is_response_necessary?
-        respondent = User.manager
-        response = Response.new_response(response_params, respondent)
-        response.save
-      end
-
-      def response_params
-        @response_params = {
-          "response": {
-            "comment": "Thank you for your contribution. The problem posted will be a reference for city improvement.",
-            "japanese_comment": "ご協力ありがとうございました。投稿された困りごとは都市改善の参考に致します。"
-          }
-        }
+        @problem.create_auto_response
       end
 
       def slack_message

@@ -24,9 +24,12 @@ class User < ApplicationRecord
   end
 
 ### USER MODEL ###
-    def self.manager
-      User.first
-    end
+  def self.manager
+    @manager ||= User.where(email: ENV['MANAGER_EMAIL']).first
+    @manager
+  end
+
+### ATTRIBUTES ###
 
 ### ACCESS_TOKEN ###
 
