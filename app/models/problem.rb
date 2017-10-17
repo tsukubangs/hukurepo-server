@@ -61,7 +61,6 @@ message: "allow only 'high' or 'default' or 'low'" }
         comment: "Thank you for your contribution. The problem posted will be a reference for city improvement.",
         japanese_comment: "ご協力ありがとうございました。投稿された困りごとは都市改善の参考に致します。"
     }
-    problem = self
     respondent = User.manager
     response = Response.new_response(response_params, respondent, self)
     response.save
