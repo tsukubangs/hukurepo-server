@@ -23,9 +23,7 @@ module V1
 
     # POST /v1/problems
     def create
-      @problem = Problem.new(problem_params)
-      @problem.user = current_user
-      @problem.responses_seen = true # 返信がないときには既読フラグはtrue
+      @problem = Problem.new_problem(problem_params, current_user)
 
       if @problem.save
         render json: @problem, serializer: V1::ProblemSerializer, root: nil,

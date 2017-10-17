@@ -10,6 +10,13 @@ class Problem < ApplicationRecord
   validates :response_priority, inclusion: { in: %w(high default low),
 message: "allow only 'high' or 'default' or 'low'" }
 
+  def self.new_problem(problem_params, user)
+    problem = Problem.new(problem_params)
+    problem.user = user
+    problem.responses_seen = true # 返信がないときには既読フラグはtrue
+    problem
+  end
+
   # 回答がきたときにproblemの状態（返信済み、回答既読）を更新する
   # 困りごと投稿ユーザと別人が投稿したときに回答済みフラグrespondedをtrueにする
   # 困りごとユーザが返信したら再度回答する必要があるため、respondedをfalseにする
