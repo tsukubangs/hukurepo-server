@@ -5,8 +5,10 @@ module V1
     before_action :set_problem, only: [:show, :update, :destroy]
 
     # afterの順番大事 translate -> push_notificationsの順番
+    after_action :auto_response, only: [:create]
     after_action :push_notifications, only: [:create]
     after_action :translate_japanese_comment, only: [:create]
+
 
     has_scope :responded, :type => :boolean, allow_blank: true
     has_scope :seen, :type => :boolean, allow_blank: true
@@ -124,6 +126,22 @@ module V1
           push_notification(to_user, '新しい困りごとが投稿されました', @problem.japanese_comment)
         end
         # slack_notify(slack_message)
+      end
+
+      def auto_response
+        return if @problem.is_response_necessary?
+        respondent = User.manager
+        response = Response.new_response(response_params, respondent)
+        response.save
+      end
+
+      def response_params
+        @response_params = {
+          "response": {
+            "comment": "Thank you for your contribution. The problem posted will be a reference for city improvement.",
+            "japanese_comment": "ご協力ありがとうございました。投稿された困りごとは都市改善の参考に致します。"
+          }
+        }
       end
 
       def slack_message
