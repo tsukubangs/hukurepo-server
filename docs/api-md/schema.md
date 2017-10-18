@@ -625,7 +625,6 @@ Userの情報，投稿などを管理するAPI
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
-| **Authorization Key** | *string* | unique token for user | `"1:ABCDabcd"` |
 | **age** | *integer* | age range of user | `20` |
 | **country_of_residence** | *string* | country_of_residence of user | `"Japan"` |
 | **created_at** | *date-time* | when user was created | `"2017-06-30T15:41:41.767+09:00"` |
@@ -715,13 +714,14 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "Authorization Key": "1:ABCDabcd",
+  "user_id": 1,
   "gender": "male",
   "age": 20,
   "country_of_residence": "Japan",
   "role": "poster",
   "created_at": "2017-06-30T15:41:41.767+09:00",
-  "updated_at": "2017-06-30T15:41:41.767+09:00"
+  "updated_at": "2017-06-30T15:41:41.767+09:00",
+  "email": "test.example@example.co.jp"
 }
 ```
 

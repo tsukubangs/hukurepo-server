@@ -128,6 +128,25 @@ links:
   type:
   - object
   title: Me
+  targetSchema:
+    properties:
+      user_id:
+        "$ref": "/schemata/user#/definitions/user_id"
+      gender:
+        "$ref": "/schemata/user#/definitions/gender"
+      age:
+        "$ref": "/schemata/user#/definitions/age"
+      country_of_residence:
+        "$ref": "/schemata/user#/definitions/country_of_residence"
+      role:
+        "$ref": "/schemata/user#/definitions/role"
+      created_at:
+       "$ref": "/schemata/user#/definitions/created_at"
+      updated_at:
+       "$ref": "/schemata/user#/definitions/updated_at"
+      email:
+       "$ref": "/schemata/user#/definitions/email"
+
 
 - description: 自分のデバイストークンの情報を更新する(PUT/PATCHどちらでも可)．device_tokenのみがパラメータに含まれているときは、device_tokenのみを更新する. roleのみの更新はこのエンドポイントではできない．roleは"poster", "respondent"のみ受け付ける. それ以外の値をroleに格納すると、HTTPステータス422を返す．利用するにはアクセストークンをヘッダに付ける必要あり
   href: "/v1/users/me/device_token"
@@ -153,8 +172,6 @@ links:
   title: DeviceToken Update
 
 properties:
-   Authorization Key:
-     "$ref": "/schemata/user#/definitions/access_token"
    gender:
      "$ref": "/schemata/user#/definitions/gender"
    age:
