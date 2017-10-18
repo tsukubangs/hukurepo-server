@@ -115,6 +115,37 @@ describe 'Users', type: :request do
     end
   end
 
+  # users#me
+  describe 'GET /users/me' do
+    let!(:user) { create(:user) }
+
+    context 'without authorization' do
+      subject  { get me_v1_users_path(user.id, format: :json), no_params }
+      it_behaves_like 'returns 401'
+    end
+
+    context 'with authorization' do
+      login
+      subject do
+        get me_v1_users_path(user.id, format: :json), no_params, authorization_header
+      end
+
+      it 'returns exisiting user' do
+        subject
+
+        expect(last_response).to be_ok
+        expect(last_response.status).to eq(200)
+
+        expect(json['id']).to eq(user.id)
+        expect(json['gender']).to eq('male')
+        expect(json['age']).to eq(20)
+        expect(json['country_of_residence']).to eq('Japan')
+        expect(json['role']).to eq('poster')
+        expect(json['email']).to eq('kaname@kaname.co.jp')
+      end
+    end
+  end
+
   # users#show
   describe 'GET /users/:id' do
     let!(:user) { create(:user) }
