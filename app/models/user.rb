@@ -15,23 +15,30 @@ class User < ApplicationRecord
 
   has_many :problems
 
+### VALIDATE ###
+
   def validate_role
     unless User.is_allow_role?(self.role)
       errors.add(:role, "allow only 'poster' or 'respondent' or 'other'")
     end
   end
 
+### USER MODEL ###
+  def self.manager
+    @manager ||= User.where(email: ENV['MANAGER_EMAIL']).first
+    @manager
+  end
+
+### ATTRIBUTES ###
+
+### ACCESS_TOKEN ###
+
   def update_access_token!
    self.access_token = "#{self.id}:#{Devise.friendly_token}"
    save
   end
 
-  def responded_problems
-    ActiveRecord::Base.transaction do
-      problem_ids = Response.where(user_id: self.id).select(:problem_id)
-      Problem.where(id: problem_ids)
-    end
-  end
+### ROLE ###
 
   def self.is_allow_role?(role)
     allow_roles = ['poster', 'respondent', 'other']
@@ -50,6 +57,8 @@ class User < ApplicationRecord
     return self.role == 'other'
   end
 
+### DEVICE_TOKEN ###
+
   # 自分以外の同じデバイストークンを持つユーザがいたら nil で上書き
   # 一つのデバイストークンは複数のユーザで持たないべき
   def sweep_same_device_tokens(updated_time: Time.zone.now)
@@ -60,6 +69,15 @@ class User < ApplicationRecord
 
   def delete_device_token
     self.update_attribute(:device_token, nil)
+  end
+
+### OTHER MODEL ###
+
+  def responded_problems
+    ActiveRecord::Base.transaction do
+      problem_ids = Response.where(user_id: self.id).select(:problem_id)
+      Problem.where(id: problem_ids)
+    end
   end
 
 end

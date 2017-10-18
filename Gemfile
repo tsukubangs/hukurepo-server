@@ -53,11 +53,14 @@ gem 'andpush'
 # use for rails console
 gem 'hirb-unicode'
 
-# use fore translate
+# use for translate
 gem 'easy_translate'
 
 # use scope api
 gem 'has_scope'
+
+# use for seed
+gem 'seed-fu' 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

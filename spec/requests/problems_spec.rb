@@ -36,6 +36,10 @@ describe 'Problems', type: :request do
         expect(json['response_priority']).to eq("default")
         expect(json['responded']).to be false
         expect(json['responses_seen']).to be true
+
+        # auto responseがないことの確認
+        problem = Problem.where(id: json['id']).first
+        expect(problem.responses.size).to eq(0)
       end
 
       it_behaves_like 'returns datetime'
@@ -50,6 +54,14 @@ describe 'Problems', type: :request do
         subject
         get json['thumbnail_url'], no_params, authorization_header
         expect(last_response.status).to eq(200)
+      end
+
+      it 'created auto_response' do
+        problem3_params = { problem: attributes_for(:problem3) }
+        post v1_problems_path(format: :json), problem3_params, formdata_header
+
+        problem = Problem.where(id: json['id']).first
+        expect(problem.responses.size).to eq(1)
       end
 
       context 'escape html tags of json response' do

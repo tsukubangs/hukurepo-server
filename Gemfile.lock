@@ -243,6 +243,9 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     ruby_http_client (3.1.0)
+    seed-fu (2.3.6)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     sendgrid-ruby (5.0.0)
       ruby_http_client (~> 3.0)
       sinatra (>= 1.4.7, < 3)
@@ -320,6 +323,7 @@ DEPENDENCIES
   rack-json_schema
   rails (~> 5.0.2)
   rspec-rails (~> 3.5)
+  seed-fu
   sendgrid-ruby
   simplecov
   slack-api
