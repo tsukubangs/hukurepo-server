@@ -19,7 +19,7 @@ module V1
 
     # GET /v1/users/me
     def me
-      render json: current_user, serializer: V1::UserSerializer, root: nil
+      render json: current_user, serializer: V1::UserMeSerializer, root: nil
     end
 
     # POST /v1/users
