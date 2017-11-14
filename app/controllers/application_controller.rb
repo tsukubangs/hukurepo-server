@@ -1,6 +1,6 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include AbstractController::Translation
-
+  protect_from_forgery with: :exception
   before_action :authenticate_user_from_token!
 
   respond_to :json
