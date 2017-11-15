@@ -77,7 +77,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-
+# use bootstrap4
+gem 'bootstrap', '~> 4.0.0.beta2.1'
 ####################
 
 group :development, :test do
