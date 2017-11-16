@@ -1,5 +1,8 @@
 @import "bootstrap";
 
-.test{
-  color: red;
+$tsukuba-blue: #01a8ec;
+$tsukuba-green: #2bb46e;
+
+.bg-tsukuba-blue {
+  background-color: $tsukuba-blue;
 }
