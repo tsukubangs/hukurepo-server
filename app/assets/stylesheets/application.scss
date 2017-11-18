@@ -2,11 +2,36 @@
 
 $tsukuba-blue: #01a8ec;
 $tsukuba-green: #2bb46e;
+$original-purple: #725CA4;
+$original-tarquoise: #04AEE6;
+$original-yellow: #EBB763;
 
 .bg-tsukuba-blue {
   background-color: $tsukuba-blue;
 }
 
+.bg-purple {
+  background-color: $original-purple;
+}
+
+.bg-turquoise {
+  background-color: $original-tarquoise;
+}
+
+.bg-yellow {
+  background-color: $original-yellow;
+}
+
 .mg-top-15 {
   margin-top: 15px;
+}
+
+.card-h100 {
+  height: 100px;
+  margin-bottom: 45px;
+  padding: 10px;
+}
+
+.card-number {
+  font-size: 2.2em;
 }
