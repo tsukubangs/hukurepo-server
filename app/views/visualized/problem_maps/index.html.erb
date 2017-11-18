@@ -3,14 +3,26 @@
   <div class="col-sm-8">
     <div class="card">
       <div class="">
-        <div id="map" style='height: 500px'></div>
+        <div id="map" style="height: 500px;"></div>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="card">
+    <div class="card" style="height: 500px;">
       <div class="card-body">
-        <p class="card-text">ここは投稿数など</p>
+        <p class="card-text text-secondary">投稿された困りごと数</p>
+        <div class="card card-h100 bg-purple">
+          <span class="text-light card-number"><%= 15 %></span>
+          <p class="card-text text-light">投稿数/日</p>
+        </div>
+        <div class="card card-h100 bg-turquoise">
+          <span class="text-light card-number"><%= 0 %></span>
+          <p class="card-text text-light">投稿数/月</p>
+        </div>
+        <div class="card card-h100 bg-yellow">
+          <span class="text-light card-number"><%= 0 %></span>
+          <p class="card-text text-light">全投稿数</p>
+        </div>
       </div>
     </div>
   </div>
@@ -31,6 +43,6 @@
         markers = handler.addMarkers(<%=raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        handler.getMap().setZoom(15);
+        handler.getMap().setZoom(13);
     });
 </script>
