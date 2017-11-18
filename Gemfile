@@ -79,6 +79,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # use bootstrap4
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+# use google map
+gem 'gmaps4rails'
 ####################
 
 group :development, :test do
