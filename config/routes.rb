@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'visualized/problem_maps#index'
+
   namespace :visualized do
     get 'problem_maps/index'
   end
