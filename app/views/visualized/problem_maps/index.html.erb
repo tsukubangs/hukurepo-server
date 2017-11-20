@@ -1,4 +1,49 @@
-<h1>Visualized::ProblemMaps#index</h1>
-<p>Find me in app/views/visualized/problem_maps/index.html.erb</p>
-<div class="test">Primary</div>
-<div class="btn btn-primary">Primary</div>
+<h3 class="mg-bottom-15">マップ表示</h3>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="">
+        <div id="map" style="height: 500px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card" style="height: 500px;">
+      <div class="card-body">
+        <p class="card-text text-secondary">投稿された困りごと数</p>
+        <div class="card card-h100 bg-purple">
+          <span class="text-light card-number"><%= 15 %></span>
+          <p class="card-text text-light">投稿数/日</p>
+        </div>
+        <div class="card card-h100 bg-turquoise">
+          <span class="text-light card-number"><%= 0 %></span>
+          <p class="card-text text-light">投稿数/月</p>
+        </div>
+        <div class="card card-h100 bg-yellow">
+          <span class="text-light card-number"><%= 0 %></span>
+          <p class="card-text text-light">全投稿数</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mg-top-30 mg-bottom-15">
+  <div class="col-sm-12">
+    <div class="card w-100">
+      <div class="card-body">
+        <p class="card-text">困りごとの一覧(要約的なやつをここに)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setCenter(new google.maps.LatLng(36.0860639,140.0750788));
+        handler.getMap().setZoom(13);
+    });
+</script>
