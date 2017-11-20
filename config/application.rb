@@ -9,7 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -27,7 +27,7 @@ module ApiTest
     # Skip views, helpers and assets when generating a new resource.
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    config.api_only = true
+    # config.api_only = true
     config.autoload_paths << Rails.root.join('app', 'uploaders')
 
     config.autoload_paths += %W(#{config.root}/lib)
