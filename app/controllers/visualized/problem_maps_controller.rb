@@ -6,6 +6,7 @@ class Visualized::ProblemMapsController < ApplicationController
       marker.lat problem.latitude
       marker.lng problem.longitude
       marker.infowindow render_to_string(partial: "visualized/infowindow", locals: {problem: problem})
+      #マーカーをいじりたい時はここを変える
       # marker.picture({
       #             :url => "http://icon-rainbow.com/i/icon_03702/icon_037020_256.jpg",
       #             :width   => 32,

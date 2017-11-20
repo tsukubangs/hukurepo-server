@@ -1,8 +1,7 @@
-<h2><%=problem.comment%></h2>
+<%=problem.comment%><br />
 年代：<%=problem.user.age%><br />
 性別：<%=problem.user.gender%><br />
 居住国：<%=problem.user.country_of_residence%><br />
 写真：
-
-
-<%= link_to "マップを開く" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %>
+<%= image_tag(problem.image, :size => "50x50") %><br />
+<%= link_to "マップを開く" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %><br />
