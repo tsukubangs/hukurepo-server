@@ -43,6 +43,7 @@
         markers = handler.addMarkers(<%=raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
+        handler.getMap().setCenter(new google.maps.LatLng(36.0860639,140.0750788));
         handler.getMap().setZoom(13);
     });
 </script>
