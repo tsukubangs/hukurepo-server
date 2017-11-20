@@ -12,7 +12,7 @@ class Visualized::ProblemMapsController < ApplicationController
       #             :width   => 32,
       #             :height  => 32
       #            })
-      marker.title "TEST"
+      marker.title problem.japanese_comment
     end
   end
 end
