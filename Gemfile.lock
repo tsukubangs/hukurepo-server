@@ -69,6 +69,7 @@ GEM
       mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
+    chartkick (2.2.5)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -209,7 +210,7 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.10.0)
+    puma (3.11.0)
     rack (2.0.3)
     rack-cors (1.0.2)
     rack-json_schema (1.5.2)
@@ -264,7 +265,7 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
-    rspec-rails (3.7.1)
+    rspec-rails (3.7.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -355,6 +356,7 @@ DEPENDENCIES
   by_star!
   byebug
   carrierwave
+  chartkick
   coffee-rails (~> 4.2)
   database_cleaner
   devise

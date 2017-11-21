@@ -83,6 +83,8 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'gmaps4rails'
 # use for selected period
 gem 'by_star', git: "git://github.com/radar/by_star"
+# user for chart library (chart.js, google charts, highcharts.js)
+gem 'chartkick'
 ####################
 
 group :development, :test do
