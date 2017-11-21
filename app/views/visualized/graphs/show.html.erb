@@ -1,2 +1,29 @@
-<h1>Visualized::Graphs#show</h1>
-<p>Find me in app/views/visualized/graphs/show.html.erb</p>
+<h3 class="mg-bottom-15">グラフ表示</h3>
+<div class="row mg-bottom-15">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="row card-body">
+        <div class="col-sm-9">
+          <p class="">投稿数グラフ</p>
+          <%= line_chart({"Football" => 10, "Basketball" => 5}) %>
+        </div>
+        <div class="col-sm-3">
+          <div class="card mg-bottom-15">
+            <div class="card-body">
+              <p class="card-text">絞り込みのformをここに</p>
+            </div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mg-top-30 mg-bottom-15">
+  <div class="col-sm-12">
+    <div class="card w-100">
+      <div class="card-body">
+        <p class="card-text">ユーザ数グラフ</p>
+      </div>
+    </div>
+  </div>
+</div>
