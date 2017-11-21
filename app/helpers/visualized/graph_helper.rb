@@ -1,2 +1,0 @@
-module Visualized::GraphHelper
-end

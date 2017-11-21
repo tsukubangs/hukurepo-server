@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :visualized do
+    get 'graphs/show'
+  end
+
   root 'visualized/problem_maps#index'
 
   namespace :visualized do
