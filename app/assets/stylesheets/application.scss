@@ -38,3 +38,15 @@ $original-yellow: #EBB763;
 .card-number {
   font-size: 2.2em;
 }
+
+.comment-container {
+  overflow: hidden;
+  width: 100%;
+  p {
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
+}
