@@ -4,8 +4,25 @@
     <div class="card">
       <div class="row card-body">
         <div class="col-sm-9">
-          <p class="">投稿数グラフ</p>
-          <%= column_chart(@graph_data) %>
+          <nav class="nav nav-tabs" id="myTab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">1時間ごと</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">1日ごと</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="true">月ごと</a>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <%= hour_chart %>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <%= day_chart %>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <%=  month_chart %>
+            </div>
+          </div>
         </div>
         <div class="col-sm-3">
           <div class="card mg-bottom-15">
@@ -13,7 +30,7 @@
               <p class="card-text">絞り込みのformをここに</p>
             </div>
           </div>
-         </div>
+        </div>
       </div>
     </div>
   </div>
