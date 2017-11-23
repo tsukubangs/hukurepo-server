@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :visualized do
     get 'graphs/show'
+    get 'graphs/chart_data'
   end
 
   root 'visualized/problem_maps#index'
