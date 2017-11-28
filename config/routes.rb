@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :visualized do
     get 'problem_maps/index'
+    get 'graphs/show'
+    get 'graphs/chart_data'
   end
 
   devise_for :users, only: []
