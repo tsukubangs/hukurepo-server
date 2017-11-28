@@ -82,7 +82,6 @@ message: "allow only 'high' or 'default' or 'low'" }
       e = time + (num+1).hour
       graph_data["#{num}時"] = Problem.between_times(s, e).count
     end
-
   end
 
   def self.counts_per_month(graph_data)

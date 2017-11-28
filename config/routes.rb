@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
 
-  namespace :visualized do
-    get 'graphs/show'
-    get 'graphs/chart_data'
-  end
-
   root 'visualized/problem_maps#index'
 
   namespace :visualized do
     get 'problem_maps/index'
-    get 'graph/show'
+    get 'graphs/show'
+    get 'graphs/chart_data'
   end
 
   devise_for :users, only: []

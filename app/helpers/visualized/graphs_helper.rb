@@ -20,13 +20,13 @@ module Visualized::GraphsHelper
 
   def day_chart
     library_options = {
-        scales: {
-            yAxes: [{
-                        ticks: {
-                            stepSize: 1
-                        }
-                    }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            stepSize: 1
+          }
+        }]
+      }
     }
     line_chart visualized_graphs_chart_data_path(period: 'day'),
                xtitle: '日付', ytitle: '投稿数',
@@ -39,13 +39,13 @@ module Visualized::GraphsHelper
 
   def month_chart
     library_options = {
-        scales: {
-            yAxes: [{
-                        ticks: {
-                            stepSize: 1
-                        }
-                    }]
-        }
+      scales: {
+        yAxes: [{
+          ticks: {
+            stepSize: 1
+          }
+        }]
+      }
     }
     line_chart visualized_graphs_chart_data_path(period: 'month'),
                xtitle: '月', ytitle: '投稿数',
