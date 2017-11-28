@@ -68,11 +68,10 @@ message: "allow only 'high' or 'default' or 'low'" }
 
 ### FOR GRAPHS ###
   def self.counts_per_day(graph_data)
-    s = Time.zone.now.beginning_of_month
-    e = Time.zone.now.end_of_day
-    (s.to_i .. e.to_i).step(60*60) do | stamp |
-      date = Time.zone.at(stamp)
-      graph_data["#{date.month}/#{date.day}"] = Problem.by_day(date).count
+    s = DateTime.now.beginning_of_month
+    e = DateTime.now.end_of_day
+    (s .. e).step(1) do | date |
+      graph_data["#{date.month}/#{date.day}"] = Problem.by_day(date.in_time_zone).count
     end
   end
 
@@ -81,14 +80,14 @@ message: "allow only 'high' or 'default' or 'low'" }
     (0 .. 23).each do | num |
       s = time + num.hour
       e = time + (num+1).hour
-      graph_data["#{num.to_s}時"] = Problem.between_times(s,e).count
+      graph_data["#{num}時"] = Problem.between_times(s, e).count
     end
+
   end
 
   def self.counts_per_month(graph_data)
-    time = Time.zone.now
     (1 .. 12).each do | month |
-      graph_data["#{month}月"] = Problem.by_month(month, year: time.year).count
+      graph_data["#{month}月"] = Problem.by_month(month).count
     end
   end
 end
