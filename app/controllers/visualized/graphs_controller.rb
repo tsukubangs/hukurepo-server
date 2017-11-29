@@ -20,4 +20,7 @@ class Visualized::GraphsController < ApplicationController
     render json: User.where.not(country_of_residence: nil).group(:country_of_residence).count
   end
 
+  def generation_data
+    render json: User.where.not(age: nil).group(:age).count
+  end
 end

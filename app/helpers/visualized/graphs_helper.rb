@@ -40,6 +40,15 @@ module Visualized::GraphsHelper
     library_options = {
     }
     pie_chart visualized_graphs_countries_data_path,
+              height: '300px',
+              library: library_options
+  end
+
+  def generation_chart
+    library_options = {
+    }
+    pie_chart visualized_graphs_generation_data_path,
+              height: '300px',
               library: library_options
   end
 end
