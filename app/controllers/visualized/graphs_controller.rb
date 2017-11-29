@@ -1,6 +1,7 @@
 class Visualized::GraphsController < ApplicationController
   skip_before_action :authenticate_user_from_token!
   def show
+    @all_users = User.all.count
   end
 
   def chart_data
