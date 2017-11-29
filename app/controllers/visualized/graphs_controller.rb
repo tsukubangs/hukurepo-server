@@ -2,6 +2,10 @@ class Visualized::GraphsController < ApplicationController
   skip_before_action :authenticate_user_from_token!
   def show
     @all_users = User.all.count
+    @genders = User.where.not(gender: nil).group(:gender).count
+    @genders.each do |key, value|
+      @genders[key] = ((value.to_d/@all_users.to_d)*100).to_i
+    end
   end
 
   def chart_data
