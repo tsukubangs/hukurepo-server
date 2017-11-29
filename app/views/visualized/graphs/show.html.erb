@@ -37,9 +37,18 @@
 </div>
 <div class="row mg-top-30 mg-bottom-15">
   <div class="col-sm-12">
-    <div class="card w-100">
-      <div class="card-body">
-        <p class="card-text">ユーザ数グラフ</p>
+    <div class="card">
+      <div class="row card-body">
+        <div class="col-sm-4">
+          <p class="card-text">全ユーザ数</p>
+        </div>
+        <div class="col-sm-4">
+          <p class="card-text">居住国</p>
+          <%= pie_chart({"Football" => 10, "Basketball" => 5}) %>
+        </div>
+        <div class="col-sm-4">
+          <p class="card-text">年齢層</p>
+        </div>
       </div>
     </div>
   </div>
