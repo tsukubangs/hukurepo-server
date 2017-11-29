@@ -15,4 +15,9 @@ class Visualized::GraphsController < ApplicationController
     end
     render json: graph_data
   end
+
+  def countries_data
+    render json: User.where.not(country_of_residence: nil).group(:country_of_residence).count
+  end
+
 end

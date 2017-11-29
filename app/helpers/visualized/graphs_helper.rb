@@ -35,4 +35,11 @@ module Visualized::GraphsHelper
                discrete: true,
                library: library_options
   end
+
+  def country_chart
+    library_options = {
+    }
+    pie_chart visualized_graphs_countries_data_path,
+              library: library_options
+  end
 end
