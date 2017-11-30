@@ -20,7 +20,7 @@
             </div>
             <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
               <p class="card-text mg-top-30">投稿数のグラフ</p>
-              <%=  month_chart %>
+              <%= month_chart %>
             </div>
           </div>
         </div>
@@ -51,14 +51,14 @@
                  aria-valuenow="<%= ratio("male") %>"
                  aria-valuemin="0" aria-valuemax="100">
               <% unless ratio("male").zero? %>
-              男性<%= ratio("male")%>%
+                男性<%= ratio("male")%>%
               <% end %>
             </div>
             <div class="progress-bar bg-danger" role="progressbar" style="width: <%= ratio("female")%>%"
                  aria-valuenow="<%= ratio("female")%>"
                  aria-valuemin="0" aria-valuemax="100">
               <% unless ratio("female").zero? %>
-                  女性<%= ratio("female")%>%
+                女性<%= ratio("female")%>%
               <% end %>
             </div>
           </div>
