@@ -47,8 +47,20 @@
           </div>
           <p class="card-text mg-top-30">男女比</p>
           <div class="progress mg-top-30" style="height: 50px">
-            <div class="progress-bar" role="progressbar" style="width: <%= @genders["male"] %>%" aria-valuenow="<%= @genders["male"] %>" aria-valuemin="0" aria-valuemax="100">男性<%= @genders["male"]%>%</div>
-            <div class="progress-bar bg-danger" role="progressbar" style="width: <%= @genders["female"]%>%" aria-valuenow="<%= @genders["female"]%>" aria-valuemin="0" aria-valuemax="100">女性<%= @genders["female"]%>%</div>
+            <div class="progress-bar" role="progressbar" style="width: <%= ratio("male")%>%"
+                 aria-valuenow="<%= ratio("male") %>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <% unless ratio("male").zero? %>
+              男性<%= ratio("male")%>%
+              <% end %>
+            </div>
+            <div class="progress-bar bg-danger" role="progressbar" style="width: <%= ratio("female")%>%"
+                 aria-valuenow="<%= ratio("female")%>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <% unless ratio("female").zero? %>
+                  女性<%= ratio("female")%>%
+              <% end %>
+            </div>
           </div>
         </div>
         <div class="col-sm-4">
