@@ -80,4 +80,17 @@ class User < ApplicationRecord
     end
   end
 
+### FOR GRAPHS ###
+
+  def self.gender_ratio
+    all_users = User.all.count
+    genders = User.where.not(gender: nil).group(:gender).count
+    gender_ratio = {}
+    unless all_users.zero? && all_users.nil?
+      genders.each do |key, value|
+        gender_ratio[key] = ((value.to_f/all_users.to_f)*100).round(1)
+      end
+      gender_ratio
+    end
+  end
 end
