@@ -51,4 +51,13 @@ module Visualized::GraphsHelper
               height: '300px',
               library: library_options
   end
+
+  def ratio(gender)
+    unless @gender_ratio[gender].nil?
+      @gender_ratio[gender]
+    else
+      0
+    end
+  end
+
 end
