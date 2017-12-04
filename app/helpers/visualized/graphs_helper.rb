@@ -52,7 +52,7 @@ module Visualized::GraphsHelper
               library: library_options
   end
 
-  def ratio(gender)
+  def gender_ratio(gender)
     return 0 if @gender_ratio[gender].nil?
     @gender_ratio[gender]
   end

@@ -1,7 +1,7 @@
 class Visualized::GraphsController < ApplicationController
   skip_before_action :authenticate_user_from_token!
   def show
-    @all_users = User.all.count
+    @all_user_count = User.all.count
     @gender_ratio = User.gender_ratio
   end
 

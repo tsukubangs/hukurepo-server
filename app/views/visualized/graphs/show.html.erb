@@ -43,22 +43,22 @@
           <p class="card-text">ユーザ数</p>
           <div class="card card-h130 w-75 bg-tsukuba-blue">
             <p class="card-text card-title text-light">全ユーザ数</p>
-            <span class="text-light card-number-lg text-center"><%= @all_users %></span>
+            <span class="text-light card-number-lg text-center"><%= @all_user_count %></span>
           </div>
           <p class="card-text mg-top-30">男女比</p>
           <div class="progress mg-top-30" style="height: 50px">
-            <div class="progress-bar" role="progressbar" style="width: <%= ratio("male")%>%"
-                 aria-valuenow="<%= ratio("male") %>"
+            <div class="progress-bar" role="progressbar" style="width: <%= gender_ratio("male")%>%"
+                 aria-valuenow="<%= gender_ratio("male") %>"
                  aria-valuemin="0" aria-valuemax="100">
-              <% unless ratio("male").zero? %>
-                男性<%= ratio("male")%>%
+              <% unless gender_ratio("male").zero? %>
+                男性<%= gender_ratio("male")%>%
               <% end %>
             </div>
-            <div class="progress-bar bg-danger" role="progressbar" style="width: <%= ratio("female")%>%"
-                 aria-valuenow="<%= ratio("female")%>"
+            <div class="progress-bar bg-danger" role="progressbar" style="width: <%= gender_ratio("female")%>%"
+                 aria-valuenow="<%= gender_ratio("female")%>"
                  aria-valuemin="0" aria-valuemax="100">
-              <% unless ratio("female").zero? %>
-                女性<%= ratio("female")%>%
+              <% unless gender_ratio("female").zero? %>
+                女性<%= gender_ratio("female")%>%
               <% end %>
             </div>
           </div>
