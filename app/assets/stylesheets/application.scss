@@ -35,8 +35,24 @@ $original-yellow: #EBB763;
   padding: 10px;
 }
 
+.card-h130 {
+  height: 130px;
+  margin-bottom: 45px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
 .card-number {
   font-size: 2.2em;
+}
+
+.card-number-lg {
+  font-size: 3.5em;
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
 }
 
 .comment-container {

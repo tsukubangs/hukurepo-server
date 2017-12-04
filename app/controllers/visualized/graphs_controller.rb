@@ -1,6 +1,8 @@
 class Visualized::GraphsController < ApplicationController
   skip_before_action :authenticate_user_from_token!
   def show
+    @all_user_count = User.all.count
+    @gender_ratio = User.gender_ratio
   end
 
   def chart_data
@@ -15,4 +17,13 @@ class Visualized::GraphsController < ApplicationController
     end
     render json: graph_data
   end
+
+  def countries_data
+    render json: User.where.not(country_of_residence: nil).group(:country_of_residence).count
+  end
+
+  def generation_data
+    render json: User.where.not(age: nil).group(:age).count
+  end
+
 end

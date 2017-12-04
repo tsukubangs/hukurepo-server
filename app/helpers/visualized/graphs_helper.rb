@@ -35,4 +35,26 @@ module Visualized::GraphsHelper
                discrete: true,
                library: library_options
   end
+
+  def country_chart
+    library_options = {
+    }
+    pie_chart visualized_graphs_countries_data_path,
+              height: '300px',
+              library: library_options
+  end
+
+  def generation_chart
+    library_options = {
+    }
+    pie_chart visualized_graphs_generation_data_path,
+              height: '300px',
+              library: library_options
+  end
+
+  def gender_ratio(gender)
+    return 0 if @gender_ratio[gender].nil?
+    @gender_ratio[gender]
+  end
+
 end
