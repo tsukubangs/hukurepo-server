@@ -6,13 +6,13 @@
   <% end%>
   <div class="card-body">
     <p class="card-text">
-      <%= problem.comment %>
+      <%= problem.comment.truncate(40) %>
     </p>
     <p class="">
-      <%= problem.created_at %>
+      <%= format_date(problem.created_at) %>
     </p>
     <p class="">
-      <%= problem.user_age %>
+      <%= add_generation(problem.user_age) %>
     </p>
   </div>
 </div>
