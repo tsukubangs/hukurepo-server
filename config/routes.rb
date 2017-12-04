@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     get 'graphs', to: 'graphs#show'
     get 'graphs/chart_data'
     get 'problems', to: 'problems#index'
-    get 'problems/index'
+    get 'graphs/countries_data'
+    get 'graphs/generation_data'
   end
 
   devise_for :users, only: []

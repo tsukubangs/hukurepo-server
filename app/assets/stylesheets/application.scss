@@ -35,6 +35,54 @@ $original-yellow: #EBB763;
   padding: 10px;
 }
 
+.card-h130 {
+  height: 130px;
+  margin-bottom: 45px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
 .card-number {
   font-size: 2.2em;
+}
+
+.card-number-lg {
+  font-size: 3.5em;
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.comment-container {
+  overflow: hidden;
+  width: 100%;
+  p {
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
+}
+
+.comment-container-table {
+  background-color: $tsukuba-blue;
+  overflow: hidden;
+  width: 50%;
+  td {
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+.comment-table {
+  width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
