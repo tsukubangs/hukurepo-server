@@ -55,3 +55,34 @@ $original-yellow: #EBB763;
   margin-bottom: 5px;
 }
 
+.comment-container {
+  overflow: hidden;
+  width: 100%;
+  p {
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+  }
+}
+
+.comment-container-table {
+  background-color: $tsukuba-blue;
+  overflow: hidden;
+  width: 50%;
+  td {
+    width: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+.comment-table {
+  width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
