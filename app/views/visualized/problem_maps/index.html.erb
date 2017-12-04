@@ -30,9 +30,7 @@
 <div class="row mg-top-30 mg-bottom-15">
   <div class="col-sm-12">
     <div class="card w-100">
-      <div class="card-body">
-        <p class="card-text">困りごとの一覧(要約的なやつをここに)</p>
-      </div>
+      <%= render 'problemlist', locals: { all_problems: @all_problems} %>
     </div>
   </div>
 </div>
