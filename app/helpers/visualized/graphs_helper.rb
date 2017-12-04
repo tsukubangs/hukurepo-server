@@ -53,11 +53,8 @@ module Visualized::GraphsHelper
   end
 
   def ratio(gender)
-    unless @gender_ratio[gender].nil?
-      @gender_ratio[gender]
-    else
-      0
-    end
+    return 0 if @gender_ratio[gender].nil?
+    @gender_ratio[gender]
   end
 
 end
