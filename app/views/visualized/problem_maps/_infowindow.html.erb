@@ -2,7 +2,7 @@
   <p><%= problem.japanese_comment %></p>
 </div>
 年齢層：<%=problem.user.age if problem.user.age.present? %>代<br />
-性別：<%=problem.user.gender=="male" ? "男性" : "女性" if problem.user.gender.present? %><br />
+性別：<%= japanese_gender(problem.user.gender) %><br />
 居住国：<%=problem.user.country_of_residence if problem.user.country_of_residence.present? %><br />
 <% if problem.image.present? %>
 <%= image_tag problem.image_url(:thumb), width: "200px"%><br />
