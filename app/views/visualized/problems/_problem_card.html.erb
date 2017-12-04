@@ -1,0 +1,18 @@
+<div class="card" style="height: 330px;">
+  <% unless problem.image_url.nil?%>
+    <%= image_tag(problem.image_url, class: "card-img-top", alt: "Card image cap", size: "180x180")%>
+  <% else %>
+    <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap", size: "180x180")%>
+  <% end%>
+  <div class="card-body">
+    <p class="card-text">
+      <%= problem.comment %>
+    </p>
+    <p class="">
+      <%= problem.created_at %>
+    </p>
+    <p class="">
+      <%= problem.user_age %>
+    </p>
+  </div>
+</div>
