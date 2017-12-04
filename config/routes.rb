@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   namespace :visualized do
     get 'problem_maps', to: 'problem_maps#index'
     get 'graphs', to: 'graphs#show'
-    get 'graphs/show'
     get 'graphs/chart_data'
     get 'problems', to: 'problems#index'
     get 'problems/index'
