@@ -4,4 +4,9 @@ module ApplicationHelper
     return '女性' if gender == 'female'
     return 'その他'
   end
+
+  def truncated_comment(comment, limit)
+    return "" if comment.nil?
+    comment.truncate(limit)
+  end
 end

@@ -6,13 +6,14 @@
   <% end%>
   <div class="card-body">
     <p class="card-text">
-      <%= problem.comment.truncate(40) %>
+      <%= truncated_comment(problem.japanese_comment, 40) %>
     </p>
     <p class="">
       <%= format_date(problem.created_at) %>
     </p>
     <p class="">
       <%= add_generation(problem.user_age) %>
+      <%= japanese_gender(problem.user_gender) %>
     </p>
   </div>
 </div>
