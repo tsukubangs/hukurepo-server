@@ -1,6 +1,7 @@
 class Visualized::ProblemsController < ApplicationController
   skip_before_action :authenticate_user_from_token!
+  PER = 12
   def index
-    @problems = Problem.joins(:user).select("problems.*, users.age AS user_age, users.gender AS user_gender")
+    @problems = Problem.with_posted_user_info.page(params[:page]).per(PER)
   end
 end

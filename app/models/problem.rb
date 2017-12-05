@@ -66,8 +66,8 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
-  # 困りごと一覧ページ用のデータを取得する
-  def self.posted_users
+  # 困りごとデータに投稿したユーザのデータを付けて返す
+  def self.with_posted_user_info
     Problem.joins(:user).select("problems.*, users.age AS user_age, users.gender AS user_gender")
   end
 
