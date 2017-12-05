@@ -1,17 +1,19 @@
-<div class="card" style="height: 330px;">
-  <% unless problem.image_url.nil?%>
-    <%= image_tag(problem.image_url, class: "card-img-top", alt: "Card image cap", size: "180x180")%>
-  <% else %>
-    <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap", size: "180x180")%>
-  <% end%>
-  <div class="card-body">
+<div class="card problem-card">
+  <div class="trim">
+    <% unless problem.image_url.nil?%>
+        <%= image_tag(problem.image_url, class: "card-img-top", alt: "Card image cap")%>
+    <% else %>
+        <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap")%>
+    <% end%>
+  </div>
+  <div class="card-body problem-card-content">
     <p class="card-text">
       <%= truncated_comment(problem.japanese_comment, 40) %>
     </p>
-    <p class="">
+    <p class="card-date card-text-sr text-secondary">
       <%= format_date(problem.created_at) %>
     </p>
-    <p class="">
+    <p class="card-user card-text-sr text-secondary">
       <%= add_generation(problem.user_age) %>
       <%= japanese_gender(problem.user_gender) %>
     </p>

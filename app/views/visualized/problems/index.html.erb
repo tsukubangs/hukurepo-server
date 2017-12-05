@@ -1,9 +1,11 @@
-<h3 class="mg-bottom-15">困りごと一覧</h3>
-<div class="row" style="width: 95%;">
+<h3 class="">困りごと一覧</h3>
+<div class="row mg-top-30" style="width: 95%;">
   <% @problems.each do |problem| %>
     <div class="col-sm-3 mg-bottom-15">
       <%= render 'problem_card', problem: problem %>
     </div>
   <% end %>
 </div>
-<%= paginate @problems %>
+<div class="mg-top-30">
+  <%= paginate @problems %>
+</div>
