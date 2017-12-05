@@ -9,7 +9,6 @@ services:
       - db
     environment:
       RAILS_ENV: production
-      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
 
   https-portal:
     image: steveltn/https-portal:1
@@ -25,10 +24,8 @@ services:
         - ./containers/nginx/http_config:/var/lib/nginx-conf/default.conf.erb:ro
         - ./containers/nginx/https_config:/var/lib/nginx-conf/default.ssl.conf.erb:ro
     restart: always
-    environment:
-      DOMAINS: '$SERVER_DOMAIN'
-      STAGE: '$SERVER_STAGE'
-      # FORCE_RENEW: true
+    env_file: .env
+    # FORCE_RENEW: true
 
   db:
     image: mysql:5.7
@@ -36,11 +33,12 @@ services:
        - datastore
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --skip-character-set-client-handshake
     environment:
-      - MYSQL_DATABASE=$DB_NAME
-      - MYSQL_USER=$DB_USERNAME
-      - MYSQL_PASSWORD=$DB_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      # - MYSQL_DATABASE=$DB_NAME
+      # - MYSQL_USER=$DB_USERNAME
+      # - MYSQL_PASSWORD=$DB_PASSWORD
+      # # - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
       - TZ="Asia/Tokyo"
+    env_file: .env
     ports:
       - 3306:3306
 
