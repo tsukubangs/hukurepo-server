@@ -104,11 +104,17 @@ $original-yellow: #EBB763;
 
 .card-date {
   position: absolute;
-  bottom: 2.5em;
+  bottom: 3.8em;
   right: 1.5em;
 }
 
 .card-user {
+  position: absolute;
+  bottom: 2.5em;
+  right: 1.5em;
+}
+
+.card-country {
   position: absolute;
   bottom: 1.2em;
   right: 1.5em;
