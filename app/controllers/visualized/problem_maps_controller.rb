@@ -9,7 +9,7 @@ class Visualized::ProblemMapsController < ApplicationController
     }
 
 
-    @all_problems = Problem.all
+    @all_problems = Problem.page(params[:page]).per(10)
 
     problems = Problem.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(problems) do |problem, marker|
