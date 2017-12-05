@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     get 'problem_maps', to: 'problem_maps#index'
     get 'graphs', to: 'graphs#show'
     get 'graphs/chart_data'
-    get 'problems', to: 'problems#index'
     get 'graphs/countries_data'
     get 'graphs/generation_data'
+    get 'problems', to: 'problems#index'
   end
 
   devise_for :users, only: []
