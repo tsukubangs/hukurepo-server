@@ -66,6 +66,11 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
+  # 困りごと一覧ページ用のデータを取得する
+  def self.posted_users
+    Problem.joins(:user).select("problems.*, users.age AS user_age, users.gender AS user_gender")
+  end
+
 ### FOR GRAPHS ###
   def self.counts_per_day(graph_data)
     s = DateTime.now.beginning_of_month
