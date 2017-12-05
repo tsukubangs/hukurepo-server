@@ -51,3 +51,6 @@ sendgrid.env
 /public/packs
 /public/packs-test
 /node_modules
+
+# Ignore backup folder
+backup/
