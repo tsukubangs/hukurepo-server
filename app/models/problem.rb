@@ -68,7 +68,7 @@ message: "allow only 'high' or 'default' or 'low'" }
 
   # 困りごとデータに投稿したユーザのデータを付けて返す
   def self.with_posted_user_info
-    Problem.joins(:user).select("problems.*, users.age AS user_age, users.gender AS user_gender").order(created_at: "DESC")
+    Problem.joins(:user).select("problems.*, users.age AS user_age, users.gender AS user_gender, users.country_of_residence AS user_country")
   end
 
 ### FOR GRAPHS ###

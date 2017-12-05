@@ -1,5 +1,5 @@
 <div class="card problem-card">
-  <div class="trim">
+  <div class="trim border">
     <% unless problem.image_url.nil?%>
         <%= image_tag(problem.image_url, class: "card-img-top", alt: "Card image cap")%>
     <% else %>
@@ -11,11 +11,12 @@
       <%= truncated_comment(problem.japanese_comment, 36) %>
     </p>
     <p class="card-date card-text-sr text-secondary">
-      <%= format_date(problem.created_at) %>
+      <%= japanese_date(problem.created_at) %>
     </p>
     <p class="card-user card-text-sr text-secondary">
-      <%= add_generation(problem.user_age) %>
+      <%= japanese_generation(problem.user_age) %>
       <%= japanese_gender(problem.user_gender) %>
+      <%= problem.user_country %>
     </p>
   </div>
 </div>
