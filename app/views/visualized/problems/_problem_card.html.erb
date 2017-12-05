@@ -1,0 +1,24 @@
+<div class="card problem-card">
+  <div class="trim border">
+    <% unless problem.image_url.nil?%>
+        <%= image_tag(problem.image_url, class: "card-img-top", alt: "Card image cap")%>
+    <% else %>
+        <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap")%>
+    <% end%>
+  </div>
+  <div class="card-body problem-card-content">
+    <p class="card-text">
+      <%= truncated_comment(problem.japanese_comment, 36) %>
+    </p>
+    <p class="card-date card-text-sr text-secondary">
+      <%= japanese_date(problem.created_at) %>
+    </p>
+    <p class="card-user card-text-sr text-secondary">
+      <%= japanese_generation(problem.user_age) %>
+      <%= japanese_gender(problem.user_gender) %>
+    </p>
+    <p class="card-country card-text-sr text-secondary">
+      <%= problem.user_country %>
+    </p>
+  </div>
+</div>

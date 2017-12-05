@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   root 'visualized/problem_maps#index'
 
   namespace :visualized do
-    get 'problem_maps/index'
-    get 'graphs/show'
+    get 'problem_maps', to: 'problem_maps#index'
+    get 'graphs', to: 'graphs#show'
     get 'graphs/chart_data'
     get 'graphs/countries_data'
     get 'graphs/generation_data'
+    get 'problems', to: 'problems#index'
   end
 
   devise_for :users, only: []
