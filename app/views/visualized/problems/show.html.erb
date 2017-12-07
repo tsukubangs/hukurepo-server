@@ -1,2 +1,57 @@
-<h1>show page</h1>
-<%= params[:id] %>
+<h3 class="">困りごと一覧</h3>
+<div class="detail-box mg-top-30">
+  <div class="card">
+    <div class="row">
+      <div class="col-sm-7" style="padding-right: 0">
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿日時</div>
+            <div class="p-3">2017年12月12日 12時12分</div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿者情報</div>
+            <div class="p-3">20代　男性　Japan</div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿場所</div>
+            <div class="p-3">茨城県つくば市天王台１−１−１</br>（緯度：40.123 経度：135.123）</div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">返信対応</div>
+            <div class="p-3">対応済み</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5" style="padding-left: 0">
+        <div id="map" style="height: 350px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card mg-top-30">
+    <div class="card-body">
+      <p>投稿内容と返信</p>
+      <nav class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-japanese-tab" data-toggle="tab" href="#nav-japanese" role="tab" aria-controls="nav-japanese" aria-selected="true">日本語</a>
+        <a class="nav-item nav-link" id="nav-english-tab" data-toggle="tab" href="#nav-english" role="tab" aria-controls="nav-english" aria-selected="false">英語</a>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="d-flex flex-row">
+          <div style="width: 40%">
+            <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap")%>
+          </div>
+          <div class="tab-pane fade show active" id="nav-japanese" role="tabpanel" aria-labelledby="nav-japanese-tab">日本語</div>
+          <div class="tab-pane fade" id="nav-english" role="tabpanel" aria-labelledby="nav-english-tab">英語</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        handler.fitMapToBounds();
+        handler.getMap().setCenter(new google.maps.LatLng(36.0860639,140.0750788));
+        handler.getMap().setZoom(13);
+    });
+</script>

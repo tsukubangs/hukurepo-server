@@ -145,3 +145,21 @@ $original-yellow: #EBB763;
   }
 }
 
+.detail-box {
+  background-color: white;
+  width: 95%;
+  margin: auto;
+  padding-top: 30px;
+  .card {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+  }
+}
+.flex-border {
+  border-bottom: solid 1px lightgrey;
+}
+
+.w-150px {
+  width: 150px;
+}
