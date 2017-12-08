@@ -50,7 +50,11 @@
       <div class="tab-content" id="nav-tabContent">
         <div class="d-flex flex-row">
           <div style="width: 40%">
-            <%= image_tag("noimage.jpg", class: "card-img-top", alt: "Card image cap")%>
+            <% unless @problem.image_url.nil?%>
+                <%= image_tag(@problem.image_url, class: "detail-img", alt: "Card image cap")%>
+            <% else %>
+                <%= image_tag("noimage.jpg", class: "detail-img", alt: "Card image cap")%>
+            <% end%>
           </div>
           <div class="tab-pane fade show active" id="nav-japanese" role="tabpanel" aria-labelledby="nav-japanese-tab">日本語</div>
           <div class="tab-pane fade" id="nav-english" role="tabpanel" aria-labelledby="nav-english-tab">英語</div>
