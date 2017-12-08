@@ -43,22 +43,28 @@
   <div class="card mg-top-30">
     <div class="card-body">
       <p>投稿内容と返信</p>
-      <nav class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-japanese-tab" data-toggle="tab" href="#nav-japanese" role="tab" aria-controls="nav-japanese" aria-selected="true">日本語</a>
-        <a class="nav-item nav-link" id="nav-english-tab" data-toggle="tab" href="#nav-english" role="tab" aria-controls="nav-english" aria-selected="false">英語</a>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="d-flex flex-row">
-          <div style="width: 40%">
+        <div class="row">
+          <div class="col-sm-4">
             <% unless @problem.image_url.nil?%>
                 <%= image_tag(@problem.image_url, class: "detail-img", alt: "Card image cap")%>
             <% else %>
                 <%= image_tag("noimage.jpg", class: "detail-img", alt: "Card image cap")%>
             <% end%>
           </div>
-          <div class="tab-pane fade show active" id="nav-japanese" role="tabpanel" aria-labelledby="nav-japanese-tab">日本語</div>
-          <div class="tab-pane fade" id="nav-english" role="tabpanel" aria-labelledby="nav-english-tab">英語</div>
-        </div>
+          <div class="col-sm-8">
+            <div class="tab-content" id="nav-tabContent">
+              <nav class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-japanese-tab" data-toggle="tab" href="#nav-japanese" role="tab" aria-controls="nav-japanese" aria-selected="false">日本語</a>
+                <a class="nav-item nav-link" id="nav-english-tab" data-toggle="tab" href="#nav-english" role="tab" aria-controls="nav-english" aria-selected="false">英語</a>
+              </nav>
+              <div class="tab-pane fade show active" id="nav-japanese" role="tabpanel" aria-labelledby="nav-japanese-tab">
+                <%= render 'responses_japanese', responses: @responses, problem: @problem %>
+              </div>
+              <div class="tab-pane fade" id="nav-english" role="tabpanel" aria-labelledby="nav-english-tab">
+                <%= render 'responses_english', responses: @responses, problem: @problem %>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
