@@ -30,7 +30,13 @@
         </div>
       </div>
       <div class="col-sm-5" style="padding-left: 0">
-        <div id="map" style="height: 350px;"></div>
+        <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+            <div class="no-map">
+              <p>位置情報が無いため地図の表示ができませんでした</p>
+            </div>
+        <% else %>
+            <div id="map" style="height: 350px;"></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -57,8 +63,10 @@
 <script type="text/javascript" charset="utf-8">
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([{"lat": <%=@problem.latitude%>,
+                                                 "lng": <%=@problem.longitude%>}]);
+        handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        handler.getMap().setCenter(new google.maps.LatLng(36.0860639,140.0750788));
-        handler.getMap().setZoom(13);
+        handler.getMap().setZoom(15);
     });
 </script>
