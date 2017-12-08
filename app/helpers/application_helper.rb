@@ -19,4 +19,8 @@ module ApplicationHelper
     return "" if comment.nil?
     comment.truncate(limit)
   end
+
+  def reply_status(responded)
+    return responded ? "返信済み" : "未返信"
+  end
 end

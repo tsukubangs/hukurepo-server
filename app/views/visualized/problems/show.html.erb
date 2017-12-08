@@ -6,19 +6,26 @@
         <div class="d-flex flex-column">
           <div class="d-flex flex-row flex-border">
             <div class="p-3 w-150px">投稿日時</div>
-            <div class="p-3">2017年12月12日 12時12分</div>
+            <div class="p-3"><%= japanese_date(@problem.created_at) %></div>
           </div>
           <div class="d-flex flex-row flex-border">
             <div class="p-3 w-150px">投稿者情報</div>
-            <div class="p-3">20代　男性　Japan</div>
+            <div class="p-3">
+              <%= japanese_generation(@problem.user_age) %>
+              <%= japanese_gender(@problem.user_gender) %>
+              <%= @problem.user_country %>
+            </div>
           </div>
           <div class="d-flex flex-row flex-border">
             <div class="p-3 w-150px">投稿場所</div>
-            <div class="p-3">茨城県つくば市天王台１−１−１</br>（緯度：40.123 経度：135.123）</div>
+            <div class="p-3">茨城県つくば市天王台１−１−１</br>
+              （緯度：<%= @problem.latitude %>
+                経度：<%= @problem.longitude %>)
+            </div>
           </div>
           <div class="d-flex flex-row flex-border">
             <div class="p-3 w-150px">返信対応</div>
-            <div class="p-3">対応済み</div>
+            <div class="p-3"><%= reply_status(@problem.responded)%></div>
           </div>
         </div>
       </div>
