@@ -1,0 +1,17 @@
+<% unless problem.comment.blank? %>
+    <div class="card w-75 comment-poster">
+      <div class="card-body">
+        <%= problem.comment %>
+      </div>
+    </div>
+<% end %>
+
+<% responses.each do |response| %>
+    <% unless response.comment.blank? %>
+        <div class="card w-75 comment-<%= response.user_id == problem.user_id ? "poster" : "respondent"%>">
+          <div class="card-body">
+            <%= response.comment %>
+          </div>
+        </div>
+    <% end %>
+<% end %>

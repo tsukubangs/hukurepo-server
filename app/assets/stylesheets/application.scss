@@ -187,3 +187,12 @@ $original-yellow: #EBB763;
   margin: 5px;
   border: solid 1px lightgrey;
 }
+
+.comment-poster {
+  float: left;
+  border: solid 0.1em $tsukuba-blue;
+}
+.comment-respondent {
+  float: right;
+  border: solid 0.1em $tsukuba-green;
+}
