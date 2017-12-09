@@ -18,7 +18,8 @@
           </div>
           <div class="d-flex flex-row flex-border">
             <div class="p-3 w-150px">投稿場所</div>
-            <div class="p-3">茨城県つくば市天王台１−１−１</br>
+            <div class="p-3">
+              <span id="address"></span></br>
               （緯度：<%= @problem.latitude %>
                 経度：<%= @problem.longitude %>)
             </div>
@@ -71,6 +72,8 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+    <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+    <% else %>
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
         markers = handler.addMarkers([{"lat": <%=@problem.latitude%>,
@@ -79,4 +82,20 @@
         handler.fitMapToBounds();
         handler.getMap().setZoom(15);
     });
+    <% end%>
+</script>
+<script>
+    <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+    <% else %>
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?' +
+        'latlng=<%=@problem.latitude%>,<%=@problem.longitude%>' +
+        '&key=<%= ENV['GEOCODING_API_KEY']%>', function(data) {
+        // 成功時に行われる処理
+        $("#address").text(data.results[0].formatted_address.substr(13));
+    })
+        .fail(function(data) {
+            // 失敗時に行われる処理
+            console.log('Failed: not get address');
+        });
+    <% end%>
 </script>
