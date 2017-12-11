@@ -7,6 +7,5 @@ class Visualized::ProblemsController < ApplicationController
 
   def show
     @problem = Problem.with_posted_user_info.find_by_id(params[:id])
-    @responses = @problem.responses
   end
 end
