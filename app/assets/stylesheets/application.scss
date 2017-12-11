@@ -95,7 +95,16 @@ $original-yellow: #EBB763;
 
 .problem-card {
   height: 330px;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.14)
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.14);
+  position: relative;
+  a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .problem-card-content {
@@ -136,3 +145,54 @@ $original-yellow: #EBB763;
   }
 }
 
+.detail-box {
+  background-color: white;
+  width: 95%;
+  margin: auto;
+  padding-top: 30px;
+  .card {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+  }
+}
+.flex-border {
+  border-bottom: solid 1px lightgrey;
+}
+
+.w-150px {
+  width: 150px;
+}
+
+.no-map {
+  border: solid 1px lightgrey;
+  height: 350px;
+  position: relative;
+
+  p {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 80%;
+    height: 3.2rem;
+  }
+}
+
+.detail-img {
+  width: 90%;
+  padding: 5px;
+  margin: 5px;
+  border: solid 1px lightgrey;
+}
+
+.comment-poster {
+  float: left;
+  border: solid 0.1em $tsukuba-blue;
+}
+.comment-respondent {
+  float: right;
+  border: solid 0.1em $tsukuba-green;
+}

@@ -4,4 +4,8 @@ class Visualized::ProblemsController < ApplicationController
   def index
     @problems = Problem.with_posted_user_info.page(params[:page]).per(PER).order(created_at: :DESC)
   end
+
+  def show
+    @problem = Problem.with_posted_user_info.find_by_id(params[:id])
+  end
 end
