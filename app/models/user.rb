@@ -57,6 +57,14 @@ class User < ApplicationRecord
     return self.role == 'other'
   end
 
+  def self.posters
+    User.where(role: "poster")
+  end
+
+  def self.respondents
+    User.where(role: "respondent")
+  end
+
 ### DEVICE_TOKEN ###
 
   # 自分以外の同じデバイストークンを持つユーザがいたら nil で上書き
@@ -83,8 +91,8 @@ class User < ApplicationRecord
 ### FOR GRAPHS ###
 
   def self.gender_ratio
-    all_user_count = User.all.count
-    genders = User.where.not(gender: nil).group(:gender).count
+    all_user_count = User.posters.count
+    genders = User.posters.where.not(gender: nil).group(:gender).count
     gender_ratio = {}
     unless all_user_count.zero? && all_user_count.nil?
       genders.each do |key, value|
