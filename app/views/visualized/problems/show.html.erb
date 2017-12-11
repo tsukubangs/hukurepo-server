@@ -89,7 +89,7 @@
     <% else %>
     $.get('https://maps.googleapis.com/maps/api/geocode/json?' +
         'latlng=<%=@problem.latitude%>,<%=@problem.longitude%>' +
-        '&key=<%= ENV['GEOCODING_API_KEY']%>', function(data) {
+        '&key=<%= ENV['GOOGLE_API_KEY']%>', function(data) {
         // 成功時に行われる処理
         $("#address").text(data.results[0].formatted_address.substr(13));
     })
