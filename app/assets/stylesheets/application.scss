@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "visualized/graphs";
 
 $tsukuba-blue: #01a8ec;
 $tsukuba-green: #2bb46e;
@@ -195,4 +196,10 @@ $original-yellow: #EBB763;
 .comment-respondent {
   float: right;
   border: solid 0.1em $tsukuba-green;
+}
+
+.graph-title {
+  text-align: center;
+  font-size: larger;
+  font-weight: 600;
 }
