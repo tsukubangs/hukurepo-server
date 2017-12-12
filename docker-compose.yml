@@ -9,6 +9,7 @@ services:
       - db
     environment:
       RAILS_ENV: production
+    env_file: .env
 
   https-portal:
     image: steveltn/https-portal:1

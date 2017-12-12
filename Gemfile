@@ -36,7 +36,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # use for enviroment value
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
 
 # use for slack notification
 gem 'slack-api'
