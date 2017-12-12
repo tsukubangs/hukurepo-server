@@ -17,4 +17,4 @@ VOLUME /app/public
 VOLUME /app/tmp
 
 # Start Server
-CMD [bin/entry]
+CMD  ["bin/entry"]
