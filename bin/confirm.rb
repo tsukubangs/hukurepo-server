@@ -17,7 +17,7 @@ loop do
   end
     res = http.request(req)
 
-    break if res.code != '404' || count > 99
+    break if res.code == '200' || count > 99
     count += 1
   puts "Connect #{uristr} ...(#{count} times)"
   sleep(3)
