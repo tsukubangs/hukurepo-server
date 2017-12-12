@@ -27,7 +27,21 @@
         <div class="col-sm-3">
           <div class="card mg-bottom-15">
             <div class="card-body">
-              <p class="card-text">絞り込み用のformをここに</p>
+              <%= form_tag(visualized_problems_path, method: :post) do %>
+                  <%= text_field_tag :date, '' , :class => "flatpickr flatpickr-input", style:"width:310px", readonly: "readonly"%>
+                  <%= submit_tag "Wordダウンロード", class: "btn btn-primary btn-lg", style:"width:310px" %>
+                  <!-- <input class="flatpickr flatpickr-input" name="date" style="width:310px" type="text" placeholder="Select Date.." readonly="readonly"> -->
+                  <!-- <button type="submit" class="btn btn-primary btn-lg" style="width:310px"> Wordダウンロード </button> -->
+              <% end %>
+
+              <%= javascript_tag do %>
+                  optional_config = {
+                  maxDate: "today",
+                  defaultDate: "today",
+                  inline: true,
+                  };
+                  $(".flatpickr").flatpickr(optional_config);
+              <% end %>
             </div>
           </div>
         </div>
