@@ -30,15 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  # for sending slack notification
-  # TODO 後にpush serviceとして分離する
-  def slack_notify(text)
-    if Rails.env.production?
-      Thread.new do
-        Slack.chat_postMessage(text: text, username: 'HukuRepo', channel:"#notification")
-      end
-    end
-  end
 
   def push_notification(to_user, title, body, data_params = {}, priority = "high")
     return if to_user.device_token.blank?

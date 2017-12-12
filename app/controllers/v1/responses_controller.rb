@@ -116,7 +116,6 @@ module V1
           # 投稿者にプッシュ通知（投稿者自身が返信したときを除く）
           push_notification(@problem.user, "You've got a response", @response.comment)
         end
-        # slack_notify(slack_message)
       end
 
       def response_users
@@ -124,23 +123,5 @@ module V1
         not_ids =  [@response.user.id, @problem.user.id]
         return @problem.responded_users.where.not(id: not_ids).to_a
       end
-
-      def slack_message
-        <<-EOC
-`新しい返信が投稿されました`
-From:
-  User ID:*#{@response.user.id}*
-  Email:*#{@response.user.email}*
-  Response:*#{@response.comment}*
-
->>>
-To:
-  User ID:*#{@response.problem.user.id}*
-  Email:*#{@response.problem.user.email}*
-  Problem:*#{@response.problem.comment}*
-
-EOC
-      end
-
   end
 end

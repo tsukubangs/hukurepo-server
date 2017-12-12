@@ -125,22 +125,11 @@ module V1
         to_users.each do |to_user|
           push_notification(to_user, '新しい困りごとが投稿されました', @problem.japanese_comment)
         end
-        # slack_notify(slack_message)
       end
 
       def auto_response
         return if @problem.is_response_necessary?
         @problem.create_auto_response
-      end
-
-      def slack_message
-        <<-EOC
-`新しい困りごとが投稿されました`
-User ID:*#{@problem.user.id}*
-Email:*#{@problem.user.email}*
-Problem:*#{@problem.comment}*
-
-EOC
       end
   end
 end
