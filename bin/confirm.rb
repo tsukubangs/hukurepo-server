@@ -1,6 +1,9 @@
 require 'net/https'
 require 'uri'
 
+STDOUT.flush
+STDOUT.sync
+
 uristr = "https://" + ENV['DOMAINS']
 uri = URI.parse(uristr)
 http = Net::HTTP.new(uri.host, uri.port)
@@ -10,25 +13,26 @@ http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
 count = 0
 
+puts "サーバプログラムを起動しています。数分間お待ち下さい。"
+
 loop do
   begin
     req = Net::HTTP::Get.new(uri.request_uri)
   rescue
   end
     res = http.request(req)
-
-    break if res.code == '200' || count > 99
+    break if res.code == '200' || count > 200
     count += 1
-  puts "Connect #{uristr} ...(#{count} times)"
-  sleep(3)
+    print "."
+    sleep(3)
 end
 
-STDOUT.flush
-STDOUT.sync
+puts ""
 
-if count > 99
-  puts "Server Setup Failed"
+puts   "---------------------------------------"
+if count > 200
+  puts "サーバプログラムの起動に失敗しました"
 else
-  puts "Server Setup Completed"
+  puts "サーバプログラムの起動に成功しました！"
 end
-
+puts   "---------------------------------------"
