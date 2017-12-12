@@ -17,5 +17,4 @@ VOLUME /app/public
 VOLUME /app/tmp
 
 # Start Server
-# TODO: environment
-CMD bundle exec puma
+CMD [bin/entry]
