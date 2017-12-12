@@ -9,11 +9,11 @@ class Visualized::GraphsController < ApplicationController
     graph_data = {}
     period = params[:period]
     if period == "hour" then
-      Problem.counts_per_hour(graph_data)
+      Problem.counts_per_hour(graph_data, params[:date])
     elsif period == "day" then
-      Problem.counts_per_day(graph_data)
+      Problem.counts_per_day(graph_data, params[:date])
     elsif period == "month" then
-      Problem.counts_per_month(graph_data)
+      Problem.counts_per_month(graph_data, params[:date])
     end
     render json: graph_data
   end
