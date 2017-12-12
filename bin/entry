@@ -12,8 +12,8 @@ echo "success to connect mysql"
 
 bundle exec rails db:migrate
 bundle exec rails db:seed_fu
-bundle exec puma
+bundle exec puma 
 
-ruby bin/confirm.rb | echo
+ruby bin/confirm.rb
 
 exec "$@"
