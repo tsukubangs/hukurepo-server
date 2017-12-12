@@ -36,8 +36,6 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # use for enviroment value
-# gem 'dotenv-rails'
-
 # use for slack notification
 gem 'slack-api'
 
@@ -60,7 +58,7 @@ gem 'easy_translate'
 gem 'has_scope'
 
 # use for seed
-gem 'seed-fu' 
+gem 'seed-fu'
 
 ### For front-end ###
 
@@ -83,6 +81,7 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'gmaps4rails'
 # use for selected period
 gem 'by_star', git: "git://github.com/radar/by_star"
+gem 'chronic'
 # user for chart library (chart.js, google charts, highcharts.js)
 gem 'chartkick'
 ####################
@@ -101,6 +100,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -108,7 +108,7 @@ group :development do
   gem 'prmd'
   gem 'listen', '~> 3.0.5'
   gem 'sqlite3'
-  
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
 end

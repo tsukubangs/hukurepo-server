@@ -70,6 +70,7 @@ GEM
     case_transform (0.2)
       activesupport
     chartkick (2.2.5)
+    chronic (0.10.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -90,6 +91,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.3)
     docile (1.1.5)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     easy_translate (0.5.0)
       json
       thread
@@ -353,9 +358,11 @@ DEPENDENCIES
   byebug
   carrierwave
   chartkick
+  chronic
   coffee-rails (~> 4.2)
   database_cleaner
   devise
+  dotenv-rails
   easy_translate
   factory_girl_rails
   gmaps4rails
