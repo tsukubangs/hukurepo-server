@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/radar/by_star
+  remote: https://github.com/radar/by_star.git
   revision: 1807d93f0a1e0d68c7ffe93b97b94f48e8234e81
   specs:
     by_star (2.2.1)
@@ -100,20 +100,12 @@ GEM
       thread
       thread_safe
     erubis (2.7.0)
-    eventmachine (1.2.5)
     execjs (2.7.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.9.0)
       factory_girl (~> 4.9.0)
       railties (>= 3.0.0)
-    faraday (0.13.1)
-      multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.10.1)
-      faraday (>= 0.7.4, < 1.0)
-    faye-websocket (0.10.7)
-      eventmachine (>= 0.12.0)
-      websocket-driver (>= 0.5.1)
     ffi (1.9.18)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -191,8 +183,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
-    multipart-post (2.0.0)
-    mustermann (1.0.1)
     mysql2 (0.4.10)
     nenv (0.3.0)
     net-http-persistent (3.0.0)
@@ -218,8 +208,6 @@ GEM
       erubis
       jdoc (>= 0.1.4)
       json_schema (~> 0.2)
-      rack
-    rack-protection (2.0.0)
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -275,7 +263,6 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
-    ruby_http_client (3.3.0)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -290,25 +277,12 @@ GEM
     seed-fu (2.3.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
-    sendgrid-ruby (5.2.0)
-      ruby_http_client (~> 3.2)
-      sinatra (>= 1.4.7, < 3)
     shellany (0.0.1)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sinatra (2.0.0)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.0)
-      tilt (~> 2.0)
-    slack-api (1.6.0)
-      faraday (~> 0.11)
-      faraday_middleware (~> 0.10.0)
-      faye-websocket (~> 0.10.6)
-      multi_json (~> 1.0, >= 1.0.3)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -385,9 +359,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   seed-fu
-  sendgrid-ruby
   simplecov
-  slack-api
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

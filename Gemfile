@@ -35,13 +35,6 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 
-# use for enviroment value
-# use for slack notification
-gem 'slack-api'
-
-# use for sending mail
-gem 'sendgrid-ruby'
-
 # use for pagenation
 gem 'kaminari'
 
@@ -80,7 +73,7 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 # use for google map
 gem 'gmaps4rails'
 # use for selected period
-gem 'by_star', git: "git://github.com/radar/by_star"
+gem 'by_star', git: "https://github.com/radar/by_star.git"
 gem 'chronic'
 # user for chart library (chart.js, google charts, highcharts.js)
 gem 'chartkick'
@@ -100,6 +93,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  # use for enviroment value
   gem 'dotenv-rails'
 end
 
