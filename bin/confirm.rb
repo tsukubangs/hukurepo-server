@@ -1,7 +1,7 @@
 require 'net/https'
 require 'uri'
 
-uri = URI.parse("https://" + $ENV['DOMAINS'])
+uri = URI.parse("https://" + ENV['DOMAINS'])
 http = Net::HTTP.new(uri.host, uri.port)
 
 http.use_ssl = true
