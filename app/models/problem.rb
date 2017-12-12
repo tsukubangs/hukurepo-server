@@ -72,16 +72,27 @@ message: "allow only 'high' or 'default' or 'low'" }
   end
 
 ### FOR GRAPHS ###
-  def self.counts_per_day(graph_data)
-    s = DateTime.now.beginning_of_month
-    e = DateTime.now.end_of_day
+  def self.counts_per_day(graph_data, selected_date)
+    if selected_date.nil?
+      s = DateTime.now.beginning_of_month
+      e = DateTime.now.end_of_day
+    else
+      date = selected_date.split('-')
+      s = DateTime.new(date[0].to_i, date[1].to_i,date[2].to_i).beginning_of_month
+      e = DateTime.new(date[0].to_i, date[1].to_i,date[2].to_i).end_of_day
+    end
     (s .. e).step(1) do | date |
       graph_data["#{date.month}/#{date.day}"] = Problem.by_day(date.in_time_zone).count
     end
   end
 
-  def self.counts_per_hour(graph_data)
-    time = Time.zone.now.beginning_of_day
+  def self.counts_per_hour(graph_data, selected_date)
+    if selected_date.nil?
+      time = Time.zone.now.beginning_of_day
+    else
+      date = selected_date.split('-')
+      time = Time.zone.local(date[0].to_i, date[1].to_i, date[2].to_i).beginning_of_day
+    end
     (0 .. 23).each do | num |
       s = time + num.hour
       e = time + (num+1).hour
@@ -89,9 +100,15 @@ message: "allow only 'high' or 'default' or 'low'" }
     end
   end
 
-  def self.counts_per_month(graph_data)
+  def self.counts_per_month(graph_data, selected_date)
+    if selected_date.nil?
+      year = Time.now.year
+    else
+      date = selected_date.split('-')
+      year = date[0].to_i
+    end
     (1 .. 12).each do | month |
-      graph_data["#{month}月"] = Problem.by_month(month).count
+      graph_data["#{month}月"] = Problem.by_month(month, year: year).count
     end
   end
 end
