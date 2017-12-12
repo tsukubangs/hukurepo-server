@@ -10,8 +10,8 @@ http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 loop do
   req = Net::HTTP::Get.new(uri.request_uri)
   res = http.request(req)
-  sleep(3)
   break if res.code != '404'
+  sleep(3)
 end
 
 puts "Server setup completed!"
