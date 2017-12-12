@@ -8,4 +8,4 @@
 <%= image_tag problem.image_url(:thumb), size: "200x200"%><br />
 <% end %>
 <%= link_to "マップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %><br />
-<%= link_to "詳細を見る", visualized_problem_path(id: problem.id) %>
+<%= link_to "詳細を見る", visualized_problem_path(problem) %>
