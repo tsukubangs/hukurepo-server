@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+
+  root 'visualized/problem_maps#index'
+
+  namespace :visualized do
+    get 'problem_maps', to: 'problem_maps#index'
+    get 'graphs', to: 'graphs#show'
+    get 'graphs/chart_data'
+    get 'graphs/countries_data'
+    get 'graphs/generation_data'
+    resources :problems, only: [:index, :show]
+  end
+
   devise_for :users, only: []
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :v1, defaults: { format: :json } do

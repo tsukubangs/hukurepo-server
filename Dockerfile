@@ -12,8 +12,12 @@ RUN bundle install --without development test
 ADD . /app
 RUN mkdir -p tmp/sockets
 
+RUN rails assets:clean RAILS_ENV=production
+RUN rails assets:precompile RAILS_ENV=production
+
 # Expose volumes to frontend
 VOLUME /app/public
+VOLUME /app/public/assets
 VOLUME /app/tmp
 
 # Start Server

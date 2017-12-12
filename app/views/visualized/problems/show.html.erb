@@ -1,0 +1,101 @@
+<h3 class="">困りごと詳細</h3>
+<div class="detail-box mg-top-30">
+  <div class="card">
+    <div class="row">
+      <div class="col-sm-7" style="padding-right: 0">
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿日時</div>
+            <div class="p-3"><%= japanese_date(@problem.created_at) %></div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿者情報</div>
+            <div class="p-3">
+              <%= japanese_generation(@problem.user_age) %>
+              <%= japanese_gender(@problem.user_gender) %>
+              <%= @problem.user_country %>
+            </div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">投稿場所</div>
+            <div class="p-3">
+              <span id="address"></span></br>
+              （緯度：<%= @problem.latitude %>
+                経度：<%= @problem.longitude %>)
+            </div>
+          </div>
+          <div class="d-flex flex-row flex-border">
+            <div class="p-3 w-150px">返信対応</div>
+            <div class="p-3"><%= reply_status(@problem.responded)%></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5" style="padding-left: 0">
+        <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+            <div class="no-map">
+              <p>位置情報が無いため地図の表示ができませんでした</p>
+            </div>
+        <% else %>
+            <div id="map" style="height: 350px;"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="card mg-top-30">
+    <div class="card-body">
+      <p>投稿内容と返信</p>
+        <div class="row">
+          <div class="col-sm-4">
+            <% unless @problem.image_url.nil?%>
+                <%= image_tag(@problem.image_url, class: "detail-img", alt: "Card image cap")%>
+            <% else %>
+                <%= image_tag("noimage.jpg", class: "detail-img", alt: "Card image cap")%>
+            <% end%>
+          </div>
+          <div class="col-sm-8">
+            <div class="tab-content" id="nav-tabContent">
+              <nav class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-japanese-tab" data-toggle="tab" href="#nav-japanese" role="tab" aria-controls="nav-japanese" aria-selected="false">日本語</a>
+                <a class="nav-item nav-link" id="nav-english-tab" data-toggle="tab" href="#nav-english" role="tab" aria-controls="nav-english" aria-selected="false">英語</a>
+              </nav>
+              <div class="tab-pane fade show active" id="nav-japanese" role="tabpanel" aria-labelledby="nav-japanese-tab">
+                <%= render 'responses_japanese', problem: @problem %>
+              </div>
+              <div class="tab-pane fade" id="nav-english" role="tabpanel" aria-labelledby="nav-english-tab">
+                <%= render 'responses_english', problem: @problem %>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+    <% else %>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([{"lat": <%=@problem.latitude%>,
+                                                 "lng": <%=@problem.longitude%>}]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(15);
+    });
+    <% end%>
+</script>
+<script>
+    <% if @problem.latitude.nil? or @problem.longitude.nil? %>
+    <% else %>
+    $.get('https://maps.googleapis.com/maps/api/geocode/json?' +
+        'latlng=<%=@problem.latitude%>,<%=@problem.longitude%>' +
+        '&key=<%= ENV['GOOGLE_API_KEY']%>', function(data) {
+        // 成功時に行われる処理
+        $("#address").text(data.results[0].formatted_address.substr(13));
+    })
+        .fail(function(data) {
+            // 失敗時に行われる処理
+            console.log('Failed: not get address');
+        });
+    <% end%>
+</script>

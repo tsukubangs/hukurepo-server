@@ -48,3 +48,9 @@ sendgrid.env
 .idea
 .secret
 .idea/remote-mappings.xml
+/public/packs
+/public/packs-test
+/node_modules
+
+# Ignore backup folder
+backup/

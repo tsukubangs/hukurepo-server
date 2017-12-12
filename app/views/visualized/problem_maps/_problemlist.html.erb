@@ -1,0 +1,24 @@
+<table class="table table-striped table-hover w-100">
+      <thead>
+        <tr class="table-success">
+          <th>年齢層</th>
+          <th>性別</th>
+          <th>居住国</th>
+          <th>コメント</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @all_problems.each do |problem| %>
+        <tr>
+          <td><%= problem.user.age %>代</td>
+          <td><%= japanese_gender(problem.user.gender) %></td>
+          <td><%= problem.user.country_of_residence %></td>
+          <td class="comment-table"><%= truncated_comment(problem.japanese_comment, 60) %></td>
+          <td>
+            <%= link_to "マップを開く" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+</table>
