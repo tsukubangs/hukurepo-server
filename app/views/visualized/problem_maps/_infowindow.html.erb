@@ -5,6 +5,7 @@
 性別：<%= japanese_gender(problem.user.gender) %><br />
 居住国：<%=problem.user.country_of_residence if problem.user.country_of_residence.present? %><br />
 <% if problem.image.present? %>
-<%= image_tag problem.image_url(:thumb), width: "200px"%><br />
+<%= image_tag problem.image_url(:thumb), size: "200x200"%><br />
 <% end %>
-<%= link_to "マップを開く" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %><br />
+<%= link_to "マップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %><br />
+<%= link_to "詳細を見る", visualized_problem_path(id: problem.id) %>
