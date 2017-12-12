@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+bundle exec rails assets:clean
+bundle exec rails assets:precompile
+
 until mysqladmin ping -h db -P 3306 --silent; do
   echo "waiting for mysql..."
   sleep 1s
