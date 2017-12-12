@@ -14,6 +14,6 @@ bundle exec rails db:migrate
 bundle exec rails db:seed_fu
 bundle exec puma
 
-ruby containers/nginx/confirm.rb
+ruby bin/confirm.rb
 
 exec "$@"
