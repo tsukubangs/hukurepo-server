@@ -15,7 +15,7 @@
           <td class="d-inline-block col-1"><%= problem.user.age %>代</td>
           <td class="d-inline-block col-1"><%= japanese_gender(problem.user.gender) %></td>
           <td class="d-inline-block col-3"><%= problem.user.country_of_residence %></td>
-          <td class="comment-table d-inline-block col-6" style="word-wrap: break-word;"><%= truncated_comment(problem.japanese_comment) %></td>
+          <td class="comment-table d-inline-block col-6" style="word-wrap: break-word;"><%= truncated_comment(problem.japanese_comment, 60) %></td>
           <td class="d-inline-block col-1">
             <%= link_to "マップを開く" ,"https://maps.google.co.jp/maps?q=loc:#{problem.latitude},#{problem.longitude}&iwloc=J",target: "_blank" %>
           </td>
