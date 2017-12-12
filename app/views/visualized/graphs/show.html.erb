@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <div class="card">
       <div class="row card-body">
-        <div class="col-sm-9">
+        <div class="col-sm-8">
           <nav class="nav nav-tabs" id="myTab" role="tablist">
             <a class="nav-item nav-link active" id="nav-hour-tab" data-toggle="tab" href="#nav-hour" role="tab" aria-controls="nav-hour" aria-selected="false">1時間ごと</a>
             <a class="nav-item nav-link" id="nav-day-tab" data-toggle="tab" href="#nav-day" role="tab" aria-controls="nav-day" aria-selected="false">1日ごと</a>
@@ -24,12 +24,11 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="card mg-bottom-15">
+        <div class="col-sm-4">
             <div class="card-body">
               <%= form_tag(visualized_problems_path, method: :post) do %>
                   <%= text_field_tag :date, '' , :class => "flatpickr flatpickr-input", style:"width:310px", readonly: "readonly"%>
-                  <%= submit_tag "Wordダウンロード", class: "btn btn-primary btn-lg", style:"width:310px" %>
+                  <%= submit_tag "日付指定", class: "btn btn-primary btn-lg", style:"width:310px" %>
                   <!-- <input class="flatpickr flatpickr-input" name="date" style="width:310px" type="text" placeholder="Select Date.." readonly="readonly"> -->
                   <!-- <button type="submit" class="btn btn-primary btn-lg" style="width:310px"> Wordダウンロード </button> -->
               <% end %>
@@ -43,7 +42,6 @@
                   $(".flatpickr").flatpickr(optional_config);
               <% end %>
             </div>
-          </div>
         </div>
       </div>
     </div>
