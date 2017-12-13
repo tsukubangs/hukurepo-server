@@ -26,7 +26,7 @@ services:
         - ./containers/nginx/https_config:/var/lib/nginx-conf/default.ssl.conf.erb:ro
     restart: always
     environment:
-      STAGE: production
+     STAGE: production 
     env_file: .env
     # FORCE_RENEW: true
 
@@ -40,6 +40,7 @@ services:
       # - MYSQL_USER=$DB_USERNAME
       # - MYSQL_PASSWORD=$DB_PASSWORD
       # # - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_ALLOW_EMPTY_PASSWORD="yes"
       - TZ="Asia/Tokyo"
     env_file: .env
     ports:
