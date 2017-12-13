@@ -16,12 +16,14 @@ count = 0
 puts "サーバプログラムを起動しています。数分間お待ち下さい。"
 
 loop do
+  code = ''
   begin
     req = Net::HTTP::Get.new(uri.request_uri)
+    res = http.request(req)
+    code = res.code
   rescue
   end
-    res = http.request(req)
-    break if res.code == '200' || count > 200
+    break if code == '200' || count > 200
     count += 1
     print "."
     sleep(3)
