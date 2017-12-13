@@ -3,7 +3,7 @@
   <div class="col-sm-12">
     <div class="card">
       <div class="row card-body">
-        <div class="col-sm-9">
+        <div class="col-sm-8">
           <nav class="nav nav-tabs" id="myTab" role="tablist">
             <a class="nav-item nav-link active" id="nav-hour-tab" data-toggle="tab" href="#nav-hour" role="tab" aria-controls="nav-hour" aria-selected="false">1時間ごと</a>
             <a class="nav-item nav-link" id="nav-day-tab" data-toggle="tab" href="#nav-day" role="tab" aria-controls="nav-day" aria-selected="false">1日ごと</a>
@@ -11,25 +11,28 @@
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-hour" role="tabpanel" aria-labelledby="nav-hour-tab">
-              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <p class="card-text mg-top-30 graph-title"><%= selected_date(params[:date])%>の投稿数グラフ</p>
               <%= hour_chart %>
             </div>
             <div class="tab-pane fade" id="nav-day" role="tabpanel" aria-labelledby="nav-day-tab">
-              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <p class="card-text mg-top-30 graph-title"><%= selected_date(params[:date])%>までの投稿数グラフ</p>
               <%= day_chart %>
             </div>
             <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
-              <p class="card-text mg-top-30">投稿数のグラフ</p>
+              <p class="card-text mg-top-30 graph-title"><%= selected_year(params[:date])%>の投稿数グラフ</p>
               <%= month_chart %>
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="card mg-bottom-15">
+        <div class="col-sm-4">
             <div class="card-body">
-              <p class="card-text">絞り込み用のformをここに</p>
+              <p style="font-size: small">カレンダーから確認したい日付を選択できます</p>
+              <%= form_tag(visualized_graphs_path, method: :get) do %>
+                  <%= text_field_tag :date, '' , :class => "flatpickr flatpickr-input", style:"width:310px", readonly: "readonly"%>
+                  <%= submit_tag "日付指定", class: "btn btn-primary btn-lg", style:"width:310px" %>
+              <% end %>
+              <%= link_to_unless params[:date].nil?, "今日のグラフに戻る" ,visualized_graphs_path, method: :get %>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -75,3 +78,13 @@
     </div>
   </div>
 </div>
+
+<script>
+    optional_config = {
+        minDate: "2017-11-01",
+        maxDate: "today",
+        defaultDate: "<%= params[:date].nil? ? 'today' : params[:date] %>",
+        inline: true,
+    };
+    $(".flatpickr").flatpickr(optional_config);
+</script>
