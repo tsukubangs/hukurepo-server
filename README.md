@@ -1,24 +1,57 @@
-# README
+# サーバプログラム起動方法
+## 概要
+外国人訪問者の困りごとを集めるためのプラットフォーム*HUKUREPO*のサーバプログラムです。
+外国人訪問者に困りごとを投稿してもらい、ボランティアなどがその困りごとに助言できるシステムとなっています。
+外国人訪問者の困りごとを集め、外国人訪問者に合った施策を考える参考にして下さい。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## 準備
+### 必要なもの
+1. Ubutnu16.04が載っているサーバ(80番・443番ポートを開放）
+1. サーバのドメイン
 
-* Ruby version
+### 取得推奨
+1. Google翻訳用のTranslation APIのキー[(参考)](https://cloud.google.com/translate/)
+1. プッシュ通知用のFCM APIのキー[(参考)](https://firebase.google.com/docs/cloud-messaging/?hl=ja)
 
-* System dependencies
 
-* Configuration
+## サーバプログラム起動
+以下の手順でサーバプログラムを起動させることができます
+sudo権限が付与されているユーザから実行してください
 
-* Database creation
+1. リポジトリ取得
+1. ユーザ固有設定
+1. セットアップシェルの実行
 
-* Database initialization
+### 1. リポジトリ取得
+本リポジトリをサーバにクローンします。
+gitをインストールしてない場合はgitをインストールしてください。
+```bash
+sudo apt-get install -y git
+git clone https://github.com/tsukubangs/hukurepo-server
+```
 
-* How to run the test suite
+### 2. ユーザ固有設定
+.env.sampleを.envにリネームしてください。
+```bash
+mv .env.sample .env
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+viなどを使い.envを編集して下さい。
+- DOMAINSをサーバのドメインに変更してください
+- セキュリティを気にする場合は、DBのパスワードや暗号キーベースを変更してください
+- Google翻訳用のGOOGLE_TRANSLATION_APIのキーや、プッシュ通知用のFCMキーを取得している場合は設定してください
 
-* Deployment instructions
 
-* ...
+###　3. セットアップシェル実行
+以下のセットアップシェルを実行してください。
+サーバプログラムに必要なものをダウンロードし、インストールしたあとに起動します。
+この処理は10～15分ほどかかります。
+
+./setup.sh
+```bash
+mv .env.sample .env
+```
+
+「サーバの起動に成功しました」というメッセージが出たらサーバプログラムの起動は完了です。
+https://[your domain]でアクセスすることができます。
