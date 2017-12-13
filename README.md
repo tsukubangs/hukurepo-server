@@ -24,7 +24,7 @@ sudo権限が付与されているユーザから実行してください。
 1. セットアップシェルの実行
 
 ### 1. リポジトリ取得
-本リポジトリをサーバにクローンします。
+本リポジトリをサーバにクローンしてください。
 gitをインストールしてない場合はgitをインストールしてください。
 ```bash
 sudo apt-get install -y git
@@ -32,9 +32,9 @@ git clone https://github.com/tsukubangs/hukurepo-server
 ```
 
 ### 2. ユーザ固有設定（ドメインなど）
-環境設定ファイル.env.sampleを.envにリネームしてください。
+環境設定ファイル.env.sampleを.envとしてコピーしてください。
 ```bash
-mv .env.sample .env
+cp .env.sample .env
 ```
 
 viなどを使い.envを編集して以下の設定を行って下さい。
