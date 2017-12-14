@@ -67,7 +67,8 @@ Docker-CEを使い、データベースやWebサーバプログラムを動か�
 
 Ubuntu16以上 amd64のサーバを使用している場合は、インストール作業をシェルで自動化しているため、そのまま「4.セットアップシェルの実行」に進んでさい。
 
-それ以外のアーキテクチャを使用する場合は[こちら](https://www.docker.com/community-edition)からインストールして下さい。
+それ以外のアーキテクチャを使用する場合は[こちら](https://www.docker.com/community-edition)からインストールしてください。
+Linuxの場合は[こちら](https://docs.docker.com/compose/install/#prerequisites)を参照してdocker-composeをインストールしてください。
 
 <br>
 <br>
