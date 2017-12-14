@@ -24,11 +24,19 @@ sudo権限が付与されているユーザから実行してください。
 1. セットアップシェルの実行
 
 ### 1. リポジトリ取得
-本リポジトリをサーバにクローンしてください。
 gitをインストールしてない場合はgitをインストールしてください。
 ```bash
 sudo apt-get install -y git
+```
+
+本リポジトリをサーバにクローンしてください。
+```bash
 git clone https://github.com/tsukubangs/hukurepo-server
+```
+
+リポジトリ取得後に、ディレクトリを移動して下さい
+```bash
+cd hukurepo-server
 ```
 
 ### 2. ユーザ固有設定（ドメインなど）
