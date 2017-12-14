@@ -37,7 +37,6 @@ sudo apt-get install -y git
 ```bash
 git clone https://github.com/tsukubangs/hukurepo-server
 ```
-<br>
 リポジトリ取得後に、ディレクトリを移動して下さい
 ```bash
 cd hukurepo-server
