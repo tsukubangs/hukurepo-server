@@ -65,7 +65,7 @@ viなどを使い.envを編集して以下の設定を行って下さい。
 ### 3. Dockerインストール
 Docker-CEを使い、データベースやWebサーバプログラムを動かします。
 
-Ubuntu16以上 amd64のサーバを使用している場合は、インストール作業をシェルで自動化しているため、そのまま「4.セットアップシェルの実行」に進んでさい。
+Ubuntu16以上 amd64のサーバを使用している場合は、インストール作業をシェルで自動化しているため、そのまま「4.セットアップシェルの実行」に進んでください。
 
 それ以外のアーキテクチャを使用する場合は[こちら](https://www.docker.com/community-edition)からインストールしてください。
 Linuxの場合は[こちら](https://docs.docker.com/compose/install/#prerequisites)を参照してdocker-composeをインストールしてください。
