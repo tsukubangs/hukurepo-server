@@ -78,12 +78,14 @@ Linuxの場合は[こちら](https://docs.docker.com/compose/install/#prerequisi
 この処理は10～15分ほどかかります。
 
 - サーバがUbuntu16以上amd64の場合
+
 以下のシェルでDockerインストールとサーバプログラム起動を同時に行えます。
 ```bash
 ./setup_for_ubuntu16amd64.sh
 ```
 
 - その他アーキテクチャの場合
+
 Dockerインストール後に以下のシェルを実行してください。
 ```bash
 ./setup.sh
