@@ -28,6 +28,5 @@ production:
   pool: 5
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
-  host: db
   database: <%= ENV['MYSQL_DATABASE'] %>
-  # socket: /var/lib/mysql/mysql.sock
+  socket: [mysqlのsocketのパス] 
