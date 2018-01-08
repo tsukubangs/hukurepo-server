@@ -26,7 +26,7 @@ services:
         - ./containers/nginx/https_config:/var/lib/nginx-conf/default.ssl.conf.erb:ro
     restart: always
     environment:
-     STAGE: production 
+     STAGE: staging 
     env_file: .env
     # FORCE_RENEW: true
 
